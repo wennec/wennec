@@ -21,7 +21,7 @@ class ColegioController extends Controller
     {
         $planes = Plan::all();
         $colegios = Colegio::with('plan')->get();
-        return view('Wennec.super-admin.super-admin-departamento',[
+        return view('Wennec.super-admin.super-admin-colegios',[
           'colegios' => $colegios,
         ]);
     }
@@ -34,7 +34,7 @@ class ColegioController extends Controller
     public function create()
     {
       $planes = Plan::all();
-        return view('Wennec.super-admin.super-admin-creardpto', [
+        return view('Wennec.super-admin.super-admin-crearcolegio', [
           'planes' => $planes,
         ]);
     }
@@ -52,7 +52,7 @@ class ColegioController extends Controller
             'descripcion' => $request['descripcion'],
             'FK_PlanesId' => $request['FK_PlanesId'],
         ]);
-        return redirect('/departamentos')->with('success','Dependencia Creada Correctamente');
+        return redirect('/colegios')->with('success','Dependencia Creada Correctamente');
 /*
         $atributos = $request->only(
             'nombre',
@@ -100,7 +100,7 @@ class ColegioController extends Controller
 
          $cole = Colegio::find($colegio);
          $planes = Plan::all();
-         return view('Wennec.super-admin.super-admin-editdpto',[
+         return view('Wennec.super-admin.super-admin-editcolegio',[
            'departamento' => $cole,
            'planes' => $planes
          ]);
@@ -118,7 +118,7 @@ class ColegioController extends Controller
       $cole = colegio::find($colegio);
       $cole->fill($request->all());
       $cole->save();
-      return redirect('/departamentos')->with('success','Dependencia Modificada Correctamente');
+      return redirect('/colegios')->with('success','Dependencia Modificada Correctamente');
     }
 
     /**
@@ -130,7 +130,7 @@ class ColegioController extends Controller
     public function destroy($colegio)
     {
       Colegio::destroy($colegio);
-      return redirect('/departamentos')->with('error','Dependencia Eliminada Correctamente');
+      return redirect('/colegios')->with('error','Dependencia Eliminada Correctamente');
     }
 
 }

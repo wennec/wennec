@@ -2,8 +2,6 @@
 @section('content')
 <div class="col-md-12">
 @include('Wennec.alerts.errors')
-
-<!-- Static Table Start -->
 <div class="data-table-area mg-b-15-datatable">
     <div class="container-fluid">
         <div class="row">
@@ -15,14 +13,13 @@
                         </div>
                     </div>
                     <div class="sparkline13-graph">
-                        {!! Form::open(['route'=>'departamentos.store','method'=>'POST']) !!}                        
-                            <div class="form-group form-md-line-input">                                 
+                        {!!Form::model($departamento, ['route' => ['colegios.update',$departamento], 'method' => 'PUT','files' => true, 'enctype'=>'multipart/form-data'])!!}
+                            <div class="form-group form-md-line-input">
                                 {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
                             </div>
                             <div class="form-group form-md-line-input">
                                 {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required','maxlength'=>'85'])!!}
-                            </div>    
-
+                            </div>
                             <div class="form-group form-md-line-input">
 
                                 <select class="form-control" name="FK_PlanesId" id="" >
@@ -31,12 +28,12 @@
                                         <option value="{{$plan->id}}">{{$plan->nombre}}</option>
                                     @endforeach
                                 </select>                 
-                            </div>                                       
-                            {!! Form::submit('Agregar Colegio', ['class'=>'btn btn-large btn-primary']) !!}
-                            {{link_to_route('departamentos.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
-                            </div>                        
+                            </div>    
+                            {!! Form::submit('Editar', ['class'=>'btn btn-large btn-primary']) !!}
+                            {{link_to_route('colegios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
+                            </div>
                             {!! Form::close() !!}
-                        </div>     
+                        </div>
                     </div>
                 </div>
             </div>

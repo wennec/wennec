@@ -8,6 +8,6 @@
 @component('components.nav-link', [
     'icon' => 'fas fa-school',
     'title' => 'Colegios',
-    'link' => route('departamentos.index')
+    'link' => route('colegios.index')
 ])
 @endcomponent

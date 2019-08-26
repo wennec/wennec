@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div>
-                            <a class="btn btn-primary" href="{{route('departamentos.create')}}" role="button">
+                            <a class="btn btn-primary" href="{{route('colegios.create')}}" role="button">
                                 <i class="fa fa-plus"></i>
                                 Crear Colegio
                             </a>
@@ -59,9 +59,9 @@
                                             @else
                                             <td><span class="label label-info">No Aplica</span></td>
                                             @endif
-                                            <td class="text-center">{{link_to_route('departamentos.edit', $title = '', $parameter = $colegio->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}
+                                            <td class="text-center">{{link_to_route('colegios.edit', $title = '', $parameter = $colegio->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}
                                             </td>
-                                            <td class="text-center">@include('Wennec.super-admin.super-admin-deletedepartamento')
+                                            <td class="text-center">@include('Wennec.super-admin.super-admin-deletecolegio')
                                             </td>
                                         </tr>
                                         @endforeach
