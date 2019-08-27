@@ -33,8 +33,8 @@
     <script src="{{ asset('assets/js/scrollbar/mCustomScrollbar-active.js') }}"></script>
     <!-- metisMenu JS
 		============================================ -->
-    <script src="assets/js/metisMenu/metisMenu.min.js') }}"></script>
-    <script src="assets/js/metisMenu/metisMenu-active.js') }}"></script>
+    <script src="{{ asset('assets/js/metisMenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/metisMenu/metisMenu-active.js') }}"></script>
     <!-- morrisjs JS
 		============================================ -->
     <script src="{{ asset('assets/js/morrisjs/raphael-min.js') }}"></script>
@@ -82,3 +82,9 @@
     <!-- main JS
 		============================================ -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        <!-- calendar JS
+		============================================ -->
+    <script src="{{ asset('assets/js/calendar/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/calendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/calendar/fullcalendar-active.js') }}"></script>

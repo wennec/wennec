@@ -4,6 +4,11 @@
 Route::resource('usuarios','UserController');
 Route::resource('colegios', 'ColegioController');
 
+//Rutas Administrador
+Route::resource('usuariosC', 'UsersAdminController');
+Route::resource('agendaA', 'AgendaAdminController');
+Route::resource('eventoA', 'EventoAdminController');
+
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
     Route::post('/', 'PerfilController@update')->name('perfil.update');

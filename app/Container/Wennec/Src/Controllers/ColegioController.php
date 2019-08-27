@@ -53,14 +53,6 @@ class ColegioController extends Controller
             'FK_PlanesId' => $request['FK_PlanesId'],
         ]);
         return redirect('/colegios')->with('success','Dependencia Creada Correctamente');
-/*
-        $atributos = $request->only(
-            'nombre',
-            'descripcion'
-        );
-        $departamento = new Departamento($atributos);
-        $departamento->save();
-        return redirect()->route('departamentos.index');*/
     }
 
     /**

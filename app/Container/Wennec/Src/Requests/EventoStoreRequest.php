@@ -4,7 +4,7 @@ namespace App\Container\Wennec\Src\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeptoUpdateRequest extends FormRequest
+class EventoStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class DeptoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //'nombre' => 'required|unique:TBL_Colegios',
+            'titulo_evento' => 'required',
+            'fecha' => 'required',
         ];
     }
 }
