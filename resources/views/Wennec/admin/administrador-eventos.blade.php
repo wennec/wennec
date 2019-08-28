@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="calender-inner">
-                        <div id='calendar'></div>
+                        <div id='calendario'></div>
                     </div>
                 </div>
             </div>

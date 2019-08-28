@@ -8,6 +8,7 @@ Route::resource('colegios', 'ColegioController');
 Route::resource('usuariosC', 'UsersAdminController');
 Route::resource('agendaA', 'AgendaAdminController');
 Route::resource('eventoA', 'EventoAdminController');
+Route::resource('eventoEstudiante', 'EventoEstudianteController');
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');

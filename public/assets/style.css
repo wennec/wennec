@@ -42,7 +42,7 @@
 /*----------------------------------------*/
 /*  1. Common
 /*----------------------------------------*/
-html, body {height: 100%; font-family: 'Roboto', sans-serif;font-weight:400;background:#F6F8FA;}
+html, body {height: 100%; font-family: 'Roboto', sans-serif;font-weight:400;background:#eee0;}
 .floatleft {float:left}
 .floatright {float:right}
 .alignleft {float:left;margin-right:15px;margin-bottom: 15px}
@@ -151,7 +151,7 @@ body {}
 /*----------------------------------------*/
 .product-sales-chart, .analytics-info-cs, .tranffic-als-inner, .analytics-rounded, .single-new-trend, .personal-info-wrap, .author-widgets-single, .calender-inner, .product-status-wrap, .review-tab-pro-inner, .income-dashone-total, .analytics-edu-wrap, .analytics-sparkle-line, .analysis-progrebar, .sparkline8-list, .sparkline9-list, .sparkline7-list, .sparkline10-list, .sparkline12-list, .sparkline13-list, .sparkline14-list, .sparkline13-list, .sparkline11-list, .x-editable-list, .code-editor-single, .blog-details-inner, .charts-single-pro, .about-sparkline, .sparkline-list, .button-ad-wrap, .tab-content-details, .sparkline16-list, .sparkline15-list, .tinymce-single, .single-product-item, .courses-inner, .single-latest-item, .product-payment-inner-st, .profile-info-inner, .contact-panel, .widget-int-shape, .social-media-edu{
 	padding:20px;
-	background:#fff;
+	/*background:#fff;*/
 }
 /*----------------------------------------*/
 /*  4. left sidebar
@@ -487,7 +487,7 @@ body {}
 	display:inline-block;
 	color:#fff;
 	padding: 0px 0px 0px 20px;
-	font-size:20px;
+	font-size:35px;
 	text-decoration:none;
 	position:relative;
 }
@@ -518,7 +518,7 @@ body {}
 	margin-left:2px;
 }
 .header-right-info .nav>li>a>img{
-	width: 26px;
+	width: 50px;
     border-radius: 50%;
 }
 .header-right-info .author-project-icon{
@@ -4768,4 +4768,14 @@ div#sparklinehome canvas {
 img-logo-responsive {
     max-width: 53%;
     height: auto;
+}
+
+#example2 {
+    box-shadow: inset 0 0 5px #ddd;
+  }
+
+.row-shadow {
+    margin-right: -15px;
+    margin-left: -15px;
+    box-shadow: inset 0 0 5px #ddd;
 }
