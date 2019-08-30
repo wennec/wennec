@@ -7,7 +7,7 @@
 <li class="nav-item dropdown">
     <a href="#" class="nav-link nav-toggle">
         <i class="{{ $icon }}"></i>
-        <span class="title">{{ $title }}</span>
+        <span class="mini-click-non">{{ $title }}</span>
         <span class="arrow dropdown"></span>
     </a>
     <ul class="sub-menu">
