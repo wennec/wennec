@@ -1,0 +1,45 @@
+SELECT
+TBL_Usuarios.`name`,
+TBL_Roles.nombre,
+TBL_Estudiante.documento_estudiante,
+TBL_Colegios.nombre AS nombre_0,
+TBL_Cursos.nombre_curso,
+TBL_Grupos.grupo,
+TBL_Materias.nombre_materia,
+TBL_CalificacionEstudiante.calificacion,
+TBL_Calificacion.tipo_calificacion,
+TBL_Usuarios_alias1.`name` AS name_0,
+TBL_Docente.profesion,
+TBL_Docente.perfil_profesional,
+TBL_Colegios_alias1.nombre AS nombre_1
+FROM
+TBL_CalificacionEstudiante
+JOIN TBL_Calificacion
+ON TBL_CalificacionEstudiante.FK_tipo_calificacion = TBL_Calificacion.PK_id 
+JOIN TBL_EstudianteMaterias
+ON TBL_CalificacionEstudiante.FK_estudiante_materias = TBL_EstudianteMaterias.PK_id 
+JOIN TBL_GrupoMaterias
+ON TBL_EstudianteMaterias.FK_grupo_materias = TBL_GrupoMaterias.PK_id 
+JOIN TBL_Materias
+ON TBL_GrupoMaterias.FK_materia = TBL_Materias.PK_id 
+JOIN TBL_Cursos
+JOIN TBL_Grupos
+ON TBL_Grupos.`FK_ curso` = TBL_Cursos.PK_id 
+JOIN TBL_GrupoEstudiantes
+ON TBL_EstudianteMaterias.FK_grupo_estudiantes = TBL_GrupoEstudiantes.PK_id
+AND TBL_GrupoEstudiantes.FK_grupo = TBL_Grupos.PK_id 
+JOIN TBL_Estudiante
+ON TBL_GrupoEstudiantes.FK_estudiante = TBL_Estudiante.PK_id 
+JOIN TBL_Roles
+JOIN TBL_Usuarios
+ON TBL_Estudiante.FK_usuarioId = TBL_Usuarios.PK_id
+AND TBL_Usuarios.FK_RolesId = TBL_Roles.id 
+JOIN TBL_Docente
+ON TBL_GrupoMaterias.FK_docente = TBL_Docente.PK_id 
+JOIN TBL_Usuarios AS TBL_Usuarios_alias1
+ON TBL_Docente.FK_usuario = TBL_Usuarios_alias1.PK_id 
+JOIN TBL_Colegios
+ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id 
+JOIN TBL_Colegios AS TBL_Colegios_alias1
+ON TBL_Usuarios_alias1.FK_ColegioId = TBL_Colegios_alias1.id
+WHERE TBL_Colegios.nombre = "Nueva Granada" AND TBL_Colegios_alias1.nombre = "Nueva Granada"

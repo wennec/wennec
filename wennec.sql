@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 29/08/2019 09:25:41
+ Date: 30/08/2019 19:03:52
 */
 
 SET NAMES utf8mb4;
@@ -49,6 +49,13 @@ CREATE TABLE `password_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
+-- Records of password_resets
+-- ----------------------------
+BEGIN;
+INSERT INTO `password_resets` VALUES ('efrainvergara.udec@gmail.com', '$2y$10$9AZgZ90/.9PX4HUuRQ99luRBs0L0srtZ.OjesjEfyLMOEqVap9xC2', '2019-08-30 17:56:44');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for TBL_Agenda
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_Agenda`;
@@ -73,6 +80,7 @@ COMMIT;
 DROP TABLE IF EXISTS `TBL_AgendaEstudiante`;
 CREATE TABLE `TBL_AgendaEstudiante` (
   `Pk_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
   `FK_estudianteId` int(11) DEFAULT NULL,
   `FK_agendaId` int(11) DEFAULT NULL,
   `fecha` varchar(255) DEFAULT NULL,
@@ -113,10 +121,17 @@ CREATE TABLE `TBL_AsistenciaEstudiante` (
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_Calificacion`;
 CREATE TABLE `TBL_Calificacion` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_calificacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_Calificacion
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Calificacion` VALUES (1, 'Ordinaria');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_CalificacionEstudiante
@@ -132,7 +147,14 @@ CREATE TABLE `TBL_CalificacionEstudiante` (
   KEY `fk_TBL_CalificacionEstudiante_TipoCalificacion` (`FK_tipo_calificacion`),
   CONSTRAINT `fk_TBL_CalificacionEstudiante_EstudianteMaterias` FOREIGN KEY (`FK_estudiante_materias`) REFERENCES `tbl_estudiantematerias` (`PK_id`),
   CONSTRAINT `fk_TBL_CalificacionEstudiante_TipoCalificacion` FOREIGN KEY (`FK_tipo_calificacion`) REFERENCES `tbl_calificacion` (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_CalificacionEstudiante
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_CalificacionEstudiante` VALUES (1, '4.0', 1, 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Colegios
@@ -189,10 +211,21 @@ CREATE TABLE `TBL_ComunicacionEstudiante` (
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_Cursos`;
 CREATE TABLE `TBL_Cursos` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_curso` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_Cursos
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Cursos` VALUES (1, 'Primero');
+INSERT INTO `TBL_Cursos` VALUES (2, 'Segundo');
+INSERT INTO `TBL_Cursos` VALUES (3, 'Tercero');
+INSERT INTO `TBL_Cursos` VALUES (4, 'Cuarto');
+INSERT INTO `TBL_Cursos` VALUES (5, 'Quinto');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Docente
@@ -206,7 +239,14 @@ CREATE TABLE `TBL_Docente` (
   PRIMARY KEY (`PK_id`),
   KEY `fk_TBL_Docente_Usuario` (`FK_usuario`),
   CONSTRAINT `fk_TBL_Docente_Usuario` FOREIGN KEY (`FK_usuario`) REFERENCES `tbl_usuarios` (`PK_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_Docente
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Docente` VALUES (1, 'Lic. Sociales', 'Docente Universitario', 5);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Estudiante
@@ -249,7 +289,14 @@ CREATE TABLE `TBL_EstudianteMaterias` (
   KEY `fk_TBL_EstudianteMaterias_GrupoEstudiantes` (`FK_grupo_estudiantes`),
   CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoEstudiantes` FOREIGN KEY (`FK_grupo_estudiantes`) REFERENCES `tbl_grupoestudiantes` (`PK_id`),
   CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoMaterias` FOREIGN KEY (`FK_grupo_materias`) REFERENCES `tbl_grupomaterias` (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_EstudianteMaterias
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_EstudianteMaterias` VALUES (1, 1, 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Eventos
@@ -311,15 +358,22 @@ CREATE TABLE `TBL_GrupoEstudiantes` (
   KEY `fk_TBL_GrupoEstudiantes_Estudiante` (`FK_estudiante`),
   KEY `fk_TBL_GrupoEstudiantes_Grupo` (`FK_grupo`),
   CONSTRAINT `fk_TBL_GrupoEstudiantes_Estudiante` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_TBL_GrupoEstudiantes_Grupo` FOREIGN KEY (`FK_grupo`) REFERENCES `tbl_grupos` (`PK_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_TBL_GrupoEstudiantes_Grupo` FOREIGN KEY (`FK_grupo`) REFERENCES `tbl_grupos` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_GrupoEstudiantes
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_GrupoEstudiantes` VALUES (1, 1, 2);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_GrupoMaterias
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_GrupoMaterias`;
 CREATE TABLE `TBL_GrupoMaterias` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
   `FK_materia` int(11) DEFAULT NULL,
   `FK_docente` int(11) DEFAULT NULL,
   PRIMARY KEY (`PK_id`),
@@ -327,30 +381,56 @@ CREATE TABLE `TBL_GrupoMaterias` (
   KEY `fk_TBL_GrupoMaterias_Docente` (`FK_docente`),
   CONSTRAINT `fk_TBL_GrupoMaterias_Docente` FOREIGN KEY (`FK_docente`) REFERENCES `tbl_docente` (`PK_id`),
   CONSTRAINT `fk_TBL_GrupoMaterias_Materia` FOREIGN KEY (`FK_materia`) REFERENCES `tbl_materias` (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_GrupoMaterias
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_GrupoMaterias` VALUES (1, 4, 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Grupos
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_Grupos`;
 CREATE TABLE `TBL_Grupos` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `grupo` varchar(255) DEFAULT NULL,
   `FK_ curso` int(11) DEFAULT NULL,
   `ano` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`),
   KEY `fk_TBL_Grupos_Curso` (`FK_ curso`),
-  CONSTRAINT `fk_TBL_Grupos_Curso` FOREIGN KEY (`FK_ curso`) REFERENCES `tbl_cursos` (`PK_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_TBL_Grupos_Curso` FOREIGN KEY (`FK_ curso`) REFERENCES `tbl_cursos` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_Grupos
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Grupos` VALUES (1, '101', 1, '2019');
+INSERT INTO `TBL_Grupos` VALUES (2, '102', 1, '2019');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Materias
 -- ----------------------------
 DROP TABLE IF EXISTS `TBL_Materias`;
 CREATE TABLE `TBL_Materias` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_materia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of TBL_Materias
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Materias` VALUES (1, 'matematicas');
+INSERT INTO `TBL_Materias` VALUES (2, 'Ciencias');
+INSERT INTO `TBL_Materias` VALUES (3, 'Religion');
+INSERT INTO `TBL_Materias` VALUES (4, 'Sociales');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for TBL_Planes
@@ -426,10 +506,10 @@ CREATE TABLE `TBL_Usuarios` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `TBL_Usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'mbWqXstmaDhUVltlXvXB32bips4jI8QLWxtIvpN2nIXDMMygL5yDGHRN93Mv', NULL, NULL);
-INSERT INTO `TBL_Usuarios` VALUES (2, 'Paisa', NULL, NULL, NULL, 'paisa@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, '4BeTVjh6fScGahEkzPwZr2XL2UH1H6zwn21RRrmtoFX0PwHCnM1gWC3EY1fJ', NULL, NULL);
+INSERT INTO `TBL_Usuarios` VALUES (2, 'Paisa', NULL, NULL, NULL, 'paisa@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, 'B0Ic7bwq7VSSAHL0yWevzVC91Y6BRy6KbdAB6bPXqfUXpl2jkSL0Lg435lGp', NULL, NULL);
 INSERT INTO `TBL_Usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'rp5nps1VbdTGQWd83RAyR5FAFePnBzy6rCWYJ5hKCAIQM15RbLqjsVPoFhtN', NULL, NULL);
-INSERT INTO `TBL_Usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrain@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, NULL, NULL, NULL);
-INSERT INTO `TBL_Usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 1, NULL, NULL, NULL);
+INSERT INTO `TBL_Usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, NULL, NULL, NULL);
+INSERT INTO `TBL_Usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, NULL, NULL, NULL);
 INSERT INTO `TBL_Usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `TBL_Usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `TBL_Usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
