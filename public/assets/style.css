@@ -1,15 +1,15 @@
 /*-----------------------------------------------------------------------------------
 
-    Template Name: Kiaalap - Kiaalap Admin Template 
+    Template Name: Kiaalap - Kiaalap Admin Template
     Description: Kiaalap Admin Template is a responsive admin template based on the famous Bootstrap framework it's easy to edit and customize by documentation.
     Author: Colorlib
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+    0.1 login
     1. Common
 	2. Helper Class
 	3. All Nested Class
@@ -38,7 +38,76 @@
 	23. footer
 
 -----------------------------------------------------------------------------------*/
-
+/*----------------------------------------*/
+/*  0.1 login
+/*----------------------------------------*/
+.container{
+    width:100%;
+    height: 100%;
+    padding-left: 0%;
+}
+.login_left_section {
+    float:left;
+    width:50%;
+    height: 100%;
+    background-image: url(img/login/sign_in.png);
+    background-size: 100% 100%;
+}
+.login_rigth_section {
+    float:right;
+    width: 50%;
+    height: 100%;
+    vertical-align: top;
+}
+.form_login{
+    width: 70%;
+    height: 80%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-right: 20%;
+    margin-left: 20%;
+    vertical-align: bottom;
+}
+.form_login img{
+    margin-top: 10%;
+    margin-left: 13%;
+    margin-right: 20%;
+    margin-bottom: 15%;
+}
+.form_login button{
+    border-radius: 10px;
+    width:  50%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-right: 40%;
+    background-color: rgb(247,217,23);
+    color: white;
+    font-size: 150%;
+}
+.form_login form{
+  display: inline-block;
+}
+.form-horizontal .has-feedback-left .form-control-feedback {
+    left: 2px;
+}
+.row-form {
+    padding-left: 5%;
+}
+#label{
+  padding-left: 43%;
+  font-size: 85%;
+}
+.form-horizontal button{
+  width: 90%;
+  height: 60px;
+  padding-right: 10%;
+}
+.form-horizontal .has-feedback-left form-control{
+  border-top-color: red;
+}
+.has-feedback .form-control {
+    padding-right: 265.5px;
+}
 /*----------------------------------------*/
 /*  1. Common
 /*----------------------------------------*/
@@ -333,17 +402,17 @@ body {}
 	background:#2b2a2a;
 }
 .header-top-menu .navbar-nav>li .dropdown-menu{
-	border: 0px solid #ccc; 
+	border: 0px solid #ccc;
     border: 0px solid rgba(0,0,0,.15);
 	background-color: #303030;
     -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.175);
-    box-shadow: 0 1px 4px rgba(0,0,0,.175);	
+    box-shadow: 0 1px 4px rgba(0,0,0,.175);
 }
 .header-right-info .navbar-nav>li .dropdown-menu{
-	border: 0px solid #ccc; 
+	border: 0px solid #ccc;
     border: 0px solid rgba(0,0,0,.15);
 	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.175);
-    box-shadow: 0 1px 4px rgba(0,0,0,.175);	
+    box-shadow: 0 1px 4px rgba(0,0,0,.175);
 }
 .header-top-menu .nav>li>a:focus, .header-top-menu .nav>li>a:hover, .header-top-menu .nav>li>a:active {
     text-decoration: none;
@@ -417,7 +486,7 @@ body {}
 	padding:18px 10px;
 }
 .header-right-info {
-	
+
 }
 .header-right-info ul.header-right-menu li{
 	display:inline-block;
@@ -934,7 +1003,7 @@ ul.breadcome-menu li a:hover{
 }
 .rating > input:checked ~ label, .rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
   color: #e12503;
-} 
+}
 .rating > input:checked + label:hover, .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, .rating > input:checked ~ label:hover ~ label {
   color: #e12503;
@@ -1562,7 +1631,7 @@ ul#single-product-tab li{
 	background:#f7941d;
 }
 .single-pro-size span, .color-quality-details span {
-  display: inline-block; 
+  display: inline-block;
   font-weight: 300;
   height: 25px;
   line-height: 25px;
@@ -1855,7 +1924,7 @@ ul.cus-product-sl-rp li i{
 	color:#999;
 	background:#F6F8FA;
 	box-shadow: none !important;
-} 
+}
 .cus-gh-hd-pro h2{
 	font-size:20px;
 }
@@ -2995,11 +3064,14 @@ td.text-right.mail-date {
 .form-control {
     background-color: #FFFFFF;
     background-image: none;
-    border: 1px solid #e5e6e7;
+    border: 0;
+    border-bottom: 1px solid black;
+    background: transparent;
+    outline: 0;
     border-radius: 1px;
     color: inherit;
     display: block;
-    padding: 6px 12px;
+    padding: 6px 36px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 	height:40px;
@@ -3668,16 +3740,16 @@ div#sparklinehome canvas {
     width: 100% !important;
 }
 .header-top-area {
-    background: #fafafa;
+    background: white;
 }
 .sidebar-nav .metismenu{
-	background: #fafafa;
+	background: #fff;
 }
 .sidebar-nav {
-    background: #fafafa;
+    background: #fff;
 }
 .sidebar-nav ul{
-	background: #fafafa;
+	background: #fff;
 }
 #sidebar.active .sidebar-nav ul.metismenu li ul.submenu-angle{
 	position: absolute;
@@ -3690,7 +3762,7 @@ div#sparklinehome canvas {
     box-shadow: 0 1px 4px rgba(0,0,0,.175);
 }
 #sidebar.active .sidebar-nav .metismenu a:hover, #sidebar.active .sidebar-nav .metismenu a:focus, #sidebar.active .sidebar-nav .metismenu a:active{
-	background:#b3d4fc;
+	background:#F6F8FA;
 }
 #sidebar.active .mCustomScrollBox{
 	overflow:unset;
@@ -3717,10 +3789,10 @@ div#sparklinehome canvas {
     color: #fff;
 }
 #sidebar {
-    background: #fafafa;
+    background: #fff;
 }
 #sidebar .sidebar-header {
-    background: #fafafa;
+    background: #fff;
 }
 #sidebar.active .sidebar-header {
     padding-top:10px;
@@ -4404,7 +4476,7 @@ div#sparklinehome canvas {
     margin: 0px 0px;
 }
 .mCS-light-1.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: white; }
-.mCS-light-1.mCSB_scrollTools .mCSB_draggerRail{ background-color: #ccc; } 
+.mCS-light-1.mCSB_scrollTools .mCSB_draggerRail{ background-color: #ccc; }
 /*-----------------------
 21. Wizard CSS
 -------------------------*/
@@ -4761,7 +4833,7 @@ div#sparklinehome canvas {
 }
 
 .img-logo {
-    max-width: 178%;
+    max-width: 2000%;
     height: auto;
 }
 

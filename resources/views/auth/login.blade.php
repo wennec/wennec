@@ -1,196 +1,179 @@
-{{--
-|--------------------------------------------------------------------------
-| Extends
-|--------------------------------------------------------------------------
-|
-| Hereda los estilos y srcipts de la de la plantilla original.
-| Es la base para todas las páginas que se deseen crear.
-|
---}}
-@extends('layouts.master')
+<!doctype html>
+  <html class="no-js" lang="en">
 
-{{--
-|--------------------------------------------------------------------------
-| Styles
-|--------------------------------------------------------------------------
-|
-| Inyecta CSS requerido ya sea por un JS o para un elemento específico
-|
-| @push('styles')
-|
-| @endpush
---}}
-@push('styles')
-<!-- BEGIN PAGE LEVEL STYLES -->
-<link href="{{ asset('assets/pages/css/login-5.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- END PAGE LEVEL STYLES -->
-<link href="{{ asset('assets/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Wennec</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- favicon
+  		============================================ -->
+      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <!-- Google Fonts
+  		============================================ -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+      <!-- Bootstrap CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <!-- Bootstrap CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+      <!-- owl.carousel CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/owl.carousel.css">
+      <link rel="stylesheet" href="assets/css/owl.theme.css">
+      <link rel="stylesheet" href="assets/css/owl.transitions.css">
+      <!-- animate CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/animate.css">
+      <!-- normalize CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/normalize.css">
+      <!-- meanmenu icon CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+      <!-- main CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/main.css">
+      <!-- educate icon CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/educate-custon-icon.css">
+      <!-- morrisjs CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/morrisjs/morris.css">
+      <!-- mCustomScrollbar CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/scrollbar/jquery.mCustomScrollbar.min.css">
+      <!-- metisMenu CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/metisMenu/metisMenu.min.css">
+      <link rel="stylesheet" href="assets/css/metisMenu/metisMenu-vertical.css">
+      <!-- calendar CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/calendar/fullcalendar.min.css">
+      <link rel="stylesheet" href="assets/css/calendar/fullcalendar.print.min.css">
+      <!-- style CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/style.css">
+      <!-- responsive CSS
+  		============================================ -->
+      <link rel="stylesheet" href="assets/css/responsive.css">
+      <!-- modernizr JS
+  		============================================ -->
+      <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+  </head>
 
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-@endpush
+  <body>
+      <!--[if lt IE 8]>
+  		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  	<![endif]-->
+      <!-- Start Left menu area -->
+      <div class="container">
+            <div class="login_left_section"></div>
+            <div class="login_rigth_section">
+              <div class="form_login">
+                <!-- Form -->
+                <img src="assets/img/logo/logo_principal.png" alt="">
+                <form action="{{ route('login') }}" class="form-horizontal" style="color: #757575;" role="form" method="post" novalidate>
+                {{ csrf_field() }}
+                  <!-- Email -->
+                  <div class="row-form">
+                  <!-- Password -->
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="control-label sr-only"></label>
+                    <div class=" col-sm-22">
+                      <input type="text" class="form-control input-lg" name="email" placeholder="Usuario" />
+                      <i class="form-control-feedback fa fa-user-o"></i>
+                    </div>
+                  </div>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label class="control-label sr-only"></label>
+                    <div class=" col-sm-22">
+                      <input type="password" name="password" class="form-control input-lg" placeholder="Contraseña" />
+                      <i class="form-control-feedback fa fa-lock"></i>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="d-flex justify-content-around">
+                    <div>
+                        <label id="label"class="form-check-label" for="materialLoginFormRemember">¿Olvidaste la contraseña?</label>
+                    </div>
+                  </div>
 
-
-{{--
-|--------------------------------------------------------------------------
-| Title
-|--------------------------------------------------------------------------
-|
-| Inyecta el título de la página a la etiqueta <title></title> de la plantilla
-| Recibe texto o variables de los controladores
-| Sin embargo, también se puede usar de la siguiente forma
-|
-| @section('title', $miVariable)
-| @section('title', 'Título')
---}}
-@section('title', '| Login')
-
-{{--
-|--------------------------------------------------------------------------
-| Content
-|--------------------------------------------------------------------------
-|
-| Inyecta el contenido HTML que se usará en la página
-|
-| @section('content')
-|
-| @endsection
---}}
-@section('content')
-    <form action="{{ route('login') }}" id="form-login" role="form" method="post" novalidate>
-        {{ csrf_field() }}
-        <div class="form-body">
-            <div class="row">
-                <div class="col-xs-6">
-                    @component('components.email', [
-                        'name' => 'email',
-                        'attributes' => "required autofocus",
-                        'label' => 'Correo',
-                        'help' => 'Digita el correo'
-                    ])
-                    @endcomponent
-                </div>
-                <div class="col-xs-6">
-                    @component('components.password', [
-                        'name' => 'password',
-                        'attributes' => "required",
-                        'label' => 'Contraseña',
-                        'help' => 'Digita la contraseña'
-                    ])
-                    @endcomponent
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="rem-password">
-                    @component('components.checkbox', [
-                        'name' => 'remember',
-                        'label' => 'Recordarme'
-                    ])
-                    @endcomponent
-
-                    <div class="row text-danger text-center">
+                  <div class="row text-danger text-center">
                         @foreach($errors->all() as $error)
                             {{ $error }}
                         @endforeach
-                    </div>
-                </div>
+                  </div>
+                  <!-- Sign in button -->
+                  <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Iniciar sesión</button>
+                </form>
+              </div>
             </div>
-            <div class="col-sm-6 text-right">
-                <input class="btn green" type="submit" value="Ingresar">
             </div>
-            <div class="col-sm-12 text-right">
-               {{-- <div class="forgot-password">
-                    <a href="{{ route('password.request') }}" class="forget-password">
-                        ¿Se te olvidó tu contraseña?
-                    </a>
-                    <br>
-                    <a href="{{ route('register') }}" class="font-blue-dark">
-                        Registrarse
-                    </a>
-                </div><br>  
-                
-            </div>            
-        </div>
-    </form>
-    <!-- END : LOGIN PAGE 5-1 -->
+      </div>
+      <!-- End Left menu area -->
+      <!-- Start Welcome area -->
 
+      <!-- jquery
+  		============================================ -->
+      <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+      <!-- bootstrap JS
+  		============================================ -->
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- wow JS
+  		============================================ -->
+      <script src="assets/js/wow.min.js"></script>
+      <!-- price-slider JS
+  		============================================ -->
+      <script src="assets/js/jquery-price-slider.js"></script>
+      <!-- meanmenu JS
+  		============================================ -->
+      <script src="assets/js/jquery.meanmenu.js"></script>
+      <!-- owl.carousel JS
+  		============================================ -->
+      <script src="assets/js/owl.carousel.min.js"></script>
+      <!-- sticky JS
+  		============================================ -->
+      <script src="assets/js/jquery.sticky.js"></script>
+      <!-- scrollUp JS
+  		============================================ -->
+      <script src="assets/js/jquery.scrollUp.min.js"></script>
+      <!-- counterup JS
+  		============================================ -->
+      <script src="assets/js/counterup/jquery.counterup.min.js"></script>
+      <script src="assets/js/counterup/waypoints.min.js"></script>
+      <script src="assets/js/counterup/counterup-active.js"></script>
+      <!-- mCustomScrollbar JS
+  		============================================ -->
+      <script src="assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="assets/js/scrollbar/mCustomScrollbar-active.js"></script>
+      <!-- metisMenu JS
+  		============================================ -->
+      <script src="assets/js/metisMenu/metisMenu.min.js"></script>
+      <script src="assets/js/metisMenu/metisMenu-active.js"></script>
+      <!-- morrisjs JS
+  		============================================ -->
+      <script src="assets/js/morrisjs/raphael-min.js"></script>
+      <script src="assets/js/morrisjs/morris.js"></script>
+      <script src="assets/js/morrisjs/morris-active.js"></script>
+      <!-- morrisjs JS
+  		============================================ -->
+      <script src="assets/js/sparkline/jquery.sparkline.min.js"></script>
+      <script src="assets/js/sparkline/jquery.charts-sparkline.js"></script>
+      <script src="assets/js/sparkline/sparkline-active.js"></script>
+      <!-- calendar JS
+  		============================================ -->
+      <script src="assets/js/calendar/moment.min.js"></script>
+      <script src="assets/js/calendar/fullcalendar.min.js"></script>
+      <script src="assets/js/calendar/fullcalendar-active.js"></script>
+      <!-- plugins JS
+  		============================================ -->
+      <script src="assets/js/plugins.js"></script>
+      <!-- main JS
+  		============================================ -->
+      <script src="assets/js/main.js"></script>
+  </body>
 
-@endsection
-
-@push('plugins')
-<script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/backstretch/jquery.backstretch.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('assets/global/plugins/jquery-validation/js/localization/messages_es.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('assets/pages/scripts/login-5.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/main/scripts/form-validation-md.js') }}" type="text/javascript"></script>
-@endpush
-
-{{--
-|--------------------------------------------------------------------------
-| Functions
-|--------------------------------------------------------------------------
-|
-| Inyecta scripts para inicializar componentes Javascript como
-| > Tablas
-| > Checkboxes
-| > Radios
-| > Mapas
-| > Notificaciones
-| > Validaciones de Formularios por JS
-| > Entre otros
-| @push('functions')
-|
-| @endpush
---}}
-@push('styles')
-  <link rel="stylesheet" href="/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css">
-@endpush
-@push('functions')
-<script src="{{ asset('assets/global/scripts/datatable.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/pages/scripts/table-datatable.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('assets/global/plugins/jquery-validation/js/localization/messages_es.js') }}" type="text/javascript"></script>
-
-  <script src="{{ asset('assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}" type="text/javascript"></script>
-
-  <script src="/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-  <script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
-
-  <script src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-          <script src="/js/DataTable.js" type="text/javascript">
-          </script>
-
-
-
-
-
-    <script type="text/javascript">
-        var rules = {
-            email: { email: true, required: true },
-        };
-        var messages = { };
-        var form = $('#form-forget');
-        $(function() {
-            FormValidationMd.init(form, rules, messages);
-        });
-    </script>
-
-
-    
-@endpush
+  </html>
