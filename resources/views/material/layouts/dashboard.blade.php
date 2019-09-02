@@ -237,12 +237,9 @@
                                         <div align="center" class="breadcome-heading">
                                         <?php 
                                             if((Auth::user()->rol->nombre) == "Super Administrador"){
-                                            echo '<img width="38%" src="assets/img/logo/logocontrol.png" alt="" />';
+                                                echo '<img width="38%" src="assets/img/logo/logocontrol.png" alt="" />';
                                             }else{
-                                                echo '<form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                                </form>';
+                                                echo '<img width="38%" src="assets/img/logo/LogoGimnasioSabanaNorte.png" alt="" />';
                                             }
                                         ?>
                                         </div>

@@ -11,5 +11,5 @@
     @includeWhen($rol == 'Super Administrador', 'Wennec.super-admin.super-admin-dash')
     @includeWhen($rol == 'Administrador', 'Wennec.admin.administrador-dash')
     @includeWhen($rol == 'Estudiante', 'Wennec.estudiante.estudiante-dash')
-    @includeWhen($rol == 'Jefe de Dependencia', 'Wennec.empleado.empleado-dash')
+    @includeWhen($rol == 'Acudiente', 'Wennec.acudiente.acudiente-dash')
 @endsection

@@ -6,7 +6,7 @@
 @endcomponent
 @component('components.nav-link', [
     'icon' => 'fa fa-book',
-    'title' => 'Agenda Estudiante',
-    'link' => route('agendaEstudiante.index')
+    'title' => 'Agenda Acudiente',
+    'link' => route('agendaAcudiente.index')
 ])
 @endcomponent
