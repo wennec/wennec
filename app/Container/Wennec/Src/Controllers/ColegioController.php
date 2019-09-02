@@ -23,6 +23,7 @@ class ColegioController extends Controller
         $colegios = Colegio::with('plan')->get();
         return view('Wennec.super-admin.super-admin-colegios',[
           'colegios' => $colegios,
+          'planes' => $planes,
         ]);
     }
 
@@ -52,7 +53,7 @@ class ColegioController extends Controller
             'descripcion' => $request['descripcion'],
             'FK_PlanesId' => $request['FK_PlanesId'],
         ]);
-        return redirect('/colegios')->with('success','Dependencia Creada Correctamente');
+        return redirect('/colegios')->with('success','Colegio Creado Correctamente');
     }
 
     /**
@@ -110,7 +111,7 @@ class ColegioController extends Controller
       $cole = colegio::find($colegio);
       $cole->fill($request->all());
       $cole->save();
-      return redirect('/colegios')->with('success','Dependencia Modificada Correctamente');
+      return redirect('/colegios')->with('success','Colegio Modificado Correctamente');
     }
 
     /**

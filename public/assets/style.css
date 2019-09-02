@@ -2115,6 +2115,7 @@ ul.two-part-sp li{
     top: 0;
     margin: 0 auto;
     transition: all 0.3s;
+    box-shadow: -1px 0px 5px #8888884a;
 }
 .jqstooltip {
   width: auto !important;
@@ -3790,6 +3791,7 @@ div#sparklinehome canvas {
 }
 #sidebar {
     background: #fff;
+    box-shadow: -1px 0px 5px #8888884a;
 }
 #sidebar .sidebar-header {
     background: #fff;
@@ -4385,8 +4387,8 @@ div#sparklinehome canvas {
 	border:1px solid white;
 }
 .datatable-dashv1-list .btn-default:hover, .datatable-dashv1-list .btn-default:focus, .datatable-dashv1-list .btn-default:active, .datatable-dashv1-list .editable-submit:hover, .datatable-dashv1-list .editable-submit:focus, .datatable-dashv1-list .editable-submit:active{
-	background:white;
-	color:#fff;
+	background:#eeeeee;
+	color:black;
 }
 .dropdown-segmented .btn{
 	padding: 9px 12px;
@@ -4834,7 +4836,7 @@ div#sparklinehome canvas {
 
 .img-logo {
     max-width: 2000%;
-    height: auto;
+    height: 80px;
 }
 
 img-logo-responsive {

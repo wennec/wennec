@@ -25,6 +25,47 @@
                                 Crear Colegio
                             </a>
                         </div>   <br>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreate">
+                        <i class="fa fa-plus"></i>
+                                Crear Colegio
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear Colegio</h4>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open(['route'=>'colegios.store','method'=>'POST']) !!}                        
+                                <div class="form-group form-md-line-input">                                 
+                                    {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required','maxlength'=>'85'])!!}
+                                </div>    
+
+                                <div class="form-group form-md-line-input">
+
+                                    <select class="form-control" name="FK_PlanesId" id="" >
+                                        <option value="">Seleccionar</option>
+                                        @foreach($planes as $plan)
+                                            <option value="{{$plan->id}}">{{$plan->nombre}}</option>
+                                        @endforeach
+                                    </select>                 
+                                </div>                                       
+                                {!! Form::submit('Agregar Colegio', ['class'=>'btn btn-large btn-primary']) !!}
+                                {{link_to_route('colegios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
+                                </div>                        
+                                {!! Form::close() !!}
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">

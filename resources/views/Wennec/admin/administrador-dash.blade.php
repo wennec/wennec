@@ -1,8 +1,26 @@
-@component('components.nav-link', [
-    'icon' => 'fa fa-users',
-    'title' => 'Usuarios',
-    'link' => route('usuariosC.index')
-])
+@component('components.nav-dropdown', ['icon' => 'fa fa-users', 'title' => 'Usuarios'])
+
+    @component('components.nav-link', [
+        'icon' => 'fa fa-user',
+        'link' => route('usuariosC.index'),
+        'title' => 'Usuarios'
+    ])
+    @endcomponent
+
+
+    @component('components.nav-link', [
+        'icon' => 'fas fa-user-edit',
+        'title' => 'Estudiantes',
+        'link' => route('adminStudent.index')
+    ])
+    @endcomponent
+    @component('components.nav-link',[
+        'icon' => 'fas fa-chalkboard-teacher',
+        'title' => 'Docente',
+        'link' => route('adminDocente.index')
+    ])
+    @endcomponent
+    
 @endcomponent
 
 @component('components.nav-link', [
@@ -12,27 +30,3 @@
 ])
 @endcomponent
 
-@component('components.nav-dropdown', ['icon' => 'fa fa-percent', 'title' => 'Porcentajes'])
-
-    @component('components.nav-link', [
-        'icon' => 'fa fa-pie-chart',
-        'link' => route('eventoA.index'),
-        'title' => 'Categorias'
-    ])
-    @endcomponent
-
-
-    @component('components.nav-link', [
-        'icon' => 'fa fa-database',
-        'title' => 'Base de Datos',
-        'link' => route('eventoA.index')
-    ])
-    @endcomponent
-    @component('components.nav-link',[
-        'icon' => 'fa fa-code',
-        'title' => 'Codificación',
-        'link' => route('eventoA.index')
-    ])
-    @endcomponent
-    
-@endcomponent

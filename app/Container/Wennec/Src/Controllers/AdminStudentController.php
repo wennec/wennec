@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Container\Wennec\Src\Colegio;
 use App\Container\Wennec\Src\Roles;
 use App\Container\Wennec\Src\Notifications\UsuarioCreado;
+use Illuminate\Support\Facades\DB;
 
 
-class UserController extends Controller
+class AdminStudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +21,32 @@ class UserController extends Controller
      */
     public function index()
     {
-        // User::all();
+        $iduser = auth()->user()->PK_id ; 
 
-        $users = User::with('departamento')->get();
-        $colegios = Colegio::all();
-        $roles = Roles::all();
-        //$users = User::all();
-        return view('Wennec.super-admin.super-admin-usuarios',compact('users','roles','colegios'));
-        //return User::all();
+        $colegioUsers = 
+        DB::select(DB::raw("SELECT
+        TBL_Colegios.id as idColegio
+        FROM
+        TBL_Usuarios
+        JOIN TBL_Colegios
+        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
+        WHERE TBL_Usuarios.PK_id = $iduser"));
+
+        foreach ($colegioUsers as $colegioUser) {
+             $id = $colegioUser->idColegio;
+        }
+
+        $students = 
+        DB::select(DB::raw("SELECT
+        TBL_Usuarios.name as nameUser,
+        TBL_Roles.nombre as nameRol,
+        TBL_Colegios.nombre as nameColegio
+        FROM
+        TBL_Usuarios
+        JOIN TBL_Roles ON TBL_Usuarios.FK_RolesId = TBL_Roles.id 
+        JOIN TBL_Colegios ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
+        WHERE TBL_Colegios.id = $id AND TBL_Roles.nombre = 'Estudiante'"));
+        return view('Wennec.admin.administrador-estudiante',compact('students'));
     }
 
     /**
@@ -39,7 +58,7 @@ class UserController extends Controller
     {
         $users = Colegio::all();
         $roles = Roles::all();
-        return view('Wennec.super-admin.super-admin-crearuser',compact('users','roles'));
+        return view('Wennec.admin.administrador-crearuser',compact('users'));
     }
 
     /**
@@ -50,23 +69,39 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
+        $iduser = auth()->user()->PK_id ; 
+
+        $colegioUsers = 
+        DB::select(DB::raw("SELECT
+        TBL_Colegios.id as idColegio
+        FROM
+        TBL_Usuarios
+        JOIN TBL_Colegios
+        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
+        WHERE TBL_Usuarios.PK_id = $iduser"));
+
+        foreach ($colegioUsers as $colegioUser) {
+             $id = $colegioUser->idColegio;
+        }
+
         $atributos = $request->only(
             'name',
-            'telefono',
-            'documento',
-            'direccion',
             'email',
             'password',
-            'FK_RolesId',
-            'FK_DepartamentoId'
+            'FK_RolesId'
         );
+
+        
+        User::create([
+            'FK_ColegioId' => $id
+        ]);
         
         $user = new User($atributos);
         $user->password = bcrypt($user->password);
         
         $user->save();
         $user->notify(new UsuarioCreado($request->password));
-        return redirect()->route('usuarios.index')->with('success','Usuario Creado Correctamente');
+        return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');
         return $user;
     }
 
@@ -115,5 +150,4 @@ class UserController extends Controller
         User::destroy($users);
         return redirect()->route('usuarios.index')->with('error','Usuario Eliminado Correctamente');
     }
-
 }
