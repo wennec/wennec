@@ -8,11 +8,14 @@ Route::resource('colegios', 'ColegioController');
 Route::resource('usuariosC', 'UsersAdminController');
 Route::resource('agendaA', 'AgendaAdminController');
 Route::resource('eventoA', 'EventoAdminController');
+Route::resource('encuestas', 'AdminEncuestasController');
 Route::resource('eventoEstudiante', 'EventoEstudianteController');
 Route::resource('agendaEstudiante', 'AgendaEstudianteController');
 Route::resource('agendaAcudiente', 'AgendaAcudienteController');
 Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
+//Rutas Docente
+Route::resource('docente', 'DocenteController');
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
@@ -26,7 +29,7 @@ Route::prefix('colegios/{colegio}')->group(function () {
     Route::get('actividades','ActividadController@show')->name('actividad.show');
     Route::any('actividad/create','ActividadController@create')->name('actividad.create');
     Route::any('activida','ActividadController@store')->name('actividad.store');
-    Route::delete('actividades','ActividadController@destroy')->name('actividad.destroy'); 
+    Route::delete('actividades','ActividadController@destroy')->name('actividad.destroy');
 });
 
 Route::resource('formatos','FormatoController');
@@ -38,7 +41,7 @@ Route::resource('admintempo', 'AdminActivTempoController');
 
 Route::prefix('admindepto/{departamento}')->group(function () {
     Route::get('admin_actividad','AdminActividadController@index')->name('admin_actividad.index');
-    
+
     Route::get('admin_actividad','AdminActividadController@show')->name('admin_actividad.show');
 });
 

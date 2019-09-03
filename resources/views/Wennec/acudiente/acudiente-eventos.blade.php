@@ -19,37 +19,36 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Crear Peticion</h4>
+                                <h4 class="modal-title" id="myModalLabel">CREAR PETICION</h4>
                             </div>
                             <div class="modal-body">
                             {!! Form::open(['route'=>'agendaEstudiante.store','method'=>'POST']) !!}
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-12">
                                         <div class="form-group form-md-line-input">
-                                            <label>Tipo de Agenda</label>
                                                 <select class="form-control" name="FK_agendaId" id="" required="">
                                                     @foreach($agenda as $agen)
                                                         <option value="{{$agen->PK_id}}">{{$agen->tipo_agenda}}</option>
                                                     @endforeach
-                                                </select>                
+                                                </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::date('fecha',null,['class'=>'form-control','placeholder'=>'Fecha'])!!}
                                             </div>
                                         </div>
                                     </div>
                                     {!! Form::submit('Crear Peticion', ['class'=>'btn btn-large btn-primary']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    </div>                        
+                                    </div>
                                 {!! Form::close() !!}
                             </div>
                             </div>

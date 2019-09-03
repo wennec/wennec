@@ -20,7 +20,7 @@
         'link' => route('adminDocente.index')
     ])
     @endcomponent
-    
+
 @endcomponent
 
 @component('components.nav-link', [
@@ -30,3 +30,9 @@
 ])
 @endcomponent
 
+@component('components.nav-link', [
+    'icon' => 'fas fa-chart-line',
+    'title' => 'Encuestas',
+    'link' => route('encuestas.index')
+])
+@endcomponent

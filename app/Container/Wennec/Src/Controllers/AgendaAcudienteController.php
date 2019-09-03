@@ -20,21 +20,21 @@ class AgendaAcudienteController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $eventos = 
+        $eventos =
         DB::select(DB::raw("SELECT
         TBL_AgendaEstudiante.descripcion,
         TBL_AgendaEstudiante.fecha,
-        tbl_agenda.tipo_agenda
+        TBL_Agenda.tipo_agenda
         FROM
         TBL_AgendaEstudiante
-        JOIN tbl_agenda
-        ON TBL_AgendaEstudiante.FK_agendaId = tbl_agenda.PK_id 
-        JOIN tbl_usuarios
-        ON TBL_AgendaEstudiante.FK_usuarioId = tbl_usuarios.PK_id
+        JOIN TBL_Agenda
+        ON TBL_AgendaEstudiante.FK_agendaId = TBL_Agenda.PK_id
+        JOIN TBL_Usuarios
+        ON TBL_AgendaEstudiante.FK_estudianteId = TBL_Usuarios.PK_id
         WHERE
-        tbl_usuarios.PK_id = 4"));
+        TBL_Usuarios.PK_id = 1"));
 
         $agenda = Agenda::all();
         return view('Wennec.acudiente.acudiente-eventos',compact('eventos', 'agenda'));
@@ -59,9 +59,9 @@ class AgendaAcudienteController extends Controller
      */
     public function store(AgendaEstudianteStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id; 
+        $iduser = auth()->user()->PK_id;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
         TBL_Colegios.id as idColegio
         FROM
@@ -80,7 +80,7 @@ class AgendaAcudienteController extends Controller
             'fecha' => $request['fecha'],
             'FK_usuarioId' => 4
         ]);
-        
+
         return redirect('/agendaAcudiente')->with('success','Peticion Creada Correctamente');
     }
 
