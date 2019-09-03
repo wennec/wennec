@@ -22,19 +22,42 @@ class AgendaAcudienteController extends Controller
     {
         $iduser = auth()->user()->PK_id ; 
 
+        $estudianteId = 
+        DB::select(DB::raw("SELECT
+        tbl_estudiante.PK_id as idEstudiante,
+        TBL_Acudiente.FK_usuarioId
+        FROM
+        TBL_Acudiente
+        JOIN tbl_usuarios
+        ON TBL_Acudiente.FK_usuarioId = tbl_usuarios.PK_id 
+        JOIN tbl_estudiante
+        ON TBL_Acudiente.FK_estudianteId = tbl_estudiante.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
+
+        foreach ($estudianteId as $estudianteIds){
+            $idEstudiante = $estudianteIds->idEstudiante;
+        }
+
         $eventos = 
         DB::select(DB::raw("SELECT
-        TBL_AgendaEstudiante.descripcion,
+        tbl_agenda.tipo_agenda,
+        tbl_agendaestudiante.PK_id,
+        tbl_agendaestudiante.descripcion,
+        tbl_estudiante.nombre_madre,
         TBL_AgendaEstudiante.fecha,
-        tbl_agenda.tipo_agenda
+        tbl_usuarios.`name`
         FROM
-        TBL_AgendaEstudiante
+        tbl_agendaestudiante
         JOIN tbl_agenda
-        ON TBL_AgendaEstudiante.FK_agendaId = tbl_agenda.PK_id 
+        ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id 
+        JOIN tbl_estudiante
+        ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id 
+        JOIN tbl_acudiente
+        ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id 
         JOIN tbl_usuarios
-        ON TBL_AgendaEstudiante.FK_usuarioId = tbl_usuarios.PK_id
+        ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id 
         WHERE
-        tbl_usuarios.PK_id = 4"));
+        tbl_estudiante.PK_id = $idEstudiante"));
 
         $agenda = Agenda::all();
         return view('Wennec.acudiente.acudiente-eventos',compact('eventos', 'agenda'));
@@ -61,24 +84,27 @@ class AgendaAcudienteController extends Controller
     {
         $iduser = auth()->user()->PK_id; 
 
-        $colegioUsers = 
+        $estudianteId = 
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_estudiante.PK_id as idEstudiante,
+        TBL_Acudiente.FK_usuarioId
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = 4"));
+        TBL_Acudiente
+        JOIN tbl_usuarios
+        ON TBL_Acudiente.FK_usuarioId = tbl_usuarios.PK_id 
+        JOIN tbl_estudiante
+        ON TBL_Acudiente.FK_estudianteId = tbl_estudiante.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
-        foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
+        foreach ($estudianteId as $estudianteIds){
+            $idEstudiante = $estudianteIds->idEstudiante;
         }
 
         AgendaEstudiante::create([
             'FK_agendaId' => $request['FK_agendaId'],
             'descripcion' => $request['descripcion'],
             'fecha' => $request['fecha'],
-            'FK_usuarioId' => 4
+            'FK_estudianteId' => $idEstudiante
         ]);
         
         return redirect('/agendaAcudiente')->with('success','Peticion Creada Correctamente');
