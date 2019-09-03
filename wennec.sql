@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 03/09/2019 09:26:19
+ Date: 03/09/2019 16:04:17
 */
 
 SET NAMES utf8mb4;
@@ -119,7 +119,7 @@ CREATE TABLE `TBL_AgendaEstudiante` (
   KEY `fk_TBL_AgendaEstudiante_Estudiante` (`FK_estudianteId`),
   CONSTRAINT `fk_TBL_AgendaEstudiante_Agenda` FOREIGN KEY (`FK_agendaId`) REFERENCES `tbl_agenda` (`PK_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_TBL_AgendaEstudiante_Usuarifk_TBL_AgendaEstudiante_Usuari` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of TBL_AgendaEstudiante
@@ -127,6 +127,9 @@ CREATE TABLE `TBL_AgendaEstudiante` (
 BEGIN;
 INSERT INTO `TBL_AgendaEstudiante` VALUES (1, 'problemas estomacales', 1, 1, '2019-09-02', '2019-09-02 12:57:23', '2019-09-02 12:57:23');
 INSERT INTO `TBL_AgendaEstudiante` VALUES (2, 'dgdfgdfg', 1, 3, '2019-09-21', '2019-09-02 14:59:46', '2019-09-02 14:59:46');
+INSERT INTO `TBL_AgendaEstudiante` VALUES (3, 'Medico', 1, 2, '2019-09-06', '2019-09-03 11:42:55', '2019-09-03 11:42:55');
+INSERT INTO `TBL_AgendaEstudiante` VALUES (4, 'problema familiar', 1, 1, '2019-09-07', '2019-09-03 11:46:59', '2019-09-03 11:46:59');
+INSERT INTO `TBL_AgendaEstudiante` VALUES (5, 'problemas estomacales', 1, 3, '2019-09-28', '2019-09-03 13:01:00', '2019-09-03 13:01:00');
 COMMIT;
 
 -- ----------------------------
@@ -546,17 +549,17 @@ CREATE TABLE `tbl_usuarios` (
 -- Records of tbl_usuarios
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'bH1iDZlnqtvDzkvcZm5WIG61ipmUNl4Y9QhrIjHAiO0v7irZtjrbrM4bfR6A', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (2, 'Paisa', NULL, NULL, NULL, 'paisa@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, 'tSW5GmbYWkLhVh2kPE4uNRrXV9n2DRWk156OelV8TwoKSLFjTor9fK260jOO', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'yP0HSxg0CWJ2bMFJnVsCYu8O3rhROd78b7sKgQKDP5Cuxo19fbgIdlORcmQB', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (2, 'Paisa', NULL, NULL, NULL, 'paisa@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, 'Ks81pfxgT4ZSPlBOWYth81F36ObOZTzvn2oeRxtWkJ2o8u8DKnv6RJeuTntD', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, 'EQvOdfbGLXMNXniueYdopmXUuyBAzKimqqpgeQv13eTqAD0yDjT597QVS1Bv', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, 'hK9JoyrTQ4rva4X7YqWRjmtU2QfUghMr01PpN8Dt2qeUi5fQekq6irG5hBMi', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `tbl_usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
 INSERT INTO `tbl_usuarios` VALUES (9, 'fgfgh', NULL, NULL, NULL, 'fghfgh@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, NULL, '2019-08-26 16:08:06', '2019-08-26 16:08:06');
 INSERT INTO `tbl_usuarios` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:17:17', '2019-08-26 16:17:17');
-INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, 'q5R3LIqmhbqDLqRpRchnjaJoCaVjNNZLdyf4GsaM2YOIOE0w1qaX56seTvLA', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
+INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, 'DqYGSkzp9zZC5ubA01MSeJZGVOS9Wqj70hMhSztN5Dl92n8wXKSaPVVVgdAX', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
 INSERT INTO `tbl_usuarios` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:18:44', '2019-08-26 16:18:44');
 INSERT INTO `tbl_usuarios` VALUES (13, 'luisa', NULL, NULL, NULL, 'laura@mail.com', '$2y$10$jOttMmJagIibt0ueiQGxq.SfB/Lfi7fWd4YBtglW67.eF0a6Hesea', NULL, 3, NULL, NULL, '2019-08-26 16:18:45', '2019-08-26 16:18:45');
 INSERT INTO `tbl_usuarios` VALUES (14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:21:22', '2019-08-26 16:21:22');
