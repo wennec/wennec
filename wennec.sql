@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 02/09/2019 17:18:02
+ Date: 03/09/2019 09:26:19
 */
 
 SET NAMES utf8mb4;
@@ -56,6 +56,33 @@ INSERT INTO `password_resets` VALUES ('efrainvergara.udec@gmail.com', '$2y$10$9A
 COMMIT;
 
 -- ----------------------------
+-- Table structure for TBL_Acudiente
+-- ----------------------------
+DROP TABLE IF EXISTS `TBL_Acudiente`;
+CREATE TABLE `TBL_Acudiente` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `documento` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipo_documento` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `parentesco` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `direccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `FK_estudianteId` int(11) DEFAULT NULL,
+  `FK_usuarioId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_estudianteId` (`FK_estudianteId`),
+  KEY `FK_usuarioId` (`FK_usuarioId`),
+  CONSTRAINT `tbl_acudiente_ibfk_1` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`),
+  CONSTRAINT `tbl_acudiente_ibfk_2` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of TBL_Acudiente
+-- ----------------------------
+BEGIN;
+INSERT INTO `TBL_Acudiente` VALUES (1, NULL, NULL, NULL, NULL, NULL, 1, 11);
+COMMIT;
+
+-- ----------------------------
 -- Table structure for tbl_agenda
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_agenda`;
@@ -82,24 +109,24 @@ DROP TABLE IF EXISTS `TBL_AgendaEstudiante`;
 CREATE TABLE `TBL_AgendaEstudiante` (
   `Pk_id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) DEFAULT NULL,
-  `FK_usuarioId` int(11) DEFAULT NULL,
+  `FK_estudianteId` int(11) DEFAULT NULL,
   `FK_agendaId` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Pk_id`),
   KEY `fk_TBL_AgendaEstudiante_Agenda` (`FK_agendaId`),
-  KEY `fk_TBL_AgendaEstudiante_Estudiante` (`FK_usuarioId`),
+  KEY `fk_TBL_AgendaEstudiante_Estudiante` (`FK_estudianteId`),
   CONSTRAINT `fk_TBL_AgendaEstudiante_Agenda` FOREIGN KEY (`FK_agendaId`) REFERENCES `tbl_agenda` (`PK_id`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_TBL_AgendaEstudiante_Usuario` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_TBL_AgendaEstudiante_Usuarifk_TBL_AgendaEstudiante_Usuari` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of TBL_AgendaEstudiante
 -- ----------------------------
 BEGIN;
-INSERT INTO `TBL_AgendaEstudiante` VALUES (1, 'problemas estomacales', 4, 1, '2019-09-02', '2019-09-02 12:57:23', '2019-09-02 12:57:23');
-INSERT INTO `TBL_AgendaEstudiante` VALUES (2, 'dgdfgdfg', 4, 3, '2019-09-21', '2019-09-02 14:59:46', '2019-09-02 14:59:46');
+INSERT INTO `TBL_AgendaEstudiante` VALUES (1, 'problemas estomacales', 1, 1, '2019-09-02', '2019-09-02 12:57:23', '2019-09-02 12:57:23');
+INSERT INTO `TBL_AgendaEstudiante` VALUES (2, 'dgdfgdfg', 1, 3, '2019-09-21', '2019-09-02 14:59:46', '2019-09-02 14:59:46');
 COMMIT;
 
 -- ----------------------------
@@ -268,8 +295,8 @@ CREATE TABLE `tbl_estudiante` (
   `documento_estudiante` varchar(255) DEFAULT NULL,
   `tipo_documento` varchar(255) DEFAULT NULL,
   `sexo_estudiante` varchar(255) DEFAULT NULL,
-  `fecha de nacimiento` varchar(255) DEFAULT NULL,
-  `lugar de nacimiento` varchar(255) DEFAULT NULL,
+  `fecha_nacimiento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `lugar_nacimiento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `nombre_madre` varchar(255) DEFAULT NULL,
   `apellido_madre` varchar(255) DEFAULT NULL,
   `nombre_padre` varchar(255) DEFAULT NULL,

@@ -32,23 +32,42 @@ class AgendaEstudianteController extends Controller
         WHERE TBL_Usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
+             $idColegio = $colegioUser->idColegio;
+        }
+
+        $estudianteId = 
+        DB::select(DB::raw("SELECT
+        tbl_estudiante.PK_id as idEstudiante
+        FROM
+        tbl_estudiante
+        JOIN tbl_usuarios
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
+
+        foreach ($estudianteId as $estudianteIds){
+            $idEstudiante = $estudianteIds->idEstudiante;
         }
 
         $eventos = 
         DB::select(DB::raw("SELECT
-        TBL_AgendaEstudiante.descripcion,
-        TBL_AgendaEstudiante.fecha,
+        tbl_usuarios.`name`,
+        tbl_estudiante.documento_estudiante,
         tbl_agenda.tipo_agenda,
-        tbl_usuarios.`name`
+        tbl_agendaestudiante.descripcion,
+        TBL_AgendaEstudiante.fecha,
+        tbl_estudiante.PK_id AS idEstudent
         FROM
-        TBL_AgendaEstudiante
+        tbl_agendaestudiante
         JOIN tbl_agenda
-        ON TBL_AgendaEstudiante.FK_agendaId = tbl_agenda.PK_id 
+        ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id 
+        JOIN tbl_estudiante
+        ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id 
         JOIN tbl_usuarios
-        ON TBL_AgendaEstudiante.FK_usuarioId = tbl_usuarios.PK_id
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
+        JOIN TBL_Colegios
+        ON tbl_usuarios.FK_ColegioId = TBL_Colegios.id
         WHERE
-        tbl_usuarios.PK_id = $iduser"));
+        tbl_estudiante.PK_id = $idEstudiante AND tbl_colegios.id = $idColegio"));
 
         $agenda = Agenda::all();
         return view('Wennec.estudiante.estudiante-eventos',compact('eventos', 'agenda'));
