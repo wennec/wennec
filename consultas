@@ -43,3 +43,31 @@ ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
 JOIN TBL_Colegios AS TBL_Colegios_alias1
 ON TBL_Usuarios_alias1.FK_ColegioId = TBL_Colegios_alias1.id
 WHERE TBL_Colegios.nombre = "Nueva Granada" AND TBL_Colegios_alias1.nombre = "Nueva Granada"
+
+
+
+//////////////////////////////////////Acudiente agenda
+
+SELECT
+tbl_agenda.tipo_agenda,
+tbl_agendaestudiante.descripcion,
+tbl_estudiante.nombre_madre,
+tbl_acudiente.parentesco
+FROM
+tbl_agenda
+INNER JOIN tbl_agendaestudiante ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id
+INNER JOIN tbl_estudiante ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id
+INNER JOIN tbl_acudiente ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id
+
+////////////////////////////////////Estudiante Agenda
+
+SELECT
+tbl_usuarios.`name`,
+tbl_estudiante.documento_estudiante,
+tbl_agenda.tipo_agenda,
+tbl_agendaestudiante.descripcion
+FROM
+tbl_agenda
+INNER JOIN tbl_agendaestudiante ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id
+INNER JOIN tbl_estudiante ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id
+INNER JOIN tbl_usuarios ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
