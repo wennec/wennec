@@ -41,8 +41,6 @@ class CalificacionEstudianteController extends Controller
         ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
         WHERE tbl_usuarios.PK_id = $iduser"));
 
-        $idEstudiante = ""
-
         foreach ($estudianteId as $estudianteIds){
             $idEstudiante = $estudianteIds->idEstudiante;
         }
