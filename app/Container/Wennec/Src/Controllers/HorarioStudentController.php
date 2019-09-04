@@ -21,7 +21,39 @@ class HorarioStudentController extends Controller
      */
     public function index()
     {
-        return view('Wennec.estudiante.estudiante-horario',compact('students'));
+      $horario =
+      DB::select(DB::raw("SELECT
+        tbl_cursos.nombre_curso,
+        tbl_grupos.grupo,
+        tbl_diahorario.dia,
+        tbl_horario.horaInicio,
+        tbl_horario.horaFin,
+        tbl_materias.nombre_materia,
+        tbl_usuarios.`name` as nom_teacher,
+        tbl_colegios.nombre,
+        tbl_diahorario.PK_id
+        FROM
+        tbl_horario
+        JOIN tbl_diahorario
+        ON tbl_horario.FK_DiaId = tbl_diahorario.PK_id
+        JOIN tbl_horariomateria
+        ON tbl_horariomateria.FK_HorarioId = tbl_horario.PK_id
+        JOIN tbl_grupomaterias
+        ON tbl_horariomateria.FK_GrupoMateriaId = tbl_grupomaterias.PK_id
+        JOIN tbl_grupos
+        ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+        JOIN tbl_cursos
+        ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id
+        JOIN tbl_materias
+        ON tbl_horariomateria.FK_HorarioId = tbl_materias.PK_id
+        JOIN tbl_docente
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+        JOIN tbl_usuarios
+        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        "));
+        return view('Wennec.estudiante.estudiante-horario',compact('horario'));
     }
 
     /**
