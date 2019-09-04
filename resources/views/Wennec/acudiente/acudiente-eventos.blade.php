@@ -111,7 +111,7 @@
                     title : '{{ $evento->tipo_agenda}}',
                     start : '{{ $evento->fecha }}',
                     description: '{{ $evento->descripcion }}',
-                    url : 'agendaAcudiente/{{ $evento->PK_id }}/edit'
+                    url : 'agendaAcudiente/{{ $evento->id }}/edit'
                 },
                 @endforeach
                 ],

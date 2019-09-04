@@ -90,7 +90,6 @@ class ColegioController extends Controller
 
     public function edit($colegio)
      {
-
          $cole = Colegio::find($colegio);
          $planes = Plan::all();
          return view('Wennec.super-admin.super-admin-editcolegio',[

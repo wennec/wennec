@@ -9,7 +9,7 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1>Crear Colegio</h1>
+                            <h1>Editar Peticion</h1>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -38,8 +38,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {!! Form::submit('Crear Peticion', ['class'=>'btn btn-large btn-primary']) !!}
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    {!! Form::submit('Editar Peticion', ['class'=>'btn btn-large btn-primary']) !!}
+                                    {{link_to_route('agendaAcudiente.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
                                     </div>    
                             {!! Form::close() !!}
                         </div>

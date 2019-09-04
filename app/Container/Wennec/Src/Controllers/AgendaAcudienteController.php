@@ -41,7 +41,7 @@ class AgendaAcudienteController extends Controller
         $eventos = 
         DB::select(DB::raw("SELECT
         tbl_agenda.tipo_agenda,
-        tbl_agendaestudiante.PK_id,
+        tbl_agendaestudiante.id,
         tbl_agendaestudiante.descripcion,
         tbl_estudiante.nombre_madre,
         TBL_AgendaEstudiante.fecha,
@@ -129,7 +129,12 @@ class AgendaAcudienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cole = AgendaEstudiante::findOrFail($id);
+        $agenda = Agenda::all();
+        return view('Wennec.acudiente.acudiente-editarevento', [
+            'departamento' => $cole,
+            'agenda' => $agenda
+        ]);
     }
 
     /**
@@ -141,7 +146,10 @@ class AgendaAcudienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $cole = AgendaEstudiante::find($id);
+      $cole->fill($request->all());
+      $cole->save();
+      return redirect('/agendaAcudiente')->with('success','Peticion Modificada Correctamente');
     }
 
     /**
