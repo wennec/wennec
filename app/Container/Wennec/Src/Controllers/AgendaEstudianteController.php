@@ -71,6 +71,9 @@ class AgendaEstudianteController extends Controller
 
         $agenda = Agenda::all();
         return view('Wennec.estudiante.estudiante-eventos',compact('eventos', 'agenda'));
+
+
+
     }
 
     /**
