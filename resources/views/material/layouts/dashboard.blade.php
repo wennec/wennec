@@ -235,7 +235,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div align="center" class="breadcome-heading">
-                                        <?php 
+                                        <?php
                                             if((Auth::user()->rol->nombre) == "Super Administrador"){
                                                 echo '<img width="38%" src="assets/img/logo/logocontrol.png" alt="" />';
                                             }else{
@@ -264,13 +264,13 @@
     @include('material.partials.dash-scripts')
     {{-- END SCRIPTS --}}
     {{-- BEGIN CUSTOM FUNCTIONS --}}
-        
+
     @stack('functions')
 
     {{-- END CUSTOM FUNCTIONS --}}
 
-    
-    
+
+
 </body>
 
 </html>

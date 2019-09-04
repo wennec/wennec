@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class Eventos extends Model
 {
     use Notifiable;
-    protected $table = "TBL_Eventos";
+    protected $table = "tbl_eventos";
     protected $primaryKey = "PK_id";
 
     function eventosGenerales(){

@@ -8,12 +8,16 @@ Route::resource('colegios', 'ColegioController');
 Route::resource('usuariosC', 'UsersAdminController');
 Route::resource('agendaA', 'AgendaAdminController');
 Route::resource('eventoA', 'EventoAdminController');
-Route::resource('encuestas', 'AdminEncuestasController');
+//Rutas Estudiante
 Route::resource('eventoEstudiante', 'EventoEstudianteController');
 Route::resource('agendaEstudiante', 'AgendaEstudianteController');
+//Rutas Acudiente
 Route::resource('agendaAcudiente', 'AgendaAcudienteController');
+Route::resource('comunicadosAcudiente', 'ComunicadosAcudienteController');
+//Rutas Administrador
 Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
+Route::resource('encuestas', 'AdminEncuestasController');
 //Rutas Docente
 Route::resource('docente', 'DocenteController');
 

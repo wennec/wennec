@@ -21,31 +21,31 @@ class AdminDocenteController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegio.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
         }
 
-        $docentes = 
+        $docentes =
         DB::select(DB::raw("SELECT
-        TBL_Usuarios.name as nameUser,
-        TBL_Roles.nombre as nameRol,
-        TBL_Colegios.nombre as nameColegio
+        tbl_usuarios.name as nameUser,
+        tbl_roles.nombre as nameRol,
+        tbl_colegios.nombre as nameColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Roles ON TBL_Usuarios.FK_RolesId = TBL_Roles.id 
-        JOIN TBL_Colegios ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Colegios.id = $id AND TBL_Roles.nombre = 'Docente'"));
+        tbl_usuarios
+        JOIN tbl_roles ON tbl_usuarios.FK_RolesId = tbl_roles.id
+        JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Docente'"));
         return view('Wennec.admin.administrador-docente',compact('docentes'));
     }
 
@@ -69,16 +69,16 @@ class AdminDocenteController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
@@ -91,14 +91,14 @@ class AdminDocenteController extends Controller
             'FK_RolesId'
         );
 
-        
+
         User::create([
             'FK_ColegioId' => $id
         ]);
-        
+
         $user = new User($atributos);
         $user->password = bcrypt($user->password);
-        
+
         $user->save();
         $user->notify(new UsuarioCreado($request->password));
         return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');

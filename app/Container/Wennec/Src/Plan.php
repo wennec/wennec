@@ -13,7 +13,7 @@ class Plan extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = "TBL_Planes";
+    protected $table = "tbl_planes";
     protected $primaryKey = "id";
 
     /**

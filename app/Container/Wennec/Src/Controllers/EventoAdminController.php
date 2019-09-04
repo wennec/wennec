@@ -17,34 +17,34 @@ class EventoAdminController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
         }
 
-        $eventos = 
+        $eventos =
         DB::select(DB::raw("SELECT
-        TBL_EventosGenerales.titulo_evento as Evento,
-        TBL_EventosGenerales.fecha as Fecha,
-        TBL_Eventos.tipo_evento as Descripcion,
-        TBL_Colegios.nombre as Colegio
+        tbl_eventosgenerales.titulo_evento as Evento,
+        tbl_eventosgenerales.fecha as Fecha,
+        tbl_eventos.tipo_evento as Descripcion,
+        tbl_colegios.nombre as Colegio
         FROM
-        TBL_EventosGenerales
-        JOIN TBL_Colegios
-        ON TBL_EventosGenerales.FK_ColegioId = TBL_Colegios.id 
-        JOIN TBL_Eventos
-        ON TBL_EventosGenerales.FK_EventosId = TBL_Eventos.PK_id
-        WHERE TBL_Colegios.id = $id
+        tbl_eventosgenerales
+        JOIN tbl_colegios
+        ON tbl_eventosgenerales.FK_ColegioId = tbl_colegios.id
+        JOIN tbl_eventos
+        ON tbl_eventosgenerales.FK_EventosId = tbl_eventos.PK_id
+        WHERE tbl_colegios.id = $id
         "));
 
         return view('Wennec.admin.administrador-eventos',compact('eventos'));
@@ -69,16 +69,16 @@ class EventoAdminController extends Controller
      */
     public function store(EventoStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
@@ -90,7 +90,7 @@ class EventoAdminController extends Controller
             'FK_EventosId' => $request['FK_EventosId'],
             'FK_ColegioId' => $id
         ]);
-        
+
         return redirect('/eventoA')->with('success','Evento Creado Correctamente');
     }
 

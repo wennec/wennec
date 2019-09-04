@@ -7,15 +7,32 @@ $(function() {
 	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
 	$('#calendar').fullCalendar({
+		lang: 'es',
 		header: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay,listWeek'
+			right: 'agendaWeek,agendaDay,listWeek'
 		},
+		dayNamesShort: ['Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves', 'Viernes', 'Sabado'],
+		monthNames:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'],
+		buttonText: {
+			week: 'semana',
+			day: 'dia',
+			list: 'lista',
+			today: 'hoy'
+		},
+		defaultView: 'agendaWeek',
+		views: {
+      week: {
+        titleFormat: 'D MMMM YYYY',
+        titleRangeSeparator: ' - ',
+
+      }
+    },
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
-		backgroundColor: '#1f2e86',   
+		backgroundColor: '#1f2e86',
 		eventTextColor: '#1f2e86',
 		textColor: '#378006',
 		dayClick: function(date, jsEvent, view) {
@@ -32,8 +49,10 @@ $(function() {
     },
 		events: [
 			{
-				title: 'All Day Event',
-				start: YM + '-01',
+				title: 'sociales',
+				start: '10:00',
+				end: '14:00',
+				dow: [1],
 				color: '#006DF0'
 			},
 			{
@@ -53,12 +72,6 @@ $(function() {
 				title: 'Repeating Event',
 				start: YM + '-16T16:00:00',
 				color: '#D80027'
-			},
-			{
-				title: 'Conference',
-				start: YESTERDAY,
-				end: TOMORROW,
-				color: '#f3c30b'
 			},
 			{
 				title: 'Meeting',
@@ -97,6 +110,6 @@ $(function() {
 				start: YM + '-28',
 				color: '#323232'
 			}
-		]
+		],
 	});
 });

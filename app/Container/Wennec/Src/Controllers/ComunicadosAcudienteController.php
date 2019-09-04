@@ -12,7 +12,7 @@ use App\Container\Wennec\Src\Notifications\UsuarioCreado;
 use Illuminate\Support\Facades\DB;
 
 
-class HorarioStudentController extends Controller
+class ComunicadosAcudienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class HorarioStudentController extends Controller
      */
     public function index()
     {
-        return view('Wennec.estudiante.estudiante-horario',compact('students'));
+        return view('Wennec.admin.administrador-encuestas');
     }
 
     /**
@@ -31,9 +31,7 @@ class HorarioStudentController extends Controller
      */
     public function create()
     {
-        $users = Colegio::all();
-        $roles = Roles::all();
-        return view('Wennec.admin.administrador-crearuser',compact('users'));
+        return view('Wennec.admin.administrador-crearencuesta');
     }
 
     /**
@@ -44,40 +42,7 @@ class HorarioStudentController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers =
-        DB::select(DB::raw("SELECT
-        tbl_colegios.id as idColegio
-        FROM
-        tbl_usuarios
-        JOIN tbl_colegios
-        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_usuarios.PK_id = $iduser"));
-
-        foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
-        }
-
-        $atributos = $request->only(
-            'name',
-            'email',
-            'password',
-            'FK_RolesId'
-        );
-
-
-        User::create([
-            'FK_ColegioId' => $id
-        ]);
-
-        $user = new User($atributos);
-        $user->password = bcrypt($user->password);
-
-        $user->save();
-        $user->notify(new UsuarioCreado($request->password));
-        return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');
-        return $user;
     }
 
     /**
@@ -122,7 +87,6 @@ class HorarioStudentController extends Controller
      */
     public function destroy($users)
     {
-        User::destroy($users);
-        return redirect()->route('usuarios.index')->with('error','Usuario Eliminado Correctamente');
+
     }
 }

@@ -22,40 +22,40 @@ class AgendaAcudienteController extends Controller
     {
         $iduser = auth()->user()->PK_id ;
 
-        $estudianteId = 
+        $estudianteId =
         DB::select(DB::raw("SELECT
         tbl_estudiante.PK_id as idEstudiante,
-        TBL_Acudiente.FK_usuarioId
+        tbl_acudiente.FK_usuarioId
         FROM
-        TBL_Acudiente
+        tbl_acudiente
         JOIN tbl_usuarios
-        ON TBL_Acudiente.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id
         JOIN tbl_estudiante
-        ON TBL_Acudiente.FK_estudianteId = tbl_estudiante.PK_id
+        ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id
         WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($estudianteId as $estudianteIds){
             $idEstudiante = $estudianteIds->idEstudiante;
         }
 
-        $eventos = 
+        $eventos =
         DB::select(DB::raw("SELECT
         tbl_agenda.tipo_agenda,
         tbl_agendaestudiante.id,
         tbl_agendaestudiante.descripcion,
         tbl_estudiante.nombre_madre,
-        TBL_AgendaEstudiante.fecha,
+        tbl_agendaestudiante.fecha,
         tbl_usuarios.`name`
         FROM
         tbl_agendaestudiante
         JOIN tbl_agenda
-        ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id 
+        ON tbl_agendaestudiante.FK_agendaId = tbl_agenda.PK_id
         JOIN tbl_estudiante
-        ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id 
+        ON tbl_agendaestudiante.FK_estudianteId = tbl_estudiante.PK_id
         JOIN tbl_acudiente
-        ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id 
+        ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id
         JOIN tbl_usuarios
-        ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id
         WHERE
         tbl_estudiante.PK_id = $idEstudiante"));
 
@@ -84,16 +84,16 @@ class AgendaAcudienteController extends Controller
     {
         $iduser = auth()->user()->PK_id;
 
-        $estudianteId = 
+        $estudianteId =
         DB::select(DB::raw("SELECT
         tbl_estudiante.PK_id as idEstudiante,
-        TBL_Acudiente.FK_usuarioId
+        tbl_acudiente.FK_usuarioId
         FROM
-        TBL_Acudiente
+        tbl_acudiente
         JOIN tbl_usuarios
-        ON TBL_Acudiente.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id
         JOIN tbl_estudiante
-        ON TBL_Acudiente.FK_estudianteId = tbl_estudiante.PK_id
+        ON tbl_acudiente.FK_estudianteId = tbl_estudiante.PK_id
         WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($estudianteId as $estudianteIds){

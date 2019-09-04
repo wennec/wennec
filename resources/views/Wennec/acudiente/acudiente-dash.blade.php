@@ -10,3 +10,9 @@
     'link' => route('agendaAcudiente.index')
 ])
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-bullhorn',
+    'title' => 'Comunicados',
+    'link' => route('agendaAcudiente.index')
+])
+@endcomponent
