@@ -17,6 +17,9 @@ Route::resource('adminDocente', 'AdminDocenteController');
 //Rutas Docente
 Route::resource('docente', 'DocenteController');
 
+Route::resource('horarioE', 'HorarioStudentController');
+
+
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
     Route::post('/', 'PerfilController@update')->name('perfil.update');

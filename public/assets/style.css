@@ -4886,3 +4886,34 @@ img-logo-responsive {
     background-color: rgb(88, 149, 248);
     border-color: #2e6da4;
 }
+
+.modal-content {
+    position: relative;
+    border-radius: 24px;
+   }
+   .modal-content h4 {
+    color: rgb(77, 77, 77);
+   }
+   .modal-header{
+    font-size: 35px;
+    text-align: center;
+    padding: 40px;
+    border-bottom-color: rgb(238, 241, 246);
+   }
+   .modal-body .row input{
+    background-color: rgb(238, 241, 246);
+    border-radius: 10px;
+    border-bottom: none;
+    color: rgb(211, 212, 214);
+   }
+   .modal-body .row select{
+    background-color: rgb(238, 241, 246);
+    border-radius: 10px;
+    border-bottom: none;
+    color: rgb(211, 212, 214);
+   }
+   .modal-body .btn-primary {
+      color: #fff;
+      background-color: rgb(88, 149, 248);
+      border-color: #2e6da4;
+   }

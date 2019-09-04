@@ -22,7 +22,7 @@
                                 <h4 class="modal-title" id="myModalLabel">CREAR PETICION</h4>
                             </div>
                             <div class="modal-body">
-                            {!! Form::open(['route'=>'agendaEstudiante.store','method'=>'POST']) !!}
+                            {!! Form::open(['route'=>'agendaAcudiente.store','method'=>'POST']) !!}
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-12">
                                         <div class="form-group form-md-line-input">
@@ -78,6 +78,7 @@
             </div>
             <div id="modalBody" class="modal-body"></div>
             <div class="modal-footer">
+            <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -109,7 +110,7 @@
                     title : '{{ $evento->tipo_agenda}}',
                     start : '{{ $evento->fecha }}',
                     description: '{{ $evento->descripcion }}',
-                    url : ''
+                    url : 'agendaAcudiente/{{ $evento->id }}/edit'
                 },
                 @endforeach
                 ],

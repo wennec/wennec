@@ -10,3 +10,10 @@
     'link' => route('agendaEstudiante.index')
 ])
 @endcomponent
+
+@component('components.nav-link', [
+    'icon' => 'fa fa-book',
+    'title' => 'Agenda Estudiante',
+    'link' => route('horarioE.index')
+])
+@endcomponent

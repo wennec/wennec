@@ -1,7 +1,7 @@
 @component('components.nav-link', [
     'icon' => 'fa fa-book',
     'title' => 'Agenda General',
-    'link' => route('eventoA.index')
+    'link' => route('eventoEstudiante.index')
 ])
 @endcomponent
 @component('components.nav-link', [

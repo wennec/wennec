@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Container\Wennec\Src\Controllers;
 
 use Illuminate\Http\Request;
+use App\Container\Wennec\Src\Requests\UserStoreRequest;
+use App\Container\Wennec\Src\User;
 use App\Http\Controllers\Controller;
-use App\Container\Wennec\Src\Requests\EventoStoreRequest;
-use App\Container\Wennec\Src\Eventos;
-use App\Container\Wennec\Src\EventosGenerales;
+use App\Container\Wennec\Src\Colegio;
+use App\Container\Wennec\Src\Roles;
+use App\Container\Wennec\Src\Notifications\UsuarioCreado;
 use Illuminate\Support\Facades\DB;
 
-class EventoEstudianteController extends Controller
+
+class HorarioStudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,36 +21,7 @@ class EventoEstudianteController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
-
-        $colegioUsers = 
-        DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
-        FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
-
-        foreach ($colegioUsers as $colegioUser) {
-             $idSchool = $colegioUser->idColegio;
-        }
-
-        $eventos = 
-        DB::select(DB::raw("SELECT
-        TBL_EventosGenerales.titulo_evento as Evento,
-        TBL_EventosGenerales.fecha as Fecha,
-        TBL_Eventos.tipo_evento as Descripcion,
-        TBL_Colegios.nombre as Colegio
-        FROM
-        TBL_EventosGenerales
-        JOIN TBL_Colegios
-        ON TBL_EventosGenerales.FK_ColegioId = TBL_Colegios.id 
-        JOIN TBL_Eventos
-        ON TBL_EventosGenerales.FK_EventosId = TBL_Eventos.PK_id
-        WHERE TBL_Colegios.id = 2"));
-
-        return view('Wennec.admin.administrador-eventos',compact('eventos'));
+        return view('Wennec.estudiante.estudiante-notas',compact('students'));
     }
 
     /**
@@ -56,8 +31,9 @@ class EventoEstudianteController extends Controller
      */
     public function create()
     {
-        $eventos = Eventos::all();
-        return view('Wennec.admin.administrador-crearevento',compact('eventos'));
+        $users = Colegio::all();
+        $roles = Roles::all();
+        return view('Wennec.admin.administrador-crearuser',compact('users'));
     }
 
     /**
@@ -66,7 +42,7 @@ class EventoEstudianteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventoStoreRequest $request)
+    public function store(UserStoreRequest $request)
     {
         $iduser = auth()->user()->PK_id ; 
 
@@ -83,14 +59,25 @@ class EventoEstudianteController extends Controller
              $id = $colegioUser->idColegio;
         }
 
-        EventosGenerales::create([
-            'titulo_evento' => $request['titulo_evento'],
-            'fecha' => $request['fecha'],
-            'FK_EventosId' => $request['FK_EventosId'],
+        $atributos = $request->only(
+            'name',
+            'email',
+            'password',
+            'FK_RolesId'
+        );
+
+        
+        User::create([
             'FK_ColegioId' => $id
         ]);
         
-        return redirect('/eventoA')->with('success','Evento Creado Correctamente');
+        $user = new User($atributos);
+        $user->password = bcrypt($user->password);
+        
+        $user->save();
+        $user->notify(new UsuarioCreado($request->password));
+        return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');
+        return $user;
     }
 
     /**
@@ -101,7 +88,7 @@ class EventoEstudianteController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -112,7 +99,7 @@ class EventoEstudianteController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -133,8 +120,9 @@ class EventoEstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($users)
     {
-        //
+        User::destroy($users);
+        return redirect()->route('usuarios.index')->with('error','Usuario Eliminado Correctamente');
     }
 }
