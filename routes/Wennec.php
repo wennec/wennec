@@ -15,6 +15,7 @@ Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
 
 Route::resource('horarioE', 'HorarioStudentController');
+Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
 
 
 Route::prefix('/perfil')->group(function (){
