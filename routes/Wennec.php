@@ -22,6 +22,7 @@ Route::resource('encuestas', 'AdminEncuestasController');
 Route::resource('docente', 'DocenteController');
 
 Route::resource('horarioE', 'HorarioStudentController');
+Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
 
 
 Route::prefix('/perfil')->group(function (){

@@ -1,12 +1,25 @@
 @component('components.nav-link', [
-    'icon' => 'fas fa-book-open',
-    'title' => 'Notas',
-    'link' => route('docente.index')
+    'icon' => 'fa fa-book',
+    'title' => 'Agenda General',
+    'link' => route('eventoA.index')
 ])
 @endcomponent
 @component('components.nav-link', [
-    'icon' => 'far fa-file-alt',
-    'title' => 'Tests',
-    'link' => route('docente.index')
+    'icon' => 'fa fa-book',
+    'title' => 'Agenda Estudiante',
+    'link' => route('agendaEstudiante.index')
+])
+@endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-calendar-check-o',
+    'title' => 'Horario',
+    'link' => route('horarioE.index')
+])
+@endcomponent
+
+@component('components.nav-link', [
+    'icon' => 'fa fa-check',
+    'title' => 'Calificaciones',
+    'link' => route('calificacionEstudiante.index')
 ])
 @endcomponent
