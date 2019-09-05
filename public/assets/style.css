@@ -142,6 +142,9 @@ margin: 0;
 padding: 0
 }
 .clear{clear:both}
+.row .sparkline13-list h1{
+  color: #959595;
+}
 body {}
 @font-face {
   font-family: 'educate-icon';

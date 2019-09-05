@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Colegio extends Model
 {
-    protected $table = "TBL_Colegios";
+    protected $table = "tbl_colegios";
     protected $primarykey = "id";
     protected $fillable = ['nombre','descripcion', 'FK_PlanesId'];
 

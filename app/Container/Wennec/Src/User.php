@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = "TBL_Usuarios";
+    protected $table = "tbl_usuarios";
     protected $primaryKey = "PK_id";
 
     /**

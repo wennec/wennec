@@ -17,22 +17,22 @@ class CalificacionEstudianteController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $idColegio = $colegioUser->idColegio;
         }
 
-        $estudianteId = 
+        $estudianteId =
         DB::select(DB::raw("SELECT
         tbl_estudiante.PK_id as idEstudiante
         FROM
@@ -47,7 +47,7 @@ class CalificacionEstudianteController extends Controller
             $idEstudiante = $estudianteIds->idEstudiante;
         }
 
-        $calificaciones = 
+        $calificaciones =
         DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_cursos.nombre_curso,
@@ -60,26 +60,26 @@ class CalificacionEstudianteController extends Controller
         FROM
         tbl_estudiante
         JOIN tbl_usuarios
-        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
         JOIN tbl_grupoestudiantes
-        ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id 
+        ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
         JOIN tbl_grupos
-        ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id 
+        ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
         JOIN tbl_cursos
-        ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id 
+        ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id
         JOIN tbl_colegios
         ON tbl_usuarios.FK_ColegioId = tbl_colegios.id,
         tbl_calificacionestudiante
         JOIN tbl_estudiantematerias
-        ON tbl_calificacionestudiante.FK_estudiante_materias = tbl_estudiantematerias.PK_id 
+        ON tbl_calificacionestudiante.FK_estudiante_materias = tbl_estudiantematerias.PK_id
         JOIN tbl_calificacion
-        ON tbl_calificacionestudiante.FK_tipo_calificacion = tbl_calificacion.PK_id 
+        ON tbl_calificacionestudiante.FK_tipo_calificacion = tbl_calificacion.PK_id
         JOIN tbl_grupomaterias
-        ON tbl_estudiantematerias.FK_grupo_materias = tbl_grupomaterias.PK_id 
+        ON tbl_estudiantematerias.FK_grupo_materias = tbl_grupomaterias.PK_id
         JOIN tbl_docente
-        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
         JOIN tbl_materias
-        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id 
+        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
         JOIN tbl_usuarios AS tbl_usuarios_docente
         ON tbl_docente.FK_usuario = tbl_usuarios_docente.PK_id
         WHERE tbl_estudiante.PK_id = $idEstudiante AND tbl_colegios.id = $idColegio"));
@@ -106,16 +106,16 @@ class CalificacionEstudianteController extends Controller
      */
     public function store(EventoStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
@@ -127,7 +127,7 @@ class CalificacionEstudianteController extends Controller
             'FK_EventosId' => $request['FK_EventosId'],
             'FK_ColegioId' => $id
         ]);
-        
+
         return redirect('/eventoA')->with('success','Evento Creado Correctamente');
     }
 
@@ -139,7 +139,7 @@ class CalificacionEstudianteController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
