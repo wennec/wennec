@@ -80,17 +80,17 @@
                   <!-- Email -->
                   <div class="row-form">
                   <!-- Password -->
-                  <div class="form-group has-feedback has-feedback-left">
+                  <div class="form-login has-feedback has-feedback-left">
                     <label class="control-label sr-only"></label>
                     <div class=" col-sm-22">
-                      <input type="text" class="form-control input-lg" name="email" placeholder="Usuario" />
+                      <input type="text" class="form-control input-sm" name="email" placeholder="Usuario" />
                       <i class="form-control-feedback fa fa-user-o"></i>
                     </div>
                   </div>
-                  <div class="form-group has-feedback has-feedback-left">
+                  <div class="form-login has-feedback has-feedback-left">
                     <label class="control-label sr-only"></label>
                     <div class=" col-sm-22">
-                      <input type="password" name="password" class="form-control input-lg" placeholder="Contraseña" />
+                      <input type="password" name="password" class="form-control input-sm" placeholder="Contraseña" />
                       <i class="form-control-feedback fa fa-lock"></i>
                     </div>
                   </div>

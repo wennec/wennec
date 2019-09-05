@@ -21,16 +21,18 @@
                             {!! Form::open(['route'=>'usuariosC.store','method'=>'POST']) !!}
 
                             <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group form-md-line-input">
-                                            {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
-                                        </div>
-                                    </div>
-                                </div>
-
+                              <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group form-md-line-input">
-                                        {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
+                                  {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
                                 </div>
+                              </div>
+
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group form-md-line-input">
+                                  {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
+                                </div>
+                              </div>
+                            </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group form-md-line-input">

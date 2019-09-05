@@ -70,19 +70,26 @@
 }
 .form_login img{
     margin-top: 10%;
-    margin-left: 13%;
+    margin-left: 22%;
     margin-right: 20%;
     margin-bottom: 15%;
+    width: 50%;
 }
 .form_login button{
-    border-radius: 10px;
-    width:  50%;
-    margin-left: 10%;
-    margin-top: 5%;
-    margin-right: 40%;
-    background-color: rgb(247,217,23);
-    color: white;
-    font-size: 150%;
+  border-radius: 10px;
+  margin-left: 25%;
+  margin-top: 5%;
+  margin-right: 40%;
+  color: white;
+  font-size: 150%;
+  background: rgba(248,181,0,1);
+  background: -moz-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(248,181,0,1)), color-stop(100%, rgba(242,213,145,1)));
+  background: -webkit-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+  background: -o-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+  background: -ms-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+  background: linear-gradient(to right, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8b500', endColorstr='#f2d591', GradientType=1 );
 }
 .form_login form{
   display: inline-block;
@@ -94,7 +101,7 @@
     padding-left: 5%;
 }
 #label{
-  padding-left: 43%;
+  padding-left: 6%;
   font-size: 85%;
 }
 .form-horizontal button{
@@ -106,8 +113,23 @@
   border-top-color: red;
 }
 .has-feedback .form-control {
-    padding-right: 265.5px;
+    padding-right: 240.5px;
 }
+.form-login {
+      background-color: rgb(238, 241, 246);
+      border: 0;
+      background: transparent;
+      outline: 0;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+      width: 130%;
+      box-shadow: none;
+}
+.form-login input{
+  padding-right: 0%;
+}
+
 /*----------------------------------------*/
 /*  1. Common
 /*----------------------------------------*/
@@ -3084,7 +3106,7 @@ td.text-right.mail-date {
     background-color: #FFFFFF;
     background-image: none;
     border: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ddd;
     background: transparent;
     outline: 0;
     border-radius: 1px;
