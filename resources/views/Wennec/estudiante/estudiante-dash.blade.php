@@ -16,10 +16,15 @@
     'link' => route('horarioE.index')
 ])
 @endcomponent
-
 @component('components.nav-link', [
     'icon' => 'fa fa-check',
     'title' => 'Calificaciones',
     'link' => route('calificacionEstudiante.index')
+])
+@endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-clock-o',
+    'title' => 'Asistencia',
+    'link' => route('asistenciaEstudiante.index')
 ])
 @endcomponent
