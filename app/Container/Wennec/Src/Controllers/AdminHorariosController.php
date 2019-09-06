@@ -21,22 +21,22 @@ class AdminHorariosController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
         }
 
-        $grupos = 
+        $grupos =
         DB::select(DB::raw("SELECT
         tbl_grupos.PK_id,
         tbl_grupos.grupo,
@@ -46,17 +46,34 @@ class AdminHorariosController extends Controller
         FROM
         tbl_usuarios
         JOIN tbl_colegios
-        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id 
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         JOIN tbl_docente
-        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id 
+        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
         JOIN tbl_grupomaterias
-        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
         JOIN tbl_materias
-        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id 
+        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
         JOIN tbl_grupos
         ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
-        WHERE TBL_Colegios.id = $id"));
-        return view('Wennec.admin.administrador-grupos',compact('grupos'));
+        WHERE tbl_colegios.id = $id"));
+
+        $dias = DiaHorario::all();
+        $docentes =
+        DB::select(DB::raw("SELECT
+        tbl_usuarios.`name`,
+        tbl_materias.nombre_materia,
+        tbl_docente.PK_id
+        FROM
+        tbl_materias
+        JOIN tbl_grupomaterias
+        ON tbl_materias.PK_id = tbl_grupomaterias.FK_materia
+        JOIN tbl_docente
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+        JOIN tbl_usuarios
+        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+        WHERE tbl_materias.nombre_materia = 'Sociales'"));
+
+        return view('Wennec.admin.administrador-grupos',compact('grupos','dias','docentes'));
     }
 
     /**
@@ -66,22 +83,6 @@ class AdminHorariosController extends Controller
      */
     public function create()
     {
-        $dias = DiaHorario::all();
-        $docentes = 
-        DB::select(DB::raw("SELECT
-        tbl_usuarios.`name`,
-        tbl_materias.nombre_materia,
-        tbl_docente.PK_id
-        FROM
-        tbl_materias
-        JOIN tbl_grupomaterias
-        ON tbl_materias.PK_id = tbl_grupomaterias.FK_materia 
-        JOIN tbl_docente
-        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
-        JOIN tbl_usuarios
-        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
-        WHERE tbl_materias.nombre_materia = 'Sociales'"));
-
         return view('Wennec.admin.administrador-crearhorario',compact('docentes', 'dias'));
     }
 
@@ -93,18 +94,23 @@ class AdminHorariosController extends Controller
      */
     public function store(Request $request)
     {
-        $horario = Horarios::create([
+        Horarios::create([
             'horaInicio' => $request['horaInicio'],
             'horaFin' => $request['horaFin'],
             'FK_DiaId' => $request['FK_DiaId'],
         ]);
-        $id_horario = $horario->PK_id;
+        $prueba = Horarios::all();
+        $prueba2 = $prueba->last();
+
         HorarioMaterias::create([
-            'FK_HorarioId' => $id_horario,
-            'FK_GrupoMateriaId' => $request['FK_GrupoMateriaId'],
+            'FK_HorarioId' => $prueba2->PK_id,
+            'FK_GrupoMateriaId' => $request['id_grupomateria'],
         ]);
+
         GrupoMaterias::create([
+            'FK_materia' => $request['id_materia'],
             'FK_docente' => $request['FK_docente'],
+            'FK_GrupoId' => $request['id_grupo'],
         ]);
         return redirect('/calificacionDocente')->with('success','Notas Registradas Correctamente');
     }

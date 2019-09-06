@@ -42,11 +42,12 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('horarios.create', $title = '', $parameter = $grupo->idmateria, $attributes = ['class' => 'btn btn-primary btn-icon fa fa-plus'])}}</td>
-                                            <input type="hidden" name="FK_GrupoMateriaId" value="{{$grupo->idgrupomateria}}">
+                                            <td><button type="button" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreate">
+                                            <i class="fa fa-plus"></i>
+                                            </button></td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -57,4 +58,102 @@
     </div>
         <!-- Static Table End -->
 </div>
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Crear Administradores</h4>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['route'=>'horarios.store','method'=>'POST']) !!}
+
+          <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group form-md-line-input">
+                      <label>Docente</label>
+                          <select class="form-control" name="FK_docente" id="" required="">
+                              <option value="">Seleccionar</option>
+                                  @foreach($docentes as $docente)
+                                      <option value="{{$docente->PK_id}}">{{$docente->name}}</option>
+                                  @endforeach
+                                  @foreach($grupos as $grupo)
+                                    <input type="hidden" name="id_grupo" id="id_grupo" value="{{$grupo->PK_id}}">
+                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$grupo->idmateria}}">
+                                    <input type="hidden" name="id_grupomateria" id="id_grupomateria" value="{{$grupo->idgrupomateria}}">
+                                  @endforeach
+                          </select>
+                  </div>
+
+
+                  <div class="form-group form-md-line-input">
+                      <label>Dia</label>
+
+                          <select class="form-control" name="FK_DiaId" id="" required="">
+                              <option value="">Seleccionar</option>
+                                  @foreach($dias as $dia)
+                                      <option value="{{$dia->PK_id}}">{{$dia->dia}}</option>
+                                  @endforeach
+                          </select>
+                  </div>
+
+                  <div class="form-group form-md-line-input">
+                      <label>Hora Inicio</label>
+                          <select class="form-control" name="horaInicio" id="" required="">
+                              <option value="">Seleccionar</option>
+                                      <option value="08:00:00">08:00 am</option>
+                                      <option value="09:00:00">09:00 am</option>
+                                      <option value="10:00:00">10:00 am</option>
+                                      <option value="11:00:00">11:00 am</option>
+                                      <option value="12:00:00">12:00 m</option>
+                                      <option value="13:00:00">01:00 pm</option>
+                                      <option value="14:00:00">02:00 pm</option>
+                                      <option value="15:00:00">03:00 pm</option>
+                                      <option value="16:00:00">04:00 pm</option>
+                                      <option value="17:00:00">05:00 pm</option>
+                                      <option value="18:00:00">06:00 pm</option>
+                          </select>
+                  </div>
+
+                  <div class="form-group form-md-line-input">
+                      <label>Hora Fin</label>
+                      <select class="form-control" name="horaFin" id="" required="">
+                              <option value="">Seleccionar</option>
+                                      <option value="08:00:00">08:00 am</option>
+                                      <option value="09:00:00">09:00 am</option>
+                                      <option value="10:00:00">10:00 am</option>
+                                      <option value="11:00:00">11:00 am</option>
+                                      <option value="12:00:00">12:00 m</option>
+                                      <option value="13:00:00">01:00 pm</option>
+                                      <option value="14:00:00">02:00 pm</option>
+                                      <option value="15:00:00">03:00 pm</option>
+                                      <option value="16:00:00">04:00 pm</option>
+                                      <option value="17:00:00">05:00 pm</option>
+                                      <option value="18:00:00">06:00 pm</option>
+                          </select>
+                  </div>
+              </div>
+
+
+          </div>
+          {!! Form::submit('Guardar', ['class'=>'btn btn-large btn-primary']) !!}
+          {{link_to_route('horarios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
+          </div>
+      {!! Form::close() !!}
+    </div>
+    </div>
+</div>
 @endsection
+
+<script>
+$(document).ready(function (e) {
+  $('#modalCreate').on('show.bs.modal', function(e) {
+    var id_grupo = $(e.relatedTarget).data().id;
+    $(e.currentTarget).find('#id_grupo').val(id_grupo);
+    var id_materia = $(e.relatedTarget).data().id;
+    $(e.currentTarget).find('#id_materia').val(id_materia);
+    var id_grupomateria = $(e.relatedTarget).data().id;
+    $(e.currentTarget).find('#id_grupomateria').val(id_grupomateria);
+  });
+});
+</script>
