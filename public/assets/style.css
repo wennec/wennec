@@ -174,13 +174,13 @@ padding: 0
   background-color: rgb(238, 241, 246);
   border-radius: 10px;
   border-bottom: none;
-  color: rgb(211, 212, 214);
+  color: #303030;
 }
 .form-group select{
   background-color: rgb(238, 241, 246);
   border-radius: 10px;
   border-bottom: none;
-  color: rgb(211, 212, 214);
+  color: #303030;
 }
 body {}
 @font-face {
@@ -3480,7 +3480,7 @@ td.text-right.mail-date {
 	font-size:20px;
 }
 .custom-datatable-overright table tbody tr td a {
-    color: #303030;
+    color: #eee;
     font-size: 14px;
 }
 .custom-datatable-overright table tbody tr td {

@@ -30,3 +30,12 @@
 ])
 @endcomponent
 
+@component('components.nav-dropdown', ['icon' => 'fa fa-users', 'title' => 'Horarios'])
+    @component('components.nav-link', [
+        'icon' => 'fas fa-calendar-alt',
+        'title' => 'Crear Horarios',
+        'link' => route('horarios.index')
+    ])
+    @endcomponent
+@endcomponent
+

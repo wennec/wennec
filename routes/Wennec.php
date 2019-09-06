@@ -13,10 +13,13 @@ Route::resource('agendaEstudiante', 'AgendaEstudianteController');
 Route::resource('agendaAcudiente', 'AgendaAcudienteController');
 Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
+Route::resource('horarios', 'AdminHorariosController');
 
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
+Route::resource('asistenciaEstudiante', 'AsistenciaStudentController');
 
+Route::resource('calificacionDocente', 'CalificacionDocenteController');
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
