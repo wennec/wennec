@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class Roles extends Model
 {
     use Notifiable;
-    protected $table = "TBL_Roles";
+    protected $table = "tbl_roles";
     protected $primaryKey = "id";
 
     function usuarios(){

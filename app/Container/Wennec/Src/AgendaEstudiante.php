@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AgendaEstudiante extends Model
 {
-    protected $table = "TBL_AgendaEstudiante";
+    protected $table = "tbl_agendaestudiante";
     protected $primarykey = "id";
     protected $fillable = ['descripcion', 'fecha', 'FK_estudianteId', 'FK_agendaId'];
 

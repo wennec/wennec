@@ -76,16 +76,16 @@ class HorarioStudentController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
@@ -98,14 +98,14 @@ class HorarioStudentController extends Controller
             'FK_RolesId'
         );
 
-        
+
         User::create([
             'FK_ColegioId' => $id
         ]);
-        
+
         $user = new User($atributos);
         $user->password = bcrypt($user->password);
-        
+
         $user->save();
         $user->notify(new UsuarioCreado($request->password));
         return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');

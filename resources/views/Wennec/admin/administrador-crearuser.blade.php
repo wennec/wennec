@@ -19,28 +19,30 @@
                         </div>
                         <div class="sparkline13-graph">
                             {!! Form::open(['route'=>'usuariosC.store','method'=>'POST']) !!}
-                                                    
+
                             <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group form-md-line-input">                                 
-                                            {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
-                                        </div>
-                                    </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group form-md-line-input">
+                                  {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
                                 </div>
-                                         
-                                <div class="form-group form-md-line-input">                                 
-                                        {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
-                                </div> 
+                              </div>
+
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group form-md-line-input">
+                                  {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
+                                </div>
+                              </div>
+                            </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group form-md-line-input">                                 
+                                        <div class="form-group form-md-line-input">
                                             {!!Form::password('password',['class'=>'form-control','placeholder'=>'Contraseña','required'])!!}
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group form-md-line-input">                                 
+                                    <div class="form-group form-md-line-input">
                                             {!!Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Confirmar Contraseña'])!!}
-                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -51,13 +53,13 @@
                                                         <option value="3">Estudiante</option>
                                                         <option value="4">Docente</option>
                                                         <option value="5">Acudiente</option>
-                                                </select>                
+                                                </select>
                                         </div>
                                     </div>
                                 </div>
-                                {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
+                                {!! Form::submit('Registrar', ['class'=>'btn btn-large btn-primary']) !!}
                                 {{link_to_route('usuariosC.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
-                                </div>                        
+                                </div>
                             {!! Form::close() !!}
                         </div>
                     </div>

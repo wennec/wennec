@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class Agenda extends Model
 {
     use Notifiable;
-    protected $table = "TBL_Agenda";
+    protected $table = "tbl_agenda";
     protected $primaryKey = "PK_id";
 
     function agendaEstudiante(){
