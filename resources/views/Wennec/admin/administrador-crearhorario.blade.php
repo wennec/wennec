@@ -19,7 +19,7 @@
                         </div>
                         <div class="sparkline13-graph">
                             {!! Form::open(['route'=>'horarios.store','method'=>'POST']) !!}
-                             
+
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group form-md-line-input">
@@ -29,9 +29,9 @@
                                                         @foreach($docentes as $docente)
                                                             <option value="{{$docente->PK_id}}">{{$docente->name}}</option>
                                                         @endforeach
-                                                </select>      
+                                                </select>
                                         </div>
-                                        
+
 
                                         <div class="form-group form-md-line-input">
                                             <label>Dia</label>
@@ -41,7 +41,7 @@
                                                         @foreach($dias as $dia)
                                                             <option value="{{$dia->PK_id}}">{{$dia->dia}}</option>
                                                         @endforeach
-                                                </select>      
+                                                </select>
                                         </div>
 
                                         <div class="form-group form-md-line-input">
@@ -59,7 +59,7 @@
                                                             <option value="16:00:00">04:00 pm</option>
                                                             <option value="17:00:00">05:00 pm</option>
                                                             <option value="18:00:00">06:00 pm</option>
-                                                </select>      
+                                                </select>
                                         </div>
 
                                         <div class="form-group form-md-line-input">
@@ -77,15 +77,15 @@
                                                             <option value="16:00:00">04:00 pm</option>
                                                             <option value="17:00:00">05:00 pm</option>
                                                             <option value="18:00:00">06:00 pm</option>
-                                                </select>       
+                                                </select>
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
                                 {!! Form::submit('Guardar', ['class'=>'btn btn-large btn-primary']) !!}
                                 {{link_to_route('horarios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
-                                </div>                        
+                                </div>
                             {!! Form::close() !!}
                         </div>
                     </div>
