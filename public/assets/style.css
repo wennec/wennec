@@ -4924,3 +4924,62 @@ img-logo-responsive {
       background-color: rgb(88, 149, 248);
       border-color: #2e6da4;
    }
+
+.container_create_school{
+  background-color: blue;
+}
+.sign_in_left_section {
+    float:left;
+    width:50%;
+    height: 100%;
+}
+.sign_in_left_section img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 10%;
+}
+.sign_in_rigth_section img{
+  max-width: 90%;
+  padding-left: 10%;
+}
+.sign_in_rigth_section {
+    float:right;
+    width: 50%;
+    height: 50%;
+    vertical-align: top;
+}
+.form_sign_in{
+    width: 70%;
+    height: 80%;
+    margin-top: 23.2%;
+    margin-bottom: 10%;
+    margin-right: 20%;
+    margin-left: 20%;
+    vertical-align: bottom;
+}
+.image-upload img{
+    width: 22%;
+    margin-left: 34%;
+    cursor: pointer;
+}
+.image-upload > input
+{
+    display: none;
+}
+.form-horizontal #btn_create_school {
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-top: 4%;
+    margin-right: 40%;
+    color: white;
+    font-size: 150%;
+    background: rgba(248,181,0,1);
+    background: -moz-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(248,181,0,1)), color-stop(100%, rgba(242,213,145,1)));
+    background: -webkit-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+    background: -o-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+    background: -ms-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+    background: linear-gradient(to right, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8b500', endColorstr='#f2d591', GradientType=1 );
+}
