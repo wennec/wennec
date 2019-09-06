@@ -104,9 +104,7 @@ class AdminHorariosController extends Controller
             'FK_GrupoMateriaId' => $request['FK_GrupoMateriaId'],
         ]);
         GrupoMaterias::create([
-            'FK_materia' => $request['FK_materia'],
             'FK_docente' => $request['FK_docente'],
-            'FK_GrupoId' => $request['FK_GrupoId'],
         ]);
         return redirect('/calificacionDocente')->with('success','Notas Registradas Correctamente');
     }
