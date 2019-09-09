@@ -21,22 +21,22 @@ class AsistenciaStudentController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
                 $idColegio = $colegioUser->idColegio;
         }
 
-        $estudianteId = 
+        $estudianteId =
         DB::select(DB::raw("SELECT
         tbl_estudiante.PK_id as idEstudiante
         FROM
@@ -57,9 +57,9 @@ class AsistenciaStudentController extends Controller
         FROM
         tbl_estudiante
         JOIN tbl_usuarios
-        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
         JOIN tbl_asistenciaestudiante
-        ON tbl_asistenciaestudiante.FK_estudiante = tbl_estudiante.PK_id 
+        ON tbl_asistenciaestudiante.FK_estudiante = tbl_estudiante.PK_id
         JOIN tbl_asistencia
         ON tbl_asistenciaestudiante.FK_asistencia = tbl_asistencia.PK_id
         JOIN tbl_colegios
@@ -89,16 +89,16 @@ class AsistenciaStudentController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers = 
+        $colegioUsers =
         DB::select(DB::raw("SELECT
-        TBL_Colegios.id as idColegio
+        tbl_colegios.id as idColegio
         FROM
-        TBL_Usuarios
-        JOIN TBL_Colegios
-        ON TBL_Usuarios.FK_ColegioId = TBL_Colegios.id
-        WHERE TBL_Usuarios.PK_id = $iduser"));
+        tbl_usuarios
+        JOIN tbl_colegios
+        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
         foreach ($colegioUsers as $colegioUser) {
              $id = $colegioUser->idColegio;
@@ -111,14 +111,14 @@ class AsistenciaStudentController extends Controller
             'FK_RolesId'
         );
 
-        
+
         User::create([
             'FK_ColegioId' => $id
         ]);
-        
+
         $user = new User($atributos);
         $user->password = bcrypt($user->password);
-        
+
         $user->save();
         $user->notify(new UsuarioCreado($request->password));
         return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');

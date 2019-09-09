@@ -4,43 +4,75 @@
 @include('Wennec.alerts.errors')
 
 <!-- Static Table Start -->
-<div class="data-table-area mg-b-15-datatable">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="sparkline13-list">
-                    <div class="sparkline13-hd">
-                        <div class="main-sparkline13-hd">
-                            <h1>Crear Colegio</h1>
-                        </div>
-                    </div>
-                    <div class="sparkline13-graph">
-                        {!! Form::open(['route'=>'colegios.store','method'=>'POST']) !!}                        
-                            <div class="form-group form-md-line-input">                                 
-                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
-                            </div>
-                            <div class="form-group form-md-line-input">
-                                {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required','maxlength'=>'85'])!!}
-                            </div>    
+<div class="container_create_school">
+      <div class="sign_in_left_section">
+        <img src="../assets/img/create_school/logo_sing_in.png" alt="">
+      </div>
+      <div class="sign_in_rigth_section">
+        <div class="form_sign_in">
+          <!-- Form -->
+          <img src="../assets/img/create_school/sing_in.png" alt="">
+          <form class="form-horizontal" style="color: #757575;">
 
-                            <div class="form-group form-md-line-input">
-
-                                <select class="form-control" name="FK_PlanesId" id="" >
-                                    <option value="">Seleccionar</option>
-                                    @foreach($planes as $plan)
-                                        <option value="{{$plan->id}}">{{$plan->nombre}}</option>
-                                    @endforeach
-                                </select>                 
-                            </div>                                       
-                            {!! Form::submit('Agregar Colegio', ['class'=>'btn btn-large btn-primary']) !!}
-                            {{link_to_route('colegios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
-                            </div>                        
-                            {!! Form::close() !!}
-                        </div>     
-                    </div>
-                </div>
+            <!-- Email -->
+            <div class="row">
+            <!-- Password -->
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="nombre" />
+                <i class="form-control-feedback fa fa-university"></i>
+              </div>
             </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="ubicación" />
+                <i class="form-control-feedback fa fa-map-marker"></i>
+              </div>
+            </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="representante legal" />
+                <i class="form-control-feedback fa fa-user"></i>
+              </div>
+            </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="NIT" />
+                <i class="form-control-feedback fa fa-file-text-o"></i>
+              </div>
+            </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="código del colegio" />
+                <i class="form-control-feedback fa fa-lock"></i>
+              </div>
+            </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label class="control-label sr-only"></label>
+              <div class=" col-sm-22">
+                <input type="text" class="form-control input-lg" placeholder="repetir código" />
+                <i class="form-control-feedback fa fa-lock"></i>
+              </div>
+            </div>
+            <div class="image-upload">
+              <label for="file-input">
+                <img src="../assets/img/create_school/escudo.png" alt ="Click aquí para subir tu foto" title ="Click aquí para subir tu foto" >
+              </label>
+
+              <input id="file-input" type="file"/>
+            </div>
+            </div>
+            <!-- Sign in button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" id="btn_create_school" type="submit">Agregar colegio</button>
+          </form>
         </div>
+      </div>
+      </div>
     </div>
 </div>
 @endsection
