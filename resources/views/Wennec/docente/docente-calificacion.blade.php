@@ -66,19 +66,22 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Crear Administradores</h4>
+                                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
                             </div>
                             <div class="modal-body">
                             {!! Form::open(['route'=>'calificacionDocente.store','method'=>'POST']) !!}
                                 <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-6 col-sm-6 col-md-12">
                                             <div class="form-group form-md-line-input">                                 
-                                                {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
+                                                {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
                                                 <input type="hidden" name="id" id="asignatura" value="{{$calificaciones->PK_id}}">
                                             </div>
                                         </div>
-                                    {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    
                                     </div>                        
                                 {!! Form::close() !!}
                             </div>

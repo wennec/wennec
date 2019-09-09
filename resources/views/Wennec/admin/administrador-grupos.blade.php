@@ -42,7 +42,7 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td><button type="button" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreate">
+                                            <td><button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
                                             <i class="fa fa-plus"></i>
                                             </button></td>
                                         </tr>
@@ -63,13 +63,13 @@
     <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Crear Administradores</h4>
+        <h4 class="modal-title" id="myModalLabel">Crear Horario</h4>
     </div>
     <div class="modal-body">
       {!! Form::open(['route'=>'horarios.store','method'=>'POST']) !!}
 
           <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6">
+              <div class="col-xs-6 col-sm-6 col-md-12">
                   <div class="form-group form-md-line-input">
                       <label>Docente</label>
                           <select class="form-control" name="FK_docente" id="" required="">

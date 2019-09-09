@@ -16,7 +16,7 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Estudiantes --Nombre Colegio--</h1>
+                                <h1>Estudiantes</h1>
                             </div>
                         </div>
                         <div>

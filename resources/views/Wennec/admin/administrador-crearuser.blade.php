@@ -45,18 +45,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group form-md-line-input">
-                                            <label>Rol</label>
-                                                <select class="form-control" name="FK_RolesId" id="" required="">
-                                                        <option value="3">Estudiante</option>
-                                                        <option value="4">Docente</option>
-                                                        <option value="5">Acudiente</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                </div>
                                 {!! Form::submit('Registrar', ['class'=>'btn btn-large btn-primary']) !!}
                                 {{link_to_route('usuariosC.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
                                 </div>

@@ -36,6 +36,7 @@
                                         <th class="text-center">Curso</th>
                                         <th class="text-center">Grupo</th>
                                         <th class="text-center">Calificacion</th>
+                                        <th class="text-center">Periodo</th>
                                         <th class="text-center">Docente</th>
                                     </thead>
 
@@ -50,6 +51,7 @@
                                             @else($calificacion->calificacion < "3.0")
                                             <td><span class="label label-danger">{{$calificacion->calificacion}}</span></td>
                                             @endif
+                                            <td>{{$calificacion->periodo}}</td>
                                             <td>{{$calificacion->docente}}</td>
                                         </tr>
                                         @endforeach

@@ -112,7 +112,7 @@ class AdminHorariosController extends Controller
             'FK_docente' => $request['FK_docente'],
             'FK_GrupoId' => $request['id_grupo'],
         ]);
-        return redirect('/calificacionDocente')->with('success','Notas Registradas Correctamente');
+        return redirect('/calificacionDocente')->with('success','Horario Registrado Correctamente');
     }
 
     /**

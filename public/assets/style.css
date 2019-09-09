@@ -4917,7 +4917,7 @@ img-logo-responsive {
     background-color: rgb(238, 241, 246);
     border-radius: 10px;
     border-bottom: none;
-    color: rgb(211, 212, 214);
+    color: #444;
    }
    .modal-body .btn-primary {
       color: #fff;

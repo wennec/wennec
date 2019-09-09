@@ -6,7 +6,12 @@
 @include('Wennec.alerts.error')
 @include('Wennec.alerts.errors')
 {{--Fin Mensaje Confirmar--}}
-
+    <div>
+        <a class="btn btn-primary" href="{{route('eventoA.create')}}" role="button">
+            <i class="fa fa-plus"></i>
+            Crear Evento
+        </a>
+    </div>
     <!-- Static Table Start -->
     <div class="calender-area mg-b-15-calendar">
         <div class="container-fluid">
