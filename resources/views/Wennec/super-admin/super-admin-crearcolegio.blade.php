@@ -12,64 +12,59 @@
         <div class="form_sign_in">
           <!-- Form -->
           <img src="../assets/img/create_school/sing_in.png" alt="">
-          <form class="form-horizontal" style="color: #757575;">
-
+          {!! Form::open(['route'=>'colegios.store','method'=>'POST','files' => true, 'enctype'=>'multipart/form-data','class'=>'form-horizontal', 'style'=>'color:#757575;']) !!}   
             <!-- Email -->
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
             <!-- Password -->
             <div class="form-group has-feedback has-feedback-left">
               <label class="control-label sr-only"></label>
               <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="nombre" />
+                <input type="text" name="nombre" class="form-control input-lg" placeholder="nombre" />
                 <i class="form-control-feedback fa fa-university"></i>
               </div>
             </div>
             <div class="form-group has-feedback has-feedback-left">
               <label class="control-label sr-only"></label>
               <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="ubicación" />
+                <input type="text" name="ubicacion" class="form-control input-lg" placeholder="ubicación" />
                 <i class="form-control-feedback fa fa-map-marker"></i>
               </div>
             </div>
             <div class="form-group has-feedback has-feedback-left">
               <label class="control-label sr-only"></label>
               <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="representante legal" />
+                <input type="text" name="representanteLegal" class="form-control input-lg" placeholder="representante legal" />
                 <i class="form-control-feedback fa fa-user"></i>
               </div>
             </div>
             <div class="form-group has-feedback has-feedback-left">
               <label class="control-label sr-only"></label>
               <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="NIT" />
+                <input type="text" name="nit" class="form-control input-lg" placeholder="NIT" />
                 <i class="form-control-feedback fa fa-file-text-o"></i>
               </div>
             </div>
             <div class="form-group has-feedback has-feedback-left">
               <label class="control-label sr-only"></label>
-              <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="código del colegio" />
-                <i class="form-control-feedback fa fa-lock"></i>
-              </div>
-            </div>
-            <div class="form-group has-feedback has-feedback-left">
-              <label class="control-label sr-only"></label>
-              <div class=" col-sm-22">
-                <input type="text" class="form-control input-lg" placeholder="repetir código" />
-                <i class="form-control-feedback fa fa-lock"></i>
-              </div>
+              <select class="form-control" name="FK_PlanesId" id="" >
+                  <option value="">Seleccionar Plan</option>
+                  @foreach($planes as $plan)
+                      <option value="{{$plan->id}}">{{$plan->nombre}}</option>
+                  @endforeach
+              </select>     
             </div>
             <div class="image-upload">
               <label for="file-input">
                 <img src="../assets/img/create_school/escudo.png" alt ="Click aquí para subir tu foto" title ="Click aquí para subir tu foto" >
               </label>
 
-              <input id="file-input" type="file"/>
+              <input name="url" id="file-input" type="file"/>
             </div>
             </div>
             <!-- Sign in button -->
             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" id="btn_create_school" type="submit">Agregar colegio</button>
-          </form>
+            {!! Form::close() !!}
         </div>
       </div>
       </div>

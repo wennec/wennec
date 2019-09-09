@@ -38,8 +38,12 @@
                                 <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
+                                        <th class="text-center">Escudo</th>
                                         <th class="text-center">Nombre</th>
-                                        <th class="text-center">Descripción</th>
+                                        <th class="text-center">Ubicacion</th>
+                                        <th class="text-center">Representante Legal</th>
+                                        <th class="text-center">NIT</th>
+                                        <th class="text-center">Codigo</th>
                                         <th class="text-center">Plan Adquirido</th>
                                         <th class="text-center">Editar</th>
                                         <th class="text-center">Eliminar</th>
@@ -47,8 +51,12 @@
                                     <tbody>
                                         @foreach($colegios as $colegio)
                                         <tr class="text-center">
+                                            <td class="text-center"><img class="imgdatatable" src="School/Logos/{{$colegio->url}}" alt="" /></td>
                                             <td class="text-center">{{$colegio->nombre}}</td>
-                                            <td class="text-center">{{$colegio->descripcion}}</td>
+                                            <td class="text-center">{{$colegio->ubicacion}}</td>
+                                            <td class="text-center">{{$colegio->representanteLegal}}</td>
+                                            <td class="text-center">{{$colegio->nit}}</td>
+                                            <td class="text-center">{{$colegio->codigo}}</td>
                                             @if(isset($colegio->plan))
                                                 @if($colegio->plan->nombre == "Elite")
                                                 <td><span class="label label-warning">Elite</span></td>

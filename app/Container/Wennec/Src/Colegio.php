@@ -8,7 +8,7 @@ class Colegio extends Model
 {
     protected $table = "tbl_colegios";
     protected $primarykey = "id";
-    protected $fillable = ['nombre','descripcion', 'FK_PlanesId'];
+    protected $fillable = ['nombre', 'ubicacion','representanteLegal', 'nit', 'codigo', 'url', 'FK_PlanesId'];
 
     public function usuario(){
         return $this->hasMany(User::class,'FK_ColegioId','id');

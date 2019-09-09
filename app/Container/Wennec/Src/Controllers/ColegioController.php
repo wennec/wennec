@@ -48,9 +48,24 @@ class ColegioController extends Controller
      */
     public function store(DeptoStoreRequest $request)
     {
+      $url = "";
+        if ($request->hasFile('url')) {
+          $url = "Colegio".'.'.time().'.'.$request->url->getClientOriginalExtension();
+          $request->url->move(public_path('School/Logos'), $url);
+        } else {
+          if ('url' == null) {
+            $url = "";
+          }
+        }
+
+        $codigo = mt_rand(100000, 999999);
         Colegio::create([
             'nombre' => $request['nombre'],
-            'descripcion' => $request['descripcion'],
+            'ubicacion' => $request['ubicacion'],
+            'representanteLegal' => $request['representanteLegal'],
+            'nit' => $request['nit'],
+            'codigo' => $codigo,
+            'url' => $url,
             'FK_PlanesId' => $request['FK_PlanesId'],
         ]);
         return redirect('/colegios')->with('success','Colegio Creado Correctamente');
@@ -122,7 +137,7 @@ class ColegioController extends Controller
     public function destroy($colegio)
     {
       Colegio::destroy($colegio);
-      return redirect('/colegios')->with('error','Dependencia Eliminada Correctamente');
+      return redirect('/colegios')->with('error','Colegio Eliminado Correctamente');
     }
 
 }
