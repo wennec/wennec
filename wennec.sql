@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 09/09/2019 17:34:59
+ Date: 11/09/2019 10:34:06
 */
 
 SET NAMES utf8mb4;
@@ -172,6 +172,21 @@ CREATE TABLE `tbl_asistenciaestudiante` (
 BEGIN;
 INSERT INTO `tbl_asistenciaestudiante` VALUES (1, 1, 1, '2019-10-01');
 COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_calidadinstitucion
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_calidadinstitucion`;
+CREATE TABLE `tbl_calidadinstitucion` (
+  `PK_id` int(11) NOT NULL,
+  `archivo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `FK_ColegioId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_ColegioId` (`FK_ColegioId`),
+  CONSTRAINT `tbl_calidadinstitucion_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for tbl_calificacion
@@ -343,6 +358,24 @@ INSERT INTO `tbl_docente` VALUES (3, NULL, NULL, 15);
 COMMIT;
 
 -- ----------------------------
+-- Table structure for tbl_eleccion
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_eleccion`;
+CREATE TABLE `tbl_eleccion` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreEleccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fechaInicio` date DEFAULT NULL,
+  `fechaFin` date DEFAULT NULL,
+  `numeroVotos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `FK_UsuarioId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_UsuarioId` (`FK_UsuarioId`),
+  CONSTRAINT `tbl_eleccion_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
 -- Table structure for tbl_estudiante
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_estudiante`;
@@ -395,6 +428,25 @@ INSERT INTO `tbl_estudiantematerias` VALUES (1, 1, 1);
 INSERT INTO `tbl_estudiantematerias` VALUES (2, 2, 1);
 INSERT INTO `tbl_estudiantematerias` VALUES (4, 1, 3);
 COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_evaluaciondocente
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_evaluaciondocente`;
+CREATE TABLE `tbl_evaluaciondocente` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `puntulidad` int(11) DEFAULT '0',
+  `dinamismo` int(11) DEFAULT NULL,
+  `respeto` int(11) DEFAULT NULL,
+  `actitud` int(11) DEFAULT NULL,
+  `FK_UsuarioId` int(11) DEFAULT NULL,
+  `FK_EstudianteId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_UsuarioId` (`FK_UsuarioId`),
+  KEY `FK_EstudianteId` (`FK_EstudianteId`),
+  CONSTRAINT `tbl_evaluaciondocente_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_evaluaciondocente_ibfk_2` FOREIGN KEY (`FK_EstudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for tbl_eventos
@@ -593,6 +645,25 @@ INSERT INTO `tbl_materias` VALUES (4, 'Sociales');
 COMMIT;
 
 -- ----------------------------
+-- Table structure for tbl_noticias
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_noticias`;
+CREATE TABLE `tbl_noticias` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoNoticia` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imagenNoticia` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fechaInicio` date DEFAULT NULL,
+  `fechaFin` date DEFAULT NULL,
+  `FK_ColegioId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_ColegioId` (`FK_ColegioId`),
+  CONSTRAINT `tbl_noticias_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
 -- Table structure for tbl_planes
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_planes`;
@@ -612,6 +683,18 @@ INSERT INTO `tbl_planes` VALUES (1, 'Elite', NULL, NULL);
 INSERT INTO `tbl_planes` VALUES (2, 'Silver', NULL, NULL);
 INSERT INTO `tbl_planes` VALUES (3, 'Diamond', NULL, NULL);
 COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_reportes
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_reportes`;
+CREATE TABLE `tbl_reportes` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_reporte` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for tbl_roles
@@ -635,6 +718,21 @@ INSERT INTO `tbl_roles` VALUES (3, 'Estudiante', NULL, NULL);
 INSERT INTO `tbl_roles` VALUES (4, 'Docente', NULL, NULL);
 INSERT INTO `tbl_roles` VALUES (5, 'Acudiente', NULL, NULL);
 COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_usuarioreporte
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_usuarioreporte`;
+CREATE TABLE `tbl_usuarioreporte` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `FK_UsuarioId` int(11) DEFAULT NULL,
+  `FK_ReporteId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_UsuarioId` (`FK_UsuarioId`),
+  KEY `FK_ReporteId` (`FK_ReporteId`),
+  CONSTRAINT `tbl_usuarioreporte_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_usuarioreporte_ibfk_2` FOREIGN KEY (`FK_ReporteId`) REFERENCES `tbl_reportes` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for tbl_usuarios
@@ -666,7 +764,7 @@ CREATE TABLE `tbl_usuarios` (
 -- Records of tbl_usuarios
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'fhHHgfj5BWeAVTPmgziIy114tLG8QUFzJKqAIQmS0woE52Nkly4q8OjAJMYe', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'lG37RDNggFW8sUncs23Taga7zqC56H1yXQPkW6oWF1obzUDHske38FfWZOMZ', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, 'q5JgPzSplns3dG0h7JnVf9xh2Pm0lNndJdIKxqSQNK0kg18HBIYB1a4Skler', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, '5XBzhQzlx7HtedOx6e02cxzeHA8luw0O1jWHEyrVJDajknPFXASL8uwGQpdp', NULL, NULL);
