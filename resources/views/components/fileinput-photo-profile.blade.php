@@ -10,21 +10,10 @@
 --}}
 
 <div class="form-group">
-    <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-
-
-            <img alt="" src="{{auth()->user()->foto ?: '/img/default.png'}}" id="fotografia_usuario" />
-
-
-        </div>
-        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+    <div>
         <div>
-            <span class="btn default btn-file">
-            <span class="fileinput-new">{{$title1}}</span>
-            <span class="fileinput-exists">{{$label1}}</span>
-            <input name="{{$name}}" type="file" class="archivo form-control" {{$attributes}}/>
-            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> {{$label2}} </a>
+            <img alt="" src="Foto/Usuarios/{{auth()->user()->foto ?: '/img/default.png'}}" id="fotografia_usuario" />
         </div>
+            <input name="{{$name}}" type="file" class="form-control-image" {{$attributes}}/>
     </div>
 </div>
