@@ -14,6 +14,7 @@ Route::resource('agendaAcudiente', 'AgendaAcudienteController');
 Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
 Route::resource('horarios', 'AdminHorariosController');
+Route::resource('eleccionEscolar', 'EleccionEscolarController');
 
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');

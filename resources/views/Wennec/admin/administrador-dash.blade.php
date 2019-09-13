@@ -39,3 +39,9 @@
     @endcomponent
 @endcomponent
 
+@component('components.nav-link', [
+    'icon' => 'fas fa-vote-yea',
+    'title' => 'Eleccion Estudiantil',
+    'link' => route('eleccionEscolar.index')
+])
+@endcomponent
