@@ -75,135 +75,145 @@ class EvaluacionEDocenteController extends Controller
           WHERE
           tbl_colegios.id = $id_colegio AND
           tbl_grupos.PK_id = $id_grupo "));
-          return view('Wennec.estudiante.estudiante-evaluaciondocente',compact('teachersTest'));
-        }
 
-        /**
-        * Show the form for creating a new resource.
-        *
-        * @return \Illuminate\Http\Response
-        */
-        public function create()
-        {
-          $colegios = Colegio::all();
-          return view('Wennec.admin.administrador-crearnoticia',compact('colegios'));
-        }
-
-        /**
-        * Store a newly created resource in storage.
-        *
-        * @param  \Illuminate\Http\Request  $request
-        * @return \Illuminate\Http\Response
-        */
-        public function store(EvaluacionDocenteRequest $request)
-        {
-          $iduser = auth()->user()->PK_id ;
-
-          $estudiantes_id =
+          $dates =
           DB::select(DB::raw("SELECT
-            tbl_usuarios.`name`,
-            tbl_estudiante.PK_id,
-            tbl_colegios.nombre
+            tbl_fechaevaluaciondocente.fecha_inicio,
+            tbl_fechaevaluaciondocente.fecha_fin
             FROM
-            tbl_estudiante
-            JOIN tbl_usuarios
-            ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
-            JOIN tbl_colegios
-            ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-            WHERE tbl_usuarios.PK_id = $iduser"));
-            foreach ($estudiantes_id as $estudiante_id) {
-              $id_e = $estudiante_id->PK_id;
-            }
+            tbl_fechaevaluaciondocente
+            INNER JOIN tbl_colegios ON tbl_fechaevaluaciondocente.FK_ColegioId = tbl_colegios.id
+            WHERE tbl_fechaevaluaciondocente.FK_ColegioId = $id_colegio"));
 
-            $colegioUsers =
+            return view('Wennec.estudiante.estudiante-evaluaciondocente',compact('teachersTest','dates'));
+          }
+
+          /**
+          * Show the form for creating a new resource.
+          *
+          * @return \Illuminate\Http\Response
+          */
+          public function create()
+          {
+            $colegios = Colegio::all();
+            return view('Wennec.admin.administrador-crearnoticia',compact('colegios'));
+          }
+
+          /**
+          * Store a newly created resource in storage.
+          *
+          * @param  \Illuminate\Http\Request  $request
+          * @return \Illuminate\Http\Response
+          */
+          public function store(EvaluacionDocenteRequest $request)
+          {
+            $iduser = auth()->user()->PK_id ;
+
+            $estudiantes_id =
             DB::select(DB::raw("SELECT
-              tbl_colegios.id as idColegio
+              tbl_usuarios.`name`,
+              tbl_estudiante.PK_id,
+              tbl_colegios.nombre
               FROM
-              tbl_usuarios
+              tbl_estudiante
+              JOIN tbl_usuarios
+              ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
               JOIN tbl_colegios
               ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
               WHERE tbl_usuarios.PK_id = $iduser"));
-
-              foreach ($colegioUsers as $colegioUser) {
-                $id = $colegioUser->idColegio;
+              foreach ($estudiantes_id as $estudiante_id) {
+                $id_e = $estudiante_id->PK_id;
               }
 
-              $fechas_evaluacion_docente_id =
+              $colegioUsers =
               DB::select(DB::raw("SELECT
-                tbl_fechaevaluaciondocente.id,
-                tbl_colegios.nombre
+                tbl_colegios.id as idColegio
                 FROM
-                tbl_colegios
-                INNER JOIN tbl_fechaevaluaciondocente ON tbl_fechaevaluaciondocente.FK_ColegioId = tbl_colegios.id
-                WHERE
-                tbl_colegios.id = $id "));
-                foreach ($fechas_evaluacion_docente_id as $fecha_evaluacion_docente_id) {
-                  $id_fecha = $fecha_evaluacion_docente_id->id;
+                tbl_usuarios
+                JOIN tbl_colegios
+                ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+                WHERE tbl_usuarios.PK_id = $iduser"));
+
+                foreach ($colegioUsers as $colegioUser) {
+                  $id = $colegioUser->idColegio;
                 }
 
-                EvaluacionDocente::create([
-                  'puntualidad' => $request['puntualidad'],
-                  'dinamismo' => $request['dinamismo'],
-                  'respeto' => $request['respeto'],
-                  'actitud' => $request['actitud'],
-                  'evaluado' => $request['evaluado'],
-                  'FK_UsuarioId' => $request['teacher_id'],
-                  'FK_EstudianteId' => $id_e,
-                  'FK_FechaId' => $id_fecha
+                $fechas_evaluacion_docente_id =
+                DB::select(DB::raw("SELECT
+                  tbl_fechaevaluaciondocente.id,
+                  tbl_colegios.nombre
+                  FROM
+                  tbl_colegios
+                  INNER JOIN tbl_fechaevaluaciondocente ON tbl_fechaevaluaciondocente.FK_ColegioId = tbl_colegios.id
+                  WHERE
+                  tbl_colegios.id = $id "));
+                  foreach ($fechas_evaluacion_docente_id as $fecha_evaluacion_docente_id) {
+                    $id_fecha = $fecha_evaluacion_docente_id->id;
+                  }
 
-                ]);
-                return redirect()->route('fechaevaluaciondocenteA.index')->with('success','Evaluacion Creada Correctamente');
-              }
+                  EvaluacionDocente::create([
+                    'puntualidad' => $request['puntualidad'],
+                    'dinamismo' => $request['dinamismo'],
+                    'respeto' => $request['respeto'],
+                    'actitud' => $request['actitud'],
+                    'evaluado' => $request['evaluado'],
+                    'FK_UsuarioId' => $request['teacher_id'],
+                    'FK_EstudianteId' => $id_e,
+                    'FK_FechaId' => $id_fecha
 
-              /**
-              * Display the specified resource.
-              *
-              * @param  int  $id
-              * @return \Illuminate\Http\Response
-              */
-              public function show($id)
-              {
-                //
-              }
+                  ]);
+                  return redirect()->route('evaluacionDocenteE.index')->with('success','Evaluacion Enviada');
+                }
 
-              /**
-              * Show the form for editing the specified resource.
-              *
-              * @param  int  $id
-              * @return \Illuminate\Http\Response
-              */
-              public function edit($id)
-              {
-                $fechaEvaluacionDocente = FechaEvaluacionDocente::findOrFail($id);
-                return view('Wennec.admin.administrador-editarevaluaciondocente', [
-                  'fechasEvaluacionDocente' => $fechaEvaluacionDocente,
-                ]);
-              }
+                /**
+                * Display the specified resource.
+                *
+                * @param  int  $id
+                * @return \Illuminate\Http\Response
+                */
+                public function show($id)
+                {
+                  //
+                }
 
-              /**
-              * Update the specified resource in storage.
-              *
-              * @param  \Illuminate\Http\Request  $request
-              * @param  int  $id
-              * @return \Illuminate\Http\Response
-              */
-              public function update(Request $request, $id)
-              {
-                $fechaEvaluacionDocente = FechaEvaluacionDocente::find($id);
-                $fechaEvaluacionDocente->fill($request->all());
-                $fechaEvaluacionDocente->save();
-                return redirect('/fechaevaluaciondocenteA')->with('success','Fecha Modificada Correctamente');
-              }
+                /**
+                * Show the form for editing the specified resource.
+                *
+                * @param  int  $id
+                * @return \Illuminate\Http\Response
+                */
+                public function edit($id)
+                {
+                  $fechaEvaluacionDocente = FechaEvaluacionDocente::findOrFail($id);
+                  return view('Wennec.admin.administrador-editarevaluaciondocente', [
+                    'fechasEvaluacionDocente' => $fechaEvaluacionDocente,
+                  ]);
+                }
 
-              /**
-              * Remove the specified resource from storage.
-              *
-              * @param  int  $id
-              * @return \Illuminate\Http\Response
-              */
-              public function destroy($users)
-              {
-                User::destroy($users);
-                return redirect()->route('usuarios.index')->with('error','Usuario Eliminado Correctamente');
+                /**
+                * Update the specified resource in storage.
+                *
+                * @param  \Illuminate\Http\Request  $request
+                * @param  int  $id
+                * @return \Illuminate\Http\Response
+                */
+                public function update(Request $request, $id)
+                {
+                  $fechaEvaluacionDocente = FechaEvaluacionDocente::find($id);
+                  $fechaEvaluacionDocente->fill($request->all());
+                  $fechaEvaluacionDocente->save();
+                  return redirect('/fechaevaluaciondocenteA')->with('success','Fecha Modificada Correctamente');
+                }
+
+                /**
+                * Remove the specified resource from storage.
+                *
+                * @param  int  $id
+                * @return \Illuminate\Http\Response
+                */
+                public function destroy($users)
+                {
+                  User::destroy($users);
+                  return redirect()->route('usuarios.index')->with('error','Usuario Eliminado Correctamente');
+                }
               }
-            }
