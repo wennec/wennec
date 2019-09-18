@@ -38,18 +38,16 @@ class EvaluacionDocenteController extends Controller
       foreach ($colegioUsers as $colegioUser) {
         $id = $colegioUser->idColegio;
       }
-      $notices =
+      $testTeachers =
       DB::select(DB::raw("SELECT
-        tbl_noticias.imagenNoticia,
-        tbl_noticias.tipoNoticia,
-        tbl_noticias.descripcion,
-        tbl_noticias.fechaInicio,
-        tbl_noticias.fechaFin
+        tbl_fechaevaluaciondocente.id,
+        tbl_fechaevaluaciondocente.fecha_fin,
+        tbl_fechaevaluaciondocente.fecha_inicio
         FROM
-        tbl_noticias
-        INNER JOIN tbl_colegios ON tbl_noticias.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_colegios.id = $id"));
-        return view('Wennec.admin.administrador-crearevaluaciondocente',compact('notices'));
+        tbl_fechaevaluaciondocente
+        INNER JOIN tbl_colegios ON tbl_fechaevaluaciondocente.FK_ColegioId = tbl_colegios.id
+        WHERE tbl_fechaevaluaciondocente.FK_ColegioId =  $id"));
+        return view('Wennec.admin.administrador-crearevaluaciondocente',compact('testTeachers'));
       }
 
       /**
@@ -88,6 +86,7 @@ class EvaluacionDocenteController extends Controller
           FechaEvaluacionDocente::create([
             'fecha_inicio' => $request['fecha_inicio'],
             'fecha_fin' => $request['fecha_fin'],
+            'FK_ColegioId' => $id
           ]);
           return redirect()->route('fechaevaluaciondocenteA.index')->with('success','Evaluacion Creada Correctamente');
         }
@@ -111,7 +110,10 @@ class EvaluacionDocenteController extends Controller
         */
         public function edit($id)
         {
-          //
+          $fechaEvaluacionDocente = FechaEvaluacionDocente::findOrFail($id);
+          return view('Wennec.admin.administrador-editarevaluaciondocente', [
+              'fechasEvaluacionDocente' => $fechaEvaluacionDocente,
+          ]);
         }
 
         /**
@@ -123,7 +125,10 @@ class EvaluacionDocenteController extends Controller
         */
         public function update(Request $request, $id)
         {
-          //
+          $fechaEvaluacionDocente = FechaEvaluacionDocente::find($id);
+          $fechaEvaluacionDocente->fill($request->all());
+          $fechaEvaluacionDocente->save();
+          return redirect('/fechaevaluaciondocenteA')->with('success','Fecha Modificada Correctamente');
         }
 
         /**

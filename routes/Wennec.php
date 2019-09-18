@@ -20,6 +20,7 @@ Route::resource('horarios', 'AdminHorariosController');
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
 Route::resource('asistenciaEstudiante', 'AsistenciaStudentController');
+Route::resource('evaluacionDocenteE', 'EvaluacionEDocenteController');
 
 Route::resource('calificacionDocente', 'CalificacionDocenteController');
 

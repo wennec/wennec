@@ -30,7 +30,7 @@
 @endcomponent
 @component('components.nav-link', [
     'icon' => 'fa fa-comments',
-    'title' => 'Noticias',
-    'link' => route('fechaevaluaciondocenteA.index')
+    'title' => 'Evaluacion Docente',
+    'link' => route('evaluacionDocenteE.index')
 ])
 @endcomponent

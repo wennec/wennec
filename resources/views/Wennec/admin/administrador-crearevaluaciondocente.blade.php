@@ -75,6 +75,15 @@
                                         <th class="text-center">Editar</th>
                                     </thead>
                                     <tbody>
+                                      @foreach($testTeachers as $testTeacher)
+                                      <tr  class="text-center">
+                                          <td>{{$testTeacher->fecha_inicio}}</td>
+                                          <td>{{$testTeacher->fecha_fin}}</td>
+                                          <td>
+                                          {{link_to_route('fechaevaluaciondocenteA.edit', $title = '', $parameter = $testTeacher->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}
+                                          </button></td>
+                                      </tr>
+                                      @endforeach
 
                                     </tbody>
                                 </table>
