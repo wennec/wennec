@@ -44,41 +44,41 @@
                             {!! Form::open(['route'=>'usuarios.store','method'=>'POST']) !!}
                                 <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::number('telefono',null,['class'=>'form-control','placeholder'=>'Teléfono','required'])!!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                     {!!Form::number('documento',null,['class'=>'form-control','placeholder'=>'Documento ID','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::text('direccion',null,['class'=>'form-control','placeholder'=>'Dirección','required'])!!}
                                             </div>
                                         </div>
-                                    </div>            
-                                    <div class="form-group form-md-line-input">                                 
+                                    </div>
+                                    <div class="form-group form-md-line-input">
                                             {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
-                                    </div> 
+                                    </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
+                                            <div class="form-group form-md-line-input">
                                                 {!!Form::password('password',['class'=>'form-control','placeholder'=>'Contraseña','required'])!!}
-                                            </div> 
+                                            </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group form-md-line-input">                                 
+                                        <div class="form-group form-md-line-input">
                                                 {!!Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Confirmar Contraseña'])!!}
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -89,7 +89,7 @@
                                                         @foreach($roles as $rol)
                                                             <option value="{{$rol->id}}">{{$rol->nombre}}</option>
                                                         @endforeach
-                                                    </select>                
+                                                    </select>
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -100,13 +100,13 @@
                                                     @foreach($colegios as $colegio)
                                                         <option value="{{$colegio->id}}">{{$colegio->nombre}}</option>
                                                     @endforeach
-                                                </select>                
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    </div>                        
+                                    </div>
                                 {!! Form::close() !!}
                             </div>
                             </div>
@@ -152,7 +152,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -28,3 +28,9 @@
     'link' => route('asistenciaEstudiante.index')
 ])
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-comments',
+    'title' => 'Evaluacion Docente',
+    'link' => route('evaluacionDocenteE.index')
+])
+@endcomponent

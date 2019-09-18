@@ -10,3 +10,9 @@
     'link' => route('agendaAcudiente.index')
 ])
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-comments',
+    'title' => 'Noticias',
+    'link' => route('noticiasA.index')
+])
+@endcomponent
