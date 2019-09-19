@@ -16,14 +16,14 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Usuarios Wennec</h1>
+                                <h1>Elecciones Wennec</h1>
                             </div>
                         </div>
 
                         <!-- Button trigger modal -->
                         <button type="button" id="mymodal" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
                         <i class="fa fa-plus"></i>
-                                Crear Usuario
+                                Crear Eleccion Estudiantil
                         </button>
 
                         <!-- Modal -->
@@ -32,61 +32,64 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Crear Administradores</h4>
+                                <h4 class="modal-title" id="myModalLabel">Crear Eleccion Academica </h4>
                             </div>
                             <div class="modal-body">
-                            {!! Form::open(['route'=>'usuarios.store','method'=>'POST']) !!}
-                                <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
-                                                {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
-                                                {!!Form::number('telefono',null,['class'=>'form-control','placeholder'=>'Teléfono','required'])!!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
-                                                    {!!Form::number('documento',null,['class'=>'form-control','placeholder'=>'Documento ID','required'])!!}
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
-                                                {!!Form::text('direccion',null,['class'=>'form-control','placeholder'=>'Dirección','required'])!!}
-                                            </div>
-                                        </div>
-                                    </div>            
-                                    <div class="form-group form-md-line-input">                                 
-                                            {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
-                                    </div> 
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">                                 
-                                                {!!Form::password('password',['class'=>'form-control','placeholder'=>'Contraseña','required'])!!}
-                                            </div> 
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            {!! Form::open(['route'=>'eleccionEscolar.store','method'=>'POST']) !!}
+                            <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-12">
                                         <div class="form-group form-md-line-input">                                 
-                                                {!!Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Confirmar Contraseña'])!!}
-                                            </div>  
+                                            {!!Form::text('nombreEleccion',null,['class'=>'form-control','placeholder'=>'Titulo Evento','required'])!!}
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                            <div class="form-group form-md-line-input">
-                                                <label>Rol</label>
-                                                    <select class="form-control" name="FK_RolesId" id="" required="">
-                                                            <option value=""></option>
-                                                    </select>                
-                                            </div>
+                                    </div> 
+                            </div>
+
+                            <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <label>Fecha Inicio</label>
+                                        <div class="form-group form-md-line-input">                                 
+                                                {!!Form::date('fechaInicio',null,['class'=>'form-control','placeholder'=>'Fecha','required'])!!}
                                         </div>
-                                    {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
+                                    </div> 
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <label>Fecha Fin</label>
+                                        <div class="form-group form-md-line-input">                                 
+                                            {!!Form::date('fechaFin',null,['class'=>'form-control','placeholder'=>'Fecha','required'])!!}
+                                        </div>
+                                    </div> 
+                            </div>
+                                         
+                                    {!! Form::submit('Crear Eleccion', ['class'=>'btn btn-large btn-primary']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>                        
+                                {!! Form::close() !!}
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalAddStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Agregar Estudiante</h4>
+                            </div>
+                            <div class="modal-body">
+                            {!! Form::open(['route'=>'eleccionEstudiante.store','method'=>'POST']) !!}
+                                <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-12">
+                                            <input id="city">
+                                            <select name="FK_UsuarioId" id="select"></select> 
+                                        </div> 
+                                        <input type="hidden" name="FK_EleccionId" id="usuario_id">
+                                </div>
+                                         
+                                {!! Form::submit('Crear Eleccion', ['class'=>'btn btn-large btn-primary']) !!}
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                </div>                        
                                 {!! Form::close() !!}
                             </div>
                             </div>
@@ -104,21 +107,21 @@
                                 <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">Telefono</th>
-                                        <th class="text-center">Documento</th>
-                                        <th class="text-center">Direccion</th>
-                                        <th class="text-center">E-mail</th>
+                                        <th class="text-center">Nombre Eleccion</th>
+                                        <th class="text-center">Inicio</th>
+                                        <th class="text-center">Fin</th>
+                                        <th class="text-center">Agregar Estudiantes</th>
                                     </thead>
-
                                     <tbody>
-                                        <tr  class="text-center">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                    @foreach($eleccionColegios as $eleccionColegio)
+                                        <tr class="text-center">
+                                            <td>{{$eleccionColegio->nombreEleccion}}</td>
+                                            <td>{{$eleccionColegio->fechaInicio}}</td>
+                                            <td>{{$eleccionColegio->fechaFin}}</td>
+                                            <td><button type="button" id="mymodal" data-usuario-id="{{$eleccionColegio->PK_id}}" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalAddStudent">
+                                            <i class="fa fa-plus"></i></td>
                                         </tr>
+                                    @endforeach
                                     </tbody> 
                                 </table>
                             </div>
@@ -131,3 +134,42 @@
         <!-- Static Table End -->
 </div>
 @endsection
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    var data = [
+        @foreach($estudiantesId as $estudianteId)
+        {
+            value: {{$estudianteId->PK_id}}, text: '{{$estudianteId->only}}'
+        },
+        @endforeach
+    ];
+    
+    data.forEach(function(val) {
+        $('#select').append($('<option></option>').attr('value', val.value).text(val.text));
+    });
+    
+    $('#city').keyup(function() {
+        var inputValue = $(this).val();
+        data.forEach(function(val) {
+            if(val.text.toLowerCase().indexOf(inputValue.toLowerCase()) != -1) {
+                $('#select option[value="'+val.value+'"]').remove();
+                $('#select').append($('<option></option>').attr('value', val.value).text(val.text));
+            } else {
+                $('#select>option[value="'+val.value+'"]').remove();
+            }
+        });
+    });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function (e) {
+  $('#modalAddStudent').on('show.bs.modal', function(e) {
+    var usuario_id = $(e.relatedTarget).data('usuario-id');
+    $(e.currentTarget).find('input[name="FK_EleccionId"]').val(usuario_id);
+    var docente = document.getElementById('usuario_id').innerHTML = usuario_id;
+  });
+});
+</script>

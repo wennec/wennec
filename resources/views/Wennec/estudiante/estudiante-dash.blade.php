@@ -34,3 +34,10 @@
     'link' => route('evaluacionDocenteE.index')
 ])
 @endcomponent
+
+@component('components.nav-link', [
+    'icon' => 'fas fa-vote-yea',
+    'title' => 'Eleccion Estudiantil',
+    'link' => route('eleccionEstudiante.index')
+])
+@endcomponent

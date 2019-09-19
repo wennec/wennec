@@ -17,6 +17,7 @@ Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');
 Route::resource('horarios', 'AdminHorariosController');
 Route::resource('eleccionEscolar', 'EleccionEscolarController');
+Route::resource('eleccionEstudiante', 'EleccionEstudianteController');
 
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
@@ -24,6 +25,10 @@ Route::resource('asistenciaEstudiante', 'AsistenciaStudentController');
 Route::resource('evaluacionDocenteE', 'EvaluacionEDocenteController');
 
 Route::resource('calificacionDocente', 'CalificacionDocenteController');
+
+Route::prefix('/eleccionEstudiante')->group(function (){
+    Route::post('/eleccionEstudiante', 'EleccionEstudianteController@storeVotoEstudiante')->name('eleccionEstudiante.storeVotoEstudiante');
+});
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');

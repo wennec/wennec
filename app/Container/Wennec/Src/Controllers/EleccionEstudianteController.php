@@ -8,11 +8,12 @@ use App\Container\Wennec\Src\Requests\DeptoUpdateRequest;
 use App\Container\Wennec\Src\Requests\RequestOnly;
 use App\Http\Controllers\Controller;
 use App\Container\Wennec\Src\Eleccion;
-use App\Container\Wennec\Src\Actividad;
-use App\Container\Wennec\Src\Plan;
+use App\Container\Wennec\Src\EleccionEstudiante;
+use App\Container\Wennec\Src\VotoEstudiante;
+use App\Container\Wennec\Src\EstadoVotoEstudiante;
 use Illuminate\Support\Facades\DB;
 
-class EleccionEscolarController extends Controller
+class EleccionEstudianteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,40 +37,48 @@ class EleccionEscolarController extends Controller
             $id = $colegioUser->idColegio;
       }
 
-      $eleccionColegios =
+      $eleccionEstudiantes =
       DB::select(DB::raw("SELECT
-      tbl_colegios.nombre,
-      tbl_eleccion.PK_id,
-      tbl_eleccion.nombreEleccion,
-      tbl_eleccion.fechaInicio,
-      tbl_eleccion.fechaFin
+      tbl_usuarios.PK_id as idUsuario,
+      tbl_usuarios.`name`,
+      tbl_grupos.grupo,
+      tbl_eleccionestudiante.PK_id AS idEleccionEstudiante
       FROM
-      tbl_eleccion
-      JOIN tbl_colegios
-      ON tbl_eleccion.FK_ColegioId = tbl_colegios.id
-      WHERE tbl_colegios.id = $id"));
-
-      $estudiantesId =
-      DB::select(DB::raw("SELECT
-      tbl_usuarios.PK_id,
-      CONCAT('Grupo: ', tbl_grupos.grupo, ' Nombre:', tbl_usuarios.`name`) as only
-      FROM
-      tbl_estudiante
-      JOIN tbl_usuarios
-      ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
-      JOIN tbl_grupoestudiantes
-      ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id 
+      tbl_grupoestudiantes
       JOIN tbl_grupos
       ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id 
-      JOIN tbl_cursos
-      ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id 
+      JOIN tbl_estudiante
+      ON tbl_estudiante.PK_id = tbl_grupoestudiantes.FK_estudiante 
+      JOIN tbl_usuarios
+      ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
       JOIN tbl_colegios
-      ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+      ON tbl_usuarios.FK_ColegioId = tbl_colegios.id 
+      JOIN tbl_eleccionestudiante
+      ON tbl_eleccionestudiante.FK_UsuarioId = tbl_usuarios.PK_id 
+      JOIN tbl_eleccion
+      ON tbl_eleccionestudiante.FK_EleccionId = tbl_eleccion.PK_id
       WHERE
       tbl_colegios.id = $id"));
 
+      $votoEstudiantes =
+      DB::select(DB::raw("SELECT
+      tbl_usuarios.`name`,
+      tbl_estadovotoestudiante.votoEstudiante,
+      tbl_votoestudiante.PK_id
+      FROM
+      tbl_votoestudiante
+      JOIN tbl_usuarios
+      ON tbl_votoestudiante.FK_UsuarioId = tbl_usuarios.PK_id 
+      JOIN tbl_estadovotoestudiante
+      ON tbl_estadovotoestudiante.FK_VotoEstudianteId = tbl_votoestudiante.PK_id
+      WHERE tbl_usuarios.PK_id = $iduser"));
 
-      return view('Wennec.admin.administrador-eleccion', compact('eleccionColegios', 'estudiantesId'));
+      foreach ($votoEstudiantes as $votoEstudiante) {
+        $id = $votoEstudiante->PK_id;
+      }
+
+
+        return view('Wennec.estudiante.estudiante-eleccion', compact('eleccionEstudiantes', 'votoEstudiantes', 'id'));
     }
 
     /**
@@ -90,33 +99,30 @@ class EleccionEscolarController extends Controller
      */
     public function store(Request $request)
     {
-        $iduser = auth()->user()->PK_id ;
-
-        $colegioUsers =
-        DB::select(DB::raw("SELECT
-        tbl_colegios.id as idColegio
-        FROM
-        tbl_usuarios
-        JOIN tbl_colegios
-        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_usuarios.PK_id = $iduser"));
-
-        foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
-        }
-
-        Eleccion::create([
-            'nombreEleccion' => $request['nombreEleccion'],
-            'fechaInicio' => $request['fechaInicio'],
-            'fechaFin' => $request['fechaFin'],
-            'FK_ColegioId' => $id,
+        EleccionEstudiante::create([
+            'FK_EleccionId' => $request['FK_EleccionId'],
+            'FK_UsuarioId' => $request['FK_UsuarioId'],
         ]);
-        return redirect('/eleccionEscolar')->with('success','Eleccion Creada Correctamente');
+        return redirect('/eleccionEscolar')->with('success','Estudiante Agregado Correctamente');
     }
 
-    public function storeStudent(request $request)
+    public function storeVotoEstudiante(Request $request)
     {
-      
+      $iduser = auth()->user()->PK_id;
+
+      VotoEstudiante::create([
+        'FK_EleccionEstudiante' => $request['FK_EleccionEstudianteId'],
+        'FK_UsuarioId' => $iduser,
+      ]);
+
+      $allVotoEstudiante= VotoEstudiante::all();
+      $idVotoEstudiante = $allVotoEstudiante->last();
+
+      EstadoVotoEstudiante::create([
+        'votoEstudiante' => $request['votoEstudiante'],
+        'FK_VotoEstudianteId' => $idVotoEstudiante->PK_id,
+      ]);
+      return redirect('/eleccionEstudiante')->with('success', 'Voto Enviado');
     }
 
     /**
