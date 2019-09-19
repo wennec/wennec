@@ -29,7 +29,6 @@ class EvaluacionDocenteRequest extends FormRequest
             'dinamismo'=>'string|max:50',
             'respeto'=>'string|max:50',
             'actitud'=>'string|max:50',
-            'evaluado'=> 'string|max:50',
         ];
     }
 }

@@ -98,56 +98,55 @@
               </div>
             </div>
 
-           @foreach($dates as $date)
-              @if($date->fecha_inicio <= \Carbon\Carbon::now() && \Carbon\Carbon::now() <= $date->fecha_fin)
-              <div class="sparkline13-graph">
-                <div class="datatable-dashv1-list custom-datatable-overright">
-                  <div id="toolbar">
-                    <select class="form-control dt-tb">
-                      <option value="">Export Basic</option>
-                      <option value="all">Export All</option>
-                      <option value="selected">Export Selected</option>
-                    </select>
-                  </div>
-                  <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                  data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                  <thead>
-                    <th class="text-center">Grupo</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Materia</th>
-                    <th class="text-center">Evaluar</th>
-                  </thead>
-                  <tbody>
-                    @foreach($teachersTest as $teacherTest)
-                    <tr  class="text-center">
-                      <td>{{$teacherTest->grupo}}</td>
-                      <td>{{$teacherTest->name_teacher}}</td>
-                      <td>{{$teacherTest->nombre_materia}}</td>
-
-                      <td> <button type="button" id="mymodal" class="btn btn-warning" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">
+            @foreach($dates as $date)
+            @if($date->fecha_inicio <= \Carbon\Carbon::now() && \Carbon\Carbon::now() <= $date->fecha_fin)
+            <div class="sparkline13-graph">
+              <div class="datatable-dashv1-list custom-datatable-overright">
+                <div id="toolbar">
+                  <select class="form-control dt-tb">
+                    <option value="">Export Basic</option>
+                    <option value="all">Export All</option>
+                    <option value="selected">Export Selected</option>
+                  </select>
+                </div>
+                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                <thead>
+                  <th class="text-center">Grupo</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Materia</th>
+                  <th class="text-center">Evaluar</th>
+                </thead>
+                <tbody>
+                  @foreach($teachersTest as $teacherTest)
+                  <tr  class="text-center">
+                    <td>{{$teacherTest->grupo}}</td>
+                    <td>{{$teacherTest->name_teacher}}</td>
+                    <td>{{$teacherTest->nombre_materia}}</td>
+                    <td>
+                      <button type="button" id="mymodal" class="btn btn-warning" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">
                         <i class="fas fa-check"></i>
                       </button></td>
-
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
+            @else
+            <div class="alert alert-danger">
+              <ul>
+                Aun no esta habilitada la evaluacion docente...!!!
+              </ul>
+            </div>
+            @endif
+            @endforeach
           </div>
-          @else
-          <div class="alert alert-danger">
-            <ul>
-              Aun no esta habilitada la evaluacion docente...!!!
-            </ul>
-          </div>
-          @endif
-          @endforeach
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Static Table End -->
+  <!-- Static Table End -->
 </div>
 @endsection
 
