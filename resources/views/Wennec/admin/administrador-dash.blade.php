@@ -61,10 +61,3 @@
     'link' => route('fechaevaluaciondocenteA.index')
 ])
 @endcomponent
-
-@component('components.nav-link',[
-    'icon' => 'fa fa-file',
-    'title' => 'Reportes',
-    'link' => route('fechaevaluaciondocenteA.index')
-])
-@endcomponent
