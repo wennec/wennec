@@ -32,6 +32,7 @@ Route::prefix('/eleccionEstudiante')->group(function (){
 
 Route::resource('reportes', 'ReportesController');
 Route::name('print')->get('/reportescertificado', 'ReportesController@reporteCertificadoLaboral');
+Route::name('print')->get('/reporteshorario', 'ReportesController@reporteHorario');
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');

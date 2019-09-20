@@ -1,13 +1,8 @@
-@extends('layouts.dash')
-@section('content')
+@extends('Wennec.reporte.master-horario')
+@section('body')
+
 <div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
-<button type="button" name="button" class="btn btn-primary"><a href="{{url('/reporteshorario')}}"
-                      style="color:white;"target="_blank">Imprimir Horario</a></button>
+
     <!-- Static Table Start -->
     <div class="calender-area mg-b-15-calendar">
         <div class="container-fluid">
@@ -15,6 +10,7 @@
                 <div class="col-lg-12">
                     <div class="calender-inner">
                         <div id='calendario'></div>
+                        <h3>Hola mundo</h3>
                     </div>
                 </div>
             </div>
@@ -23,26 +19,10 @@
         <!-- Static Table End -->
 </div>
 
-<div id="fullCalModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                <h4 id="modalTitle" class="modal-title"></h4>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-<script>
+<script type="text/javascript">
 
 $(function() {
 
@@ -94,22 +74,16 @@ $(function() {
 
     },
     events: [
-      @foreach($horario as $horarios)
+      @foreach($horarios as $horario)
         {
-          title: '{{ $horarios->nombre_materia}}',
-          start: '{{ $horarios->horaInicio}}',
-          end: '{{ $horarios->horaFin}}',
-          description: "Profesor(a): " + '{{ $horarios->nom_teacher}}',
-          dow: ['{{ $horarios->PK_id}}'],
+          title: '{{ $horario->nombre_materia}}',
+          start: '{{ $horario->horaInicio}}',
+          end: '{{ $horario->horaFin}}',
+          description: "Profesor(a): " + '{{ $horario->nom_teacher}}',
+          dow: ['{{ $horario->PK_id}}'],
         },
       @endforeach
     ],
-    eventClick: function(event, jsEvent, view) {
-    $('#modalTitle').html(event.title);
-    $('#modalBody').html(event.description);
-    $('#fullCalModal').modal();
-    }
   });
 });
 </script>
-
