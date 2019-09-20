@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 20/09/2019 15:07:39
+ Date: 20/09/2019 17:30:29
 */
 
 SET NAMES utf8mb4;
@@ -856,8 +856,8 @@ BEGIN;
 INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'S8Pry6DhDDoXYdUCogKF7hy5cnztE3RYEmXb0JYaFOmHG3pm2KS7C0cITZRO', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1568405853.png', 2, 2, 'pZg45uwHaJya3kUIh9lGDcCvt9mfOGwu9d9rQ5lGNpRxFYLrFXXNNLfKgQdP', NULL, '2019-09-13 15:17:33');
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'iL5BYpSROCITFfxbzfj1pvA1uE9wpURECj5Yvib9rsmTUylD3khDKwHtNLH4', NULL, '2019-09-20 12:58:26');
-INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'R9alc62wfE0B4sl5PIXYRkqjQLanHwiHY0EhcETMADmdAov2L0LoGGRd38DD', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'dabMssyLcgiJSXuv10DBjBCG0sl8cPNQQFeD5AdsuNrIBGd6nknTrjs9e6UW', NULL, '2019-09-20 12:58:26');
+INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'v5wK2dyEAo9MuS1RLq1NsoEpBD6oWobKAsItrvnH16jcqRfeLIFztffKYG97', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `tbl_usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
