@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 11/09/2019 10:34:06
+ Date: 20/09/2019 15:07:39
 */
 
 SET NAMES utf8mb4;
@@ -366,14 +366,68 @@ CREATE TABLE `tbl_eleccion` (
   `nombreEleccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
-  `numeroVotos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `FK_ColegioId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `tbl_eleccion_ibfk_1` (`FK_ColegioId`),
+  CONSTRAINT `tbl_eleccion_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_eleccion
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_eleccion` VALUES (1, 'Eleccion Estudiantil Personero', '2019-10-01', '2019-10-05', 2, '2019-09-18 10:57:12', '2019-09-18 10:57:12');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_eleccionestudiante
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_eleccionestudiante`;
+CREATE TABLE `tbl_eleccionestudiante` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `FK_EleccionId` int(11) DEFAULT NULL,
   `FK_UsuarioId` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`),
   KEY `FK_UsuarioId` (`FK_UsuarioId`),
-  CONSTRAINT `tbl_eleccion_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FK_EleccionId` (`FK_EleccionId`),
+  CONSTRAINT `tbl_eleccionestudiante_ibfk_2` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_eleccionestudiante_ibfk_3` FOREIGN KEY (`FK_EleccionId`) REFERENCES `tbl_eleccion` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_eleccionestudiante
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_eleccionestudiante` VALUES (11, 1, 4, '2019-09-18 15:26:07', '2019-09-18 15:26:07');
+INSERT INTO `tbl_eleccionestudiante` VALUES (12, 1, 13, '2019-09-18 16:53:39', '2019-09-18 16:53:39');
+INSERT INTO `tbl_eleccionestudiante` VALUES (13, NULL, NULL, '2019-09-19 09:05:47', '2019-09-19 09:05:47');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_estadovotoestudiante
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_estadovotoestudiante`;
+CREATE TABLE `tbl_estadovotoestudiante` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `votoEstudiante` tinyint(4) DEFAULT '0',
+  `FK_VotoEstudianteId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_VotoEstudianteId` (`FK_VotoEstudianteId`),
+  CONSTRAINT `tbl_estadovotoestudiante_ibfk_1` FOREIGN KEY (`FK_VotoEstudianteId`) REFERENCES `tbl_votoestudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_estadovotoestudiante
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_estadovotoestudiante` VALUES (4, 1, 7, '2019-09-20 15:06:12', '2019-09-20 15:06:12');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tbl_estudiante
@@ -435,18 +489,31 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_evaluaciondocente`;
 CREATE TABLE `tbl_evaluaciondocente` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `puntulidad` int(11) DEFAULT '0',
+  `puntualidad` int(11) DEFAULT '0',
   `dinamismo` int(11) DEFAULT NULL,
   `respeto` int(11) DEFAULT NULL,
   `actitud` int(11) DEFAULT NULL,
   `FK_UsuarioId` int(11) DEFAULT NULL,
   `FK_EstudianteId` int(11) DEFAULT NULL,
+  `FK_FechaId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`),
   KEY `FK_UsuarioId` (`FK_UsuarioId`),
   KEY `FK_EstudianteId` (`FK_EstudianteId`),
+  KEY `FK_FechaId` (`FK_FechaId`),
   CONSTRAINT `tbl_evaluaciondocente_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `tbl_evaluaciondocente_ibfk_2` FOREIGN KEY (`FK_EstudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `tbl_evaluaciondocente_ibfk_2` FOREIGN KEY (`FK_EstudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_evaluaciondocente_ibfk_3` FOREIGN KEY (`FK_FechaId`) REFERENCES `tbl_fechaevaluaciondocente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_evaluaciondocente
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_evaluaciondocente` VALUES (1, 1, 0, 1, 0, 5, 1, 1, '2019-09-20 14:54:30', '2019-09-20 14:54:30');
+INSERT INTO `tbl_evaluaciondocente` VALUES (2, 0, 0, 0, 0, 9, 1, 1, '2019-09-20 14:55:09', '2019-09-20 14:55:09');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tbl_eventos
@@ -498,6 +565,29 @@ INSERT INTO `tbl_eventosgenerales` VALUES (3, 'Entrega de insignias', '2019-07-2
 COMMIT;
 
 -- ----------------------------
+-- Table structure for tbl_fechaevaluaciondocente
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_fechaevaluaciondocente`;
+CREATE TABLE `tbl_fechaevaluaciondocente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_inicio` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
+  `FK_ColegioId` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_ColegioId` (`FK_ColegioId`),
+  CONSTRAINT `tbl_fechaevaluaciondocente_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_fechaevaluaciondocente
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_fechaevaluaciondocente` VALUES (1, '2019-09-20', '2019-09-27', 2, '2019-09-20 14:52:54', '2019-09-20 14:52:54');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for tbl_grupoestudiantes
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_grupoestudiantes`;
@@ -517,7 +607,7 @@ CREATE TABLE `tbl_grupoestudiantes` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `tbl_grupoestudiantes` VALUES (1, 1, 2);
-INSERT INTO `tbl_grupoestudiantes` VALUES (3, 2, 2);
+INSERT INTO `tbl_grupoestudiantes` VALUES (3, 2, 1);
 COMMIT;
 
 -- ----------------------------
@@ -548,7 +638,6 @@ INSERT INTO `tbl_grupomaterias` VALUES (1, 4, 1, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (2, 1, 2, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (3, 4, 3, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (4, NULL, 3, NULL, '2019-09-05 19:26:29', '2019-09-05 19:26:29');
-INSERT INTO `tbl_grupomaterias` VALUES (5, 1, 1, 2, '2019-09-06 11:01:56', '2019-09-06 11:01:56');
 COMMIT;
 
 -- ----------------------------
@@ -764,19 +853,19 @@ CREATE TABLE `tbl_usuarios` (
 -- Records of tbl_usuarios
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'lG37RDNggFW8sUncs23Taga7zqC56H1yXQPkW6oWF1obzUDHske38FfWZOMZ', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', NULL, 2, 2, 'q5JgPzSplns3dG0h7JnVf9xh2Pm0lNndJdIKxqSQNK0kg18HBIYB1a4Skler', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'S8Pry6DhDDoXYdUCogKF7hy5cnztE3RYEmXb0JYaFOmHG3pm2KS7C0cITZRO', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1568405853.png', 2, 2, 'pZg45uwHaJya3kUIh9lGDcCvt9mfOGwu9d9rQ5lGNpRxFYLrFXXNNLfKgQdP', NULL, '2019-09-13 15:17:33');
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', '', 3, 2, '5XBzhQzlx7HtedOx6e02cxzeHA8luw0O1jWHEyrVJDajknPFXASL8uwGQpdp', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'iL5BYpSROCITFfxbzfj1pvA1uE9wpURECj5Yvib9rsmTUylD3khDKwHtNLH4', NULL, '2019-09-20 12:58:26');
 INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'R9alc62wfE0B4sl5PIXYRkqjQLanHwiHY0EhcETMADmdAov2L0LoGGRd38DD', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `tbl_usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
 INSERT INTO `tbl_usuarios` VALUES (9, 'Sandra Serrato', NULL, NULL, NULL, 'sandra@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, NULL, '2019-08-26 16:08:06', '2019-08-26 16:08:06');
 INSERT INTO `tbl_usuarios` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:17:17', '2019-08-26 16:17:17');
-INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, '7Mo5U9C63LldGWq2915G99mrVtdLULq2jJrQLXWDBmYUTmGppQvA55yRc0df', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
+INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, 'WTpY7yJGk4IXxMXhyKl7bljcXJiWlctUdMIxIYFKmWby56krylXXtye1AHU2', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
 INSERT INTO `tbl_usuarios` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:18:44', '2019-08-26 16:18:44');
-INSERT INTO `tbl_usuarios` VALUES (13, 'laura', NULL, NULL, NULL, 'laura@mail.com', '$2y$10$jOttMmJagIibt0ueiQGxq.SfB/Lfi7fWd4YBtglW67.eF0a6Hesea', NULL, 3, 2, NULL, '2019-08-26 16:18:45', '2019-08-26 16:18:45');
+INSERT INTO `tbl_usuarios` VALUES (13, 'laura Molina Rodriguez', NULL, NULL, NULL, 'laura@mail.com', '$2y$10$jOttMmJagIibt0ueiQGxq.SfB/Lfi7fWd4YBtglW67.eF0a6Hesea', NULL, 3, 2, '9l7dSE68UUgGNmLuPClr3hGmAZv0TU3tTHZeNYJW1HXkMgFGfwtKdKOeNfV5', '2019-08-26 16:18:45', '2019-08-26 16:18:45');
 INSERT INTO `tbl_usuarios` VALUES (14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:21:22', '2019-08-26 16:21:22');
 INSERT INTO `tbl_usuarios` VALUES (15, 'mery', NULL, NULL, NULL, 'mery@mail.com', '$2y$10$t3/8sQbOrklZ80UlHJoLI.Q8us/tud6Ch3uBHCDr1mScVAH.9kKsy', NULL, 4, NULL, NULL, '2019-08-26 16:21:22', '2019-08-26 16:21:22');
 INSERT INTO `tbl_usuarios` VALUES (16, 'antonio', NULL, NULL, NULL, 'antonio@mail.com', '$2y$10$8A4Iy3KNOdKrfDFg2P92JuwJqZaWBdnGhXVBAQCfcKKj5gFrDsn4y', NULL, 4, NULL, NULL, '2019-08-26 16:40:58', '2019-08-26 16:40:58');
@@ -787,6 +876,33 @@ INSERT INTO `tbl_usuarios` VALUES (20, 'dfgdfgdfg', NULL, NULL, NULL, 'dfgfd@mai
 INSERT INTO `tbl_usuarios` VALUES (21, 'hola', NULL, NULL, NULL, 'hola@mail.com', '12345', NULL, 3, 2, NULL, '2019-08-26 17:02:48', '2019-08-26 17:02:48');
 INSERT INTO `tbl_usuarios` VALUES (22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, '2019-08-26 17:07:43', '2019-08-26 17:07:43');
 INSERT INTO `tbl_usuarios` VALUES (23, 'sdfsdf', NULL, NULL, NULL, 'qwwe@mail.com', '$2y$10$Pj3/Bxu4XTQbiCYqjjNM6O.ylFSXYpGInQB.c9UZNbEclKNbr.OTG', NULL, 3, NULL, NULL, '2019-08-26 17:07:43', '2019-08-26 17:07:43');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_votoestudiante
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_votoestudiante`;
+CREATE TABLE `tbl_votoestudiante` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `FK_UsuarioId` int(11) NOT NULL,
+  `FK_EleccionEstudiante` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_UsuarioId` (`FK_UsuarioId`),
+  KEY `FK_EleccionEstudiante` (`FK_EleccionEstudiante`),
+  CONSTRAINT `tbl_votoestudiante_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_votoestudiante_ibfk_2` FOREIGN KEY (`FK_EleccionEstudiante`) REFERENCES `tbl_eleccionestudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of tbl_votoestudiante
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_votoestudiante` VALUES (4, 13, 11, '2019-09-19 10:37:20', '2019-09-19 10:37:20');
+INSERT INTO `tbl_votoestudiante` VALUES (5, 4, 12, '2019-09-19 12:09:24', '2019-09-19 12:09:24');
+INSERT INTO `tbl_votoestudiante` VALUES (6, 4, 12, '2019-09-20 15:00:38', '2019-09-20 15:00:38');
+INSERT INTO `tbl_votoestudiante` VALUES (7, 4, 11, '2019-09-20 15:06:12', '2019-09-20 15:06:12');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
