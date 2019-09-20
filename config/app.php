@@ -235,7 +235,6 @@ return [
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
     ],
 
 ];

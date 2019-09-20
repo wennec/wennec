@@ -41,6 +41,7 @@ class EleccionEstudianteController extends Controller
       DB::select(DB::raw("SELECT
       tbl_usuarios.PK_id as idUsuario,
       tbl_usuarios.`name`,
+      tbl_usuarios.`foto`,
       tbl_grupos.grupo,
       tbl_eleccionestudiante.PK_id AS idEleccionEstudiante
       FROM

@@ -20,10 +20,10 @@
                     {!! Form::open(['route'=>'eleccionEstudiante.storeVotoEstudiante','method'=>'POST']) !!}
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-12">
-                        <label for="">Esta seguro de votar por: </label>
-                        <br>
-                        <label type="" name="name_student" id="name_student"></label>
-                        <br>
+                            <label for="">Esta seguro de votar por: </label>
+                            <br>
+                            <label type="" name="name_student" id="name_student"></label>
+                            <br>
                         </div>
                         <input type="hidden" name="FK_EleccionEstudianteId" id="FK_EleccionEstudianteId">
                         <input type="hidden" name="votoEstudiante" value="1">
@@ -52,19 +52,26 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="student-inner-std res-mg-b-30">
                             <div class="student-img">
-                                <img src="assets/iconos/usuario3.png" alt="" />
+                                <?php
+                                if (($eleccionEstudiante->foto) == "") {
+                                    echo '<img style="max-width:40%;" src="assets/iconos/usuario3.png" alt="" />';
+                                } else {
+
+                                    echo '<img style=" border-radius: 50%;max-width:40%;" src="Foto/Usuarios/' . $eleccionEstudiante->foto . '" alt="" />';
+                                }
+                                ?>
                             </div>
                             <div class="student-dtl">
                                 <h2>{{$eleccionEstudiante->name}}</h2>
                                 <p class="dp-ag"><b>Grupo:</b> {{$eleccionEstudiante->grupo}}</p>
                                 <br>
                                 <?php
-                                    $exists = DB::table('tbl_estadovotoestudiante')->where('FK_VotoEstudianteId', $id)->where('votoEstudiante', 0)->first();
-                                    if (!$exists){
-                                        echo '<button type="button" id="mymodal" data-eleccione-id="' .$eleccionEstudiante->idEleccionEstudiante. '" data-estudiante-name="'.$eleccionEstudiante->name.'" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVoto">Votar</button>';
-                                    }else{
-                                        echo '<button class="btn btn-success btn-md"><i class="fas fa-check"></i></button> ';
-                                    }
+                                $exists = DB::table('tbl_estadovotoestudiante')->where('FK_VotoEstudianteId', $id)->where('votoEstudiante', 0)->first();
+                                if (!$exists) {
+                                    echo '<button type="button" id="mymodal" data-eleccione-id="' . $eleccionEstudiante->idEleccionEstudiante . '" data-estudiante-name="' . $eleccionEstudiante->name . '" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVoto">Votar</button>';
+                                } else {
+                                    echo '<button class="btn btn-success btn-md"><i class="fas fa-check"></i></button> ';
+                                }
                                 ?>
                             </div>
                         </div>
