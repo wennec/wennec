@@ -41,48 +41,48 @@
                           <div class="hiddenradio">
                             <label for="">Puntualidad</label>
                             <label>
-                              <input type="radio" name="puntualidad" value="1" >
+                              <input type="radio" name="puntualidad" value="1" required >
                               <img src="Test_teachers/like.png">
                             </label>
 
                             <label>
-                              <input type="radio" name="puntualidad" value="0">
+                              <input type="radio" name="puntualidad" value="0" required>
                               <img src="Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Dinamismo</label>
                             <label>
-                              <input type="radio" name="dinamismo" value="1" >
+                              <input type="radio" name="dinamismo" value="1" required>
                               <img src="Test_teachers/like.png">
                             </label>
 
                             <label>
-                              <input type="radio" name="dinamismo" value="0">
+                              <input type="radio" name="dinamismo" value="0" required>
                               <img src="Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Respeto</label>
                             <label>
-                              <input type="radio" name="respeto" value="1" >
+                              <input type="radio" name="respeto" value="1" required>
                               <img src="Test_teachers/like.png">
                             </label>
 
                             <label>
-                              <input type="radio" name="respeto" value="0">
+                              <input type="radio" name="respeto" value="0" required>
                               <img src="Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Actitud</label>
                             <label>
-                              <input type="radio" name="actitud" value="1" >
+                              <input type="radio" name="actitud" value="1" required>
                               <img src="Test_teachers/like.png">
                             </label>
 
                             <label>
-                              <input type="radio" name="actitud" value="0">
+                              <input type="radio" name="actitud" value="0" required>
                               <img src="Test_teachers/dislike.png">
                             </label>
                           </div>
@@ -98,6 +98,8 @@
               </div>
             </div>
 
+            @foreach($dates as $date)
+            @if($date->fecha_inicio <= \Carbon\Carbon::now() && \Carbon\Carbon::now() <= $date->fecha_fin)
             <div class="sparkline13-graph">
               <div class="datatable-dashv1-list custom-datatable-overright">
                 <div id="toolbar">
@@ -115,30 +117,36 @@
                   <th class="text-center">Materia</th>
                   <th class="text-center">Evaluar</th>
                 </thead>
-
                 <tbody>
                   @foreach($teachersTest as $teacherTest)
                   <tr  class="text-center">
                     <td>{{$teacherTest->grupo}}</td>
                     <td>{{$teacherTest->name_teacher}}</td>
                     <td>{{$teacherTest->nombre_materia}}</td>
-
-                    <td> <button type="button" id="mymodal" class="btn btn-warning" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">
-                      <i class="fas fa-check"></i>
-                    </button></td>
-
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                    <td>
+                      <button type="button" id="mymodal" class="btn btn-warning" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">
+                        <i class="fas fa-check"></i>
+                      </button></td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
+            @else
+            <div class="alert alert-danger">
+              <ul>
+                Aun no esta habilitada la evaluacion docente...!!!
+              </ul>
+            </div>
+            @endif
+            @endforeach
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Static Table End -->
+  <!-- Static Table End -->
 </div>
 @endsection
 

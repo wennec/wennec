@@ -30,6 +30,9 @@ Route::prefix('/eleccionEstudiante')->group(function (){
     Route::post('/eleccionEstudiante', 'EleccionEstudianteController@storeVotoEstudiante')->name('eleccionEstudiante.storeVotoEstudiante');
 });
 
+Route::resource('reportes', 'ReportesController');
+Route::name('print')->get('/reportescertificado', 'ReportesController@reporteCertificadoLaboral');
+
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
     Route::post('/', 'PerfilController@update')->name('perfil.update');
