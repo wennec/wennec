@@ -66,7 +66,7 @@
                                 <p class="dp-ag"><b>Grupo:</b> {{$eleccionEstudiante->grupo}}</p>
                                 <br>
                                 <?php
-                                $exists = DB::table('tbl_estadovotoestudiante')->where('FK_VotoEstudianteId', $id)->where('votoEstudiante', 0)->first();
+                                $exists = DB::table('tbl_estadovotoestudiante')->where('FK_VotoEstudianteId', $id)->where('votoEstudiante', 1)->first();
                                 if (!$exists) {
                                     echo '<button type="button" id="mymodal" data-eleccione-id="' . $eleccionEstudiante->idEleccionEstudiante . '" data-estudiante-name="' . $eleccionEstudiante->name . '" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVoto">Votar</button>';
                                 } else {
