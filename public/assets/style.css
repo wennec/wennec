@@ -538,7 +538,7 @@ body {}
    left:-70px;
    width:330px;
    background:#343434;
-   text-align:left;
+   text-align:center;
    opacity:0;
    transition: all 0.5s ease 0s;
    visibility:hidden;
@@ -4983,4 +4983,15 @@ img-logo-responsive {
     background: -ms-linear-gradient(left, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
     background: linear-gradient(to right, rgba(248,181,0,1) 0%, rgba(242,213,145,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8b500', endColorstr='#f2d591', GradientType=1 );
+}
+
+.image-upload-perfil img {
+    width: 38%;
+    margin-left: 3%;
+    cursor: pointer;
+}
+
+.image-upload-perfil > input
+{
+    display: none;
 }

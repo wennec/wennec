@@ -14,5 +14,5 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('Wennec.global.home');
-})->middleware('auth')->name('home');
+})->middleware('auth', 'revalidate')->name('home');
 

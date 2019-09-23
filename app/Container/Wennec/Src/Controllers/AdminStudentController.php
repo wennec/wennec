@@ -8,6 +8,9 @@ use App\Container\Wennec\Src\User;
 use App\Http\Controllers\Controller;
 use App\Container\Wennec\Src\Colegio;
 use App\Container\Wennec\Src\Roles;
+use App\Container\Wennec\Src\Estudiante;
+use App\Container\Wennec\Src\GrupoEstudiante;
+use App\Container\Wennec\Src\Grupos;
 use App\Container\Wennec\Src\Notifications\UsuarioCreado;
 use Illuminate\Support\Facades\DB;
 
@@ -46,7 +49,9 @@ class AdminStudentController extends Controller
         JOIN tbl_roles ON tbl_usuarios.FK_RolesId = tbl_roles.id
         JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Estudiante'"));
-        return view('Wennec.admin.administrador-estudiante',compact('students'));
+
+        $grupos = Grupos::all();
+        return view('Wennec.admin.administrador-estudiante',compact('students', 'grupos'));
     }
 
     /**
@@ -84,25 +89,40 @@ class AdminStudentController extends Controller
              $id = $colegioUser->idColegio;
         }
 
-        $atributos = $request->only(
-            'name',
-            'email',
-            'password',
-            'FK_RolesId'
-        );
-
-
         User::create([
+            'name' => $request['name'],
+            'telefono' => $request['telefono'],
+            'direccion' => $request['direccion'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'FK_RolesId' => 3,
             'FK_ColegioId' => $id
         ]);
 
-        $user = new User($atributos);
-        $user->password = bcrypt($user->password);
+        $allUser = User::all();
+        $idUserStudent = $allUser->last();
 
-        $user->save();
-        $user->notify(new UsuarioCreado($request->password));
-        return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');
-        return $user;
+        Estudiante::create([
+            'documento_estudiante' => $request['documento_estudiante'],
+            'tipo_documento' => $request['tipo_documento'],
+            'sexo_estudiante' => $request['sexo_estudiante'],
+            'fecha_nacimiento' => $request['fecha_nacimiento'],
+            'lugar_nacimiento' => $request['lugar_nacimiento'],
+            'nombre_madre' => $request['nombre_madre'],
+            'apellido_madre' => $request['apellido_madre'],
+            'nombre_padre' => $request['nombre_padre'],
+            'apellido_padre' => $request['apellido_padre'],
+            'FK_usuarioId' => $idUserStudent->PK_id,
+        ]);
+        
+        $allStudent = Estudiante::all();
+        $idStudent = $allStudent->last();
+
+        GrupoEstudiante::create([
+            'FK_estudiante' => $idStudent->PK_id,
+            'FK_grupo' => $request['FK_grupo'],
+        ]);
+        return redirect()->route('adminStudent.index')->with('success','Estudiante Creado Correctamente');
     }
 
     /**

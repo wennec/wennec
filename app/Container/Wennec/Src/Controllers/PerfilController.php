@@ -47,7 +47,7 @@ class PerfilController extends Controller
     public function fotoUp(PerfilFotoRequest $request)
     {
         $user = $request->user();
-        $user->foto = "FotoP".'.'.time().'.'.$request->file('foto')->getClientOriginalName();
+        $user->foto = "FotoP".'.'.time().'.'.$request->file('foto')->getClientOriginalExtension();
         $request->file('foto')->move(public_path('Foto/Usuarios'), $user->foto);
         $user->save();
         $request->session()->flash('mensaje', __('perfil.foto_exito'));

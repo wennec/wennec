@@ -1,4 +1,4 @@
-@extends('Wennec.docente.reporte.master')
+@extends('Wennec.reporte.master-certificado')
 @section('body')
 <div class="col-md-12">
   <!-- Static Table Start -->

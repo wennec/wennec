@@ -7,6 +7,4 @@
       </ul>
 
     </div>
-
-
 @endif

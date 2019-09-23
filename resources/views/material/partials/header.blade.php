@@ -157,13 +157,34 @@
                                                              if((Auth::user()->foto) == ""){
                                                                 echo '<img src="assets/iconos/usuario3.png" alt="" />';
                                                              }else{
-                                                                echo '<img src="assets/img/product/pro4.jpg" alt="" />';
+
+                                                                echo '<img src="Foto/Usuarios/'.Auth::user()->foto.'" alt="" />';
                                                              }
                                                             ?>
                                                             <span class="admin-name">{{ Auth::user()->name }}</span>
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        
+
+                                                        <form id="f_subir_imagen" name="f_subir_imagen" method="POST"  action="{{route('perfil.foto')}}" class="formarchivo" enctype="multipart/form-data">
+                                                        
+                                                            {{csrf_field()}}
+
+                                                            @component('components.fileinput-photo-profile',[
+                                                                'name'=>'foto',
+                                                                'attributes'=>'required',
+                                                                'url' => auth()->user()->foto,
+                                                            ])
+                                                            @endcomponent
+
+                                                            <div class="margin-top-10">
+                                                                <button type="submit" class="btn red left-block">
+                                                                <i class="fa fa-refresh"></i>Actualizar foto
+                                                                </button>
+                                                            </div>
+
+                                                        </form>
                                                         <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>{{ Auth::user()->name }}</a>
                                                         </li>
                                                         <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>{{ Auth::user()->rol->nombre }}</a>

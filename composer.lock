@@ -486,43 +486,43 @@
             "authors": [
                 {
                     "name": "Kevin Hill",
-                    "email": "kevinkhill@gmail.com",
-                    "role": "Creator"
+                    "role": "Creator",
+                    "email": "kevinkhill@gmail.com"
                 },
                 {
                     "name": "deringer",
-                    "homepage": "https://github.com/deringer",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/deringer"
                 },
                 {
                     "name": "stevebauman",
-                    "homepage": "https://github.com/stevebauman",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/stevebauman"
                 },
                 {
                     "name": "rajivseelam",
-                    "homepage": "https://github.com/rajivseelam",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/rajivseelam"
                 },
                 {
                     "name": "tobias-kuendig",
-                    "homepage": "https://github.com/tobias-kuendig",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/tobias-kuendig"
                 },
                 {
                     "name": "Stonos",
-                    "homepage": "https://github.com/Stonos",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/Stonos"
                 },
                 {
                     "name": "MicahKV",
-                    "email": "micah138@yahoo.com",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "email": "micah138@yahoo.com"
                 },
                 {
                     "name": "SendDerek",
-                    "homepage": "https://github.com/SendDerek",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/SendDerek"
                 }
             ],
             "description": "PHP wrapper library for the Google Chart API",
@@ -3334,8 +3334,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sb@sebastian-bergmann.de"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -3376,8 +3376,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Simple template engine.",
@@ -3425,8 +3425,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sb@sebastian-bergmann.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -3554,8 +3554,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -4132,8 +4132,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
