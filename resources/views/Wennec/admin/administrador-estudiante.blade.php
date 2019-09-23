@@ -22,7 +22,7 @@
                         <!-- Button trigger modal -->
                         <button type="button" id="mymodal" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
                         <i class="fa fa-plus"></i>
-                                Crear Usuario
+                                Crear Estudiante
                         </button>  <br>
 
                         <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -30,7 +30,7 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Crear Administradores</h4>
+                                <h4 class="modal-title" id="myModalLabel">Crear Estudiante</h4>
                             </div>
                             <div class="modal-body">
                             {!! Form::open(['route'=>'adminStudent.store','method'=>'POST']) !!}
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
-                                                <label>Rol</label>
+                                                <label>Grupo</label>
                                                     <select class="form-control" name="FK_grupo" id="" required="">
                                                         @foreach($grupos as $grupo)
                                                             <option value="{{$grupo->PK_id}}">{{$grupo->grupo}}</option>
@@ -59,12 +59,12 @@
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
-                                                    {!!Form::number('documento_estudiante',null,['class'=>'form-control','placeholder'=>'Documento ID','required'])!!}
+                                                    {!!Form::number('documento_estudiante',null,['class'=>'form-control','placeholder'=>'Numeo Documento','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
-                                                {!!Form::text('tipo_documento',null,['class'=>'form-control','placeholder'=>'Tipo de Documento','required'])!!}
+                                                {!!Form::select('tipo_documento',array('TI' => 'Tarjeta de Identidad', 'CC' => 'Cedula de Ciudadania'), 'TI' ,['class'=>'form-control','placeholder'=>'Tipo de Documento','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -76,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
-                                                {!!Form::text('sexo_estudiante',null,['class'=>'form-control','placeholder'=>'Genero','required'])!!}
+                                                {!!Form::select('sexo_estudiante',array('M' => 'Masculino', 'F' => 'Femenino'), 'M' ,['class'=>'form-control','placeholder'=>'Genero','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>
@@ -142,7 +142,7 @@
                         </div>
                         </div>
 
-                        
+
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
@@ -168,7 +168,7 @@
                                             <td>{{$student->nameColegio}}</td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -188,5 +188,3 @@
 
   </script>
 @endsection
-
-

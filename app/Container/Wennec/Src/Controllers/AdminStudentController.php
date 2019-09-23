@@ -50,7 +50,7 @@ class AdminStudentController extends Controller
         JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Estudiante'"));
 
-        $grupos = Grupos::all();
+
         return view('Wennec.admin.administrador-estudiante',compact('students', 'grupos'));
     }
 
@@ -114,7 +114,7 @@ class AdminStudentController extends Controller
             'apellido_padre' => $request['apellido_padre'],
             'FK_usuarioId' => $idUserStudent->PK_id,
         ]);
-        
+
         $allStudent = Estudiante::all();
         $idStudent = $allStudent->last();
 

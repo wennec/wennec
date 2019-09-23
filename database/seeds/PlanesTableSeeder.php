@@ -11,7 +11,7 @@ class PlanesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('TBL_Planes')->insert([
+        DB::table('tbl_planes')->insert([
             [
                 'nombre' => 'Elite'
             ],

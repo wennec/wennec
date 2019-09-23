@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('TBL_Usuarios')->insert([
+        DB::table('tbl_usuarios')->insert([
             [
                 'name' => 'Code Freestyle',
                 'email' => 'root@app.com',
@@ -35,16 +35,16 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Efrain',
-                'email' => 'efrain@gmail.com',                
+                'email' => 'efrain@gmail.com',
                 'password' => bcrypt('12345'),
                 'FK_RolesId' => '4',
-                'FK_ColegioId' => '1'                
+                'FK_ColegioId' => '1'
             ],
             [
                 'name' => 'Stevenson',
                 'email' => 'stevenson@gmail.com',
                 'password' => bcrypt('12345'),
-                'FK_RolesId' => '4',                
+                'FK_RolesId' => '4',
                 'FK_ColegioId' => '1'
             ],
             [
