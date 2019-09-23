@@ -103,13 +103,6 @@
                                                     </div>
                                               </div>
                                       </div>
-
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                          <div class="form-group form-md-line-input">
-                                                  {!!Form::text('perfil_profesional',null,['class'=>'form-control','placeholder'=>'Perfil Profesional','required'])!!}
-                                          </div>
-                                        </div>
-
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
@@ -123,7 +116,7 @@
                                         </div>
                                     </div>
 
-                                    {!! Form::submit('Crear Usuario', ['class'=>'btn btn-large btn-primary']) !!}
+                                    {!! Form::submit('Crear Docente', ['class'=>'btn btn-large btn-primary']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 {!! Form::close() !!}
