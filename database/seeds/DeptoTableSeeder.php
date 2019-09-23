@@ -11,7 +11,7 @@ class DeptoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('TBL_Colegios')->insert([
+        DB::table('tbl_colegios')->insert([
             [
                 'nombre' => 'Jhon F. Kenndy',
                 'descripcion' => 'nueva1',

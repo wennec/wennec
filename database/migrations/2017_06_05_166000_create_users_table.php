@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('TBL_Usuarios', function (Blueprint $table) {
+        Schema::create('tbl_usuarios', function (Blueprint $table) {
             $table->increments('PK_id');
             $table->string('name');
             $table->string('telefono')->nullable();
@@ -21,20 +21,20 @@ class CreateUsersTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('foto')->nullable();  
+            $table->string('foto')->nullable();
             $table->integer('FK_RolesId')->nullable();
             $table->integer('FK_ColegioId')->nullable();
-                    
+
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('FK_RolesId')->references('id')
-            ->on('TBL_Roles')->onUpdate('cascade');
+            ->on('tbl_roles')->onUpdate('cascade');
 
             $table->foreign('FK_ColegioId')->references('id')
-            ->on('TBL_Colegios')->onUpdate('cascade');
+            ->on('tbl_colegios')->onUpdate('cascade');
 
-            
+
         });
     }
 

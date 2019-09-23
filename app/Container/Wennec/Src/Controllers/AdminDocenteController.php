@@ -10,6 +10,8 @@ use App\Container\Wennec\Src\Colegio;
 use App\Container\Wennec\Src\Roles;
 use App\Container\Wennec\Src\Notifications\UsuarioCreado;
 use Illuminate\Support\Facades\DB;
+use App\Container\Wennec\Src\Grupos;
+use App\Container\Wennec\Src\Materias;
 
 
 class AdminDocenteController extends Controller
@@ -46,7 +48,9 @@ class AdminDocenteController extends Controller
         JOIN tbl_roles ON tbl_usuarios.FK_RolesId = tbl_roles.id
         JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Docente'"));
-        return view('Wennec.admin.administrador-docente',compact('docentes'));
+        $grupos = Grupos::all();
+        $materias = Materias::all();
+        return view('Wennec.admin.administrador-docente',compact('docentes', 'grupos','materias'));
     }
 
     /**
@@ -69,40 +73,50 @@ class AdminDocenteController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ;
+      $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers =
-        DB::select(DB::raw("SELECT
-        tbl_colegios.id as idColegio
-        FROM
-        tbl_usuarios
-        JOIN tbl_colegios
-        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_usuarios.PK_id = $iduser"));
+      $colegioUsers =
+      DB::select(DB::raw("SELECT
+      tbl_colegios.id as idColegio
+      FROM
+      tbl_usuarios
+      JOIN tbl_colegios
+      ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+      WHERE tbl_usuarios.PK_id = $iduser"));
 
-        foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
-        }
+      foreach ($colegioUsers as $colegioUser) {
+           $id = $colegioUser->idColegio;
+      }
 
-        $atributos = $request->only(
-            'name',
-            'email',
-            'password',
-            'FK_RolesId'
-        );
+      User::create([
+          'name' => $request['name'],
+          'telefono' => $request['telefono'],
+          'documento' => $request['documento_docente'],
+          'direccion' => $request['direccion'],
+          'email' => $request['email'],
+          'password' => bcrypt($request['password']),
+          'FK_RolesId' => 4,
+          'FK_ColegioId' => $id
+      ]);
 
+      $allUser = User::all();
+      $idUserTeacher = $allUser->last();
 
-        User::create([
-            'FK_ColegioId' => $id
-        ]);
+      Docente::create([
+          'profesion' => $request['profesion'],
+          'perfil_profesional' => $request['perfil_profesional'],
+          'FK_usuario' => $idUserTeacher->PK_id,
+      ]);
 
-        $user = new User($atributos);
-        $user->password = bcrypt($user->password);
+      $allTeachers = Docente::all();
+      $idTeacher = $allTeachers->last();
 
-        $user->save();
-        $user->notify(new UsuarioCreado($request->password));
-        return redirect()->route('usuariosC.index')->with('success','Usuario Creado Correctamente');
-        return $user;
+      GrupoMaterias::create([
+          'FK_materia' => $request['FK_materia'],
+          'FK_docente' => $idTeacher->PK_id,
+          'FK_GrupoId' => $request['FK_grupo'],
+      ]);
+      return redirect()->route('adminDocente.index')->with('success','Docente Creado Correctamente');
     }
 
     /**

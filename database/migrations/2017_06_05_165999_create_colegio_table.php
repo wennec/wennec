@@ -13,7 +13,7 @@ class CreateColegioTable extends Migration
      */
     public function up()
     {
-        Schema::create('TBL_Colegios', function (Blueprint $table){
+        Schema::create('tbl_colegios', function (Blueprint $table){
             $table->increments('id');
             $table->string('nombre')->unique();
             $table->string('descripcion')->nullable();
@@ -22,7 +22,7 @@ class CreateColegioTable extends Migration
             $table->integer('FK_PlanesId')->unsigned()->nullable();
 
             $table->foreign('FK_PlanesId')->references('id')
-            ->on('TBL_Planes')->onUpdate('cascade');
+            ->on('tbl_planes')->onUpdate('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateColegioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TBL_Colegios');
+        Schema::dropIfExists('tbl_colegios');
     }
 }

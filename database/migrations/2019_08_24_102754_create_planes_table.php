@@ -8,7 +8,7 @@ class CreatePlanesTable extends Migration
 {
     public function up()
     {
-        Schema::create('TBL_Planes', function (Blueprint $table){
+        Schema::create('tbl_planes', function (Blueprint $table){
             $table->increments('id');
             $table->string('nombre')->unique();
             $table->timestamps();
@@ -22,6 +22,6 @@ class CreatePlanesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TBL_Planes');
+        Schema::dropIfExists('tbl_planes');
     }
 }
