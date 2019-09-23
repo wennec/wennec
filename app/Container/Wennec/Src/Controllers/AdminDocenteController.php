@@ -91,6 +91,7 @@ class AdminDocenteController extends Controller
       User::create([
           'name' => $request['name'],
           'telefono' => $request['telefono'],
+          'documento' => $request['documento_docente'],
           'direccion' => $request['direccion'],
           'email' => $request['email'],
           'password' => bcrypt($request['password']),
@@ -102,8 +103,8 @@ class AdminDocenteController extends Controller
       $idUserTeacher = $allUser->last();
 
       Docente::create([
-          'profesion' => $request['documento_estudiante'],
-          'perfil_profesional' => $request['tipo_documento'],
+          'profesion' => $request['profesion'],
+          'perfil_profesional' => $request['perfil_profesional'],
           'FK_usuario' => $idUserTeacher->PK_id,
       ]);
 
@@ -111,7 +112,7 @@ class AdminDocenteController extends Controller
       $idTeacher = $allTeachers->last();
 
       GrupoMaterias::create([
-          'FK_materia' => $idStudent->PK_id,
+          'FK_materia' => $request['FK_materia'],
           'FK_docente' => $idTeacher->PK_id,
           'FK_GrupoId' => $request['FK_grupo'],
       ]);

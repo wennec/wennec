@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                           <div class="form-group form-md-line-input">
-                                                  {!!Form::text('foto',null,['class'=>'form-control','placeholder'=>'Foto','required'])!!}
+                                                  {!!Form::file('foto',null,['class'=>'form-control','placeholder'=>'Foto'])!!}
                                           </div>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                           <div class="col-xs-6 col-sm-6 col-md-6">
                                               <div class="form-group form-md-line-input">
                                                   <label>Materia</label>
-                                                      <select class="form-control" name="FK_grupo" id="" required="">
+                                                      <select class="form-control" name="FK_materia" id="" required="">
                                                           @foreach($materias as $materia)
                                                               <option value="{{$materia->PK_id}}">{{$materia->nombre_materia}}</option>
                                                           @endforeach
