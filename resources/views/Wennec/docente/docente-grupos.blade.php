@@ -42,7 +42,7 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('calificacionDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-md btn-primary fa fa-plus'])}}</td>
+                                            <td>{{link_to_route('calificacionDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody> 
