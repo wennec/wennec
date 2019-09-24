@@ -12,6 +12,8 @@ use App\Container\Wennec\Src\Notifications\UsuarioCreado;
 use Illuminate\Support\Facades\DB;
 use App\Container\Wennec\Src\Grupos;
 use App\Container\Wennec\Src\Materias;
+use App\Container\Wennec\Src\Docente;
+use App\Container\Wennec\Src\GrupoMaterias;
 
 
 class AdminDocenteController extends Controller

@@ -11,7 +11,7 @@
  Target Server Version : 100136
  File Encoding         : 65001
 
- Date: 23/09/2019 00:36:02
+ Date: 23/09/2019 14:43:52
 */
 
 SET NAMES utf8mb4;
@@ -319,17 +319,20 @@ CREATE TABLE `tbl_docente`  (
   `profesion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `perfil_profesional` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `FK_usuario` int(11) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   INDEX `fk_TBL_Docente_Usuario`(`FK_usuario`) USING BTREE,
-  CONSTRAINT `fk_TBL_Docente_Usuario` FOREIGN KEY (`FK_usuario`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  CONSTRAINT `fk_TBL_Docente_Usuario` FOREIGN KEY (`FK_usuario`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_docente
 -- ----------------------------
-INSERT INTO `tbl_docente` VALUES (1, 'Lic. Sociales', 'Docente Universitario', 5);
-INSERT INTO `tbl_docente` VALUES (2, 'Lic. Matematicas', 'Licensiado', 9);
-INSERT INTO `tbl_docente` VALUES (3, NULL, NULL, 15);
+INSERT INTO `tbl_docente` VALUES (1, 'Lic. Sociales', 'Docente Universitario', 5, NULL, NULL);
+INSERT INTO `tbl_docente` VALUES (2, 'Lic. Matematicas', 'Licensiado', 9, NULL, NULL);
+INSERT INTO `tbl_docente` VALUES (3, NULL, NULL, 15, NULL, NULL);
+INSERT INTO `tbl_docente` VALUES (5, 'Matematico', 'Licenciatura', 36, '2019-09-23 14:35:31', '2019-09-23 14:35:31');
 
 -- ----------------------------
 -- Table structure for tbl_eleccion
@@ -419,7 +422,7 @@ CREATE TABLE `tbl_estudiante`  (
   INDEX `fk_TBL_Estudiante_Usuario`(`FK_usuarioId`) USING BTREE,
   INDEX `PK_id`(`PK_id`) USING BTREE,
   CONSTRAINT `fk_TBL_Estudiante_Usuario` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_estudiante
@@ -428,6 +431,7 @@ INSERT INTO `tbl_estudiante` VALUES (1, '1070976401', 'ti', 'masculino', 'marzo1
 INSERT INTO `tbl_estudiante` VALUES (2, '123545689', 'cc', 'masculino', NULL, NULL, NULL, NULL, NULL, NULL, 13, NULL, NULL);
 INSERT INTO `tbl_estudiante` VALUES (3, '1234567890', 'TI', 'Masculino', '2006-03-08', 'Bogota', 'Diana', 'castillo', 'John', 'moreno', 27, '2019-09-23 00:15:01', '2019-09-23 00:15:01');
 INSERT INTO `tbl_estudiante` VALUES (4, '3456789012', 'TI', 'Masculino', '2005-04-07', 'Bogota', 'Andrea', 'Camargo', 'Leonardo', 'Torrrez', 28, '2019-09-23 00:33:35', '2019-09-23 00:33:35');
+INSERT INTO `tbl_estudiante` VALUES (5, '109876543', 'TI', 'Femenino', '2005-04-09', 'Bogota', 'Andrea', 'Mesa', 'John', 'Uribe', 29, '2019-09-23 09:59:08', '2019-09-23 09:59:08');
 
 -- ----------------------------
 -- Table structure for tbl_estudiantematerias
@@ -562,7 +566,7 @@ CREATE TABLE `tbl_grupoestudiantes`  (
   INDEX `fk_TBL_GrupoEstudiantes_Grupo`(`FK_grupo`) USING BTREE,
   CONSTRAINT `fk_TBL_GrupoEstudiantes_Estudiante` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_TBL_GrupoEstudiantes_Grupo` FOREIGN KEY (`FK_grupo`) REFERENCES `tbl_grupos` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_grupoestudiantes
@@ -570,6 +574,7 @@ CREATE TABLE `tbl_grupoestudiantes`  (
 INSERT INTO `tbl_grupoestudiantes` VALUES (1, 1, 2, NULL, NULL);
 INSERT INTO `tbl_grupoestudiantes` VALUES (3, 2, 1, NULL, NULL);
 INSERT INTO `tbl_grupoestudiantes` VALUES (4, 4, 2, '2019-09-23 00:33:35', '2019-09-23 00:33:35');
+INSERT INTO `tbl_grupoestudiantes` VALUES (5, 5, 1, '2019-09-23 09:59:08', '2019-09-23 09:59:08');
 
 -- ----------------------------
 -- Table structure for tbl_grupomaterias
@@ -586,10 +591,10 @@ CREATE TABLE `tbl_grupomaterias`  (
   INDEX `fk_TBL_GrupoMaterias_Materia`(`FK_materia`) USING BTREE,
   INDEX `fk_TBL_GrupoMaterias_Docente`(`FK_docente`) USING BTREE,
   INDEX `FK_GrupoId`(`FK_GrupoId`) USING BTREE,
-  CONSTRAINT `fk_TBL_GrupoMaterias_Docente` FOREIGN KEY (`FK_docente`) REFERENCES `tbl_docente` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_TBL_GrupoMaterias_Materia` FOREIGN KEY (`FK_materia`) REFERENCES `tbl_materias` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tbl_grupomaterias_ibfk_1` FOREIGN KEY (`FK_GrupoId`) REFERENCES `tbl_grupos` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  CONSTRAINT `fk_TBL_GrupoMaterias_Docente` FOREIGN KEY (`FK_docente`) REFERENCES `tbl_docente` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_TBL_GrupoMaterias_Materia` FOREIGN KEY (`FK_materia`) REFERENCES `tbl_materias` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_grupomaterias_ibfk_1` FOREIGN KEY (`FK_GrupoId`) REFERENCES `tbl_grupos` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_grupomaterias
@@ -598,6 +603,7 @@ INSERT INTO `tbl_grupomaterias` VALUES (1, 4, 1, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (2, 1, 2, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (3, 4, 3, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (4, NULL, 3, NULL, '2019-09-05 19:26:29', '2019-09-05 19:26:29');
+INSERT INTO `tbl_grupomaterias` VALUES (6, 1, 5, 1, '2019-09-23 14:35:31', '2019-09-23 14:35:31');
 
 -- ----------------------------
 -- Table structure for tbl_grupos
@@ -794,13 +800,13 @@ CREATE TABLE `tbl_usuarios`  (
   INDEX `PK_id`(`PK_id`) USING BTREE,
   CONSTRAINT `tbl_usuarios_fk_colegioid_foreign` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `tbl_usuarios_fk_rolesid_foreign` FOREIGN KEY (`FK_RolesId`) REFERENCES `tbl_roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_usuarios
 -- ----------------------------
 INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'ivSC5YChP38DfYWR89wiKLbdttAr5ToCQVEGnGUD09H81BpBrjgU04fL5qhG', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1569198005.JPG', 2, 2, 'Mb6wV5ENID6NiP5RJJHOBNUH14nmsW5fxOAwlkxkOgyB5iPDLwHTr8TDptxz', NULL, '2019-09-22 19:20:05');
+INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1569198005.JPG', 2, 2, '9WzWAXt8NLdCRpXdMec2nhayWLEA45zvj4570T1M09anmI6Ad7oAC1jJQMH1', NULL, '2019-09-22 19:20:05');
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'dz7sE6a10WuzLYxortyiIRbYj3eQbVHHQX3MIbGHKH4e9szZ8IKqhXNItEjv', NULL, '2019-09-20 12:58:26');
 INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'ZeH2aUI94KJ2f7tACKgR7lYMU6LLxvSHTY2p9hIqa2oNpmdm5mV5tjCprzvc', NULL, NULL);
@@ -827,6 +833,11 @@ INSERT INTO `tbl_usuarios` VALUES (25, 'Sara Uribe', '3109874563', NULL, 'faca',
 INSERT INTO `tbl_usuarios` VALUES (26, 'Danilo Castillo', '3109874563', NULL, 'faca', 'daniloc@mail.com', '$2y$10$yFr7ghUzNX6gnH05lVOzYu/4TNIGhXU9bDYRd6Vk5YrBEg2y..Dyu', NULL, 3, 2, NULL, '2019-09-23 00:11:31', '2019-09-23 00:11:31');
 INSERT INTO `tbl_usuarios` VALUES (27, 'Danilo Castillo', '3109874563', NULL, 'faca', 'danilob@mail.com', '$2y$10$.bDT/TzW9EvJDiYxS0RYmul8UNBPYc3pXVkCQ0nNCjuwgh95V4aey', NULL, 3, 2, NULL, '2019-09-23 00:15:00', '2019-09-23 00:15:00');
 INSERT INTO `tbl_usuarios` VALUES (28, 'manuel torres', '310234567', NULL, 'faca', 'manuelt@mail.com', '$2y$10$DqqiDFsYD3b7vzKTAkur0evrcsDJw/ti.BoXsV3WyZeOhI6pvIE0G', NULL, 3, 2, NULL, '2019-09-23 00:33:34', '2019-09-23 00:33:34');
+INSERT INTO `tbl_usuarios` VALUES (29, 'Carolina Romero', '320876548', NULL, 'faca', 'caror@mail.com', '$2y$10$JWAFgJZdXuSlW0d667HgxuJDNZ/hzbBTSpS9WHquSFUP7meASO8Ae', NULL, 3, 2, NULL, '2019-09-23 09:59:07', '2019-09-23 09:59:07');
+INSERT INTO `tbl_usuarios` VALUES (30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, '2019-09-23 09:59:45', '2019-09-23 09:59:45');
+INSERT INTO `tbl_usuarios` VALUES (31, 'Efrain Andres', NULL, NULL, NULL, 'asdasd@mai.com', '$2y$10$O7PGEuK6.EOuT3syAJS.aOU8DPFe8SiuYo6UkbcJjPx/cuxaYhSLa', NULL, NULL, NULL, NULL, '2019-09-23 09:59:45', '2019-09-23 09:59:45');
+INSERT INTO `tbl_usuarios` VALUES (33, 'Danilo Castillo', '310123456', '2345678901', 'faca', 'dacaser@mail.com', '$2y$10$64UjIShrTcUzTsiRVfeG3uChAkGyOu2KS2qNAyziDvHJXfb7kIlVq', NULL, 4, 2, NULL, '2019-09-23 14:28:05', '2019-09-23 14:28:05');
+INSERT INTO `tbl_usuarios` VALUES (36, 'Hernan Hernandez', '1234567890', '19876567438', 'faca', 'hdez@mail.com', '$2y$10$.s9sgb2.BRPrvhb4xOQWLupCsjvq7qFHC2egL1HzRJ0I4TQWPCNs6', NULL, 4, 2, NULL, '2019-09-23 14:35:30', '2019-09-23 14:35:30');
 
 -- ----------------------------
 -- Table structure for tbl_votoestudiante
