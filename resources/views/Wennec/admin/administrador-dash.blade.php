@@ -21,6 +21,13 @@
     ])
     @endcomponent
 
+    @component('components.nav-link', [
+        'icon' => 'fa fa-user-plus',
+        'title' => 'Acudiente',
+        'link' => route('acudienteEstudiante.index')
+    ])
+    @endcomponent
+
 @endcomponent
 
 @component('components.nav-link', [
