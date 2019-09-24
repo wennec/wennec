@@ -20,6 +20,7 @@ Route::resource('eleccionEscolar', 'EleccionEscolarController');
 Route::resource('eleccionEstudiante', 'EleccionEstudianteController');
 Route::resource('acudienteEstudiante', 'AcudienteEstudianteController');
 
+Route::resource('pagosAcudiente', 'PagosAcudienteController');
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
 Route::resource('asistenciaEstudiante', 'AsistenciaStudentController');

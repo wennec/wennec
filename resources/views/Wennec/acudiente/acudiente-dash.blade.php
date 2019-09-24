@@ -16,3 +16,9 @@
     'link' => route('noticiasA.index')
 ])
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-money',
+    'title' => 'Pagos',
+    'link' => route('pagosAcudiente.index')
+])
+@endcomponent
