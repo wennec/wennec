@@ -14,6 +14,7 @@ use App\Container\Wennec\Src\Grupos;
 use App\Container\Wennec\Src\Materias;
 use App\Container\Wennec\Src\Docente;
 use App\Container\Wennec\Src\GrupoMaterias;
+use App\Container\Wennec\Src\Acudiente;
 
 
 class AcudienteEstudianteController extends Controller
