@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Container\Wennec\Src\Requests\EventoStoreRequest;
 use App\Container\Wennec\Src\Eventos;
 use App\Container\Wennec\Src\CalificacionEstudiante;
-use App\Container\Wennec\Src\EventosGenerales;
+use App\Container\Wennec\Src\Periodo;
 use Illuminate\Support\Facades\DB;
 
 class CalificacionDocenteController extends Controller
@@ -42,7 +42,9 @@ class CalificacionDocenteController extends Controller
         WHERE
         tbl_docente.PK_id = 1 AND tbl_colegios.id = 2"));
 
-        return view('Wennec.docente.docente-grupos',compact('grupos'));
+        $periodos = Periodo::all();
+
+        return view('Wennec.docente.docente-grupos',compact('grupos', 'periodos'));
     }
 
     /**

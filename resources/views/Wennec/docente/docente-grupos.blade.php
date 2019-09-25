@@ -42,7 +42,13 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('calificacionDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}</td>
+                                            <td>{{link_to_route('logroDocente.index', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}
+                                            <input type="hidden" name="id" id="asignatura" value="{{$grupo->PK_id}}">
+                                            <button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                <i class="fa fa-plus"></i>
+                                            
+                                                </button></td>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody> 
@@ -56,4 +62,56 @@
     </div>
         <!-- Static Table End -->
 </div>
+
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route'=>'logroDocente.store','method'=>'POST']) !!}
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-12">
+                        <div class="form-group form-md-line-input">
+                            {!!Form::text('logro',null,['class'=>'form-control','placeholder'=>'Logro','required'])!!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-12">
+                        <div class="form-group form-md-line-input">
+                            {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required'])!!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-12">
+                        <div class="form-group form-md-line-input">
+                            <label>Periodo</label>
+                            <select class="form-control" name="FK_Periodo" id="" required="">
+                                @foreach($periodos as $periodo)
+                                <option value="{{$periodo->PK_id}}">{{$periodo->periodo}}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="FK_GrupoMaterias" id="asignatura" value="{{$grupo->PK_id}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(e) {
+        $('#modalCreate').on('show.bs.modal', function(e) {
+            var id = $(e.relatedTarget).data().id;
+            $(e.currentTarget).find('#asignatura').val(id);
+        });
+    });
+</script>
 @endsection
