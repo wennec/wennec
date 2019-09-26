@@ -121,8 +121,7 @@ class LogroController extends Controller
         tbl_materias.nombre_materia,
         tbl_grupos.grupo,
         tbl_logro.nombreLogro,
-        tbl_usuarios.`name`,
-        tbl_logro.PK_id
+        tbl_usuarios.`name`
         FROM
         tbl_logro
         JOIN tbl_periodo

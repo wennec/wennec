@@ -34,22 +34,26 @@
                                     <thead>
                                         <th class="text-center">Nombre Estudiante</th>
                                         <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Registrar Nota</th>
+                                        <th class="text-center">Registrar</th>
+                                        <th class="text-center">Editar</th>
+
                                     </thead>
 
                                     <tbody>
-                                        @foreach($calificacion as $calificaciones)
+                                        @foreach($estudiantes_grupo as $estudiante_grupo)
                                         <tr  class="text-center">
-                                            <td>{{$calificaciones->name}}</td>
-                                            <td>{{$calificaciones->calificacion}}</td>
-                                            <td style="display: none"><input type="hidden" name="id" value="{{$calificaciones->PK_id}}"></td>
-                                            <td class="text-center"><button type="button" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreate">
-                                                <i class="fa fa-plus"></i>
-                                            
+                                            <td>{{$estudiante_grupo->name}}</td>
+                                            <td><label for="">calificacion</label></td>
+                                            <td><button type="button" id="mymodal" class="btn btn-success btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                <i class="fa fa-check"></i>
+
                                                 </button></td>
-                                            </tr>
+                                            <td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                <i class="fa fa-pencil"></i>
+
+                                                </button></td>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -62,40 +66,48 @@
 </div>
 
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
-                            </div>
-                            <div class="modal-body">
-                            {!! Form::open(['route'=>'calificacionDocente.store','method'=>'POST']) !!}
-                                <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-12">
-                                            <div class="form-group form-md-line-input">                                 
-                                                {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
-                                                <input type="hidden" name="id" id="asignatura" value="{{$calificaciones->PK_id}}">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    
-                                    </div>                        
-                                {!! Form::close() !!}
-                            </div>
-                            </div>
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route'=>'logroDocente.store','method'=>'POST']) !!}
+                <div class="row">
+                  <div class="col-xs-4 col-sm-4 col-md-4">
+                      <div class="form-group form-md-line-input">
+                          <label for="">materia</label>
+                      </div>
+                      <div class="form-group form-md-line-input">
+                          <label for="">logro</label>
+                      </div>
+                  </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group form-md-line-input">
+                            {!!Form::number('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
                         </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
 
-                        <script>
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
 $(document).ready(function (e) {
-  $('#modalCreate').on('show.bs.modal', function(e) {    
-     var id = $(e.relatedTarget).data().id;
-      $(e.currentTarget).find('#asignatura').val(id);
+  $('#modalCreate').on('show.bs.modal', function(e) {
+    var id = $(e.relatedTarget).data().id;
+    $(e.currentTarget).find('#asignatura').val(id);
   });
 });
 </script>
 @endsection
-
