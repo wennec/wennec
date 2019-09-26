@@ -36,6 +36,9 @@ Route::resource('reportes', 'ReportesController');
 Route::name('print')->get('/reportescertificado', 'ReportesController@reporteCertificadoLaboral');
 Route::name('print')->get('/reporteshorario', 'ReportesController@reporteHorario');
 
+//Logro
+Route::resource('logroDocente', 'LogroController');
+
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
     Route::post('/', 'PerfilController@update')->name('perfil.update');
