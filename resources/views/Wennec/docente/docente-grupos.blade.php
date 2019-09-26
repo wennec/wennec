@@ -34,6 +34,7 @@
                                     <thead>
                                         <th class="text-center">Grupo</th>
                                         <th class="text-center">Materia</th>
+                                        <th class="text-center">Logros</th>
                                         <th class="text-center">Agregar</th>
                                     </thead>
 
@@ -42,16 +43,18 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('logroDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}
-                                            <input type="hidden" name="id" id="asignatura" value="{{$grupo->PK_id}}">
-                                            <button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
-                                                <i class="fa fa-plus"></i>
-                                            
-                                                </button></td>
+                                            <td>{{link_to_route('logroDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-success fa fa-eye'])}}
+                                            </td>
+                                            <td>
+                                              <input type="hidden" name="id" id="asignatura" value="{{$grupo->PK_id}}">
+                                              <button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                  <i class="fa fa-plus"></i>
+
+                                                  </button>
                                             </td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -68,7 +71,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
+                <h4 class="modal-title" id="myModalLabel">Registrar Logro</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route'=>'logroDocente.store','method'=>'POST']) !!}

@@ -37,7 +37,10 @@ Route::name('print')->get('/reportescertificado', 'ReportesController@reporteCer
 Route::name('print')->get('/reporteshorario', 'ReportesController@reporteHorario');
 
 //Logro
-Route::resource('logroDocente', 'LogroController');
+  Route::resource('logroDocente', 'LogroController');
+Route::prefix('grupoEstudiantes/{id}')->group(function (){
+    Route::get('grupoEstudiantes', 'LogroController@show_estudiantes')->name('grupoEstudiantes.show_estudiantes');
+});
 
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
