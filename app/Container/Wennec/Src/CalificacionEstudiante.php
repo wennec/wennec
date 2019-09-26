@@ -8,5 +8,5 @@ class CalificacionEstudiante extends Model
 {
     protected $table = "tbl_calificacionestudiante";
     protected $primarykey = "PK_id";
-    protected $fillable = ['calificacion', 'periodo', 'FK_estudiante_materias'];
+    protected $fillable = ['calificacion', 'FK_Logro', 'FK_Estudiante'];
 }
