@@ -42,7 +42,7 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('logroDocente.index', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}
+                                            <td>{{link_to_route('logroDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-primary fa fa-plus'])}}
                                             <input type="hidden" name="id" id="asignatura" value="{{$grupo->PK_id}}">
                                             <button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
                                                 <i class="fa fa-plus"></i>

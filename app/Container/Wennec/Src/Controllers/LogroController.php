@@ -64,7 +64,7 @@ class LogroController extends Controller
             'FK_GrupoMateria' => $grupoMateria,
         ]);
         $this->index($grupoMateria);
-        return redirect('/logroDocente?' . $request['FK_GrupoMaterias'])->with('success','Logro Creado Correctamente');
+        return redirect('/logroDocente/' . $request['FK_GrupoMaterias'])->with('success','Logro Creado Correctamente');
     }
 
     /**
@@ -75,7 +75,22 @@ class LogroController extends Controller
      */
     public function show($id)
     {
-
+        $logros = 
+        DB::select(DB::raw("SELECT
+        tbl_grupos.grupo,
+        tbl_materias.nombre_materia,
+        tbl_logro.nombreLogro,
+        tbl_logro.descripcion
+        FROM
+        tbl_logro
+        JOIN tbl_grupomaterias
+        ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id 
+        JOIN tbl_grupos
+        ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id 
+        JOIN tbl_materias
+        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+        WHERE tbl_logro.FK_GrupoMateria = $id"));
+        return view('Wennec.docente.docente-logros', compact('logros'));
     }
 
     /**
