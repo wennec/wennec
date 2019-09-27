@@ -29,7 +29,7 @@ class CalificacionController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -57,7 +57,7 @@ class CalificacionController extends Controller
      */
     public function show($id)
     {
-        
+
     }
     /**
      * Show the form for editing the specified resource.
@@ -67,7 +67,10 @@ class CalificacionController extends Controller
      */
     public function edit($id)
     {
-       
+      $calificacionEstudiante = CalificacionEstudiante::findOrFail($id);
+      return view('Wennec.docente.docente-editarcalificacion', [
+          'calificacionesEstudiante' => $calificacionEstudiante,
+      ]);
     }
 
     /**
@@ -82,7 +85,7 @@ class CalificacionController extends Controller
         $calificacionEstudiante = CalificacionEstudiante::find($id);
         $calificacionEstudiante->fill($request->all());
         $calificacionEstudiante->save();
-        return redirect('/')->with('success','Nota Modificada Correctamente');
+        return redirect('/grupoEstudiantes/' .$request['FK_Logro']. '/grupoEstudiantes')->with('success','Nota Modificada Correctamente');
     }
 
     /**

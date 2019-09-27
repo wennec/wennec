@@ -81,7 +81,7 @@
                                           <td>{{$testTeacher->fecha_fin}}</td>
                                           <td>
                                           {{link_to_route('fechaevaluaciondocenteA.edit', $title = '', $parameter = $testTeacher->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}
-                                          </button></td>
+                                          </td>
                                       </tr>
                                       @endforeach
 

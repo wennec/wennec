@@ -58,14 +58,10 @@
                                             if (!$exists) {
                                                 echo '<td><button type="button" id="mymodal" class="btn btn-success btn-md" data-logro-id="' . $estudiante_grupo->PK_id . '" data-estudiante-id="' . $estudiante_grupo->idEstudiante . '" data-toggle="modal" data-target="#modalCreate">
                                                 <i class="fa fa-check"></i>
-
                                             </button></td>';
-                                            } else {
-                                                echo '<td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalEdit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button></td>';
-                                            }
+                                          }
                                             ?>
+                                            <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $estudiante_grupo->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -79,6 +75,7 @@
     </div>
     <!-- Static Table End -->
 </div>
+
 
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
@@ -117,40 +114,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
-            </div>
-            <div class="modal-body">
-                {!!Form::model($calificacionEstudiante, ['route' => ['logroDocente.update',$calificacionEstudiante], 'method' => 'POST', 'enctype'=>'multipart/form-data'])!!}
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group form-md-line-input">
-                            <label for="">materia</label>
-                        </div>
-                        <div class="form-group form-md-line-input">
-                            <label for="">logro</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group form-md-line-input">
-                            {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Editar Calificacion</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    </div>
-
-                </div>
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
