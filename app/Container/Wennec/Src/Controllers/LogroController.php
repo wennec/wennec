@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Container\Wennec\Src\Requests\EventoStoreRequest;
 use App\Container\Wennec\Src\Eventos;
-use App\Container\Wennec\Src\Periodo;
+use App\Container\Wennec\Src\CalificacionEstudiante;
 use App\Container\Wennec\Src\Logro;
 use App\Container\Wennec\Src\Requests\RequestOnly;
 use Illuminate\Support\Facades\DB;
@@ -145,7 +145,9 @@ class LogroController extends Controller
         WHERE
         tbl_logro.PK_id = $id  AND tbl_colegios.id = $idColegio"));
 
-        return view('Wennec.docente.docente-calificacion', compact('estudiantes_grupo'));
+        $calificacionEstudiante = CalificacionEstudiante::find($id);
+
+        return view('Wennec.docente.docente-calificacion', compact('estudiantes_grupo', 'calificacionEstudiante'));
     }
 
     /**
@@ -168,7 +170,10 @@ class LogroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $calificacionEstudiante = CalificacionEstudiante::find($id);
+        $calificacionEstudiante->fill($request->all());
+        $calificacionEstudiante->save();
+        return redirect('/logroDocente/' . $request['FK_GrupoMaterias'])->with('success','Nota Modificada Correctamente');
     }
 
     /**

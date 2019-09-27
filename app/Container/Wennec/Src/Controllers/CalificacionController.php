@@ -67,7 +67,7 @@ class CalificacionController extends Controller
      */
     public function edit($id)
     {
-
+       
     }
 
     /**
@@ -77,12 +77,12 @@ class CalificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $calificacionEstudiante = CalificacionEstudiante::find($id);
         $calificacionEstudiante->fill($request->all());
         $calificacionEstudiante->save();
-        return redirect('/fechaevaluaciondocenteA')->with('success','Nota Modificada Correctamente');
+        return redirect('/')->with('success','Nota Modificada Correctamente');
     }
 
     /**
