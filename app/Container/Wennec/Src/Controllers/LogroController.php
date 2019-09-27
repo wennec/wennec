@@ -19,6 +19,24 @@ class LogroController extends Controller
   */
   public function index()
   {
+    $iduser = auth()->user()->PK_id ;
+
+    $idGrupoMaterias =
+    DB::select(DB::raw("SELECT
+    tbl_grupomaterias.PK_id
+    FROM
+    tbl_docente
+    JOIN tbl_usuarios
+    ON tbl_docente.FK_usuario = tbl_usuarios.PK_id 
+    JOIN tbl_grupomaterias
+    ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+    WHERE tbl_docente.FK_usuario = $iduser"));
+
+    foreach($idGrupoMaterias as $idGrupoMateria){
+        $id_grupoMateria = $idGrupoMateria->PK_id;
+    }
+
+
     $logros =
     DB::select(DB::raw("SELECT
       tbl_grupos.grupo,
@@ -33,7 +51,7 @@ class LogroController extends Controller
       ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
       JOIN tbl_materias
       ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
-      WHERE tbl_logro.FK_GrupoMateria = 2"));
+      WHERE tbl_logro.FK_GrupoMateria = $id_grupoMateria"));
       return view('Wennec.docente.docente-logros', compact('logros'));
     }
 
