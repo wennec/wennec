@@ -116,37 +116,33 @@ class LogroController extends Controller
           }
           $estudiantes_grupo =
           DB::select(DB::raw("SELECT
-            tbl_materias.nombre_materia,
-            tbl_grupos.grupo,
-            tbl_logro.nombreLogro,
-            tbl_usuarios.`name`,
-            tbl_estudiante.PK_id AS idEstudiante,
-            tbl_logro.PK_id,
-            tbl_calificacionestudiante.id
-            FROM
-            tbl_logro
-            JOIN tbl_periodo
-            ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
-            JOIN tbl_grupomaterias
-            ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
-            JOIN tbl_materias
-            ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
-            JOIN tbl_docente
-            ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
-            JOIN tbl_grupos
-            ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
-            JOIN tbl_grupoestudiantes
-            ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
-            JOIN tbl_estudiante
-            ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
-            JOIN tbl_usuarios
-            ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
-            JOIN tbl_colegios
-            ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-            JOIN tbl_calificacionestudiante
-            ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
-            AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
-            WHERE
+          tbl_materias.nombre_materia,
+          tbl_grupos.grupo,
+          tbl_logro.nombreLogro,
+          tbl_usuarios.`name`,
+          tbl_estudiante.PK_id AS idEstudiante,
+          tbl_logro.PK_id
+          FROM
+          tbl_logro
+          JOIN tbl_periodo
+          ON tbl_logro.FK_Periodo = tbl_periodo.PK_id 
+          JOIN tbl_grupomaterias
+          ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id 
+          JOIN tbl_materias
+          ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id 
+          JOIN tbl_docente
+          ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
+          JOIN tbl_grupos
+          ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id 
+          JOIN tbl_grupoestudiantes
+          ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id 
+          JOIN tbl_estudiante
+          ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id 
+          JOIN tbl_usuarios
+          ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
+          JOIN tbl_colegios
+          ON tbl_usuarios.FK_ColegioId = tbl_colegios.id 
+          WHERE
             tbl_logro.PK_id = $id  AND tbl_colegios.id = $idColegio"));
             return view('Wennec.docente.docente-calificacion', compact('estudiantes_grupo'));
           }

@@ -46,7 +46,7 @@
                                             $id_estudiante = (int) $estudiante_grupo->idEstudiante;
                                             $id_logro = (int) $estudiante_grupo->PK_id;
 
-                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante =' . $id_estudiante . ' AND tbl_calificacionestudiante.FK_Logro =' . $id_logro . '');
+                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion, tbl_calificacionestudiante.id FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante =' . $id_estudiante . ' AND tbl_calificacionestudiante.FK_Logro =' . $id_logro . '');
                                             if (!$exists) {
                                                 echo '<td><label for="">-</label></td>';
                                             } else {
@@ -61,7 +61,12 @@
                                             </button></td>';
                                           }
                                             ?>
-                                            <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $estudiante_grupo->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}</td>
+
+                                            @foreach($calificaciones as $calificacion)
+                                            <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $calificacion->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}</td>
+                                            @endforeach
+
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>
