@@ -43,33 +43,31 @@
                                             <td>{{$estudiante_grupo->name}}</td>
                                             <?php
                                             $exists = DB::table('tbl_calificacionestudiante')->where('FK_Estudiante', $estudiante_grupo->idEstudiante)->where('FK_Logro', $estudiante_grupo->PK_id)->first();
-                                            $id_estudiante = (int)$estudiante_grupo->idEstudiante;
-                                            $id_logro = (int)$estudiante_grupo->PK_id;
+                                            $id_estudiante = (int) $estudiante_grupo->idEstudiante;
+                                            $id_logro = (int) $estudiante_grupo->PK_id;
 
-                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante ='.$id_estudiante.' AND tbl_calificacionestudiante.FK_Logro ='.$id_logro.'');
+                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante =' . $id_estudiante . ' AND tbl_calificacionestudiante.FK_Logro =' . $id_logro . '');
                                             if (!$exists) {
                                                 echo '<td><label for="">-</label></td>';
                                             } else {
-                                                foreach($calificaciones as $calificacion){
-                                                    echo '<td><label for="">'.$calificacion->calificacion.'</label></td>';
+                                                foreach ($calificaciones as $calificacion) {
+                                                    echo '<td><label for="">' . $calificacion->calificacion . '</label></td>';
                                                 }
-                                                    
                                             }
 
                                             if (!$exists) {
-                                                echo '<td><button type="button" id="mymodal" class="btn btn-success btn-md" data-logro-id="'.$estudiante_grupo->PK_id.'" data-estudiante-id="'.$estudiante_grupo->idEstudiante.'" data-toggle="modal" data-target="#modalCreate">
+                                                echo '<td><button type="button" id="mymodal" class="btn btn-success btn-md" data-logro-id="' . $estudiante_grupo->PK_id . '" data-estudiante-id="' . $estudiante_grupo->idEstudiante . '" data-toggle="modal" data-target="#modalCreate">
                                                 <i class="fa fa-check"></i>
 
                                             </button></td>';
                                             } else {
-                                                echo '<td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                echo '<td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalEdit">
                                                     <i class="fa fa-pencil"></i>
                                                 </button></td>';
-                                                    
                                             }
                                             ?>
-                                            </tr>
-                                            @endforeach
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -119,15 +117,15 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Editar Calificacion</h4>
+                <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route'=>'calificacion.update','method'=>'PUT']) !!}
+                {!!Form::model($calificacionEstudiante, ['route' => ['logroDocente.update',$calificacionEstudiante], 'method' => 'POST', 'enctype'=>'multipart/form-data'])!!}
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group form-md-line-input">
@@ -141,11 +139,9 @@
                         <div class="form-group form-md-line-input">
                             {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
                         </div>
-                        <input type="hidden" name="FK_Logro" id="idLogro">
-                        <input type="hidden" name="FK_Estudiante" id="idEstudiante">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                        <button type="submit" class="btn btn-primary">Editar Calificacion</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
 
@@ -156,18 +152,19 @@
     </div>
 </div>
 
+
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function (e) {
-  $('#modalCreate').on('show.bs.modal', function(e) {
-    var logro_id = $(e.relatedTarget).data('logro-id');
-    $(e.currentTarget).find('input[name="FK_Logro"]').val(logro_id);
-    var docente = document.getElementById('idLogro').innerHTML = logro_id;
+    $(document).ready(function(e) {
+        $('#modalCreate').on('show.bs.modal', function(e) {
+            var logro_id = $(e.relatedTarget).data('logro-id');
+            $(e.currentTarget).find('input[name="FK_Logro"]').val(logro_id);
+            var docente = document.getElementById('idLogro').innerHTML = logro_id;
 
-    var estudiante = $(e.relatedTarget).data('estudiante-id');
-    $(e.currentTarget).find('input[name="FK_Estudiante"]').val(estudiante);
-    var student = document.getElementById('idEstudiante').innerHTML= estudiante;
-  });
-});
+            var estudiante = $(e.relatedTarget).data('estudiante-id');
+            $(e.currentTarget).find('input[name="FK_Estudiante"]').val(estudiante);
+            var student = document.getElementById('idEstudiante').innerHTML = estudiante;
+        });
+    });
 </script>
 @endsection

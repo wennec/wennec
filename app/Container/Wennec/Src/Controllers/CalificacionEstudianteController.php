@@ -53,6 +53,7 @@ class CalificacionEstudianteController extends Controller
         tbl_materias.nombre_materia,
         tbl_calificacion.tipo_calificacion,
         tbl_calificacionestudiante.calificacion,
+        tbl_calificacionestudiante.PK_id,
         tbl_usuarios_docente.`name` AS docente,
         tbl_grupos.ano,
         tbl_calificacionestudiante.periodo
