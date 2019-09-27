@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 26/09/2019 17:09:12
+ Date: 27/09/2019 18:21:23
 */
 
 SET NAMES utf8mb4;
@@ -213,29 +213,32 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_calificacionestudiante`;
 CREATE TABLE `tbl_calificacionestudiante` (
-  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `calificacion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '0.0',
   `FK_tipo_calificacion` int(11) DEFAULT NULL,
   `FK_Logro` int(11) DEFAULT NULL,
   `FK_Estudiante` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`PK_id`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   KEY `fk_TBL_CalificacionEstudiante_TipoCalificacion` (`FK_tipo_calificacion`) USING BTREE,
   KEY `FK_Logro` (`FK_Logro`),
   KEY `FK_Estudiante` (`FK_Estudiante`),
   CONSTRAINT `fk_TBL_CalificacionEstudiante_TipoCalificacion` FOREIGN KEY (`FK_tipo_calificacion`) REFERENCES `tbl_calificacion` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_calificacionestudiante_ibfk_1` FOREIGN KEY (`FK_Logro`) REFERENCES `tbl_logro` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_calificacionestudiante_ibfk_2` FOREIGN KEY (`FK_Estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_calificacionestudiante
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_calificacionestudiante` VALUES (26, '2.2', NULL, 1, 1, '2019-09-26 15:51:25', '2019-09-26 15:51:25');
+INSERT INTO `tbl_calificacionestudiante` VALUES (26, '0.5', NULL, 1, 1, '2019-09-27 16:41:47', '2019-09-26 15:51:25');
 INSERT INTO `tbl_calificacionestudiante` VALUES (27, '5.0', NULL, 1, 4, '2019-09-26 15:51:34', '2019-09-26 15:51:34');
 INSERT INTO `tbl_calificacionestudiante` VALUES (29, '3.5', NULL, 1, 5, '2019-09-26 16:02:20', '2019-09-26 16:02:20');
+INSERT INTO `tbl_calificacionestudiante` VALUES (31, '3.0', NULL, 1, 2, '2019-09-27 13:05:40', '2019-09-27 13:05:40');
+INSERT INTO `tbl_calificacionestudiante` VALUES (36, '3.5', NULL, 4, 1, '2019-09-27 16:51:04', '2019-09-27 16:50:50');
+INSERT INTO `tbl_calificacionestudiante` VALUES (37, '4.2', NULL, 5, 2, '2019-09-27 16:54:06', '2019-09-27 16:53:55');
 COMMIT;
 
 -- ----------------------------
@@ -649,9 +652,6 @@ CREATE TABLE `tbl_grupomaterias` (
 BEGIN;
 INSERT INTO `tbl_grupomaterias` VALUES (1, 4, 1, 2, NULL, NULL);
 INSERT INTO `tbl_grupomaterias` VALUES (2, 1, 2, 2, NULL, NULL);
-INSERT INTO `tbl_grupomaterias` VALUES (3, 4, 3, 2, NULL, NULL);
-INSERT INTO `tbl_grupomaterias` VALUES (4, NULL, 3, NULL, '2019-09-05 19:26:29', '2019-09-05 19:26:29');
-INSERT INTO `tbl_grupomaterias` VALUES (6, 1, 5, 1, '2019-09-23 14:35:31', '2019-09-23 14:35:31');
 COMMIT;
 
 -- ----------------------------
@@ -744,7 +744,7 @@ CREATE TABLE `tbl_logro` (
   KEY `FK_Periodo` (`FK_Periodo`),
   CONSTRAINT `tbl_logro_ibfk_3` FOREIGN KEY (`FK_GrupoMateria`) REFERENCES `tbl_grupomaterias` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_logro_ibfk_4` FOREIGN KEY (`FK_Periodo`) REFERENCES `tbl_periodo` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of tbl_logro
@@ -758,6 +758,12 @@ INSERT INTO `tbl_logro` VALUES (5, 'gdfgdfgd', 'hola', 1, 2, '2019-09-25 17:24:0
 INSERT INTO `tbl_logro` VALUES (6, 'gdfgdfgd', 'tytyutyu', 1, 2, '2019-09-25 17:39:51', '2019-09-25 17:39:51');
 INSERT INTO `tbl_logro` VALUES (7, 'gdfgdfgd', 'tytyutyu', 1, 2, '2019-09-25 17:40:10', '2019-09-25 17:40:10');
 INSERT INTO `tbl_logro` VALUES (8, 'gdfgdfgd', 'hola', 1, 2, '2019-09-26 08:33:20', '2019-09-26 08:33:20');
+INSERT INTO `tbl_logro` VALUES (9, NULL, NULL, NULL, NULL, '2019-09-27 13:09:50', '2019-09-27 13:09:50');
+INSERT INTO `tbl_logro` VALUES (10, NULL, NULL, NULL, NULL, '2019-09-27 13:12:49', '2019-09-27 13:12:49');
+INSERT INTO `tbl_logro` VALUES (11, NULL, NULL, NULL, NULL, '2019-09-27 14:17:13', '2019-09-27 14:17:13');
+INSERT INTO `tbl_logro` VALUES (12, NULL, NULL, NULL, NULL, '2019-09-27 14:21:14', '2019-09-27 14:21:14');
+INSERT INTO `tbl_logro` VALUES (13, NULL, NULL, NULL, NULL, '2019-09-27 14:21:56', '2019-09-27 14:21:56');
+INSERT INTO `tbl_logro` VALUES (14, NULL, NULL, NULL, NULL, '2019-09-27 14:27:13', '2019-09-27 14:27:13');
 COMMIT;
 
 -- ----------------------------
@@ -921,14 +927,14 @@ CREATE TABLE `tbl_usuarios` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', NULL, 1, NULL, 'ivSC5YChP38DfYWR89wiKLbdttAr5ToCQVEGnGUD09H81BpBrjgU04fL5qhG', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1569198005.JPG', 2, 2, 'AecuEEWuBOISiIQzTBnHUkTniw1Y2G8M8EUcp9JK3cSmnfHiQJIpRuK4XjxQ', NULL, '2019-09-22 19:20:05');
+INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1569198005.JPG', 2, 2, 'ODvIYhGiuhTKjQhY7CVheloFvsTvUnwJ34Z9Jf3l5sIjYMzBQdiHHfqYv74V', NULL, '2019-09-22 19:20:05');
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'QNvSJ4HYlW5Y27YH5QzvJtXJ05KbZeYyW7nRDB7bse5O0QKmcQSA78KcOUCu', NULL, '2019-09-20 12:58:26');
-INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'aRtSPu25R8VCGxJWieZRIpbe1ncZN1kvnrzzY0V4WKwR9bBZQGCc1HNE9QcX', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'O1bXNzZWcuNbHOOQNJ8eqRXuKK8goeoOjNRTEF6XFhNp2Kw3UXbt4FGUbCfR', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `tbl_usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
-INSERT INTO `tbl_usuarios` VALUES (9, 'Sandra Serrato', NULL, NULL, NULL, 'sandra@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, NULL, '2019-08-26 16:08:06', '2019-08-26 16:08:06');
+INSERT INTO `tbl_usuarios` VALUES (9, 'Sandra Serrato', NULL, NULL, NULL, 'sandra@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, 'dRbGemlyNKoJTah5a5ZayqBZ0JeBgPexVhHtOWFlhQlY3WMo00MyOAmqN1Oj', '2019-08-26 16:08:06', '2019-08-26 16:08:06');
 INSERT INTO `tbl_usuarios` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:17:17', '2019-08-26 16:17:17');
 INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, 'WTpY7yJGk4IXxMXhyKl7bljcXJiWlctUdMIxIYFKmWby56krylXXtye1AHU2', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
 INSERT INTO `tbl_usuarios` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:18:44', '2019-08-26 16:18:44');
