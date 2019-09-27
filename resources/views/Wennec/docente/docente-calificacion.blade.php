@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+    {{--Inicio Mensaje Confirmar--}}
+    @include('Wennec.alerts.success')
+    @include('Wennec.alerts.error')
+    @include('Wennec.alerts.errors')
+    {{--Fin Mensaje Confirmar--}}
 
     <!-- Static Table Start -->
     <div class="data-table-area mg-b-15-datatable">
@@ -29,30 +29,47 @@
                                         <option value="selected">Export Selected</option>
                                     </select>
                                 </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
                                         <th class="text-center">Nombre Estudiante</th>
                                         <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Registrar</th>
-                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Opcion</th>
 
                                     </thead>
 
                                     <tbody>
                                         @foreach($estudiantes_grupo as $estudiante_grupo)
-                                        <tr  class="text-center">
+                                        <tr class="text-center">
                                             <td>{{$estudiante_grupo->name}}</td>
-                                            <td><label for="">calificacion</label></td>
-                                            <td><button type="button" id="mymodal" class="btn btn-success btn-md" data-toggle="modal" data-target="#modalCreate">
+                                            <?php
+                                            $exists = DB::table('tbl_calificacionestudiante')->where('FK_Estudiante', $estudiante_grupo->idEstudiante)->where('FK_Logro', $estudiante_grupo->PK_id)->first();
+                                            $id_estudiante = (int)$estudiante_grupo->idEstudiante;
+                                            $id_logro = (int)$estudiante_grupo->PK_id;
+
+                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante ='.$id_estudiante.' AND tbl_calificacionestudiante.FK_Logro ='.$id_logro.'');
+                                            if (!$exists) {
+                                                echo '<td><label for="">-</label></td>';
+                                            } else {
+                                                foreach($calificaciones as $calificacion){
+                                                    echo '<td><label for="">'.$calificacion->calificacion.'</label></td>';
+                                                }
+                                                    
+                                            }
+
+                                            if (!$exists) {
+                                                echo '<td><button type="button" id="mymodal" class="btn btn-success btn-md" data-logro-id="'.$estudiante_grupo->PK_id.'" data-estudiante-id="'.$estudiante_grupo->idEstudiante.'" data-toggle="modal" data-target="#modalCreate">
                                                 <i class="fa fa-check"></i>
 
-                                                </button></td>
-                                            <td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalCreate">
-                                                <i class="fa fa-pencil"></i>
-
-                                                </button></td>
-                                        @endforeach
+                                            </button></td>';
+                                            } else {
+                                                echo '<td><button type="button" id="mymodal" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalCreate">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button></td>';
+                                                    
+                                            }
+                                            ?>
+                                            </tr>
+                                            @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -62,7 +79,7 @@
             </div>
         </div>
     </div>
-        <!-- Static Table End -->
+    <!-- Static Table End -->
 </div>
 
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -73,20 +90,22 @@
                 <h4 class="modal-title" id="myModalLabel">Registrar Calificacion</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route'=>'logroDocente.store','method'=>'POST']) !!}
+                {!! Form::open(['route'=>'calificacion.store','method'=>'POST']) !!}
                 <div class="row">
-                  <div class="col-xs-4 col-sm-4 col-md-4">
-                      <div class="form-group form-md-line-input">
-                          <label for="">materia</label>
-                      </div>
-                      <div class="form-group form-md-line-input">
-                          <label for="">logro</label>
-                      </div>
-                  </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group form-md-line-input">
-                            {!!Form::number('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
+                            <label for="">materia</label>
                         </div>
+                        <div class="form-group form-md-line-input">
+                            <label for="">logro</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group form-md-line-input">
+                            {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
+                        </div>
+                        <input type="hidden" name="FK_Logro" id="idLogro">
+                        <input type="hidden" name="FK_Estudiante" id="idEstudiante">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
@@ -100,13 +119,54 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Editar Calificacion</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route'=>'calificacion.update','method'=>'PUT']) !!}
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group form-md-line-input">
+                            <label for="">materia</label>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label for="">logro</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group form-md-line-input">
+                            {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
+                        </div>
+                        <input type="hidden" name="FK_Logro" id="idLogro">
+                        <input type="hidden" name="FK_Estudiante" id="idEstudiante">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
 
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
 
-<script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
 $(document).ready(function (e) {
   $('#modalCreate').on('show.bs.modal', function(e) {
-    var id = $(e.relatedTarget).data().id;
-    $(e.currentTarget).find('#asignatura').val(id);
+    var logro_id = $(e.relatedTarget).data('logro-id');
+    $(e.currentTarget).find('input[name="FK_Logro"]').val(logro_id);
+    var docente = document.getElementById('idLogro').innerHTML = logro_id;
+
+    var estudiante = $(e.relatedTarget).data('estudiante-id');
+    $(e.currentTarget).find('input[name="FK_Estudiante"]').val(estudiante);
+    var student = document.getElementById('idEstudiante').innerHTML= estudiante;
   });
 });
 </script>

@@ -44,8 +44,6 @@ class LogroController extends Controller
      */
     public function create()
     {
-        $eventos = Eventos::all();
-        return view('Wennec.admin.administrador-crearevento',compact('eventos'));
     }
 
     /**
@@ -122,6 +120,7 @@ class LogroController extends Controller
         tbl_grupos.grupo,
         tbl_logro.nombreLogro,
         tbl_usuarios.`name`,
+        tbl_estudiante.PK_id AS idEstudiante,
         tbl_logro.PK_id
         FROM
         tbl_logro
@@ -145,6 +144,7 @@ class LogroController extends Controller
         ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE
         tbl_logro.PK_id = $id  AND tbl_colegios.id = $idColegio"));
+
         return view('Wennec.docente.docente-calificacion', compact('estudiantes_grupo'));
     }
 
