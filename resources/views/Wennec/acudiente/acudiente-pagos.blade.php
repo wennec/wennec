@@ -12,53 +12,43 @@
                 <h1>Pagos</h1>
               </div>
             </div>
-            {!! Form::open(['route'=>'eleccionEstudiante.storeVotoEstudiante','method'=>'POST']) !!}
-            <div class="col-xs-6 col-sm-6 col-md-6">
-              <div style="text-align:center"class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group form-md-line-input">
-                  <img src="assets/img/logo/boton_efecty.png">
+            <form id="FrmPost" action="https://botonpago.efecty.com.co:20029/botonpagoefecty/efectybotonpagopost.aspx" method="post" target="ventana" onsubmit="SubmitPost();">
+              <input type="hidden" name="EFvalorTotal" id="EFvalorTotal" />
+              <input type="hidden" name="EFpin" id="EFpin" />
+              <input type="hidden" name="EFFechaVigencia" id="EFFechaVigencia" />
+              <input type="hidden" name="EFCodProyecto" id= "EFCodProyecto" /> 
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div style="text-align:center" class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group form-md-line-input">
+                    <img src="assets/img/logo/boton_efecty.png">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group form-md-line-input">
+                    <input class="form-control" placeholder="Valor" type="text" id="txtValorPost" />
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group form-md-line-input">
+                    <input class="form-control" placeholder="Pin" type="text" id="txtPinPost" />
+                  </div>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                  <div class="form-group form-md-line-input">
+                    <label for="">Fecha de expiración</label>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group form-md-line-input">
+                    <input type="date" class="form-control" id="txtFechaPost" />
+                    <input type="hidden" class="form-control" id="txtCodProyectoPost" value="111422" />
+                  </div>
+                </div>
+                <div style="text-align:center" class="col-xs-12 col-sm-12 col-md-12">
+                <input type="submit" class="btn btn-warning" value="Enviar Post" />
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group form-md-line-input">
-                  {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre completo (Como aparece en la tarjeta)','required'])!!}
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group form-md-line-input">
-                  {!!Form::text('numero',null,['class'=>'form-control','placeholder'=>'Número de la tarjeta','required'])!!}
-                </div>
-              </div>
-              <div class="col-xs-8 col-sm-8 col-md-8">
-                <div class="form-group form-md-line-input">
-                  <label for="">Fecha de expiración</label>
-                </div>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4">
-                <div class="form-group form-md-line-input">
-                  <label for="">CVC ?</label>
-                </div>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4">
-                <div class="form-group form-md-line-input">
-                  {!!Form::number('numero',null,['class'=>'form-control','placeholder'=>'MM','required'])!!}
-                </div>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4">
-                <div class="form-group form-md-line-input">
-                  {!!Form::number('numero',null,['class'=>'form-control','placeholder'=>'YY','required'])!!}
-                </div>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4">
-                <div class="form-group form-md-line-input">
-                  {!!Form::number('numero',null,['class'=>'form-control','placeholder'=>'','required'])!!}
-                </div>
-              </div>
-              <div style="text-align:center" class="col-xs-12 col-sm-12 col-md-12">
-                {!! Form::submit('CONFIRMAR PAGO ', ['class'=>'btn btn-large btn btn-warning']) !!}
-              </div>
-            </div>
-            {!! Form::close() !!}
+              </form>
           </div>
         </div>
       </div>
@@ -66,3 +56,13 @@
   </div>
 </div>
 @endsection
+
+<script language="javascript" type="text/javascript">
+  function SubmitPost() {
+    document.getElementById('EFvalorTotal').value = document.getElementById('txtValorPost').value;
+    document.getElementById('EFpin').value = document.getElementById('txtPinPost').value;
+    document.getElementById('EFFechaVigencia').value = document.getElementById('txtFechaPost').value;
+    document.getElementById('EFCodProyecto').value = document.getElementById('txtCodProyectoPost').value;
+    window.open('', 'ventana', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars = no, resizable = no, width = 700, height = 640 ')
+    }
+</script>

@@ -10,7 +10,7 @@
     <!-- Button trigger modal -->
     <button type="button" id="mymodal" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
         <i class="fa fa-plus"></i>
-                Crear Peticion
+                Crear Observacion
     </button>
 
     <!-- Modal -->
