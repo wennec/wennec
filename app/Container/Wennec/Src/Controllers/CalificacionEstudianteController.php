@@ -45,35 +45,35 @@ class CalificacionEstudianteController extends Controller
             $idEstudiante = $estudianteIds->idEstudiante;
         }
 
-        $calificaciones =
+        $materias =
         DB::select(DB::raw("SELECT
-        tbl_usuarios.`name`,
-        tbl_cursos.nombre_curso,
-        tbl_grupos.grupo,
-        tbl_materias.nombre_materia,
-        tbl_calificacion.tipo_calificacion,
-        tbl_calificacionestudiante.calificacion,
-        tbl_calificacionestudiante.PK_id,
-        tbl_usuarios_docente.`name` AS docente,
-        tbl_grupos.ano,
-        tbl_calificacionestudiante.periodo
-        FROM
-        tbl_estudiante
-        JOIN tbl_usuarios ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
-        JOIN tbl_grupoestudiantes ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
-        JOIN tbl_grupos ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
-        JOIN tbl_cursos ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id
-        JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id ,
-        tbl_calificacionestudiante
-        JOIN tbl_estudiantematerias ON tbl_calificacionestudiante.FK_estudiante_materias = tbl_estudiantematerias.PK_id
-        JOIN tbl_calificacion ON tbl_calificacionestudiante.FK_tipo_calificacion = tbl_calificacion.PK_id
-        JOIN tbl_grupomaterias ON tbl_estudiantematerias.FK_grupo_materias = tbl_grupomaterias.PK_id
-        JOIN tbl_docente ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
-        JOIN tbl_materias ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
-        JOIN tbl_usuarios AS tbl_usuarios_docente ON tbl_docente.FK_usuario = tbl_usuarios_docente.PK_id
-        WHERE tbl_estudiante.PK_id = $idEstudiante AND tbl_colegios.id = $idColegio"));
+          tbl_usuarios.`name`,
+          tbl_materias.nombre_materia,
+          tbl_materias.PK_id AS id_materia,
+          tbl_grupos.grupo,
+          tbl_grupomaterias.PK_id
+          FROM
+          tbl_grupomaterias
+          JOIN tbl_grupos
+          ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+          JOIN tbl_materias
+          ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+          JOIN tbl_docente
+          ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+          JOIN tbl_grupoestudiantes
+          ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+          JOIN tbl_estudiante
+          ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+          JOIN tbl_usuarios
+          ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+          JOIN tbl_usuarios AS tbl_usuarios_alias1
+          ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+          JOIN tbl_colegios
+          ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+          WHERE
+          tbl_estudiante.PK_id = $idEstudiante AND tbl_colegios.id = $idColegio"));
 
-        return view('Wennec.estudiante.estudiante-calificaciones',compact('calificaciones'));
+        return view('Wennec.estudiante.estudiante-calificaciones',compact('materias'));
     }
 
     /**
@@ -83,8 +83,7 @@ class CalificacionEstudianteController extends Controller
      */
     public function create()
     {
-        $eventos = Eventos::all();
-        return view('Wennec.admin.administrador-crearevento',compact('eventos'));
+
     }
 
     /**
@@ -95,29 +94,7 @@ class CalificacionEstudianteController extends Controller
      */
     public function store(EventoStoreRequest $request)
     {
-        $iduser = auth()->user()->PK_id ;
 
-        $colegioUsers =
-        DB::select(DB::raw("SELECT
-        tbl_colegios.id as idColegio
-        FROM
-        tbl_usuarios
-        JOIN tbl_colegios
-        ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_usuarios.PK_id = $iduser"));
-
-        foreach ($colegioUsers as $colegioUser) {
-             $id = $colegioUser->idColegio;
-        }
-
-        EventosGenerales::create([
-            'titulo_evento' => $request['titulo_evento'],
-            'fecha' => $request['fecha'],
-            'FK_EventosId' => $request['FK_EventosId'],
-            'FK_ColegioId' => $id
-        ]);
-
-        return redirect('/eventoA')->with('success','Evento Creado Correctamente');
     }
 
     /**
@@ -128,7 +105,286 @@ class CalificacionEstudianteController extends Controller
      */
     public function show($id)
     {
+      $iduser = auth()->user()->PK_id;
+      $estudianteId =
+      DB::select(DB::raw("SELECT
+        tbl_estudiante.PK_id as idEstudiante
+        FROM
+        tbl_estudiante
+        JOIN tbl_usuarios
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
 
+        foreach ($estudianteId as $estudianteIds){
+          $idEstudiante = $estudianteIds->idEstudiante;
+        }
+        $calificaciones_periodouno=
+        DB::select(DB::raw("SELECT
+          tbl_materias.nombre_materia,
+          tbl_logro.nombreLogro,
+          tbl_logro.descripcion,
+          tbl_periodo.periodo,
+          tbl_calificacionestudiante.calificacion
+          FROM
+          tbl_grupomaterias
+          JOIN tbl_grupos
+          ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+          JOIN tbl_materias
+          ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+          JOIN tbl_docente
+          ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+          JOIN tbl_grupoestudiantes
+          ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+          JOIN tbl_estudiante
+          ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+          JOIN tbl_usuarios
+          ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+          JOIN tbl_usuarios AS tbl_usuarios_alias1
+          ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+          JOIN tbl_colegios
+          ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+          JOIN tbl_logro
+          ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+          JOIN tbl_periodo
+          ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+          JOIN tbl_calificacionestudiante
+          ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+          AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+          WHERE
+          tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Primero'"));
+
+          $calificacionestotal_periodouno=
+          DB::select(DB::raw("SELECT
+            SUM(tbl_calificacionestudiante.calificacion)/COUNT(tbl_calificacionestudiante.calificacion) as calificacion
+            FROM
+            tbl_grupomaterias
+            JOIN tbl_grupos
+            ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+            JOIN tbl_materias
+            ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+            JOIN tbl_docente
+            ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+            JOIN tbl_grupoestudiantes
+            ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+            JOIN tbl_estudiante
+            ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+            JOIN tbl_usuarios
+            ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+            JOIN tbl_usuarios AS tbl_usuarios_alias1
+            ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+            JOIN tbl_colegios
+            ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+            JOIN tbl_logro
+            ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+            JOIN tbl_periodo
+            ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+            JOIN tbl_calificacionestudiante
+            ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+            AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+            WHERE
+            tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Primero'"));
+
+
+          $calificaciones_periododos=
+          DB::select(DB::raw("SELECT
+            tbl_materias.nombre_materia,
+            tbl_logro.nombreLogro,
+            tbl_logro.descripcion,
+            tbl_periodo.periodo,
+            tbl_calificacionestudiante.calificacion
+            FROM
+            tbl_grupomaterias
+            JOIN tbl_grupos
+            ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+            JOIN tbl_materias
+            ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+            JOIN tbl_docente
+            ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+            JOIN tbl_grupoestudiantes
+            ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+            JOIN tbl_estudiante
+            ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+            JOIN tbl_usuarios
+            ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+            JOIN tbl_usuarios AS tbl_usuarios_alias1
+            ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+            JOIN tbl_colegios
+            ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+            JOIN tbl_logro
+            ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+            JOIN tbl_periodo
+            ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+            JOIN tbl_calificacionestudiante
+            ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+            AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+            WHERE
+            tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Segundo'"));
+
+            $calificacionestotal_periododos=
+            DB::select(DB::raw("SELECT
+              SUM(tbl_calificacionestudiante.calificacion)/COUNT(tbl_calificacionestudiante.calificacion) as calificacion
+              FROM
+              tbl_grupomaterias
+              JOIN tbl_grupos
+              ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+              JOIN tbl_materias
+              ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+              JOIN tbl_docente
+              ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+              JOIN tbl_grupoestudiantes
+              ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+              JOIN tbl_estudiante
+              ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+              JOIN tbl_usuarios
+              ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+              JOIN tbl_usuarios AS tbl_usuarios_alias1
+              ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+              JOIN tbl_colegios
+              ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+              JOIN tbl_logro
+              ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+              JOIN tbl_periodo
+              ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+              JOIN tbl_calificacionestudiante
+              ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+              AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+              WHERE
+              tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Segundo'"));
+
+            $calificaciones_periodotres=
+            DB::select(DB::raw("SELECT
+              tbl_materias.nombre_materia,
+              tbl_logro.nombreLogro,
+              tbl_logro.descripcion,
+              tbl_periodo.periodo,
+              tbl_calificacionestudiante.calificacion
+              FROM
+              tbl_grupomaterias
+              JOIN tbl_grupos
+              ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+              JOIN tbl_materias
+              ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+              JOIN tbl_docente
+              ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+              JOIN tbl_grupoestudiantes
+              ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+              JOIN tbl_estudiante
+              ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+              JOIN tbl_usuarios
+              ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+              JOIN tbl_usuarios AS tbl_usuarios_alias1
+              ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+              JOIN tbl_colegios
+              ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+              JOIN tbl_logro
+              ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+              JOIN tbl_periodo
+              ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+              JOIN tbl_calificacionestudiante
+              ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+              AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+              WHERE
+              tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Tercero'"));
+
+              $calificacionestotal_periodotres=
+              DB::select(DB::raw("SELECT
+                SUM(tbl_calificacionestudiante.calificacion)/COUNT(tbl_calificacionestudiante.calificacion) as calificacion
+                FROM
+                tbl_grupomaterias
+                JOIN tbl_grupos
+                ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+                JOIN tbl_materias
+                ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+                JOIN tbl_docente
+                ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+                JOIN tbl_grupoestudiantes
+                ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+                JOIN tbl_estudiante
+                ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+                JOIN tbl_usuarios
+                ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+                JOIN tbl_usuarios AS tbl_usuarios_alias1
+                ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+                JOIN tbl_colegios
+                ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+                JOIN tbl_logro
+                ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+                JOIN tbl_periodo
+                ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+                JOIN tbl_calificacionestudiante
+                ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+                AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+                WHERE
+                tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Tercero'"));
+
+              $calificaciones_periodocuatro=
+              DB::select(DB::raw("SELECT
+                tbl_materias.nombre_materia,
+                tbl_logro.nombreLogro,
+                tbl_logro.descripcion,
+                tbl_periodo.periodo,
+                tbl_calificacionestudiante.calificacion
+                FROM
+                tbl_grupomaterias
+                JOIN tbl_grupos
+                ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+                JOIN tbl_materias
+                ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+                JOIN tbl_docente
+                ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+                JOIN tbl_grupoestudiantes
+                ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+                JOIN tbl_estudiante
+                ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+                JOIN tbl_usuarios
+                ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+                JOIN tbl_usuarios AS tbl_usuarios_alias1
+                ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+                JOIN tbl_colegios
+                ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+                JOIN tbl_logro
+                ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+                JOIN tbl_periodo
+                ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+                JOIN tbl_calificacionestudiante
+                ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+                AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+                WHERE
+                tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Cuarto'"));
+
+                $calificacionestotal_periodocuatro=
+                DB::select(DB::raw("SELECT
+                  SUM(tbl_calificacionestudiante.calificacion)/COUNT(tbl_calificacionestudiante.calificacion) as calificacion
+                  FROM
+                  tbl_grupomaterias
+                  JOIN tbl_grupos
+                  ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+                  JOIN tbl_materias
+                  ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+                  JOIN tbl_docente
+                  ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+                  JOIN tbl_grupoestudiantes
+                  ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+                  JOIN tbl_estudiante
+                  ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+                  JOIN tbl_usuarios
+                  ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+                  JOIN tbl_usuarios AS tbl_usuarios_alias1
+                  ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+                  JOIN tbl_colegios
+                  ON tbl_usuarios_alias1.FK_ColegioId = tbl_colegios.id
+                  JOIN tbl_logro
+                  ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+                  JOIN tbl_periodo
+                  ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+                  JOIN tbl_calificacionestudiante
+                  ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
+                  AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
+                  WHERE
+                  tbl_grupoestudiantes.FK_estudiante = $idEstudiante and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Cuarto'"));
+
+      return view('Wennec.estudiante.estudiante-calificacionesmateria',compact('calificaciones_periodouno',
+      'calificacionestotal_periodouno','calificacionestotal_periodotres','calificacionestotal_periodocuatro','calificacionestotal_periododos','calificaciones_periododos','calificaciones_periodotres','calificaciones_periodocuatro'));
     }
 
     /**
