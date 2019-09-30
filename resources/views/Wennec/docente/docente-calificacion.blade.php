@@ -51,7 +51,20 @@
                                                 echo '<td><label for="">-</label></td>';
                                             } else {
                                                 foreach ($calificaciones as $calificacion) {
-                                                    echo '<td><label for="">' . $calificacion->calificacion . '</label></td>';
+                                                    if($calificacion->calificacion <= "3.4"){
+                                                        echo '<td><label class="label label-danger" for="">' . $calificacion->calificacion . '</label></td>';
+                                                    }
+
+                                                    if($calificacion->calificacion >= "3.5" && $calificacion->calificacion <= "3.9"){
+                                                        echo '<td><label class="label label-warning" for="">' . $calificacion->calificacion . '</label></td>';
+                                                    } 
+                                                    if($calificacion->calificacion >= "4.0" && $calificacion->calificacion <= "4.5"){
+                                                        echo '<td><label class="label label-primary" for="">' . $calificacion->calificacion . '</label></td>';
+                                                    } 
+                                                    
+                                                    if($calificacion->calificacion >= "4.6" && $calificacion->calificacion <= "5.0"){
+                                                        echo '<td><label class="label label-success" for="">' . $calificacion->calificacion . '</label></td>';
+                                                    }
                                                 }
                                             }
 
