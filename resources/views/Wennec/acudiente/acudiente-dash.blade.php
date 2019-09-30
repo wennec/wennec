@@ -11,6 +11,12 @@
 ])
 @endcomponent
 @component('components.nav-link', [
+    'icon' => 'fa fa-check',
+    'title' => 'Calificaciones',
+    'link' => route('acudienteEstudianteCalificaciones.index')
+])
+@endcomponent
+@component('components.nav-link', [
     'icon' => 'fa fa-comments',
     'title' => 'Noticias',
     'link' => route('noticiasA.index')

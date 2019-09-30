@@ -19,7 +19,10 @@ Route::resource('horarios', 'AdminHorariosController');
 Route::resource('eleccionEscolar', 'EleccionEscolarController');
 Route::resource('eleccionEstudiante', 'EleccionEstudianteController');
 Route::resource('acudienteEstudiante', 'AcudienteEstudianteController');
-
+Route::resource('acudienteEstudianteCalificaciones', 'CalificacionAcudienteController');
+Route::prefix('acudienteEstudianteCalificaciones/{id}')->group(function (){
+    Route::get('acudienteEstudianteCalificaciones', 'CalificacionAcudienteController@showCalificaciones')->name('acudienteEstudianteCalificaciones.showCalificaciones');
+});
 Route::resource('pagosAcudiente', 'PagosAcudienteController');
 Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
