@@ -94,7 +94,7 @@
                                               echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
                                           }
                                           ?>
-                                            <td>Primero</td>
+                                            <td>Segundo</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -140,7 +140,7 @@
                                               echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
                                           }
                                           ?>
-                                            <td>Primero</td>
+                                            <td>Tercero</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -186,7 +186,7 @@
                                               echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
                                           }
                                           ?>
-                                            <td>Primero</td>
+                                            <td>Cuarto</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
