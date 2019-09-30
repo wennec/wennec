@@ -112,7 +112,7 @@ class LogroController extends Controller
         WHERE
         tbl_logro.FK_GrupoMateria = $id"));
         return view('Wennec.docente.docente-logros', compact('logros'));
-      }
+    }
 
       /**
       * Display the specified resource.

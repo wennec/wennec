@@ -3,7 +3,7 @@
             <div class="row-shadow">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="{{ asset('assets/img/logo/logolarge.png') }}" alt="" /></a>
+                        <a href="index.html"><img class="main-logo" src="{{ asset('/assets/img/logo/logolarge.png') }}" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                                 <div class="row-shadow">
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12 example2">
                                         <div class="menu-switcher-pro">
-                                        <a href="index.html"><img class="main-logo img-logo" src="{{ asset('assets/img/logo/logolarge.png') }}" alt="" /></a>
+                                        <a href="index.html"><img class="main-logo img-logo" src="{{ asset('/assets/img/logo/logolarge.png') }}" alt="" /></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
@@ -155,10 +155,10 @@
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             <?php 
                                                              if((Auth::user()->foto) == ""){
-                                                                echo '<img src="assets/iconos/usuario3.png" alt="" />';
+                                                                echo '<img src="/assets/iconos/usuario3.png" alt="" />';
                                                              }else{
 
-                                                                echo '<img src="Foto/Usuarios/'.Auth::user()->foto.'" alt="" />';
+                                                                echo '<img src="/Foto/Usuarios/'.Auth::user()->foto.'" alt="" />';
                                                              }
                                                             ?>
                                                             <span class="admin-name">{{ Auth::user()->name }}</span>

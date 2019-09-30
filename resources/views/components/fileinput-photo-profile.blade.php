@@ -12,7 +12,7 @@
 <div class="form-group">
     <div>
         <div>
-            <img alt="" src="Foto/Usuarios/{{auth()->user()->foto ?: '/img/default.png'}}" id="fotografia_usuario" />
+            <img alt="" src="/Foto/Usuarios/{{auth()->user()->foto ?: '/img/default.png'}}" id="fotografia_usuario" />
         </div>
             <div style="position:relative;">
 		<a class='btn btn-primary' href='javascript:;'>
