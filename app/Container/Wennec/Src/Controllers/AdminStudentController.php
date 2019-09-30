@@ -50,6 +50,7 @@ class AdminStudentController extends Controller
         JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Estudiante'"));
 
+        $grupos = Grupos::all();
 
         return view('Wennec.admin.administrador-estudiante',compact('students', 'grupos'));
     }

@@ -37,6 +37,7 @@
                                 <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
+                                            <label>Nombres y Apellidos</label>
                                                 {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required'])!!}
                                             </div>
                                         </div>
@@ -50,7 +51,7 @@
                                                     </select>
                                             </div>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-6 col-sm-6 col-md-12">
                                             <div class="form-group form-md-line-input">
                                                 {!!Form::number('telefono',null,['class'=>'form-control','placeholder'=>'Teléfono','required'])!!}
                                             </div>
@@ -67,7 +68,7 @@
                                                 {!!Form::select('tipo_documento',array('TI' => 'Tarjeta de Identidad', 'CC' => 'Cedula de Ciudadania'), 'TI' ,['class'=>'form-control','placeholder'=>'Tipo de Documento','required'])!!}
                                             </div>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-6 col-sm-6 col-md-12">
                                             <div class="form-group form-md-line-input">
                                                 {!!Form::text('direccion',null,['class'=>'form-control','placeholder'=>'Dirección','required'])!!}
                                             </div>
@@ -76,15 +77,17 @@
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
+                                            <label>Genero</label>
                                                 {!!Form::select('sexo_estudiante',array('M' => 'Masculino', 'F' => 'Femenino'), 'M' ,['class'=>'form-control','placeholder'=>'Genero','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group form-md-line-input">
+                                        <label>Fecha de nacimiento</label>
                                                 {!!Form::date('fecha_nacimiento',null,['class'=>'form-control','placeholder'=>'Fecha de Nacimiento'])!!}
                                             </div>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-6 col-sm-6 col-md-12">
                                         <div class="form-group form-md-line-input">
                                                 {!!Form::text('lugar_nacimiento',null,['class'=>'form-control','placeholder'=>'Lugar de Nacimiento'])!!}
                                             </div>

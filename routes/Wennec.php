@@ -44,6 +44,8 @@ Route::prefix('grupoEstudiantes/{id}')->group(function (){
 
 Route::resource('calificacion', 'CalificacionController');
 
+Route::resource('prematricula', 'PreMatriculaController');
+
 Route::prefix('/perfil')->group(function (){
     Route::get('/', 'PerfilController@index')->name('perfil.index');
     Route::post('/', 'PerfilController@update')->name('perfil.update');
