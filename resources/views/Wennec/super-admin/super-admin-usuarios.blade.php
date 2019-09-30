@@ -19,15 +19,9 @@
                                 <h1>Usuarios Wennec</h1>
                             </div>
                         </div>
-                        <div>
-                            <a class="btn btn-primary" href="{{route('usuarios.create')}}" role="button">
-                                <i class="fa fa-plus"></i>
-                                Crear Usuario
-                            </a>
-                        </div>   <br>
 
                         <!-- Button trigger modal -->
-                        <button type="button" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreate">
+                        <button type="button" id="mymodal" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
                         <i class="fa fa-plus"></i>
                                 Crear Usuario
                         </button>

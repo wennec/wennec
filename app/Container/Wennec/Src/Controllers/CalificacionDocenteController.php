@@ -20,13 +20,40 @@ class CalificacionDocenteController extends Controller
     {
         $iduser = auth()->user()->PK_id ; 
 
+        $idDocentes = 
+        DB::select(DB::raw("SELECT
+        tbl_usuarios.`name`,
+        tbl_docente.PK_id
+        FROM
+        tbl_usuarios
+        INNER JOIN tbl_docente ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
+
+        foreach($idDocentes as $idDocente){
+            $id_docente = $idDocente->PK_id;
+        }
+
+        $colegioUsers =
+        DB::select(DB::raw("SELECT
+          tbl_colegios.id as idColegio
+          FROM
+          tbl_usuarios
+          JOIN tbl_colegios
+          ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+          WHERE tbl_usuarios.PK_id = $iduser"));
+
+          foreach ($colegioUsers as $colegioUser) {
+            $idColegio = $colegioUser->idColegio;
+          }
+
         $grupos = 
         DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_materias.nombre_materia,
         tbl_grupos.grupo,
         tbl_grupos.ano,
-        tbl_grupos.PK_id
+        tbl_grupos.PK_id,
+        tbl_grupomaterias.PK_id AS idGrupoMateria
         FROM
         tbl_docente
         JOIN tbl_usuarios
@@ -40,7 +67,7 @@ class CalificacionDocenteController extends Controller
         JOIN tbl_colegios
         ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE
-        tbl_docente.PK_id = 1 AND tbl_colegios.id = 2"));
+        tbl_docente.PK_id = $id_docente AND tbl_colegios.id = $idColegio"));
 
         $periodos = Periodo::all();
 

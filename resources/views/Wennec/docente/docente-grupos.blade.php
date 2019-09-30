@@ -43,10 +43,10 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td>{{link_to_route('logroDocente.show', $title = '', $parameter = $grupo->PK_id, $attributes = ['class' => 'btn-lg btn-success fa fa-eye'])}}
+                                            <td>{{link_to_route('logroDocente.show', $title = '', $parameter = $grupo->idGrupoMateria, $attributes = ['class' => 'btn-lg btn-success fa fa-eye'])}}
                                             </td>
                                             <td>
-                                              <input type="hidden" name="id" id="asignatura" value="{{$grupo->PK_id}}">
+                                              <input type="hidden" name="id" id="asignatura" value="{{$grupo->idGrupoMateria}}">
                                               <button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
                                                   <i class="fa fa-plus"></i>
 
@@ -94,7 +94,7 @@
                                 <option value="{{$periodo->PK_id}}">{{$periodo->periodo}}</option>
                                 @endforeach
                             </select>
-                            <input type="hidden" name="FK_GrupoMaterias" id="asignatura" value="{{$grupo->PK_id}}">
+                            <input type="hidden" name="FK_GrupoMaterias" id="asignatura" value="{{$grupo->idGrupoMateria}}">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Container\Wennec\Src\Formatos;
+use App\Container\Wennec\Src\Grupos;
 
 class LoginController extends Controller
 {
@@ -40,7 +40,10 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.login');
+        $grupos = Grupos::all();
+        return view('auth.login', [
+            'grupos' => $grupos,
+          ]);
     }
 
 

@@ -75,3 +75,10 @@
     'link' => route('eleccionEscolar.index')
 ])
 @endcomponent
+
+@component('components.nav-link', [
+    'icon' => 'far fa-file-alt',
+    'title' => 'PreMatricula',
+    'link' => route('prematricula.index')
+])
+@endcomponent
