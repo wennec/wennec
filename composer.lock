@@ -486,43 +486,43 @@
             "authors": [
                 {
                     "name": "Kevin Hill",
-                    "role": "Creator",
-                    "email": "kevinkhill@gmail.com"
+                    "email": "kevinkhill@gmail.com",
+                    "role": "Creator"
                 },
                 {
                     "name": "deringer",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/deringer"
+                    "homepage": "https://github.com/deringer",
+                    "role": "Contributor"
                 },
                 {
                     "name": "stevebauman",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/stevebauman"
+                    "homepage": "https://github.com/stevebauman",
+                    "role": "Contributor"
                 },
                 {
                     "name": "rajivseelam",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/rajivseelam"
+                    "homepage": "https://github.com/rajivseelam",
+                    "role": "Contributor"
                 },
                 {
                     "name": "tobias-kuendig",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/tobias-kuendig"
+                    "homepage": "https://github.com/tobias-kuendig",
+                    "role": "Contributor"
                 },
                 {
                     "name": "Stonos",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/Stonos"
+                    "homepage": "https://github.com/Stonos",
+                    "role": "Contributor"
                 },
                 {
                     "name": "MicahKV",
-                    "role": "Contributor",
-                    "email": "micah138@yahoo.com"
+                    "email": "micah138@yahoo.com",
+                    "role": "Contributor"
                 },
                 {
                     "name": "SendDerek",
-                    "role": "Contributor",
-                    "homepage": "https://github.com/SendDerek"
+                    "homepage": "https://github.com/SendDerek",
+                    "role": "Contributor"
                 }
             ],
             "description": "PHP wrapper library for the Google Chart API",
@@ -2698,8 +2698,8 @@
             "authors": [
                 {
                     "name": "Tijs Verkoyen",
-                    "role": "Developer",
-                    "email": "css_to_inline_styles@verkoyen.eu"
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
                 }
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
@@ -3334,8 +3334,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sb@sebastian-bergmann.de"
+                    "email": "sb@sebastian-bergmann.de",
+                    "role": "lead"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -3376,8 +3376,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Simple template engine.",
@@ -3425,8 +3425,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sb@sebastian-bergmann.de"
+                    "email": "sb@sebastian-bergmann.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -3554,8 +3554,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -4132,8 +4132,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",

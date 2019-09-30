@@ -57,11 +57,11 @@
 
                                                     if($calificacion->calificacion >= "3.5" && $calificacion->calificacion <= "3.9"){
                                                         echo '<td><label class="label label-warning" for="">' . $calificacion->calificacion . '</label></td>';
-                                                    } 
+                                                    }
                                                     if($calificacion->calificacion >= "4.0" && $calificacion->calificacion <= "4.5"){
                                                         echo '<td><label class="label label-primary" for="">' . $calificacion->calificacion . '</label></td>';
-                                                    } 
-                                                    
+                                                    }
+
                                                     if($calificacion->calificacion >= "4.6" && $calificacion->calificacion <= "5.0"){
                                                         echo '<td><label class="label label-success" for="">' . $calificacion->calificacion . '</label></td>';
                                                     }
@@ -79,7 +79,7 @@
                                             <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $calificacion->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}</td>
                                             @endforeach
 
-                                            
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -105,15 +105,7 @@
             <div class="modal-body">
                 {!! Form::open(['route'=>'calificacion.store','method'=>'POST']) !!}
                 <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group form-md-line-input">
-                            <label for="">materia</label>
-                        </div>
-                        <div class="form-group form-md-line-input">
-                            <label for="">logro</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group form-md-line-input">
                             {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
                         </div>

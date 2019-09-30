@@ -46,7 +46,7 @@ class CalificacionController extends Controller
             'FK_Logro' => $request['FK_Logro'],
             'FK_Estudiante' => $request['FK_Estudiante'],
         ]);
-        return redirect('/grupoEstudiantes/' .$logro. '/grupoEstudiantes')->with('success','Nota Creado Correctamente');
+        return redirect('/grupoEstudiantes/' .$logro. '/grupoEstudiantes')->with('success','Nota Registrada Correctamente');
     }
 
     /**

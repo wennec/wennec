@@ -34,6 +34,7 @@
                                     <thead>
                                         <th class="text-center">Logro</th>
                                         <th class="text-center">Descripcion</th>
+                                        <th class="text-center">Periodo</th>
                                         <th class="text-center">Opciones</th>
                                     </thead>
 
@@ -42,6 +43,7 @@
                                         <tr  class="text-center">
                                             <td>{{$logro->nombreLogro}}</td>
                                             <td>{{$logro->descripcion}}</td>
+                                            <td>{{$logro->periodo}}</td>
                                             <td>{{link_to_route('grupoEstudiantes.show_estudiantes', $title = '', $parameter = $logro->PK_id, $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fa fa-list-alt'])}}</td>
                                         </tr>
                                         @endforeach

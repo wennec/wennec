@@ -16,7 +16,7 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Calificaciones</h1>
+                                <h1>Asignaturas</h1>
                             </div>
                         </div>
 
@@ -32,30 +32,22 @@
                                 <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
-                                        <th class="text-center">Materia</th>
-                                        <th class="text-center">Curso</th>
-                                        <th class="text-center">Grupo</th>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Periodo</th>
                                         <th class="text-center">Docente</th>
+                                        <th class="text-center">Materia</th>
+                                        <th class="text-center">Grupo</th>
+                                        <th class="text-center">Ver</th>
                                     </thead>
 
                                     <tbody>
-                                        @foreach($calificaciones as $calificacion)
+                                        @foreach($materias as $materia)
                                         <tr  class="text-center">
-                                            <td>{{$calificacion->nombre_materia}}</td>
-                                            <td>{{$calificacion->nombre_curso}}</td>
-                                            <td>{{$calificacion->grupo}}</td>
-                                            @if($calificacion->calificacion >= "3.0")
-                                            <td><span class="label label-warning">{{$calificacion->calificacion}}</span></td>
-                                            @else($calificacion->calificacion < "3.0")
-                                            <td><span class="label label-danger">{{$calificacion->calificacion}}</span></td>
-                                            @endif
-                                            <td>{{$calificacion->periodo}}</td>
-                                            <td>{{$calificacion->docente}}</td>
+                                            <td>{{$materia->name}}</td>
+                                            <td>{{$materia->nombre_materia}}</td>
+                                            <td>{{$materia->grupo}}</td>
+                                            <td>{{link_to_route('calificacionEstudiante.show', $title = '', $parameter = $materia->id_materia, $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fas fa-eye'])}}</td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
