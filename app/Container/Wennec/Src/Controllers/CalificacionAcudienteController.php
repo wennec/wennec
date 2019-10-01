@@ -19,6 +19,19 @@ class CalificacionAcudienteController extends Controller
     public function index()
     {
         $iduser = auth()->user()->PK_id ;
+
+        $id_acudientes =
+        DB::select(DB::raw("SELECT
+        tbl_acudiente.PK_id
+        FROM
+        tbl_acudiente
+        INNER JOIN tbl_usuarios ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id
+        WHERE tbl_usuarios.PK_id = $iduser"));
+
+        foreach($id_acudientes as $id_acudiente){
+            $acudienteId = $id_acudiente->PK_id;
+        }
+
         $estudiantes_acudiente =
         DB::select(DB::raw("SELECT
           tbl_usuarios.`name`,
@@ -31,7 +44,8 @@ class CalificacionAcudienteController extends Controller
           JOIN tbl_usuarios
           ON tbl_acudiente.FK_usuarioId = tbl_usuarios.PK_id
           JOIN tbl_usuarios AS tbl_usuarios_alias1
-          ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id"));
+          ON tbl_estudiante.FK_usuarioId = tbl_usuarios_alias1.PK_id
+          WHERE tbl_acudiente.PK_id = $acudienteId"));
 
         return view('Wennec.acudiente.acudiente-estudiantes',compact('estudiantes_acudiente'));
     }
@@ -69,7 +83,8 @@ class CalificacionAcudienteController extends Controller
       DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_materias.nombre_materia,
-        tbl_materias.PK_id
+        tbl_materias.PK_id, 
+        tbl_estudiante.PK_id as idStudent
         FROM
         tbl_grupomaterias
         JOIN tbl_materias
@@ -94,7 +109,7 @@ class CalificacionAcudienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showCalificaciones($id)
+    public function showCalificaciones($id, $idStudent)
     {
       $calificacionestotal_periodouno=
       DB::select(DB::raw("SELECT
@@ -125,7 +140,7 @@ class CalificacionAcudienteController extends Controller
         ON tbl_calificacionestudiante.FK_Logro = tbl_logro.PK_id
         AND tbl_calificacionestudiante.FK_Estudiante = tbl_estudiante.PK_id
         WHERE
-        tbl_grupoestudiantes.FK_estudiante = 1 and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Primero'"));
+        tbl_grupoestudiantes.FK_estudiante = $idStudent and tbl_materias.PK_id = $id and tbl_periodo.periodo = 'Primero'"));
 
       return view('Wennec.acudiente.acudiente-calificacionesmateria',compact('calificacionestotal_periodouno'));
 

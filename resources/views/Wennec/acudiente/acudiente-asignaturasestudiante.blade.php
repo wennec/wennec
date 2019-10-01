@@ -40,7 +40,7 @@
                                         @foreach($asignaturas_estudiante as $asignatura_estudiante)
                                         <tr  class="text-center">
                                             <td>{{$asignatura_estudiante->nombre_materia}}</td>
-                                            <td>{{link_to_route('acudienteEstudianteCalificaciones.showCalificaciones', $title = '', $parameter = $asignatura_estudiante->PK_id, $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fas fa-eye'])}}</td>
+                                            <td>{{link_to_route('acudienteEstudianteCalificaciones.showCalificaciones', $title = '', $parameter = [$asignatura_estudiante->PK_id, $asignatura_estudiante->idStudent], $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fas fa-eye'])}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

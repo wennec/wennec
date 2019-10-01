@@ -237,9 +237,9 @@
                                         <div align="center" class="breadcome-heading">
                                         <?php 
                                             if((Auth::user()->rol->nombre) == "Super Administrador"){
-                                                echo '<img width="38%" src="assets/img/logo/logocontrol.png" alt="" />';
+                                                echo '<img width="38%" src="/assets/img/logo/logocontrol.png" alt="" />';
                                             }else{
-                                                echo '<img width="38%" src="assets/img/logo/LogoGimnasioSabanaNorte.png" alt="" />';
+                                                echo '<img width="38%" src="/assets/img/logo/LogoGimnasioSabanaNorte.png" alt="" />';
                                             }
                                         ?>
                                         </div>
