@@ -31,7 +31,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="cards-dtn">
                     <button type="button" name="button" class="btn btn-primary"><a href="{{url('/reportescertificado')}}"
-                      style="color:white;"target="_blank">Generar PDF</a></button>
+                      style="color:white;" target="_blank">Generar PDF</a></button>
 
                   </div>
                 </div>

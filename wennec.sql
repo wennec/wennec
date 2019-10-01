@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 30/09/2019 17:15:30
+ Date: 01/10/2019 14:19:47
 */
 
 SET NAMES utf8mb4;
@@ -830,6 +830,39 @@ CREATE TABLE `tbl_noticias` (
   KEY `FK_ColegioId` (`FK_ColegioId`) USING BTREE,
   CONSTRAINT `tbl_noticias_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Table structure for tbl_observaciondocente
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_observaciondocente`;
+CREATE TABLE `tbl_observaciondocente` (
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`PK_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Table structure for tbl_observacionestudiante
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_observacionestudiante`;
+CREATE TABLE `tbl_observacionestudiante` (
+  `PK_id` int(11) NOT NULL,
+  `FK_Estudiante` int(11) DEFAULT NULL,
+  `FK_ObservacionDocente` int(11) DEFAULT NULL,
+  `FK_Materia` int(11) DEFAULT NULL,
+  `FK_Periodo` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id`),
+  KEY `FK_Estudiante` (`FK_Estudiante`),
+  KEY `FK_ObservacionDocente` (`FK_ObservacionDocente`),
+  KEY `FK_Materia` (`FK_Materia`),
+  KEY `FK_Periodo` (`FK_Periodo`),
+  CONSTRAINT `tbl_observacionestudiante_ibfk_1` FOREIGN KEY (`FK_Estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_observacionestudiante_ibfk_2` FOREIGN KEY (`FK_ObservacionDocente`) REFERENCES `tbl_observaciondocente` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_observacionestudiante_ibfk_3` FOREIGN KEY (`FK_Materia`) REFERENCES `tbl_materias` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_observacionestudiante_ibfk_4` FOREIGN KEY (`FK_Periodo`) REFERENCES `tbl_periodo` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for tbl_periodo
