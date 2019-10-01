@@ -28,6 +28,10 @@ Route::resource('horarioE', 'HorarioStudentController');
 Route::resource('calificacionEstudiante', 'CalificacionEstudianteController');
 Route::resource('asistenciaEstudiante', 'AsistenciaStudentController');
 Route::resource('evaluacionDocenteE', 'EvaluacionEDocenteController');
+Route::resource('observacionDocente', 'ObservacionDocenteController');
+Route::prefix('observacionDocente/{id}/{id_materia_show}')->group(function (){
+    Route::get('observacionDocente', 'ObservacionDocenteController@show')->name('observacionDocente.show');
+});
 
 Route::resource('calificacionDocente', 'CalificacionDocenteController');
 
