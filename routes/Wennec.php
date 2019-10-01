@@ -20,7 +20,7 @@ Route::resource('eleccionEscolar', 'EleccionEscolarController');
 Route::resource('eleccionEstudiante', 'EleccionEstudianteController');
 Route::resource('acudienteEstudiante', 'AcudienteEstudianteController');
 Route::resource('acudienteEstudianteCalificaciones', 'CalificacionAcudienteController');
-Route::prefix('acudienteEstudianteCalificaciones/{id}')->group(function (){
+Route::prefix('acudienteEstudianteCalificaciones/{id}/{idStudent}')->group(function (){
     Route::get('acudienteEstudianteCalificaciones', 'CalificacionAcudienteController@showCalificaciones')->name('acudienteEstudianteCalificaciones.showCalificaciones');
 });
 Route::resource('pagosAcudiente', 'PagosAcudienteController');
