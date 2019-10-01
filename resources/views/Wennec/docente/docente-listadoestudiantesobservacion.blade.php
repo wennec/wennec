@@ -41,7 +41,7 @@
                                         <tr  class="text-center">
                                             <td>{{$estudiante->name}}</td>
                                             <td><button type="button" id="mymodal" class="btn btn-success btn-md" data-estudiante-id='{{$estudiante->id_estudiante}}' data-toggle="modal" data-target="#modalCreate">
-                                            <i class="fa fa-check"></i>
+                                            <i class="fa fa-plus"></i>
                                         </button></td>
                                         </tr>
                                         @endforeach
