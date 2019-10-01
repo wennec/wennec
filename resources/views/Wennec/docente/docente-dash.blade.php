@@ -25,6 +25,12 @@
     ])
     @endcomponent
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-address-book-o',
+    'title' => 'Observaciones',
+    'link' => route('observacionDocente.index')
+])
+@endcomponent
 @component('components.nav-link',[
     'icon' => 'fa fa-file',
     'title' => 'Reportes',
