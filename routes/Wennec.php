@@ -32,6 +32,16 @@ Route::resource('observacionDocente', 'ObservacionDocenteController');
 Route::prefix('observacionDocente/{id}/{id_materia_show}')->group(function (){
     Route::get('observacionDocente', 'ObservacionDocenteController@show')->name('observacionDocente.show');
 });
+Route::resource('observacionEstudiante', 'ObservacionEstudianteController');
+Route::prefix('observacionEstudiante/{id}/{id_materia}')->group(function (){
+    Route::get('observacionEstudiante', 'ObservacionEstudianteController@show')->name('observacionEstudiante.show');
+});
+
+Route::resource('observacionAcudiente', 'ObservacionAcudienteController');
+Route::prefix('observacionAcudiente/{id_estudiante}/{id_materia}')->group(function (){
+    Route::get('observacionAcudiente', 'ObservacionAcudienteController@show_observaciones')->name('observacionAcudiente.show_observaciones');
+});
+
 
 Route::resource('calificacionDocente', 'CalificacionDocenteController');
 
