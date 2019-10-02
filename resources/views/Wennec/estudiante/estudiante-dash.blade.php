@@ -42,6 +42,13 @@
 ])
 @endcomponent
 
+@component('components.nav-link', [
+    'icon' => 'fa fa-address-book-o',
+    'title' => 'Observaciones',
+    'link' => route('observacionEstudiante.index')
+])
+@endcomponent
+
 
 <li class="nav-item">
     <a href="http://127.0.0.1/wennec/wennec_aula_virtual/login/index.php" target="_blank" class="nav-link">

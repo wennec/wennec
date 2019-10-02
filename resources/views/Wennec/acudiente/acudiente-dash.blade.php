@@ -28,3 +28,9 @@
     'link' => route('pagosAcudiente.index')
 ])
 @endcomponent
+@component('components.nav-link', [
+    'icon' => 'fa fa-address-book-o',
+    'title' => 'Observaciones',
+    'link' => route('observacionAcudiente.index')
+])
+@endcomponent
