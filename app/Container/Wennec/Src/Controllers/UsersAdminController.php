@@ -45,7 +45,7 @@ class UsersAdminController extends Controller
         tbl_usuarios
         JOIN tbl_roles ON tbl_usuarios.FK_RolesId = tbl_roles.id
         JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_colegios.id = $id"));
+        WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Administrador'"));
         return view('Wennec.admin.administrador-usuarios',compact('users'));
     }
 

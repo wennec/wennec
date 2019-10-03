@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                             </div>
-                                {!! Form::submit('Crear Noticia', ['class'=>'btn btn-large btn-primary']) !!}
+                                {!! Form::submit('Crear Noticia', ['class'=>'btn btn-large btn-success']) !!}
                                 {{link_to_route('noticiasA.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
                                 </div>
                             {!! Form::close() !!}

@@ -30,7 +30,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Acudiente</h4>
+                    <h4 class="modal-title" id="myModalLabel">Crear Acudiente</h4>
                   </div>
                   <div class="modal-body">
                     {!! Form::open(['route'=>'acudienteEstudiante.store','method'=>'POST']) !!}
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                    {!! Form::submit('Enviar', ['class'=>'btn btn-large btn-primary']) !!}
+                    {!! Form::submit('Crear Acudiente', ['class'=>'btn btn-large btn-success']) !!}
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                   </div>
                   {!! Form::close() !!}
