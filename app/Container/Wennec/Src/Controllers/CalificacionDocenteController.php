@@ -18,9 +18,9 @@ class CalificacionDocenteController extends Controller
      */
     public function index()
     {
-        $iduser = auth()->user()->PK_id ; 
+        $iduser = auth()->user()->PK_id ;
 
-        $idDocentes = 
+        $idDocentes =
         DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_docente.PK_id
@@ -46,7 +46,7 @@ class CalificacionDocenteController extends Controller
             $idColegio = $colegioUser->idColegio;
           }
 
-        $grupos = 
+        $grupos =
         DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_materias.nombre_materia,
@@ -57,13 +57,13 @@ class CalificacionDocenteController extends Controller
         FROM
         tbl_docente
         JOIN tbl_usuarios
-        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id 
+        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
         JOIN tbl_grupomaterias
-        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
         JOIN tbl_grupos
-        ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id 
+        ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
         JOIN tbl_materias
-        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id 
+        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
         JOIN tbl_colegios
         ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE
@@ -98,7 +98,7 @@ class CalificacionDocenteController extends Controller
             'periodo' => $request['periodo'],
             'FK_estudiante_materias' => $request['id'],
         ]);
-        return redirect('/calificacionDocente')->with('success','Notas Registradas Correctamente');
+        return redirect('/calificacionDocente')->with('success','Calificacion Registrada Correctamente');
     }
 
     /**
@@ -109,7 +109,7 @@ class CalificacionDocenteController extends Controller
      */
     public function show($id)
     {
-        $calificacion = 
+        $calificacion =
         DB::select(DB::raw("SELECT
         tbl_usuarios.`name`,
         tbl_cursos.nombre_curso,
@@ -122,27 +122,27 @@ class CalificacionDocenteController extends Controller
         FROM
         tbl_calificacionestudiante
         JOIN tbl_estudiantematerias
-        ON tbl_calificacionestudiante.FK_estudiante_materias = tbl_estudiantematerias.PK_id 
+        ON tbl_calificacionestudiante.FK_estudiante_materias = tbl_estudiantematerias.PK_id
         JOIN tbl_calificacion
-        ON tbl_calificacionestudiante.FK_tipo_calificacion = tbl_calificacion.PK_id 
+        ON tbl_calificacionestudiante.FK_tipo_calificacion = tbl_calificacion.PK_id
         JOIN tbl_grupomaterias
-        ON tbl_estudiantematerias.FK_grupo_materias = tbl_grupomaterias.PK_id 
+        ON tbl_estudiantematerias.FK_grupo_materias = tbl_grupomaterias.PK_id
         JOIN tbl_docente
-        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id 
+        ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
         JOIN tbl_materias
-        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id 
+        ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
         JOIN tbl_usuarios AS tbl_usuarios_docente
-        ON tbl_docente.FK_usuario = tbl_usuarios_docente.PK_id 
+        ON tbl_docente.FK_usuario = tbl_usuarios_docente.PK_id
         JOIN tbl_grupoestudiantes
-        ON tbl_estudiantematerias.FK_grupo_estudiantes = tbl_grupoestudiantes.PK_id 
+        ON tbl_estudiantematerias.FK_grupo_estudiantes = tbl_grupoestudiantes.PK_id
         JOIN tbl_grupos
-        ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id 
+        ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
         JOIN tbl_cursos
-        ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id 
+        ON tbl_grupos.`FK_ curso` = tbl_cursos.PK_id
         JOIN tbl_estudiante
-        ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id 
+        ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
         JOIN tbl_usuarios
-        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id 
+        ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
         JOIN tbl_colegios
         ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
         WHERE tbl_materias.PK_id = 4"));
@@ -170,7 +170,7 @@ class CalificacionDocenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**

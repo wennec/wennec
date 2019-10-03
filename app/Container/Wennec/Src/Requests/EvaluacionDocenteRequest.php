@@ -24,7 +24,7 @@ class EvaluacionDocenteRequest extends FormRequest
     public function rules()
     {
         return [
-            'PK_id'=> 'integer|exists:TBL_Usuarios,PK_id',
+            'PK_id'=> 'integer|exists:tbl_usuarios,PK_id',
             'puntualidad'=>'string|max:50',
             'dinamismo'=>'string|max:50',
             'respeto'=>'string|max:50',

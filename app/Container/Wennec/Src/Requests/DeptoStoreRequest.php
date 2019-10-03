@@ -24,7 +24,7 @@ class DeptoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:TBL_Colegios',
+            'nombre' => 'required|unique:tbl_colegios',
         ];
     }
 }

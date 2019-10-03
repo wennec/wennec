@@ -16,7 +16,7 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Grupos</h1>
+                                <h1>Observaciones</h1>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                             <input type="hidden" name="FK_Materia" id="id_materia" value="{{$id_materia}}">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Registrar Observacion</button>
+                            <button type="submit" class="btn btn-success">Registrar Observacion</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
 

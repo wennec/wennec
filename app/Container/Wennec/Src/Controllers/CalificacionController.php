@@ -46,7 +46,7 @@ class CalificacionController extends Controller
             'FK_Logro' => $request['FK_Logro'],
             'FK_Estudiante' => $request['FK_Estudiante'],
         ]);
-        return redirect('/grupoEstudiantes/' .$logro. '/grupoEstudiantes')->with('success','Nota Registrada Correctamente');
+        return redirect('/grupoEstudiantes/' .$logro. '/grupoEstudiantes')->with('success','Calificación Registrada Correctamente');
     }
 
     /**
@@ -85,7 +85,7 @@ class CalificacionController extends Controller
         $calificacionEstudiante = CalificacionEstudiante::find($id);
         $calificacionEstudiante->fill($request->all());
         $calificacionEstudiante->save();
-        return redirect('/grupoEstudiantes/' .$request['FK_Logro']. '/grupoEstudiantes')->with('success','Nota Modificada Correctamente');
+        return redirect('/grupoEstudiantes/' .$request['FK_Logro']. '/grupoEstudiantes')->with('success','Calificación Modificada Correctamente');
     }
 
     /**

@@ -3,11 +3,9 @@
     @component('components.nav-link', [
         'icon' => 'fa fa-user',
         'link' => route('usuariosC.index'),
-        'title' => 'Usuarios'
+        'title' => 'Administradores'
     ])
     @endcomponent
-
-
     @component('components.nav-link', [
         'icon' => 'fas fa-user-edit',
         'title' => 'Estudiantes',

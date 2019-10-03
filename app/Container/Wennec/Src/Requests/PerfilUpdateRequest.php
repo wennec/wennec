@@ -24,9 +24,9 @@ class PerfilUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'PK_id'=> 'integer|exists:TBL_Usuarios,PK_id|required',
+            'PK_id'=> 'integer|exists:tbl_usuarios,PK_id|required',
             'name'=>'string|max:50',
-            'email'=> sprintf('email|unique:TBL_Usuarios,email,%d,PK_id',$this->PK_id),
+            'email'=> sprintf('email|unique:tbl_usuarios,email,%d,PK_id',$this->PK_id),
             'password'=> 'string|min:7|confirmed',
         ];
     }

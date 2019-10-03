@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
 
-                                    {!! Form::submit('Crear Docente', ['class'=>'btn btn-large btn-primary']) !!}
+                                    {!! Form::submit('Crear Docente', ['class'=>'btn btn-large btn-success']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 {!! Form::close() !!}
