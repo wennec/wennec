@@ -19,6 +19,7 @@ Route::resource('adminDocente', 'AdminDocenteController');
 Route::resource('horarios', 'AdminHorariosController');
 Route::resource('eleccionEscolar', 'EleccionEscolarController');
 Route::resource('eleccionEstudiante', 'EleccionEstudianteController');
+Route::resource('eleccionREstudiante', 'EleccionEstudianteRController');
 Route::resource('acudienteEstudiante', 'AcudienteEstudianteController');
 Route::resource('acudienteEstudianteCalificaciones', 'CalificacionAcudienteController');
 Route::prefix('acudienteEstudianteCalificaciones/{id}/{idStudent}')->group(function (){

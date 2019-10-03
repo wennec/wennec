@@ -83,7 +83,7 @@
 
                             <label>
                               <input type="radio" name="actitud" value="0" required>
-                              <img src=/Test_teachers/dislike.png">
+                              <img src="/Test_teachers/dislike.png">
                             </label>
                           </div>
 

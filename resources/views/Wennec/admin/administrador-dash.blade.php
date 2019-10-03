@@ -76,12 +76,23 @@
     @endcomponent
 @endcomponent
 
-@component('components.nav-link', [
-    'icon' => 'fas fa-vote-yea',
-    'title' => 'Eleccion Estudiantil',
-    'link' => route('eleccionEscolar.index')
-])
+@component('components.nav-dropdown', ['icon' => 'fas fa-vote-yea', 'title' => 'Eleccion Estudiantil'])
+
+    @component('components.nav-link', [
+        'icon' => 'fas fa-vote-yea',
+        'title' => 'Eleccion Estudiantil',
+        'link' => route('eleccionEscolar.index')
+    ])
+    @endcomponent
+    @component('components.nav-link', [
+        'icon' => 'fas fa-chalkboard-teacher',
+        'title' => 'Resultados',
+        'link' => route('eleccionREstudiante.index')
+    ])
+    @endcomponent
 @endcomponent
+
+
 
 @component('components.nav-link', [
     'icon' => 'far fa-file-alt',
