@@ -41,14 +41,24 @@ class AdminStudentController extends Controller
 
         $students =
         DB::select(DB::raw("SELECT
-        tbl_usuarios.name as nameUser,
-        tbl_roles.nombre as nameRol,
-        tbl_colegios.nombre as nameColegio
-        FROM
-        tbl_usuarios
-        JOIN tbl_roles ON tbl_usuarios.FK_RolesId = tbl_roles.id
-        JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
-        WHERE tbl_colegios.id = $id AND tbl_roles.nombre = 'Estudiante'"));
+          tbl_usuarios.`name` AS nameUser,
+          tbl_roles.nombre AS nameRol,
+          tbl_colegios.nombre AS nameColegio,
+          tbl_grupos.grupo
+          FROM
+          tbl_usuarios
+          JOIN tbl_roles
+          ON tbl_usuarios.FK_RolesId = tbl_roles.id
+          JOIN tbl_colegios
+          ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+          JOIN tbl_estudiante
+          ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
+          JOIN tbl_grupoestudiantes
+          ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+          JOIN tbl_grupos
+          ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+          WHERE
+          tbl_colegios.id = $id AND tbl_roles.nombre = 'Estudiante'"));
 
         $grupos = Grupos::all();
 

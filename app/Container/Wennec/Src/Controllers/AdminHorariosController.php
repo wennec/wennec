@@ -70,8 +70,7 @@ class AdminHorariosController extends Controller
         JOIN tbl_docente
         ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
         JOIN tbl_usuarios
-        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id
-        WHERE tbl_materias.nombre_materia = 'Sociales'"));
+        ON tbl_docente.FK_usuario = tbl_usuarios.PK_id"));
 
         return view('Wennec.admin.administrador-grupos',compact('grupos','dias','docentes'));
     }
@@ -112,7 +111,7 @@ class AdminHorariosController extends Controller
             'FK_docente' => $request['FK_docente'],
             'FK_GrupoId' => $request['id_grupo'],
         ]);
-        return redirect('/calificacionDocente')->with('success','Horario Registrado Correctamente');
+        return redirect('/horarios')->with('success','Horario Registrado Correctamente');
     }
 
     /**

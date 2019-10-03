@@ -76,22 +76,22 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($calificacionestotal_periodouno as $calificaciontotal_periodouno)
+                                        @foreach($calificacionestotal_periododos as $calificaciontotal_periododos)
                                         <tr  class="text-center">
                                           <?php
-                                          if($calificaciontotal_periodouno->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periododos->calificacion <= "3.4"){
+                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "3.5" && $calificaciontotal_periodouno->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periododos->calificacion >= "3.5" && $calificaciontotal_periododos->calificacion <= "3.9"){
+                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
                                           }
-                                          if($calificaciontotal_periodouno->calificacion >= "4.0" && $calificaciontotal_periodouno->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periododos->calificacion >= "4.0" && $calificaciontotal_periododos->calificacion <= "4.5"){
+                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "4.6" && $calificaciontotal_periodouno->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periododos->calificacion >= "4.6" && $calificaciontotal_periododos->calificacion <= "5.0"){
+                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
                                           }
                                           ?>
                                             <td>Segundo</td>
@@ -122,22 +122,22 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($calificacionestotal_periodouno as $calificaciontotal_periodouno)
+                                        @foreach($calificacionestotal_periodotres as $calificaciontotal_periodotres)
                                         <tr  class="text-center">
                                           <?php
-                                          if($calificaciontotal_periodouno->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodotres->calificacion <= "3.4"){
+                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "3.5" && $calificaciontotal_periodouno->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodotres->calificacion >= "3.5" && $calificaciontotal_periodotres->calificacion <= "3.9"){
+                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
                                           }
-                                          if($calificaciontotal_periodouno->calificacion >= "4.0" && $calificaciontotal_periodouno->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodotres->calificacion >= "4.0" && $calificaciontotal_periodotres->calificacion <= "4.5"){
+                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "4.6" && $calificaciontotal_periodouno->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodotres->calificacion >= "4.6" && $calificaciontotal_periodotres->calificacion <= "5.0"){
+                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
                                           }
                                           ?>
                                             <td>Tercero</td>
@@ -168,22 +168,22 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($calificacionestotal_periodouno as $calificaciontotal_periodouno)
+                                        @foreach($calificacionestotal_periodocuatro as $calificaciontotal_periodocuatro)
                                         <tr  class="text-center">
                                           <?php
-                                          if($calificaciontotal_periodouno->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodocuatro->calificacion <= "3.4"){
+                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "3.5" && $calificaciontotal_periodouno->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodocuatro->calificacion >= "3.5" && $calificaciontotal_periodocuatro->calificacion <= "3.9"){
+                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
                                           }
-                                          if($calificaciontotal_periodouno->calificacion >= "4.0" && $calificaciontotal_periodouno->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodocuatro->calificacion >= "4.0" && $calificaciontotal_periodocuatro->calificacion <= "4.5"){
+                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
                                           }
 
-                                          if($calificaciontotal_periodouno->calificacion >= "4.6" && $calificaciontotal_periodouno->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
+                                          if($calificaciontotal_periodocuatro->calificacion >= "4.6" && $calificaciontotal_periodocuatro->calificacion <= "5.0"){
+                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
                                           }
                                           ?>
                                             <td>Cuarto</td>
