@@ -42,48 +42,48 @@
                             <label for="">Puntualidad</label>
                             <label>
                               <input type="radio" name="puntualidad" value="1" required >
-                              <img src="Test_teachers/like.png">
+                              <img src="/Test_teachers/like.png">
                             </label>
 
                             <label>
                               <input type="radio" name="puntualidad" value="0" required>
-                              <img src="Test_teachers/dislike.png">
+                              <img src="/Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Dinamismo</label>
                             <label>
                               <input type="radio" name="dinamismo" value="1" required>
-                              <img src="Test_teachers/like.png">
+                              <img src="/Test_teachers/like.png">
                             </label>
 
                             <label>
                               <input type="radio" name="dinamismo" value="0" required>
-                              <img src="Test_teachers/dislike.png">
+                              <img src="/Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Respeto</label>
                             <label>
                               <input type="radio" name="respeto" value="1" required>
-                              <img src="Test_teachers/like.png">
+                              <img src="/Test_teachers/like.png">
                             </label>
 
                             <label>
                               <input type="radio" name="respeto" value="0" required>
-                              <img src="Test_teachers/dislike.png">
+                              <img src="/Test_teachers/dislike.png">
                             </label>
                           </div>
                           <div class="hiddenradio">
                             <label for="">Actitud</label>
                             <label>
                               <input type="radio" name="actitud" value="1" required>
-                              <img src="Test_teachers/like.png">
+                              <img src="/Test_teachers/like.png">
                             </label>
 
                             <label>
                               <input type="radio" name="actitud" value="0" required>
-                              <img src="Test_teachers/dislike.png">
+                              <img src=/Test_teachers/dislike.png">
                             </label>
                           </div>
 
