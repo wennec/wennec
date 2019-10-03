@@ -143,7 +143,6 @@
     </div>
     </div>
 </div>
-@endsection
 
 <script>
 $(document).ready(function (e) {
@@ -157,3 +156,4 @@ $(document).ready(function (e) {
   });
 });
 </script>
+@endsection

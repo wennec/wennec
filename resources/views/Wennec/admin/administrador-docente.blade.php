@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <div class="form-group form-md-line-input">
-                                                    {!!Form::number('documento_docente',null,['class'=>'form-control','placeholder'=>'Numeo Documento','required'])!!}
+                                                    {!!Form::number('documento_docente',null,['class'=>'form-control','placeholder'=>'Número Documento','required'])!!}
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -58,21 +58,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
                                           <div class="form-group form-md-line-input">
-                                                  {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
-                                          </div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6">
-                                          <div class="form-group form-md-line-input">
-                                                  {!!Form::file('foto',null,['class'=>'form-control','placeholder'=>'Foto'])!!}
+                                                  {!!Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
                                           </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                           <div class="form-group form-md-line-input">
-                                                  {!!Form::text('profesion',null,['class'=>'form-control','placeholder'=>'Profesion','required'])!!}
+                                                  {!!Form::text('profesion',null,['class'=>'form-control','placeholder'=>'Profesión','required'])!!}
                                           </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">

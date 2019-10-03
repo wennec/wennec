@@ -121,7 +121,7 @@
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                            {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
+                                            {!!Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -161,6 +161,7 @@
                                         <th class="text-center">Nombre Usuario</th>
                                         <th class="text-center">Rol</th>
                                         <th class="text-center">Colegio</th>
+                                        <th class="text-center">Grupo</th>
                                     </thead>
 
                                     <tbody>
@@ -169,6 +170,7 @@
                                             <td>{{$student->nameUser}}</td>
                                             <td>{{$student->nameRol}}</td>
                                             <td>{{$student->nameColegio}}</td>
+                                            <td>{{$student->grupo}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
