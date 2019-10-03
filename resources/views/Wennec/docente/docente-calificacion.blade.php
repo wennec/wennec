@@ -113,7 +113,7 @@
                         <input type="hidden" name="FK_Estudiante" id="idEstudiante">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Registrar Calificacion</button>
+                        <button type="submit" class="btn btn-success">Registrar Calificacion</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
 

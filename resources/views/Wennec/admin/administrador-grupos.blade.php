@@ -16,7 +16,7 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Calificaciones</h1>
+                                <h1>Horarios</h1>
                             </div>
                         </div>
 
@@ -136,7 +136,7 @@
 
 
           </div>
-          {!! Form::submit('Guardar', ['class'=>'btn btn-large btn-primary']) !!}
+          {!! Form::submit('Crear Horario', ['class'=>'btn btn-large btn-success']) !!}
           {{link_to_route('horarios.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
           </div>
       {!! Form::close() !!}

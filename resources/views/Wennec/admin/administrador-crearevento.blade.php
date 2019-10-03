@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {!! Form::submit('Crear Evento', ['class'=>'btn btn-large btn-primary']) !!}
+                                {!! Form::submit('Crear Evento', ['class'=>'btn btn-large btn-success']) !!}
                                 {{link_to_route('usuariosC.index', $title = 'Cancelar', $parameter = [''], $attributes = ['class' => 'btn btn-danger btn-warning'])}}
                                 </div>
                             {!! Form::close() !!}

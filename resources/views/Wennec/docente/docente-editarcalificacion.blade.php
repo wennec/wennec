@@ -22,7 +22,7 @@
                                       </div>
                                   </div>
                               </div>
-                              {!! Form::submit('Editar Calificacion', ['class'=>'btn btn-large btn-primary']) !!}
+                              {!! Form::submit('Editar Calificacion', ['class'=>'btn btn-large btn-success']) !!}
 
                               <button class="btn btn-danger"  type="button" name="button"><a style="color:white;" href="{{URL::previous()}}">Cancelar</a></button>
                               </div>

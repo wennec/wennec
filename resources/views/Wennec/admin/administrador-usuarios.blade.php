@@ -16,15 +16,10 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Usuarios Wennec</h1>
+                                <h1>Administradores</h1>
                             </div>
                         </div>
-                        <div>
-                            <a class="btn btn-primary" href="{{route('usuariosC.create')}}" role="button">
-                                <i class="fa fa-plus"></i>
-                                Crear Usuario
-                            </a>
-                        </div>   <br>
+                         <br>
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
@@ -50,7 +45,7 @@
                                             <td>{{$user->nameColegio}}</td>
                                         </tr>
                                         @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

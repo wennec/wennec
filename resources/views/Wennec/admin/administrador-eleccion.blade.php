@@ -38,31 +38,31 @@
                             {!! Form::open(['route'=>'eleccionEscolar.store','method'=>'POST']) !!}
                             <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-12">
-                                        <div class="form-group form-md-line-input">                                 
+                                        <div class="form-group form-md-line-input">
                                             {!!Form::text('nombreEleccion',null,['class'=>'form-control','placeholder'=>'Titulo Evento','required'])!!}
                                         </div>
-                                    </div> 
+                                    </div>
                             </div>
 
                             <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <label>Fecha Inicio</label>
-                                        <div class="form-group form-md-line-input">                                 
+                                        <div class="form-group form-md-line-input">
                                                 {!!Form::date('fechaInicio',null,['class'=>'form-control','placeholder'=>'Fecha','required'])!!}
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                     <label>Fecha Fin</label>
-                                        <div class="form-group form-md-line-input">                                 
+                                        <div class="form-group form-md-line-input">
                                             {!!Form::date('fechaFin',null,['class'=>'form-control','placeholder'=>'Fecha','required'])!!}
                                         </div>
-                                    </div> 
+                                    </div>
                             </div>
-                                         
-                                    {!! Form::submit('Crear Eleccion', ['class'=>'btn btn-large btn-primary']) !!}
+
+                                    {!! Form::submit('Crear Eleccion', ['class'=>'btn btn-large btn-success']) !!}
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    </div>                        
+                                    </div>
                                 {!! Form::close() !!}
                             </div>
                             </div>
@@ -82,14 +82,14 @@
                                 <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-12">
                                             <input id="city">
-                                            <select name="FK_UsuarioId" id="select"></select> 
-                                        </div> 
+                                            <select name="FK_UsuarioId" id="select"></select>
+                                        </div>
                                         <input type="hidden" name="FK_EleccionId" id="usuario_id">
                                 </div>
-                                         
+
                                 {!! Form::submit('Crear Eleccion', ['class'=>'btn btn-large btn-primary']) !!}
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                </div>                        
+                                </div>
                                 {!! Form::close() !!}
                             </div>
                             </div>
@@ -122,7 +122,7 @@
                                             <i class="fa fa-plus"></i></td>
                                         </tr>
                                     @endforeach
-                                    </tbody> 
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -144,11 +144,11 @@ $(function() {
         },
         @endforeach
     ];
-    
+
     data.forEach(function(val) {
         $('#select').append($('<option></option>').attr('value', val.value).text(val.text));
     });
-    
+
     $('#city').keyup(function() {
         var inputValue = $(this).val();
         data.forEach(function(val) {
