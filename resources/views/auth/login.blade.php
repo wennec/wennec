@@ -117,7 +117,7 @@
                         <i class="fa fa-plus"></i>
                         Crear Prematricula
                         </button>
-                </form> 
+                </form>
               </div>
             </div>
             </div>
@@ -159,7 +159,7 @@
                       <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                               <div class="form-group form-md-line-input">
-                                      {!!Form::text('correoEstudiante',null,['class'=>'form-control','placeholder'=>'Correo Electronico del Estudiante'])!!}
+                                      {!!Form::email('correoEstudiante',null,['class'=>'form-control','placeholder'=>'Correo Electronico del Estudiante'])!!}
                               </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
@@ -195,7 +195,7 @@
 
                           <div class="col-xs-6 col-sm-6 col-md-12">
                               <div class="form-group form-md-line-input">
-                                  {!!Form::text('correoAcudiente',null,['class'=>'form-control','placeholder'=>'Correo Electronico Acudiente','required'])!!}
+                                  {!!Form::email('correoAcudiente',null,['class'=>'form-control','placeholder'=>'Correo Electronico Acudiente','required'])!!}
                               </div>
                           </div>
                       </div>

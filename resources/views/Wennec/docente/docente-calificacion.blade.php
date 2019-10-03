@@ -107,7 +107,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group form-md-line-input">
-                            {!!Form::text('calificacion',null,['class'=>'form-control','placeholder'=>'Calificacion','required'])!!}
+                            <input class="form-control" placeholder="Calificación" type="number" name="calificacion" step="0.01" value="" required>
                         </div>
                         <input type="hidden" name="FK_Logro" id="idLogro">
                         <input type="hidden" name="FK_Estudiante" id="idEstudiante">

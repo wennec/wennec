@@ -36,13 +36,13 @@
                                             {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion','required'])!!}
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group form-md-line-input">
                                             <label for="">Fecha Inicio</label>
                                             {!!Form::date('fechaInicio',null,['class'=>'form-control','placeholder'=>'Fecha de inicio','required'])!!}
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group form-md-line-input">
                                             <label for="">Fecha Final</label>
                                             {!!Form::date('fechaFin',null,['class'=>'form-control','placeholder'=>'Fecha fin','required'])!!}

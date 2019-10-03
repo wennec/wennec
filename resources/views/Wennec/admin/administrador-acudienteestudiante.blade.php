@@ -85,14 +85,9 @@
                                 </div>
                           </div>
                           <div class="row">
-                                  <div class="col-xs-6 col-sm-6 col-md-6">
+                                  <div class="col-xs-12 col-sm-12 col-md-12">
                                       <div class="form-group form-md-line-input">
-                                          {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
-                                      </div>
-                                  </div>
-                                  <div class="col-xs-6 col-sm-6 col-md-6">
-                                      <div class="form-group form-md-line-input">
-                                          {!!Form::file('foto',null,['class'=>'form-control','placeholder'=>'Foto'])!!}
+                                          {!!Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'])!!}
                                       </div>
                                   </div>
                             </div>
@@ -152,7 +147,6 @@
   </div>
   <!-- Static Table End -->
 </div>
-@endsection
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
@@ -172,3 +166,5 @@ $(document).ready(function (e) {
   });
 });
 </script>
+
+@endsection
