@@ -10,6 +10,7 @@ Route::resource('agendaA', 'AgendaAdminController');
 Route::resource('eventoA', 'EventoAdminController');
 Route::resource('noticiasA', 'AdminNoticiaController');
 Route::resource('fechaevaluaciondocenteA', 'EvaluacionDocenteController');
+Route::resource('resultadoevaluaciondocenteA', 'EvaluacionDocenteRController');
 Route::resource('eventoEstudiante', 'EventoEstudianteController');
 Route::resource('agendaEstudiante', 'AgendaEstudianteController');
 Route::resource('agendaAcudiente', 'AgendaAcudienteController');
