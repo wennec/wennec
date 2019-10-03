@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 01/10/2019 14:19:47
+ Date: 03/10/2019 11:08:07
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of migrations
@@ -46,7 +46,7 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of password_resets
@@ -61,11 +61,11 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_acudiente`;
 CREATE TABLE `tbl_acudiente` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `documento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tipo_documento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `parentesco` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telefono` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `direccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documento` varchar(255) DEFAULT NULL,
+  `tipo_documento` varchar(255) DEFAULT NULL,
+  `parentesco` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
   `FK_estudianteId` int(11) DEFAULT NULL,
   `FK_usuarioId` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -73,9 +73,9 @@ CREATE TABLE `tbl_acudiente` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_estudianteId` (`FK_estudianteId`) USING BTREE,
   KEY `FK_usuarioId` (`FK_usuarioId`) USING BTREE,
-  CONSTRAINT `tbl_acudiente_ibfk_1` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tbl_acudiente_ibfk_2` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+  CONSTRAINT `tbl_acudiente_ibfk_1` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`),
+  CONSTRAINT `tbl_acudiente_ibfk_2` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_acudiente
@@ -91,7 +91,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_agenda`;
 CREATE TABLE `tbl_agenda` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_agenda` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `tipo_agenda` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `PK_id` (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -111,7 +111,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_agendaestudiante`;
 CREATE TABLE `tbl_agendaestudiante` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   `FK_estudianteId` int(11) DEFAULT NULL,
   `FK_agendaId` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
@@ -120,8 +120,8 @@ CREATE TABLE `tbl_agendaestudiante` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `fk_TBL_AgendaEstudiante_Agenda` (`FK_agendaId`) USING BTREE,
   KEY `fk_TBL_AgendaEstudiante_Estudiante` (`FK_estudianteId`) USING BTREE,
-  CONSTRAINT `fk_TBL_AgendaEstudiante_Agenda` FOREIGN KEY (`FK_agendaId`) REFERENCES `tbl_agenda` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_TBL_AgendaEstudiante_Usuarifk_TBL_AgendaEstudiante_Usuari` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_TBL_AgendaEstudiante_Agenda` FOREIGN KEY (`FK_agendaId`) REFERENCES `tbl_agenda` (`PK_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_TBL_AgendaEstudiante_Usuarifk_TBL_AgendaEstudiante_Usuari` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -141,7 +141,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_asistencia`;
 CREATE TABLE `tbl_asistencia` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_control_asistencia` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `tipo_control_asistencia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -165,8 +165,8 @@ CREATE TABLE `tbl_asistenciaestudiante` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_AsistenciaEstudiante_Asistencia` (`FK_asistencia`) USING BTREE,
   KEY `FK_estudiante` (`FK_estudiante`) USING BTREE,
-  CONSTRAINT `fk_TBL_AsistenciaEstudiante_Asistencia` FOREIGN KEY (`FK_asistencia`) REFERENCES `tbl_asistencia` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tbl_asistenciaestudiante_ibfk_1` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_TBL_AsistenciaEstudiante_Asistencia` FOREIGN KEY (`FK_asistencia`) REFERENCES `tbl_asistencia` (`PK_id`),
+  CONSTRAINT `tbl_asistenciaestudiante_ibfk_1` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -182,14 +182,14 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_calidadinstitucion`;
 CREATE TABLE `tbl_calidadinstitucion` (
   `PK_id` int(11) NOT NULL,
-  `archivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `archivo` varchar(255) DEFAULT NULL,
   `FK_ColegioId` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_ColegioId` (`FK_ColegioId`) USING BTREE,
   CONSTRAINT `tbl_calidadinstitucion_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Table structure for tbl_calificacion
@@ -197,7 +197,7 @@ CREATE TABLE `tbl_calidadinstitucion` (
 DROP TABLE IF EXISTS `tbl_calificacion`;
 CREATE TABLE `tbl_calificacion` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_calificacion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `tipo_calificacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -214,7 +214,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_calificacionestudiante`;
 CREATE TABLE `tbl_calificacionestudiante` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `calificacion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '0.0',
+  `calificacion` varchar(255) DEFAULT '0.0',
   `FK_tipo_calificacion` int(11) DEFAULT NULL,
   `FK_Logro` int(11) DEFAULT NULL,
   `FK_Estudiante` int(11) DEFAULT NULL,
@@ -262,7 +262,7 @@ CREATE TABLE `tbl_colegios` (
   KEY `tbl_colegios_fk_planesid_foreign` (`FK_PlanesId`) USING BTREE,
   KEY `codigo` (`codigo`) USING BTREE,
   CONSTRAINT `tbl_colegios_fk_planesid_foreign` FOREIGN KEY (`FK_PlanesId`) REFERENCES `tbl_planes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_colegios
@@ -271,6 +271,7 @@ BEGIN;
 INSERT INTO `tbl_colegios` VALUES (1, 'Jhon F. Kenndy', NULL, NULL, NULL, NULL, NULL, 3, NULL, '2019-08-26 10:59:09');
 INSERT INTO `tbl_colegios` VALUES (2, 'Gimnasio Sabana Norte', NULL, NULL, NULL, 600347, NULL, NULL, NULL, NULL);
 INSERT INTO `tbl_colegios` VALUES (8, 'Jadilop', 'villeta', 'prueba', '23432453', 600346, 'Colegio.1568061648.jpg', 2, '2019-09-09 15:40:48', '2019-09-09 15:40:48');
+INSERT INTO `tbl_colegios` VALUES (9, 'hola', 'prueba', 'prueba', '2345345456', 733760, '', 3, '2019-10-03 09:37:36', '2019-10-03 09:40:02');
 COMMIT;
 
 -- ----------------------------
@@ -279,7 +280,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_comunicaciones`;
 CREATE TABLE `tbl_comunicaciones` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_comunicacion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `tipo_comunicacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -291,12 +292,12 @@ CREATE TABLE `tbl_comunicacionestudiante` (
   `PK_id` int(11) NOT NULL,
   `FK_comunicacionId` int(11) DEFAULT NULL,
   `FK_estudianteId` int(11) DEFAULT NULL,
-  `fecha` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `fecha` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_ComunicacionEstudiante_Comunicaciones` (`FK_comunicacionId`) USING BTREE,
   KEY `fk_TBL_ComunicacionEstudiante_Estudiante` (`FK_estudianteId`) USING BTREE,
-  CONSTRAINT `fk_TBL_ComunicacionEstudiante_Comunicaciones` FOREIGN KEY (`FK_comunicacionId`) REFERENCES `tbl_comunicaciones` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_TBL_ComunicacionEstudiante_Estudiante` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_TBL_ComunicacionEstudiante_Comunicaciones` FOREIGN KEY (`FK_comunicacionId`) REFERENCES `tbl_comunicaciones` (`PK_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_TBL_ComunicacionEstudiante_Estudiante` FOREIGN KEY (`FK_estudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -305,7 +306,7 @@ CREATE TABLE `tbl_comunicacionestudiante` (
 DROP TABLE IF EXISTS `tbl_cursos`;
 CREATE TABLE `tbl_cursos` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_curso` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `nombre_curso` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -326,9 +327,9 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_diahorario`;
 CREATE TABLE `tbl_diahorario` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `dia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_diahorario
@@ -347,8 +348,8 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_docente`;
 CREATE TABLE `tbl_docente` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `profesion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `perfil_profesional` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `profesion` varchar(255) DEFAULT NULL,
+  `perfil_profesional` varchar(255) DEFAULT NULL,
   `FK_usuario` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -373,7 +374,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_eleccion`;
 CREATE TABLE `tbl_eleccion` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreEleccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nombreEleccion` varchar(255) DEFAULT NULL,
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
   `FK_ColegioId` int(11) DEFAULT NULL,
@@ -382,7 +383,7 @@ CREATE TABLE `tbl_eleccion` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `tbl_eleccion_ibfk_1` (`FK_ColegioId`) USING BTREE,
   CONSTRAINT `tbl_eleccion_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_eleccion
@@ -406,7 +407,7 @@ CREATE TABLE `tbl_eleccionestudiante` (
   KEY `FK_EleccionId` (`FK_EleccionId`) USING BTREE,
   CONSTRAINT `tbl_eleccionestudiante_ibfk_2` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_eleccionestudiante_ibfk_3` FOREIGN KEY (`FK_EleccionId`) REFERENCES `tbl_eleccion` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_eleccionestudiante
@@ -423,7 +424,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_estadoprematricula`;
 CREATE TABLE `tbl_estadoprematricula` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -450,7 +451,7 @@ CREATE TABLE `tbl_estadovotoestudiante` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_VotoEstudianteId` (`FK_VotoEstudianteId`) USING BTREE,
   CONSTRAINT `tbl_estadovotoestudiante_ibfk_1` FOREIGN KEY (`FK_VotoEstudianteId`) REFERENCES `tbl_votoestudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_estadovotoestudiante
@@ -465,22 +466,22 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_estudiante`;
 CREATE TABLE `tbl_estudiante` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `documento_estudiante` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `tipo_documento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `sexo_estudiante` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `fecha_nacimiento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `lugar_nacimiento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nombre_madre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `apellido_madre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nombre_padre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `apellido_padre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `documento_estudiante` varchar(255) DEFAULT NULL,
+  `tipo_documento` varchar(255) DEFAULT NULL,
+  `sexo_estudiante` varchar(255) DEFAULT NULL,
+  `fecha_nacimiento` varchar(255) DEFAULT NULL,
+  `lugar_nacimiento` varchar(255) DEFAULT NULL,
+  `nombre_madre` varchar(255) DEFAULT NULL,
+  `apellido_madre` varchar(255) DEFAULT NULL,
+  `nombre_padre` varchar(255) DEFAULT NULL,
+  `apellido_padre` varchar(255) DEFAULT NULL,
   `FK_usuarioId` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_Estudiante_Usuario` (`FK_usuarioId`) USING BTREE,
   KEY `PK_id` (`PK_id`) USING BTREE,
-  CONSTRAINT `fk_TBL_Estudiante_Usuario` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_TBL_Estudiante_Usuario` FOREIGN KEY (`FK_usuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -505,8 +506,8 @@ CREATE TABLE `tbl_estudiantematerias` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_EstudianteMaterias_GrupoMaterias` (`FK_grupo_materias`) USING BTREE,
   KEY `fk_TBL_EstudianteMaterias_GrupoEstudiantes` (`FK_grupo_estudiantes`) USING BTREE,
-  CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoEstudiantes` FOREIGN KEY (`FK_grupo_estudiantes`) REFERENCES `tbl_grupoestudiantes` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoMaterias` FOREIGN KEY (`FK_grupo_materias`) REFERENCES `tbl_grupomaterias` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoEstudiantes` FOREIGN KEY (`FK_grupo_estudiantes`) REFERENCES `tbl_grupoestudiantes` (`PK_id`),
+  CONSTRAINT `fk_TBL_EstudianteMaterias_GrupoMaterias` FOREIGN KEY (`FK_grupo_materias`) REFERENCES `tbl_grupomaterias` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -540,7 +541,7 @@ CREATE TABLE `tbl_evaluaciondocente` (
   CONSTRAINT `tbl_evaluaciondocente_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_evaluaciondocente_ibfk_2` FOREIGN KEY (`FK_EstudianteId`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_evaluaciondocente_ibfk_3` FOREIGN KEY (`FK_FechaId`) REFERENCES `tbl_fechaevaluaciondocente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_evaluaciondocente
@@ -556,9 +557,9 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_eventos`;
 CREATE TABLE `tbl_eventos` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_evento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipo_evento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_eventos
@@ -575,7 +576,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_eventosgenerales`;
 CREATE TABLE `tbl_eventosgenerales` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo_evento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `titulo_evento` varchar(255) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `FK_EventosId` int(11) DEFAULT NULL,
   `FK_ColegioId` int(11) DEFAULT NULL,
@@ -589,7 +590,7 @@ CREATE TABLE `tbl_eventosgenerales` (
   CONSTRAINT `tbl_eventosgenerales_fk_colegioid_foreign` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_eventosgenerales_fk_estudianteid_foreign` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_eventosgenerales_fk_eventosid_foreign` FOREIGN KEY (`FK_EventosId`) REFERENCES `tbl_eventos` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_eventosgenerales
@@ -613,7 +614,7 @@ CREATE TABLE `tbl_fechaevaluaciondocente` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FK_ColegioId` (`FK_ColegioId`) USING BTREE,
   CONSTRAINT `tbl_fechaevaluaciondocente_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_fechaevaluaciondocente
@@ -635,8 +636,8 @@ CREATE TABLE `tbl_grupoestudiantes` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_GrupoEstudiantes_Estudiante` (`FK_estudiante`) USING BTREE,
   KEY `fk_TBL_GrupoEstudiantes_Grupo` (`FK_grupo`) USING BTREE,
-  CONSTRAINT `fk_TBL_GrupoEstudiantes_Estudiante` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_TBL_GrupoEstudiantes_Grupo` FOREIGN KEY (`FK_grupo`) REFERENCES `tbl_grupos` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_TBL_GrupoEstudiantes_Estudiante` FOREIGN KEY (`FK_estudiante`) REFERENCES `tbl_estudiante` (`PK_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_TBL_GrupoEstudiantes_Grupo` FOREIGN KEY (`FK_grupo`) REFERENCES `tbl_grupos` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -683,12 +684,12 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_grupos`;
 CREATE TABLE `tbl_grupos` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `grupo` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `grupo` varchar(255) DEFAULT NULL,
   `FK_ curso` int(11) DEFAULT NULL,
-  `ano` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `ano` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `fk_TBL_Grupos_Curso` (`FK_ curso`) USING BTREE,
-  CONSTRAINT `fk_TBL_Grupos_Curso` FOREIGN KEY (`FK_ curso`) REFERENCES `tbl_cursos` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_TBL_Grupos_Curso` FOREIGN KEY (`FK_ curso`) REFERENCES `tbl_cursos` (`PK_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
@@ -712,8 +713,8 @@ CREATE TABLE `tbl_horario` (
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_DiaId` (`FK_DiaId`) USING BTREE,
-  CONSTRAINT `tbl_horario_ibfk_1` FOREIGN KEY (`FK_DiaId`) REFERENCES `tbl_diahorario` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+  CONSTRAINT `tbl_horario_ibfk_1` FOREIGN KEY (`FK_DiaId`) REFERENCES `tbl_diahorario` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_horario
@@ -737,9 +738,9 @@ CREATE TABLE `tbl_horariomateria` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_HorarioId` (`FK_HorarioId`) USING BTREE,
   KEY `tbl_horariomateria_ibfk_2` (`FK_GrupoMateriaId`) USING BTREE,
-  CONSTRAINT `tbl_horariomateria_ibfk_1` FOREIGN KEY (`FK_HorarioId`) REFERENCES `tbl_horario` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `tbl_horariomateria_ibfk_2` FOREIGN KEY (`FK_GrupoMateriaId`) REFERENCES `tbl_grupomaterias` (`PK_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+  CONSTRAINT `tbl_horariomateria_ibfk_1` FOREIGN KEY (`FK_HorarioId`) REFERENCES `tbl_horario` (`PK_id`),
+  CONSTRAINT `tbl_horariomateria_ibfk_2` FOREIGN KEY (`FK_GrupoMateriaId`) REFERENCES `tbl_grupomaterias` (`PK_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_horariomateria
@@ -756,8 +757,8 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_logro`;
 CREATE TABLE `tbl_logro` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreLogro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nombreLogro` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   `FK_Periodo` int(11) DEFAULT NULL,
   `FK_GrupoMateria` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -767,7 +768,7 @@ CREATE TABLE `tbl_logro` (
   KEY `FK_Periodo` (`FK_Periodo`) USING BTREE,
   CONSTRAINT `tbl_logro_ibfk_3` FOREIGN KEY (`FK_GrupoMateria`) REFERENCES `tbl_grupomaterias` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_logro_ibfk_4` FOREIGN KEY (`FK_Periodo`) REFERENCES `tbl_periodo` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_logro
@@ -798,7 +799,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_materias`;
 CREATE TABLE `tbl_materias` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_materia` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `nombre_materia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -818,9 +819,9 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_noticias`;
 CREATE TABLE `tbl_noticias` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipoNoticia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `imagenNoticia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipoNoticia` varchar(255) DEFAULT NULL,
+  `imagenNoticia` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
   `FK_ColegioId` int(11) DEFAULT NULL,
@@ -829,7 +830,7 @@ CREATE TABLE `tbl_noticias` (
   PRIMARY KEY (`PK_id`) USING BTREE,
   KEY `FK_ColegioId` (`FK_ColegioId`) USING BTREE,
   CONSTRAINT `tbl_noticias_ibfk_1` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Table structure for tbl_observaciondocente
@@ -837,16 +838,26 @@ CREATE TABLE `tbl_noticias` (
 DROP TABLE IF EXISTS `tbl_observaciondocente`;
 CREATE TABLE `tbl_observaciondocente` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tbl_observaciondocente
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_observaciondocente` VALUES (1, 'Favor corregir olimpiada en el cuaderno respectivo para recuperacion y sustentacion oral');
+INSERT INTO `tbl_observaciondocente` VALUES (2, 'Favor repasar en casa los temas abordados durante el periodo');
+INSERT INTO `tbl_observaciondocente` VALUES (3, 'Felicitaciones por tu desempeño');
+INSERT INTO `tbl_observaciondocente` VALUES (4, 'Felicitaciones por tu excelente desempeño. ¡ Continua asi !');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tbl_observacionestudiante
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_observacionestudiante`;
 CREATE TABLE `tbl_observacionestudiante` (
-  `PK_id` int(11) NOT NULL,
+  `PK_id` int(11) NOT NULL AUTO_INCREMENT,
   `FK_Estudiante` int(11) DEFAULT NULL,
   `FK_ObservacionDocente` int(11) DEFAULT NULL,
   `FK_Materia` int(11) DEFAULT NULL,
@@ -862,7 +873,14 @@ CREATE TABLE `tbl_observacionestudiante` (
   CONSTRAINT `tbl_observacionestudiante_ibfk_2` FOREIGN KEY (`FK_ObservacionDocente`) REFERENCES `tbl_observaciondocente` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_observacionestudiante_ibfk_3` FOREIGN KEY (`FK_Materia`) REFERENCES `tbl_materias` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_observacionestudiante_ibfk_4` FOREIGN KEY (`FK_Periodo`) REFERENCES `tbl_periodo` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tbl_observacionestudiante
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_observacionestudiante` VALUES (4, 2, 3, 4, 2, '2019-10-01 16:45:36', '2019-10-01 16:45:36');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tbl_periodo
@@ -870,9 +888,9 @@ CREATE TABLE `tbl_observacionestudiante` (
 DROP TABLE IF EXISTS `tbl_periodo`;
 CREATE TABLE `tbl_periodo` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `periodo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `periodo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_periodo
@@ -894,7 +912,7 @@ CREATE TABLE `tbl_planes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_planes
@@ -911,16 +929,16 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_prematricula`;
 CREATE TABLE `tbl_prematricula` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreEstudiante` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `numeroDocumentoEstudiante` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `nombreEstudiante` varchar(255) DEFAULT NULL,
+  `numeroDocumentoEstudiante` varchar(255) DEFAULT NULL,
   `FK_Grupo` int(11) DEFAULT NULL,
-  `correoEstudiante` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `direccionResidencia` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nombrePadre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nombreMadre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nombreAcudiente` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `telefonoAcudiente` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `correoAcudiente` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `correoEstudiante` varchar(255) DEFAULT NULL,
+  `direccionResidencia` varchar(255) DEFAULT NULL,
+  `nombrePadre` varchar(255) DEFAULT NULL,
+  `nombreMadre` varchar(255) DEFAULT NULL,
+  `nombreAcudiente` varchar(255) DEFAULT NULL,
+  `telefonoAcudiente` varchar(255) DEFAULT NULL,
+  `correoAcudiente` varchar(255) DEFAULT NULL,
   `FK_Estado` int(11) DEFAULT NULL,
   `codigoColegio` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -948,11 +966,11 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_reportes`;
 CREATE TABLE `tbl_reportes` (
   `PK_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_reporte` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipo_reporte` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Table structure for tbl_roles
@@ -964,7 +982,7 @@ CREATE TABLE `tbl_roles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_roles
@@ -990,7 +1008,7 @@ CREATE TABLE `tbl_usuarioreporte` (
   KEY `FK_ReporteId` (`FK_ReporteId`) USING BTREE,
   CONSTRAINT `tbl_usuarioreporte_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_usuarioreporte_ibfk_2` FOREIGN KEY (`FK_ReporteId`) REFERENCES `tbl_reportes` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Table structure for tbl_usuarios
@@ -1014,25 +1032,25 @@ CREATE TABLE `tbl_usuarios` (
   KEY `tbl_usuarios_fk_rolesid_foreign` (`FK_RolesId`) USING BTREE,
   KEY `tbl_usuarios_fk_colegioid_foreign` (`FK_ColegioId`) USING BTREE,
   KEY `PK_id` (`PK_id`) USING BTREE,
-  CONSTRAINT `tbl_usuarios_fk_colegioid_foreign` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `tbl_usuarios_fk_rolesid_foreign` FOREIGN KEY (`FK_RolesId`) REFERENCES `tbl_roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+  CONSTRAINT `tbl_usuarios_fk_colegioid_foreign` FOREIGN KEY (`FK_ColegioId`) REFERENCES `tbl_colegios` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `tbl_usuarios_fk_rolesid_foreign` FOREIGN KEY (`FK_RolesId`) REFERENCES `tbl_roles` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_usuarios
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', 'FotoP.1569795095.png', 1, NULL, 'nQTdU3FLNZV1tOSthiD79m4oQD8fLJ6X92fAZdbCNfZDano8hc8SCJEoTxXl', NULL, '2019-09-29 17:11:35');
+INSERT INTO `tbl_usuarios` VALUES (1, 'Code Freestyle', NULL, NULL, NULL, 'root@app.com', '$2y$10$/opF8B6oJ66fKE9UobDxR.hwUIXdsgyGMVeC9QU/4bjYxaKHP6oqi', 'FotoP.1569795095.png', 1, NULL, 'QEW29Dn3uiewsAWDK1uUFmsHUwTSqEsZBsKxK2VXIjo6vcx7eO2Y8jssRhAU', NULL, '2019-09-29 17:11:35');
 INSERT INTO `tbl_usuarios` VALUES (2, 'admingimnasio', NULL, NULL, NULL, 'admingimnasio@mail.com', '$2y$10$LZ0fVWNaDyJoAVjATFe0Nun5CHWa2/4IvjRDwUQ0oQJIBKOK9KJ5q', 'FotoP.1569198005.JPG', 2, 2, 'XL59yEOX57A6VNGetMT6AGpG2NCKSP9NSSfK7HFLU4evSqxkhVOn3HsqRCIU', NULL, '2019-09-22 19:20:05');
 INSERT INTO `tbl_usuarios` VALUES (3, 'Fredo', NULL, NULL, NULL, 'fredo@joya.joya', '$2y$10$wetZSvjjG.AhnvujtJLvZO0KGlsGhfQCy/ME7CYxsdFwnqAqgKIO2', NULL, 3, 2, 'dF4Ct00LoHd3tRkUgp3woRRA5DMNJS8DzaMi1MHTuG8D9akeCBES1RkVoGO2', NULL, NULL);
-INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'yWt9ES1XAfR0KCSNbUh6R2jJCpoQhy06NkUWmeabJ0IusXn5jkyX3fN291bx', NULL, '2019-09-20 12:58:26');
-INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, 'gwigSiOquZyE3x7zttXqUOXgYdvaYJ8GP3Z1FjIaxyG9VPpXUSNcPSmt9wKr', NULL, NULL);
+INSERT INTO `tbl_usuarios` VALUES (4, 'Efrain Andres Vergara', NULL, NULL, NULL, 'efrainvergara.udec@gmail.com', '$2y$10$jPeWJCOToFWrax22AqIQLe6ePIJ4VQJzBusqU5B4cIx28xsopvuKi', 'FotoP.1569002306.jpg', 3, 2, 'mPtznz2X0PHQsTce4FpYN0ppU43wnrUlWAgBy7oM7gZkTWPY50w5t8mSpDYE', NULL, '2019-09-20 12:58:26');
+INSERT INTO `tbl_usuarios` VALUES (5, 'Stevenson', NULL, NULL, NULL, 'stevenson@gmail.com', '$2y$10$uoGk6wXzsBeefLamLqsZROy9dHXC1N/hPDFAhT.LwamnneSQLVyLO', NULL, 4, 2, '8c4TXTXuZZhmtDNjGTuVJSr7xoHHcgfiu9EUeisELweMcInfcYi3VWuJCfU4', NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (6, 'hector', NULL, NULL, NULL, 'hector@gmail.com', '$2y$10$V2PkYTko8IqNcNGwJZ7AzuhiGoovYvCwptDTmFuZP9S8CXRO4XjF2', NULL, 4, 1, NULL, NULL, NULL);
 INSERT INTO `tbl_usuarios` VALUES (7, 'luna vergara', NULL, NULL, NULL, 'luna@mail.com', '$2y$10$U4ZbzguvuL1pOix1SJqwDuItsgTkRg2yU6GuOMDnWcZh5X3v/7gkS', NULL, 3, 2, NULL, '2019-08-26 15:55:03', '2019-08-26 15:55:03');
 INSERT INTO `tbl_usuarios` VALUES (8, 'efgerg', NULL, NULL, NULL, 'pai@mail.com', '$2y$10$l5.ghvM2h73oFV2fP9/dquZHZlUBwJL7PUewYUQIOPXxnWZnBWHG.', NULL, 3, NULL, NULL, '2019-08-26 15:58:24', '2019-08-26 15:58:24');
-INSERT INTO `tbl_usuarios` VALUES (9, 'Sandra Serrato', NULL, NULL, NULL, 'sandra@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, 'OW7bCbQtY2VjGTpeTtQawi1RakJYJ5GW0AgfF7K8Slklmd5f1ZaezKBy7TYr', '2019-08-26 16:08:06', '2019-08-26 16:08:06');
+INSERT INTO `tbl_usuarios` VALUES (9, 'Sandra Serrato', NULL, NULL, NULL, 'sandra@mail.com', '$2y$10$0yCUIdxpfh0GrVIXWWU8SuaOfFL1AyfKIP2dYD1CkTVJn03ywPRwO', NULL, 4, 2, 'NLG7doRexySD5ai0HcZAIabmaRYjznZ5I5kVgmVT3y26FaTy0UOCpX9kdGZc', '2019-08-26 16:08:06', '2019-08-26 16:08:06');
 INSERT INTO `tbl_usuarios` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:17:17', '2019-08-26 16:17:17');
-INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, NULL, 'y3gBvnqGmcXmOkI4eGWQVIyw0Nc6HGPY85Hc7X82pAcF7H8JJC03e85ewk5x', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
+INSERT INTO `tbl_usuarios` VALUES (11, 'luisa', NULL, NULL, NULL, 'luisa@mail.com', '$2y$10$QrEYimN/xaAGLk7WONpGheTbJhVdlfvRqVuIcV8dygOIhSmCH7uSi', NULL, 5, 2, '4aDjiqRDjjPMXRP8Fh0JPLPPczXIBY9rdWQpgaCKjlaiQwUeaDGqBuof7A01', '2019-08-26 16:17:17', '2019-08-26 16:17:17');
 INSERT INTO `tbl_usuarios` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:18:44', '2019-08-26 16:18:44');
 INSERT INTO `tbl_usuarios` VALUES (13, 'laura Molina Rodriguez', NULL, NULL, NULL, 'laura@mail.com', '$2y$10$jOttMmJagIibt0ueiQGxq.SfB/Lfi7fWd4YBtglW67.eF0a6Hesea', NULL, 3, 2, '9l7dSE68UUgGNmLuPClr3hGmAZv0TU3tTHZeNYJW1HXkMgFGfwtKdKOeNfV5', '2019-08-26 16:18:45', '2019-08-26 16:18:45');
 INSERT INTO `tbl_usuarios` VALUES (14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-26 16:21:22', '2019-08-26 16:21:22');
@@ -1073,7 +1091,7 @@ CREATE TABLE `tbl_votoestudiante` (
   KEY `FK_EleccionEstudiante` (`FK_EleccionEstudiante`) USING BTREE,
   CONSTRAINT `tbl_votoestudiante_ibfk_1` FOREIGN KEY (`FK_UsuarioId`) REFERENCES `tbl_usuarios` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tbl_votoestudiante_ibfk_2` FOREIGN KEY (`FK_EleccionEstudiante`) REFERENCES `tbl_eleccionestudiante` (`PK_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of tbl_votoestudiante
