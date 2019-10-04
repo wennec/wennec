@@ -42,7 +42,7 @@
                                         <tr  class="text-center">
                                             <td>{{$grupo->grupo}}</td>
                                             <td>{{$grupo->nombre_materia}}</td>
-                                            <td><button type="button" id="mymodal" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCreate">
+                                            <td><button type="button" id="mymodal" class="btn btn-primary btn-md" data-logro-id="{{$grupo->idgrupomateria}}" data-toggle="modal" data-target="#modalCreate">
                                             <i class="fa fa-plus"></i>
                                             </button></td>
                                         </tr>
@@ -77,11 +77,7 @@
                                   @foreach($docentes as $docente)
                                       <option value="{{$docente->PK_id}}">{{$docente->name}}</option>
                                   @endforeach
-                                  @foreach($grupos as $grupo)
-                                    <input type="hidden" name="id_grupo" id="id_grupo" value="{{$grupo->PK_id}}">
-                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$grupo->idmateria}}">
-                                    <input type="hidden" name="id_grupomateria" id="id_grupomateria" value="{{$grupo->idgrupomateria}}">
-                                  @endforeach
+                                  <input type="hidden" name="id_grupomateria" id="idLogro">
                           </select>
                   </div>
 
@@ -155,5 +151,16 @@ $(document).ready(function (e) {
     $(e.currentTarget).find('#id_grupomateria').val(id_grupomateria);
   });
 });
+</script>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('#modalCreate').on('show.bs.modal', function(e) {
+            var estudiante = $(e.relatedTarget).data('logro-id');
+            $(e.currentTarget).find('input[name="id_grupomateria"]').val(estudiante);
+            var student = document.getElementById('idLogro').innerHTML = estudiante;
+        });
+    });
 </script>
 @endsection

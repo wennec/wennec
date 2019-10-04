@@ -106,11 +106,6 @@ class AdminHorariosController extends Controller
             'FK_GrupoMateriaId' => $request['id_grupomateria'],
         ]);
 
-        GrupoMaterias::create([
-            'FK_materia' => $request['id_materia'],
-            'FK_docente' => $request['FK_docente'],
-            'FK_GrupoId' => $request['id_grupo'],
-        ]);
         return redirect('/horarios')->with('success','Horario Registrado Correctamente');
     }
 
