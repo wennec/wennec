@@ -18,7 +18,7 @@
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 <!--<a href="index.html"><img class="main-logo" src="assets/img/logo/logolarge.png" alt="" /></a>-->
-                <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn navbar-btn">
+                <button alt="Menu" type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn navbar-btn">
 													<i class="educate-icon educate-nav"></i>
 											</button>
             </div>
@@ -27,8 +27,8 @@
                     <ul class="metismenu" id="menu1">
                         @component('components.nav-link', [
                                     'icon' => 'fas fa-home',
-                                    'title' => ' Home',
-                                    'link' => '/'])
+                                    'title' => ' Inicio',
+                                    'link' => '/inicio'])
                         @endcomponent
 
                         {{-- Links --}}

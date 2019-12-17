@@ -5002,6 +5002,6 @@ img-logo-responsive {
 }
 
 .btn.focus, .btn:focus, .btn:hover {
-    color: #ddd;
+    color: gray;
     text-decoration: none;
 }
