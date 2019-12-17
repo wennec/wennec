@@ -66,9 +66,9 @@
           <div class="column">
                 <div class="text">
 			            <h1 class="mb-4 mt-3 center-h1">Contáctanos</h1>
-			            <p style="text-align:left;"><i class="fa fa-phone" style="font-size:60px;color: rgb(247,172,59)">  </i>     057 9 370 075</p>
+			            <p style="text-align:left;"><i class="fa fa-phone" style="font-size:60px;color: rgb(247,172,59)">  </i>  057   7458818</p>
 							
-						<p style="text-align:left;"><i class="fa fa-map-marker" style="font-size:60px;color:rgb(247,172,59)"></i>   Cll. 98 # 8 - 28 Of. 303
+						<p style="text-align:left;"><i class="fa fa-map-marker" style="font-size:60px;color:rgb(247,172,59)"></i>   Cll. 98 # 8 - 28 ofc 303
 
                                  Bogotá, Colombia</p>	
 							
