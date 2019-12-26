@@ -1,6 +1,6 @@
 @component('components.nav-link', [
     'icon' => 'fa fa-book',
-    'title' => 'Agenda General',
+    'title' => 'Comúnicados',
     'link' => route('eventoA.index')
 ])
 @endcomponent
@@ -30,14 +30,14 @@
 @endcomponent
 @component('components.nav-link', [
     'icon' => 'fa fa-comments',
-    'title' => 'Evaluacion Docente',
+    'title' => 'Evaluación Docente',
     'link' => route('evaluacionDocenteE.index')
 ])
 @endcomponent
 
 @component('components.nav-link', [
     'icon' => 'fas fa-vote-yea',
-    'title' => 'Eleccion Estudiantil',
+    'title' => 'Gobierno Escolar',
     'link' => route('eleccionEstudiante.index')
 ])
 @endcomponent

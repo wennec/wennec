@@ -12,7 +12,7 @@
                 <h1>Pagos</h1>
               </div>
             </div>
-            <form id="FrmPost" action="https://botonpago.efecty.com.co:20029/botonpagoefecty/efectybotonpagopost.aspx" method="post" target="ventana" onsubmit="SubmitPost();">
+            <form id="FrmPost" action="https://190.85.158.250:15000/BotonPagoEfecty/EfectyBotonPagopost.aspx" method="post" target="ventana" onsubmit="SubmitPost();">
               <input type="hidden" name="EFvalorTotal" id="EFvalorTotal" />
               <input type="hidden" name="EFpin" id="EFpin" />
               <input type="hidden" name="EFFechaVigencia" id="EFFechaVigencia" />

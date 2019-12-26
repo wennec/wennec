@@ -1,4 +1,10 @@
 <?php
+//Rutas Landing
+Route::get('/','LandingController@elite');
+Route::get('/silver','LandingController@silver');
+Route::get('/diamond','LandingController@diamond');
+Route::get('/contacto','LandingController@contacto');
+Route::get('/planes','LandingController@planes');
 //Rutas Super Administrador
 
 Route::resource('usuarios','UserController');

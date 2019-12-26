@@ -12,7 +12,7 @@
  */
 Auth::routes();
 
-Route::get('/', function () {
+Route::get('/inicio', function () {
     return view('Wennec.global.home');
 })->middleware('auth', 'revalidate')->name('home');
 
