@@ -1,4 +1,4 @@
-@extends('material.layouts.dashboard')
+@extends('material.layouts.new-dashboard')
 
 {{--
   Dash del usuario, los links cambian segun el rol del usuario
@@ -8,9 +8,9 @@
 @endphp
 
 @section('links')
-    @includeWhen($rol == 'Super Administrador', 'Wennec.super-admin.super-admin-dash')
-    @includeWhen($rol == 'Administrador', 'Wennec.admin.administrador-dash')
-    @includeWhen($rol == 'Estudiante', 'Wennec.estudiante.estudiante-dash')
-    @includeWhen($rol == 'Acudiente', 'Wennec.acudiente.acudiente-dash')
-    @includeWhen($rol == 'Docente', 'Wennec.docente.docente-dash')
+    @includeWhen($rol == 'Super Administrador', 'Wennec.super-admin.super-admin-new-dash')
+    @includeWhen($rol == 'Administrador', 'Wennec.admin.administrador-new-dash')
+    @includeWhen($rol == 'Estudiante', 'Wennec.estudiante.estudiante-new-dash')
+    @includeWhen($rol == 'Acudiente', 'Wennec.acudiente.acudiente-new-dash')
+    @includeWhen($rol == 'Docente', 'Wennec.docente.docente-new-dash')
 @endsection

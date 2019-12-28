@@ -32,6 +32,8 @@ class EventoAdminController extends Controller
              $id = $colegioUser->idColegio;
         }
 
+        $tipoEventos = Eventos::all();
+
         $eventos =
         DB::select(DB::raw("SELECT
         tbl_eventosgenerales.titulo_evento as Evento,
@@ -47,7 +49,7 @@ class EventoAdminController extends Controller
         WHERE tbl_colegios.id = $id
         "));
 
-        return view('Wennec.admin.administrador-eventos',compact('eventos'));
+        return view('Wennec.admin.administrador-eventos',compact('eventos', 'tipoEventos'));
     }
 
     /**
