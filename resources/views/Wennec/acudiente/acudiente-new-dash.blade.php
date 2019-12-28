@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="snooz">
+                    <a href="{{ route('agendaAcudiente.index') }}" class="snooz">
                         <i class="item3"> <img src="new-assets/img/icon/iconMenu/icon31_comunicados.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="done">
+                    <a href="#" class="done">
                         <i class="item4"> <img src="new-assets/img/icon/iconMenu/icon41_transporte.png" alt="">
                             <span class="icon-bg rad-bg-danger"></span>
                         </i>
@@ -38,14 +38,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="">
+                    <a href="{{ route('acudienteEstudianteCalificaciones.index') }}" class="">
                         <i class="item5"> <img src="new-assets/img/icon/iconMenu/icon51_calificaciones.png" alt="">
                             <span class="icon-bg rad-bg-blue"></span></i>
                         <span class="rad-sidebar-item">Calificaciones</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="inbox">
+                    <a href="{{ route('observacionAcudiente.index') }}" class="inbox">
                         <i class="item6"> <img src="new-assets/img/icon/iconMenu/icon61_observador.png" alt=""><span
                                 class="icon-bg rad-bg-success"></span></i>
                         <span class="rad-sidebar-item">Observador</span>
@@ -59,30 +59,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('fechaevaluaciondocenteA.index') }}" class="done">
-                        <i class="item8"> <img src="new-assets/img/icon/iconMenu/icon81_encuentas.png" alt="">
-                            <span class="icon-bg rad-bg-danger"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Encuestas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('eleccionEscolar.index') }}" class="snooz">
-                        <i class="item9"> <img src="new-assets/img/icon/iconMenu/icon91_gobiernoE.png" alt="">
-                            <span class="icon-bg rad-bg-warning"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Gobierno Escolar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="item10"> <img src="new-assets/img/icon/iconMenu/icon101_asistencia.png" alt="">
-                            <span class="icon-bg rad-bg-success"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Asistencia</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('noticiasA.index') }}">
                         <i class="item11"> <img src="new-assets/img/icon/iconMenu/icon111_noticias.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
@@ -91,15 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="done">
-                        <i class="item12"> <img src="new-assets/img/icon/iconMenu/icon121_carnetizacion.png" alt="">
-                            <span class="icon-bg rad-bg-danger"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Carnetizacion</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
+                    <a href="#">
                         <i class="item14"> <img src="new-assets/img/icon/iconMenu/icon141_admisiones.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>
@@ -107,14 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/horarios" class="">
-                        <i class="item15"> <img src="new-assets/img/icon/iconMenu/icon151_horarios.png" alt="">
-                            <span class="icon-bg rad-bg-blue"></span></i>
-                        <span class="rad-sidebar-item">Horarios de clase</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="done">
+                    <a href="{{ route('pagosAcudiente.index') }}" class="done">
                         <i class="item16"> <img src="new-assets/img/icon/iconMenu/icon161_pagosElectronicos.png" alt="">
                             <span class="icon-bg rad-bg-danger"></span>
                         </i>
@@ -122,15 +83,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <i class="item17"> <img src="new-assets/img/icon/iconMenu/icon171_aulasVirtuales.png" alt="">
-                            <span class="icon-bg rad-bg-warning"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Aulas Virtuales</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
+                    <a href="{{ route('pagosAcudiente.index') }}">
                         <i class="item18"> <img src="new-assets/img/icon/iconMenu/icon181_gestionCartera.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>

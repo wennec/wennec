@@ -38,14 +38,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="calificaciones.html" class="">
+                    <a href="{{ route('calificacionEstudiante.index') }}" class="">
                         <i class="item5"> <img src="new-assets/img/icon/iconMenu/icon51_calificaciones.png" alt="">
                             <span class="icon-bg rad-bg-blue"></span></i>
                         <span class="rad-sidebar-item">Calificaciones</span>
                     </a>
                 </li>
                 <li>
-                    <a href="observador.html" class="inbox">
+                    <a href="{{ route('observacionEstudiante.index') }}" class="inbox">
                         <i class="item6"> <img src="new-assets/img/icon/iconMenu/icon61_observador.png" alt=""><span
                                 class="icon-bg rad-bg-success"></span></i>
                         <span class="rad-sidebar-item">Observador</span>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="done">
+                    <a href="{{ route('fechaevaluaciondocenteA.index') }}" class="done">
                         <i class="item8"> <img src="new-assets/img/icon/iconMenu/icon81_encuentas.png" alt="">
                             <span class="icon-bg rad-bg-danger"></span>
                         </i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="escolar.html" class="snooz">
+                    <a href="{{ route('eleccionEscolar.index') }}" class="snooz">
                         <i class="item9"> <img src="new-assets/img/icon/iconMenu/icon91_gobiernoE.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>
@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="asistencia.html">
+                    <a href="{{ route('asistenciaEstudiante.index') }}">
                         <i class="item10"> <img src="new-assets/img/icon/iconMenu/icon101_asistencia.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="noticias.html">
+                    <a href="noticiasA.index">
                         <i class="item11"> <img src="new-assets/img/icon/iconMenu/icon111_noticias.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>
@@ -99,33 +99,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="cartificados.html" class="">
-                        <i class="item13"> <img src="new-assets/img/icon/iconMenu/icon131_certificados.png" alt="">
-                            <span class="icon-bg rad-bg-blue"></span></i>
-                        <span class="rad-sidebar-item">Certificados</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="admisiones.html">
-                        <i class="item14"> <img src="new-assets/img/icon/iconMenu/icon141_admisiones.png" alt="">
-                            <span class="icon-bg rad-bg-success"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Admisiones y matriculas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="horarios.html" class="">
+                    <a href="{{ route('horarioE.index') }}" class="">
                         <i class="item15"> <img src="new-assets/img/icon/iconMenu/icon151_horarios.png" alt="">
                             <span class="icon-bg rad-bg-blue"></span></i>
                         <span class="rad-sidebar-item">Horarios de clase</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="pagos.html" class="done">
-                        <i class="item16"> <img src="new-assets/img/icon/iconMenu/icon161_pagosElectronicos.png" alt="">
-                            <span class="icon-bg rad-bg-danger"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Pagos Electrónicos</span>
                     </a>
                 </li>
                 <li>
@@ -134,14 +111,6 @@
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>
                         <span class="rad-sidebar-item">Aulas Virtuales</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="gestionCartera.html">
-                        <i class="item18"> <img src="new-assets/img/icon/iconMenu/icon181_gestionCartera.png" alt="">
-                            <span class="icon-bg rad-bg-success"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Gestión de cartera</span>
                     </a>
                 </li>
             </ul>
