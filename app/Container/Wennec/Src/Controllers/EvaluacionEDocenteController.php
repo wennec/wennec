@@ -107,7 +107,7 @@ class EvaluacionEDocenteController extends Controller
                       $id_eva = $evaluacionId->PK_id;
                     }
 
-                return view('Wennec.estudiante.estudiante-evaluaciondocente',compact('teachersTest','dates','iduser','id_eva'));
+                return view('Wennec.estudiante.estudiante-evaluaciondocente',compact('teachersTest','dates','iduser'));
               }
 
 

@@ -62,7 +62,7 @@ a:active {
 }
 
 .rad-logo-hidden {
-  line-height: 75px;
+  line-height: 101px;
   font-weight: 900;
   text-transform: uppercase;
   font-size: 22px;
@@ -71,7 +71,7 @@ a:active {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  left: 34rem;
+  left: 17rem;
   transition: all .2s ease-in-out;
 }
 
@@ -1679,7 +1679,7 @@ form input:focus{
 /*------------------Home --------------------------------*/
 h1{
   color: #C8C8C8;
-  margin: 0px !important;
+  margin: -15px !important;
 }
 
 .verde,.azul,.amarillo,.rojo{
@@ -1710,6 +1710,8 @@ h1{
 
 .spacefour{
   margin-top: 5rem;
+  margin-right: -180px;
+  margin-left: -6px;
 }
 .headerName tr td{
     vertical-align: middle;
@@ -1767,7 +1769,7 @@ ___________________*/
   border-radius: 25px;
   margin-top: 1.5em;
   padding: 1em;
-  width: 100%;
+  width: 770px;
 }
 
 .formatCard p{
@@ -1783,6 +1785,7 @@ ___________________*/
 
 .fechaAgenda{
   position: relative;
+  width: 47%;
 }
 
 .fechaAgenda span{
@@ -1790,14 +1793,14 @@ ___________________*/
 }
 
 .NumFecha{
-  font-size: 5.2em;
+  font-size: 3.2em;
   color: #808080;
   font-family: 'typoldextrabold';
 }
 
 .finFecha{
-  right: 30px;
-  top: 25px;
+  right: 8px;
+  top: -3px;
   font-size: 2em;
   color: #808080;
   font-family: 'typoldmedium';
@@ -1825,6 +1828,7 @@ ___________________*/
   padding: 10px;
   border-radius: 15px;
   margin-top: 1.2em;
+  width: 738px;
 }
 
 .btnAgregar{
@@ -2189,4 +2193,36 @@ input[type="file"] {
   width: 170px;
   font-weight: 300 !important;
   vertical-align: middle;
+}
+
+.footerImg{
+  margin-left: 1555px;
+}
+
+.mg-b-15-calendar{
+  margin-bottom:20px;
+  margin-left: -14px;
+}
+
+/*----------------------------------------*/
+/*  10. Event
+/*----------------------------------------*/
+.calender-inner .fc-state-default{
+	background:#eac14b;
+	color:#fff;
+	background-image:none;
+	text-shadow:none;
+	outline:none;
+}
+
+.fc-content .fc-title {
+  color: #fff;
+  padding: 5px 5px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+ .calender-inner{
+	padding:20px;
+	/*background:#fff;*/
 }

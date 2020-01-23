@@ -23,9 +23,11 @@
 
                                 <section id="agenda">
                                     <header class="text-uppercase" id="headerText">
-                                        <img src="new-assets/img/icon/AGENDA TITULO.png" height="30" alt="">
-                                        <span> Agenda</span>
+                                        <img src="new-assets/img/icon/HORARIOS DE CLASE TITULO.png" height="30" alt="">
+                                        <span> horarios</span>
                                     </header>
+
+                                    <br>
 
 
 

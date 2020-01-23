@@ -1,76 +1,112 @@
 @extends('layouts.dash')
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: right; padding-right: 2rem;"><img
+                                                src="new-assets/img/escudoColegio.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            <h1>Nombre Colegio</h1>
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- Static Table Start -->
-    <div class="calender-area mg-b-15-calendar">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="calender-inner">
-                        <div id='calendario'></div>
+                                <section id="agenda">
+                                    <header class="text-uppercase" id="headerText">
+                                        <img src="new-assets/img/icon/AGENDA TITULO.png" height="30" alt="">
+                                        <span> Agenda</span>
+                                    </header>
+
+
+                                    <aside class="formatCard">
+                                        <div class="row" id="headertablaAgenda">
+                                            <div class="col-md-9 col-xs-9">
+                                                <form name="FilterForm" id="FilterForm" action="" method="">
+                                                    <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
+                                                </form>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <table id="tablaAgenda">
+                                            <thead>
+                                                <th></th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($eventos as $evento)
+                                                <?php
+                                                $date = \Carbon\Carbon::parse($evento->fecha)
+                                                ?>
+                                                <tr class="styleFila">  
+                                                    <td style="width: 30%;" class="fechaAgenda">
+                                                        <span class="NumFecha"><?php echo $date->day; ?></span>
+                                                        <span class="finFecha"><?php echo $date->format('l') ?> <br>/<?php echo $date->month ?> </span>
+                                                    </td>
+
+                                                    <td style="width: 70%;position: relative;" >
+                                                       
+                                                        <aside style="width: 88%;">
+                                                            <h4>Agenda</h4>
+                                                            <h5>{{ $evento->tipo_agenda}}</h5>
+                                                            <p>
+                                                                {{ $evento->descripcion }}
+                                                            </p>
+                                                        </aside>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="border-bottom: .75px solid  #E2E2E2;">
+                                                        <p class="borderTable"></p>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                               
+                                            </tbody>
+                                        </table>
+
+
+                                    </aside>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        <!-- Static Table End -->
-</div>
+        </section>
 
-<div id="fullCalModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                <h4 id="modalTitle" class="modal-title"></h4>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+    
+
+<script>
+function myFunction() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("buscarAgenda");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("tablaAgenda");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[0];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }       
+	}
+  }
+</script>
 @endsection
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-<script>
 
-    $(document).ready(function() {
-        $('#calendario').fullCalendar({
-            defaultDate:$.now(),
-            locale: 'es',
-                editable: true,
-                eventLimit: true,
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                dayNamesShort: ['Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves', 'Viernes', 'Sabado'],
-                monthNames:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'],
-                events : [
-                @foreach($eventos as $evento)
-                {
-                    title : '{{ $evento->tipo_agenda}}',
-                    start : '{{ $evento->fecha }}',
-                    description: '{{ $evento->descripcion }}',
-                    url : ''
-                },
-                @endforeach
-                ],
-                eventClick:  function(event, jsEvent, view) {
-                $('#modalTitle').html(event.title);
-                $('#modalBody').html(event.description);
-                $('#fullCalModal').modal();
-            }
-            });
-    });
-</script>
+

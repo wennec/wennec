@@ -11,5 +11,14 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.3/jquery-jvectormap.js'></script>
-    <script src='https://jvectormap.com/js/jquery-jvectormap-1.2.2.min.js'></script>
-    <script src="new-assets/js/script.js"></script>
+    <script src="{{ asset('new-assets/js/script.js') }}"></script>
+    <!-- Datatable -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <!-- calendar JS
+		============================================ -->
+        <script src="{{ asset('assets/js/calendar/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/calendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/calendar/fullcalendar-active.js') }}"></script>
+
+    

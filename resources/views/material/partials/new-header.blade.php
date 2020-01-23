@@ -3,11 +3,11 @@
         <header>
             <nav class="rad-navigation">
                 <div class="rad-logo-container rad-nav-min">
-                    <a href="#" class="rad-logo"><i><img src="new-assets/img/logoWennecHorizontal.png" alt=""
+                    <a href="#" class="rad-logo"><i><img src="{{ asset('new-assets/img/logoWennecHorizontal.png') }}" alt=""
                                 style="width:60%;"></i></a>
                     <a href="#" class="rad-toggle-btn pull-right"><i class="fa fa-bars"></i></a>
                 </div>
-                <a href="#" class="rad-logo-hidden"><img src="new-assets/img/logoWennecHorizontal.png" alt=""
+                <a href="#" class="rad-logo-hidden"><img src="{{ asset('new-assets/img/logoWennecHorizontal.png') }}" alt=""
                         style="width:100%;"></a>
                 <!--NAV TOP -->
                 <div class="rad-top-nav-container">
@@ -62,16 +62,16 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><img src="new-assets/img/icon/top/cogwheel.png" width="24" height="24" alt=""></a>
+                            <a href="#"><img src="{{ asset('new-assets/img/icon/top/cogwheel.png') }}" width="24" height="24" alt=""></a>
                         </li>
                     </ul>
                     <ul class="pull-right links">
                         <li>
-                            <a class="rad-menu-item" href="#"><img src="new-assets/img/icon/top/loupe.png" width="24" height="24"
+                            <a class="rad-menu-item" href="#"><img src="{{ asset('new-assets/img/icon/top/loupe.png') }}" width="24" height="24"
                                     alt=""></a>
                         </li>
 
-                        <li class="rad-dropdown"><a class="rad-menu-item" href="#"><i><img src="new-assets/img/icon/top/bell.png"
+                        <li class="rad-dropdown"><a class="rad-menu-item" href="#"><i><img src="{{ asset('new-assets/img/icon/top/bell.png') }}"
                                         width="24" height="24" alt=""><span class="rad-menu-badge"></span></i></a>
                             <ul class="rad-dropmenu-item">
 

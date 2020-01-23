@@ -8,6 +8,10 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
-    <link rel="stylesheet" href="new-assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('new-assets/css/style.css') }}">
+
+        <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{{ asset('assets/css/calendar/fullcalendar.min.css') }}">
     <!--FONT -->
-    <link rel="stylesheet" href="new-assets/font/stylesheet.css">
+    <link rel="stylesheet" href="{{ asset('new-assets/font/stylesheet.css') }}">

@@ -91,5 +91,8 @@
                     </a>
                 </li>
             </ul>
+            <div class="col-xs-4 ocultar">
+                <img src="new-assets/img/footerLogo.png" alt="" width="120px" height="70px" style="padding: 1em;margin-left: 0em;position: absolute;bottom: 10%;" >
+            </div>
         </nav>
     </aside>

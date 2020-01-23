@@ -19,6 +19,12 @@
                                     </tr>
                                 </table>
 
+                                {{--Inicio Mensaje Confirmar--}}
+                                @include('Wennec.alerts.success')
+                                @include('Wennec.alerts.error')
+                                @include('Wennec.alerts.errors')
+                                {{--Fin Mensaje Confirmar--}}
+
                                 <section id="agenda">
                                     <header class="text-uppercase" id="headerText">
                                         <img src="new-assets/img/icon/AGENDA TITULO.png" height="30" alt="">
@@ -46,24 +52,24 @@
                                                 <th></th>
                                             </thead>
                                             <tbody>
+                                                @foreach($eventos as $evento)
+                                                <?php
+                                                $date = \Carbon\Carbon::parse($evento->Fecha)
+                                                ?>
                                                 <tr class="styleFila">  
                                                     <td style="width: 30%;" class="fechaAgenda">
-                                                        <span class="NumFecha">22</span>
-                                                        <span class="finFecha">Lun. <br>/07 </span>
+                                                        <span class="NumFecha"><?php echo $date->day; ?></span>
+                                                        <span class="finFecha"><?php echo $date->format('l') ?> <br>/<?php echo $date->month ?> </span>
                                                     </td>
 
                                                     <td style="width: 70%;position: relative;" >
                                                         <a class="iconEditar" href="#modalEditarAgenda" data-toggle="modal"
                                                         data-target="#modalEditarAgenda"><img src="new-assets/img/icon/editar.png"></a>
                                                         <aside style="width: 88%;">
-                                                            <h4>Materia, perfil</h4>
-                                                            <h5>Asunto</h5>
+                                                            <h4>Comunicado</h4>
+                                                            <h5>{{ $evento->Evento }}</h5>
                                                             <p>
-                                                                Cordial Saludo,
-                                                                <br>
-                                                                Queremos felicitar al estudiante Martín Pérez por su
-                                                                buen desempeño academico y
-                                                                comportamental en el bimestre.
+                                                                {{ $evento->Descripcion }}
                                                             </p>
                                                         </aside>
                                                     </td>
@@ -73,31 +79,7 @@
                                                         <p class="borderTable"></p>
                                                     </td>
                                                 </tr>
-                                                <tr class="styleFila">  
-                                                    <td style="width: 30%;" class="fechaAgenda">
-                                                        <span class="NumFecha">24</span>
-                                                        <span class="finFecha">Lun. <br>/07 </span>
-                                                    </td>
-                                                    <td style="width: 70%;position: relative;" >
-                                                        <a class="iconEditar" href="agenda_edit.html"><img src="new-assets/img/icon/editar.png"></a>
-                                                        <aside style="width: 88%;">
-                                                            <h4>Materia, perfil</h4>
-                                                            <h5>Asunto</h5>
-                                                            <p>
-                                                                Cordial Saludo,
-                                                                <br>
-                                                                Queremos felicitar al estudiante Martín Pérez por su
-                                                                buen desempeño academico y
-                                                                comportamental en el bimestre.
-                                                            </p>
-                                                        </aside>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" style="border-bottom: .75px solid  #E2E2E2;">
-                                                        <p class="borderTable"></p>
-                                                    </td>
-                                                </tr>
+                                               @endforeach
                                             </tbody>
                                         </table>
 
@@ -180,6 +162,26 @@ aria-hidden="true">
     </div>
 </div>
 </div>
+<script>
+function myFunction() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("buscarAgenda");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("tablaAgenda");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[0];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }       
+	}
+  }
+</script>
 @endsection
 
 

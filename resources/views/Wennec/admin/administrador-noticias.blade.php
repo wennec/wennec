@@ -31,7 +31,9 @@
                                         <span> NOTICIAS</span>
                                     </header>
 
-
+                                    @php
+                                    $rol = auth()->user()->rol->nombre;
+                                    @endphp
                                     <aside class="formatCard">
                                         <div class="row" id="headertablaAgenda">
                                             <div class="col-md-9 col-xs-9">
@@ -39,11 +41,13 @@
                                                     <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
                                                 </form>
                                             </div>
+                                            @if($rol == "Administrador")
                                             <div class="col-md-3 col-xs-3 text-right">
                                                 <button type="button" class="btnAgregar" id="btnAgregar" data-toggle="modal"
                                                     data-target="#modalCrearNoticias"><img src="new-assets/img/icon/agregar.png"
                                                         alt="agregar dato en agenda"></button>
                                             </div>
+                                            @endif
                                         </div>
 
                                         <table id="tablaAgenda">
@@ -51,20 +55,20 @@
                                             <tbody>
                                                 <tr class="styleFila"> 
                                                     <td style="width: 15%;position: relative;" >
-                                                        <img class="mt-2" src="new-assets/img/iconImageNoticias.png" alt="" width="120">
+                                                        <img class="mt-2" src="new-assets/img/icon/NOTICIAS TITULO.png" alt="" width="120">
                                                     </td>
                                                     
                                                     <td style="width: 85%;position: relative;" >
+                                                        @if($rol == "Administrador")
                                                         <a class="iconEditar" href="#modalEditarNoticia" data-toggle="modal"
                                                         data-target="#modalEditarNoticia"><img src="new-assets/img/icon/editar.png"></a>
+                                                        @endif
                                                         <aside style="width: 88%; border:0px; margin: .5em auto;text-align: center;">
                                                             <h3 class="text-left">{{$notice->tipoNoticia}}</h3>
                                                             <p class="text-left"> <small>
                                                               
                                                             {{$notice->descripcion}}
 
-                                                            
-                                                            
                                                             </small>
                                                             </p>
                                                             <hr class="hrcomunicados">
