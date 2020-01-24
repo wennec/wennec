@@ -26,9 +26,9 @@
                                 {{--Fin Mensaje Confirmar--}}
 
                                 <section id="agenda">
-                                    <header class="text-uppercase" id="headerText">
-                                        <img src="new-assets/img/icon/AGENDA TITULO.png" height="30" alt="">
-                                        <span> Agenda</span>
+                                    <header class="text-uppercase mt-3" id="headerText">
+                                        <img src="new-assets/img/icon/COMUNICADOS TITULO.png" height="30" alt="">
+                                        <span> comunicados</span>
                                     </header>
 
 

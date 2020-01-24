@@ -1,203 +1,328 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
-
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Primer Periodo</h1>
-                            </div>
-                        </div>
-
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Periodo</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($calificacionestotal_periodouno as $calificaciontotal_periodouno)
-                                        <tr  class="text-center">
-                                          <?php
-                                          if($calificaciontotal_periodouno->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodouno->calificacion >= "3.5" && $calificaciontotal_periodouno->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
-                                          }
-                                          if($calificaciontotal_periodouno->calificacion >= "4.0" && $calificaciontotal_periodouno->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodouno->calificacion >= "4.6" && $calificaciontotal_periodouno->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</label></td>';
-                                          }
-                                          ?>
-                                            <td>Primero</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row calificacioneSection" style="margin-bottom:.25em;">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: right; padding-right: 2rem;"><img
+                                                src="{{ asset('new-assets/img/escudoColegio.png') }}" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            <h1>Nombre Colegio</h1>
+                                        </td>
+                                    </tr>
                                 </table>
-                            </div>
+
+                                <section id="comunicados">
+                                    <header class="text-uppercase mt-3" id="headerText">
+                                        <img src="{{ asset('new-assets/img/icon/CALIFICACIONES TITULO.png') }}" height="30" alt="">
+                                        <span> Calificaciones</span>
+                                    </header>
+                                    <div class="row" id="showCalifi">
+                                        <h2 class="text-uppercase">Notas del estudiante</h2>
+                                        <table class="table" id="tableCal" style="margin:0px;">
+                                            <thead>
+                                                <tr class="filters">
+                                                    <th style="width: 30%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Documento</strong>
+                                                            <p>TI 96020304578</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Nombres y apellidos</strong>
+                                                            <p>Efrain Andres Vergara</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Curso</strong>
+                                                            <p>101</p>
+                                                        </aside>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <table class="table" style="margin:0px; border:0px;">
+                                            <tbody>
+                                                <tr class="filters">
+                                                    <td
+                                                        style="width: 100%; border-bottom: 1px solid #dee2e6; border-top:0px;">
+                                                        <aside style="vertical-align: middle; text-align: left;">
+                                                            <strong class="text-uppercase" style="color: #808080;">Periodo 1</strong>
+                                                        </aside>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table id="task-list-tbl" class="table">
+                                            <thead>
+                                                <th class="text-center">Calificacion</th>
+                                                <th class="text-center">Periodo</th>
+                                            
+
+                                            <tbody>
+                                                @foreach($calificacionestotal_periodouno as $calificaciontotal_periodouno)
+                                                <tr  class="text-center">
+                                                <?php
+                                                if($calificaciontotal_periodouno->calificacion <= "3.4"){
+                                                    echo '<td><span class="badge badge-danger">' . $calificaciontotal_periodouno->calificacion . '</span></td>';
+                                                }
+
+                                                if($calificaciontotal_periodouno->calificacion >= "3.5" && $calificaciontotal_periodouno->calificacion <= "3.9"){
+                                                    echo '<td><span class="badge badge-warning">' . $calificaciontotal_periodouno->calificacion . '</span></td>';
+                                                }
+                                                if($calificaciontotal_periodouno->calificacion >= "4.0" && $calificaciontotal_periodouno->calificacion <= "4.5"){
+                                                    echo '<td><span class="badge badge-primary">' . $calificaciontotal_periodouno->calificacion . '</span></td>';
+                                                }
+
+                                                if($calificaciontotal_periodouno->calificacion >= "4.6" && $calificaciontotal_periodouno->calificacion <= "5.0"){
+                                                    echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodouno->calificacion . '</span></td>';
+                                                }
+                                                ?>
+                                                    <td>Primero</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row" id="showCalifi">
+                                        <h2 class="text-uppercase">Notas del estudiante</h2>
+                                        <table class="table" id="tableCal" style="margin:0px;">
+                                            <thead>
+                                            <tr class="filters">
+                                                    <th style="width: 30%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Documento</strong>
+                                                            <p>TI 96020304578</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Nombres y apellidos</strong>
+                                                            <p>Efrain Andres Vergara</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Curso</strong>
+                                                            <p>101</p>
+                                                        </aside>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <table class="table" style="margin:0px; border:0px;">
+                                            <tbody>
+                                                <tr class="filters">
+                                                    <td
+                                                        style="width: 100%; border-bottom: 1px solid #dee2e6; border-top:0px;">
+                                                        <aside style="vertical-align: middle; text-align: left;">
+                                                            <strong class="text-uppercase" style="color: #808080;">Periodo 2</strong>
+                                                        </aside>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table id="task-list-tbl" class="table">
+                                        <thead>
+                                            <th class="text-center">Calificacion</th>
+                                            <th class="text-center">Periodo</th>
+                                       
+
+                                        <tbody>
+                                            @foreach($calificacionestotal_periododos as $calificaciontotal_periododos)
+                                            <tr  class="text-center">
+                                            <?php
+                                            if($calificaciontotal_periododos->calificacion <= "3.4"){
+                                                echo '<td><span class="badge badge-danger">' . $calificaciontotal_periododos->calificacion . '</span></td>';
+                                            }
+
+                                            if($calificaciontotal_periododos->calificacion >= "3.5" && $calificaciontotal_periododos->calificacion <= "3.9"){
+                                                echo '<td><span class="badge badge-warning">' . $calificaciontotal_periododos->calificacion . '</span></td>';
+                                            }
+                                            if($calificaciontotal_periododos->calificacion >= "4.0" && $calificaciontotal_periododos->calificacion <= "4.5"){
+                                                echo '<td><span class="badge badge-primary">' . $calificaciontotal_periododos->calificacion . '</span></td>';
+                                            }
+
+                                            if($calificaciontotal_periododos->calificacion >= "4.6" && $calificaciontotal_periododos->calificacion <= "5.0"){
+                                                echo '<td><label class="label label-success" for="">' . $calificaciontotal_periododos->calificacion . '</span></td>';
+                                            }
+                                            ?>
+                                                <td>Segundo</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row" id="showCalifi">
+                                        <h2 class="text-uppercase">Notas del estudiante</h2>
+                                        <table class="table" id="tableCal" style="margin:0px;">
+                                            <thead>
+                                            <tr class="filters">
+                                                    <th style="width: 30%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Documento</strong>
+                                                            <p>TI 96020304578</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Nombres y apellidos</strong>
+                                                            <p>Efrain Andres Vergara</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Curso</strong>
+                                                            <p>101</p>
+                                                        </aside>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <table class="table" style="margin:0px; border:0px;">
+                                            <tbody>
+                                                <tr class="filters">
+                                                    <td
+                                                        style="width: 100%; border-bottom: 1px solid #dee2e6; border-top:0px;">
+                                                        <aside style="vertical-align: middle; text-align: left;">
+                                                            <strong class="text-uppercase" style="color: #808080;">Periodo 3</strong>
+                                                        </aside>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table id="task-list-tbl" class="table">
+                                            <thead>
+                                            <th class="text-center">Calificacion</th>
+                                            <th class="text-center">Periodo</th>
+                                        
+
+                                        <tbody>
+                                            @foreach($calificacionestotal_periodotres as $calificaciontotal_periodotres)
+                                            <tr  class="text-center">
+                                            <?php
+                                            if($calificaciontotal_periodotres->calificacion <= "3.4"){
+                                                echo '<td><span class="badge badge-danger">' . $calificaciontotal_periodotres->calificacion . '</span></td>';
+                                            }
+
+                                            if($calificaciontotal_periodotres->calificacion >= "3.5" && $calificaciontotal_periodotres->calificacion <= "3.9"){
+                                                echo '<td><span class="badge badge-warning">' . $calificaciontotal_periodotres->calificacion . '</span></td>';
+                                            }
+                                            if($calificaciontotal_periodotres->calificacion >= "4.0" && $calificaciontotal_periodotres->calificacion <= "4.5"){
+                                                echo '<td><span class="badge badge-primary">' . $calificaciontotal_periodotres->calificacion . '</span></td>';
+                                            }
+
+                                            if($calificaciontotal_periodotres->calificacion >= "4.6" && $calificaciontotal_periodotres->calificacion <= "5.0"){
+                                                echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodotres->calificacion . '</span></td>';
+                                            }
+                                            ?>
+                                                <td>Tercero</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row" id="showCalifi">
+                                        <h2 class="text-uppercase">Notas del estudiante</h2>
+                                        <table class="table" id="tableCal" style="margin:0px;">
+                                            <thead>
+                                            <tr class="filters">
+                                                    <th style="width: 30%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Documento</strong>
+                                                            <p>TI 96020304578</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Nombres y apellidos</strong>
+                                                            <p>Efrain Andres Vergara</p>
+                                                        </aside>
+                                                    </th>
+                                                    <th style="width: 35%;">
+                                                        <aside style="vertical-align: middle; text-align: center;;">
+                                                            <strong class="text-uppercase">Curso</strong>
+                                                            <p>101</p>
+                                                        </aside>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <table class="table" style="margin:0px; border:0px;">
+                                            <tbody>
+                                                <tr class="filters">
+                                                    <td
+                                                        style="width: 100%; border-bottom: 1px solid #dee2e6; border-top:0px;">
+                                                        <aside style="vertical-align: middle; text-align: left;">
+                                                            <strong class="text-uppercase" style="color: #808080;">Periodo 4</strong>
+                                                        </aside>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table id="task-list-tbl" class="table">
+                                            <thead>
+                                                <th class="text-center">Calificacion</th>
+                                                <th class="text-center">Periodo</th>
+                                            
+
+                                            <tbody>
+                                                @foreach($calificacionestotal_periodocuatro as $calificaciontotal_periodocuatro)
+                                                <tr  class="text-center">
+                                                <?php
+                                                if($calificaciontotal_periodocuatro->calificacion <= "3.4"){
+                                                    echo '<td><span class="badge badge-danger">' . $calificaciontotal_periodocuatro->calificacion . '</span></td>';
+                                                }
+
+                                                if($calificaciontotal_periodocuatro->calificacion >= "3.5" && $calificaciontotal_periodocuatro->calificacion <= "3.9"){
+                                                    echo '<td><span class="badge badge-warning">' . $calificaciontotal_periodocuatro->calificacion . '</span></td>';
+                                                }
+                                                if($calificaciontotal_periodocuatro->calificacion >= "4.0" && $calificaciontotal_periodocuatro->calificacion <= "4.5"){
+                                                    echo '<td><span class="badge badge-primary">' . $calificaciontotal_periodocuatro->calificacion . '</span></td>';
+                                                }
+
+                                                if($calificaciontotal_periodocuatro->calificacion >= "4.6" && $calificaciontotal_periodocuatro->calificacion <= "5.0"){
+                                                    echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodocuatro->calificacion . '</span></td>';
+                                                }
+                                                ?>
+                                                    <td>Cuarto</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                 </div>
+                            </section>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Segundo Periodo</h1>
-                            </div>
-                        </div>
-
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Periodo</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($calificacionestotal_periododos as $calificaciontotal_periododos)
-                                        <tr  class="text-center">
-                                          <?php
-                                          if($calificaciontotal_periododos->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periododos->calificacion >= "3.5" && $calificaciontotal_periododos->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
-                                          }
-                                          if($calificaciontotal_periododos->calificacion >= "4.0" && $calificaciontotal_periododos->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periododos->calificacion >= "4.6" && $calificaciontotal_periododos->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periododos->calificacion . '</label></td>';
-                                          }
-                                          ?>
-                                            <td>Segundo</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Tercer Periodo</h1>
-                            </div>
-                        </div>
-
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Periodo</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($calificacionestotal_periodotres as $calificaciontotal_periodotres)
-                                        <tr  class="text-center">
-                                          <?php
-                                          if($calificaciontotal_periodotres->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodotres->calificacion >= "3.5" && $calificaciontotal_periodotres->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
-                                          }
-                                          if($calificaciontotal_periodotres->calificacion >= "4.0" && $calificaciontotal_periodotres->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodotres->calificacion >= "4.6" && $calificaciontotal_periodotres->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodotres->calificacion . '</label></td>';
-                                          }
-                                          ?>
-                                            <td>Tercero</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Cuarto Periodo</h1>
-                            </div>
-                        </div>
-
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Periodo</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($calificacionestotal_periodocuatro as $calificaciontotal_periodocuatro)
-                                        <tr  class="text-center">
-                                          <?php
-                                          if($calificaciontotal_periodocuatro->calificacion <= "3.4"){
-                                              echo '<td><label class="label label-danger" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodocuatro->calificacion >= "3.5" && $calificaciontotal_periodocuatro->calificacion <= "3.9"){
-                                              echo '<td><label class="label label-warning" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
-                                          }
-                                          if($calificaciontotal_periodocuatro->calificacion >= "4.0" && $calificaciontotal_periodocuatro->calificacion <= "4.5"){
-                                              echo '<td><label class="label label-primary" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
-                                          }
-
-                                          if($calificaciontotal_periodocuatro->calificacion >= "4.6" && $calificaciontotal_periodocuatro->calificacion <= "5.0"){
-                                              echo '<td><label class="label label-success" for="">' . $calificaciontotal_periodocuatro->calificacion . '</label></td>';
-                                          }
-                                          ?>
-                                            <td>Cuarto</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <br>
+                    <br>
+                <div class="col-md-2"></div>
             </div>
         </div>
     </div>
-        <!-- Static Table End -->
-</div>
+    <br>
+</section>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 @endsection

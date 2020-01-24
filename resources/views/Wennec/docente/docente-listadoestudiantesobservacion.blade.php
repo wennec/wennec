@@ -1,61 +1,70 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: right; padding-right: 2rem;"><img
+                                                src="{{ asset('new-assets/img/escudoColegio.png') }}" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            <h1>Nombre Colegio</h1>
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Observaciones</h1>
-                            </div>
-                        </div>
+                                <section id="agenda">
+                                <header class="text-uppercase" id="headerText">
+                                        <img src="new-assets/img/icon/OBSERVADOR TITULO.png" height="30" alt="">
+                                        <span> Observaciones</span>
+                                    </header>
 
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control dt-tb">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                    <br>
+
+                                    {{--Inicio Mensaje Confirmar--}}
+                                    @include('Wennec.alerts.success')
+                                    @include('Wennec.alerts.error')
+                                    @include('Wennec.alerts.errors')
+                                    {{--Fin Mensaje Confirmar--}}
+
+
+
+                                     <table id="myTable" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
+                                        <thead>
                                         <th class="text-center">Estudiante</th>
                                         <th class="text-center">Agregar</th>
-                                    </thead>
+                                        </thead>
 
-                                    <tbody>
-                                        @foreach($listado_estudiantes as $estudiante)
-                                        <tr  class="text-center">
-                                            <td>{{$estudiante->name}}</td>
-                                            <td><button type="button" id="mymodal" class="btn btn-success btn-md" data-estudiante-id='{{$estudiante->id_estudiante}}' data-toggle="modal" data-target="#modalCreate">
-                                            <i class="fa fa-plus"></i>
-                                        </button></td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        <tbody>
+                                            @foreach($listado_estudiantes as $estudiante)
+                                            <tr  class="text-center">
+                                                <td>{{$estudiante->name}}</td>
+                                                <td><button type="button" id="mymodal" class="open-homeEvents btn btn-success btn-md" data-estudiante-id='{{$estudiante->id_estudiante}}' data-toggle="modal" data-target="#modalCreate">
+                                                <i class="fa fa-plus"></i>
+                                            </button></td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </section>
                             </div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -83,7 +92,7 @@
                                   @endforeach
                               </select>
                             </div>
-                            <input type="hidden" name="FK_Estudiante" id="idEstudiante">
+                            <input type="hidden" name="FK_Estudiante" id="FK_Estudiante">
                             <input type="hidden" name="FK_Materia" id="id_materia" value="{{$id_materia}}">
                         </div>
                         <div class="modal-footer">
@@ -97,18 +106,21 @@
             </div>
         </div>
     </div>
-        <!-- Static Table End -->
-</div>
 
 
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
 <script type="text/javascript">
-    $(document).ready(function(e) {
-        $('#modalCreate').on('show.bs.modal', function(e) {
-            var estudiante_id = $(e.relatedTarget).data('estudiante-id');
-            $(e.currentTarget).find('input[name="FK_Estudiante"]').val(estudiante_id);
-            var estudiante = document.getElementById('idEstudiante').innerHTML = estudiante_id;
-        });
-    });
+
+$(document).on("click", ".open-homeEvents", function () {
+     var eleccione = $(this).data('estudiante-id');
+     $('#FK_Estudiante').val( eleccione );
+});
 </script>
 @endsection
+

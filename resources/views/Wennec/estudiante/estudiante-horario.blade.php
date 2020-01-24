@@ -33,8 +33,7 @@
 
         <section>
         <div class="col-md-12">
-        <button type="button" name="button" class="btn btn-primary"><a href="{{url('/reporteshorario')}}"
-                      style="color:white;"target="_blank">Imprimir Horario</a></button>
+        <button type="button" name="button" onclick="myFunctionPrint()" class="btn btn-primary">Imprimir Horario</button>
             <!-- Static Table Start -->
             <div class="calender-area mg-b-15-calendar">
                 <div class="container-fluid">
@@ -127,6 +126,12 @@ $(function() {
     }
   });
 });
+</script>
+
+<script>
+    function myFunctionPrint() {
+    window.print();
+    }
 </script>
 
 

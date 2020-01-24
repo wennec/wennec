@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('eventoA.index') }}">
+                    <a href="{{ route('agendaAcudiente.index') }}">
                         <i class="item2"> <img src="new-assets/img/icon/iconMenu/icon21_agenda.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('agendaAcudiente.index') }}" class="snooz">
+                    <a href="{{ route('eventoA.index') }}" class="snooz">
                         <i class="item3"> <img src="new-assets/img/icon/iconMenu/icon31_comunicados.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>
@@ -49,13 +49,6 @@
                         <i class="item6"> <img src="new-assets/img/icon/iconMenu/icon61_observador.png" alt=""><span
                                 class="icon-bg rad-bg-success"></span></i>
                         <span class="rad-sidebar-item">Observador</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="">
-                        <i class="item7"> <img src="new-assets/img/icon/iconMenu/icon71_boletines.png" alt="">
-                            <span class="icon-bg rad-bg-blue"></span></i>
-                        <span class="rad-sidebar-item">Boletines</span>
                     </a>
                 </li>
                 <li>

@@ -41,7 +41,7 @@
                                                     <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
                                                 </form>
                                             </div>
-                                            @if($rol == "Administrador")
+                                            @if($rol == "Administrador"  || $rol == "Docente")
                                             <div class="col-md-3 col-xs-3 text-right">
                                                 <button type="button" class="btnAgregar" id="btnAgregar" data-toggle="modal"
                                                     data-target="#modalCrearNoticias"><img src="new-assets/img/icon/agregar.png"
@@ -59,7 +59,7 @@
                                                     </td>
                                                     
                                                     <td style="width: 85%;position: relative;" >
-                                                        @if($rol == "Administrador")
+                                                        @if($rol == "Administrador" || $rol == "Docente")
                                                         <a class="iconEditar" href="#modalEditarNoticia" data-toggle="modal"
                                                         data-target="#modalEditarNoticia"><img src="new-assets/img/icon/editar.png"></a>
                                                         @endif

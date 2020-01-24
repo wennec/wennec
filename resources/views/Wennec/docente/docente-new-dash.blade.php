@@ -14,6 +14,14 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('eventoA.index') }}">
+                        <i class="item2"> <img src="new-assets/img/icon/iconMenu/icon21_agenda.png" alt="">
+                            <span class="icon-bg rad-bg-success"></span>
+                        </i>
+                        <span class="rad-sidebar-item">Agenda</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('eventoA.index') }}" class="snooz">
                         <i class="item3"> <img src="new-assets/img/icon/iconMenu/icon31_comunicados.png" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
@@ -53,7 +61,7 @@
                 </li>
                 <li>
                     <a href="{{ route('reportes.index') }}" class="">
-                        <i class="item13"> <img src="img/icon/iconMenu/icon131_certificados.png" alt="">
+                        <i class="item13"> <img src="new-assets/img/icon/iconMenu/icon131_certificados.png" alt="">
                             <span class="icon-bg rad-bg-blue"></span></i>
                         <span class="rad-sidebar-item">Certificados</span>
                     </a>

@@ -1,99 +1,149 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-    {{--Inicio Mensaje Confirmar--}}
-    @include('Wennec.alerts.success')
-    @include('Wennec.alerts.error')
-    @include('Wennec.alerts.errors')
-    {{--Fin Mensaje Confirmar--}}
+<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: right; padding-right: 2rem;"><img
+                                                src="{{ asset('new-assets/img/escudoColegio.png') }}" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            <h1>Nombre Colegio</h1>
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Calificaciones</h1>
-                            </div>
-                        </div>
+                                <section id="agenda">
+                                    <header class="text-uppercase" id="headerText">
+                                        <img src="{{ asset('new-assets/img/icon/CALIFICACIONES COLOR MENU PLEGABLE.png') }}" height="30" alt="">
+                                        <span> Calificaciones</span>
+                                    </header>
 
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control dt-tb">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Nombre Estudiante</th>
-                                        <th class="text-center">Calificacion</th>
-                                        <th class="text-center">Opcion</th>
+                                    <br>
 
-                                    </thead>
+                                    {{--Inicio Mensaje Confirmar--}}
+                                    @include('Wennec.alerts.success')
+                                    @include('Wennec.alerts.error')
+                                    @include('Wennec.alerts.errors')
+                                    {{--Fin Mensaje Confirmar--}}
 
-                                    <tbody>
-                                        @foreach($estudiantes_grupo as $estudiante_grupo)
-                                        <tr class="text-center">
-                                            <td>{{$estudiante_grupo->name}}</td>
-                                            <?php
-                                            $exists = DB::table('tbl_calificacionestudiante')->where('FK_Estudiante', $estudiante_grupo->idEstudiante)->where('FK_Logro', $estudiante_grupo->PK_id)->first();
-                                            $id_estudiante = (int) $estudiante_grupo->idEstudiante;
-                                            $id_logro = (int) $estudiante_grupo->PK_id;
 
-                                            $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion, tbl_calificacionestudiante.id FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante =' . $id_estudiante . ' AND tbl_calificacionestudiante.FK_Logro =' . $id_logro . '');
-                                            if (!$exists) {
-                                                echo '<td><label for="">-</label></td>';
-                                            } else {
-                                                foreach ($calificaciones as $calificacion) {
-                                                    if($calificacion->calificacion <= "3.4"){
-                                                        echo '<td><label class="label label-danger" for="">' . $calificacion->calificacion . '</label></td>';
-                                                    }
+                                    <div class="row" id="showCalifi">
+                                    <table id="task-list-tbl" class="table">
+                                          <thead>
+                                            <tr class="text-center">
+                                              <th><strong>Nombre Estudiante</strong></th>
+                                              <th><strong>Materia</strong></th>
+                                              <th><strong>Calificacion</strong></th>
+                                              <th><strong>Opcion</strong></th>
+                                            </tr>
+                                          </thead>
+                                          
+                                          <tbody>
+                                            
+                                          <?php
 
-                                                    if($calificacion->calificacion >= "3.5" && $calificacion->calificacion <= "3.9"){
-                                                        echo '<td><label class="label label-warning" for="">' . $calificacion->calificacion . '</label></td>';
-                                                    }
-                                                    if($calificacion->calificacion >= "4.0" && $calificacion->calificacion <= "4.5"){
-                                                        echo '<td><label class="label label-primary" for="">' . $calificacion->calificacion . '</label></td>';
-                                                    }
+                                            $iduser = auth()->user()->PK_id ;
 
-                                                    if($calificacion->calificacion >= "4.6" && $calificacion->calificacion <= "5.0"){
-                                                        echo '<td><label class="label label-success" for="">' . $calificacion->calificacion . '</label></td>';
+                                            $colegioUsers =
+                                            DB::select(DB::raw("SELECT
+                                            tbl_colegios.id as idColegio
+                                            FROM
+                                            tbl_usuarios
+                                            JOIN tbl_colegios
+                                            ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+                                            WHERE tbl_usuarios.PK_id = $iduser"));
+
+                                            foreach ($colegioUsers as $colegioUser) {
+                                                $idColegio = $colegioUser->idColegio;
+                                            }
+                                            $hola = request()->route('id');
+                                            $estudiantes_grupo =
+                                            DB::select(DB::raw("SELECT
+                                            tbl_materias.nombre_materia,
+                                            tbl_grupos.grupo,
+                                            tbl_logro.nombreLogro,
+                                            tbl_usuarios.`name`,
+                                            tbl_estudiante.PK_id,
+                                            tbl_logro.PK_id as idlogro
+                                            FROM
+                                            tbl_logro
+                                            JOIN tbl_periodo ON tbl_logro.FK_Periodo = tbl_periodo.PK_id
+                                            JOIN tbl_grupomaterias ON tbl_logro.FK_GrupoMateria = tbl_grupomaterias.PK_id
+                                            JOIN tbl_materias ON tbl_grupomaterias.FK_materia = tbl_materias.PK_id
+                                            JOIN tbl_docente ON tbl_grupomaterias.FK_docente = tbl_docente.PK_id
+                                            JOIN tbl_grupos ON tbl_grupomaterias.FK_GrupoId = tbl_grupos.PK_id
+                                            JOIN tbl_grupoestudiantes ON tbl_grupoestudiantes.FK_grupo = tbl_grupos.PK_id
+                                            JOIN tbl_estudiante ON tbl_grupoestudiantes.FK_estudiante = tbl_estudiante.PK_id
+                                            JOIN tbl_usuarios ON tbl_estudiante.FK_usuarioId = tbl_usuarios.PK_id
+                                            JOIN tbl_colegios ON tbl_usuarios.FK_ColegioId = tbl_colegios.id
+                                            WHERE
+                                            tbl_logro.PK_id = $hola  AND tbl_colegios.id = $idColegio"));
+                                            ?>
+                                            @foreach($estudiantes_grupo as $estudiante_grupo)
+                                            <tr class="text-center">
+                                                <td>{{$estudiante_grupo->name}}</td>
+                                                <td>{{$estudiante_grupo->nombre_materia}}</td>
+                                                <?php
+                                                $exists = DB::table('tbl_calificacionestudiante')->where('FK_Estudiante', $estudiante_grupo->PK_id)->where('FK_Logro', $hola)->first();
+                                                $id_estudiante = (int) $estudiante_grupo->PK_id;
+                                                $id_logro = $hola;
+
+                                                $calificaciones = DB::select('SELECT tbl_calificacionestudiante.calificacion, tbl_calificacionestudiante.id FROM tbl_calificacionestudiante WHERE tbl_calificacionestudiante.FK_Estudiante =' . $id_estudiante . ' AND tbl_calificacionestudiante.FK_Logro =' . $id_logro . '');
+                                                if (!$exists) {
+                                                    echo '<td><label for="">-</label></td>';
+                                                } else {
+                                                    foreach ($calificaciones as $calificacion) {
+                                                        if($calificacion->calificacion <= "3.4"){
+                                                            echo '<td><span class="badge badge-danger">' . $calificacion->calificacion . '</span></td>';
+                                                        }
+
+                                                        if($calificacion->calificacion >= "3.5" && $calificacion->calificacion <= "3.9"){
+                                                            echo '<td><span class="badge badge-warning">' . $calificacion->calificacion . '</span></td>';
+                                                        }
+                                                        if($calificacion->calificacion >= "4.0" && $calificacion->calificacion <= "4.5"){
+                                                            echo '<td><span class="badge badge-primary">' . $calificacion->calificacion . '</span></td>';
+                                                        }
+
+                                                        if($calificacion->calificacion >= "4.6" && $calificacion->calificacion <= "5.0"){
+                                                            echo '<td><span class="badge badge-success">' . $calificacion->calificacion . '</label></td>';
+                                                        }
                                                     }
                                                 }
+
+                                                if (!$exists) {
+                                                    echo '<td><button type="button" id="mymodal" class="open-homeEvents btn btn-success btn-md" data-logro-id="' . $hola . '" data-estudiante-id="' . $estudiante_grupo->PK_id . '" data-toggle="modal" data-target="#modalCreate">
+                                                    <i class="fa fa-check"></i>
+                                                </button></td>';
                                             }
+                                                ?>
 
-                                            if (!$exists) {
-                                                echo '<td><button type="button" id="mymodal" class="btn btn-success btn-md" data-logro-id="' . $estudiante_grupo->PK_id . '" data-estudiante-id="' . $estudiante_grupo->idEstudiante . '" data-toggle="modal" data-target="#modalCreate">
-                                                <i class="fa fa-check"></i>
-                                            </button></td>';
-                                          }
-                                            ?>
+                                                @foreach($calificaciones as $calificacion)
+                                                <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $calificacion->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit fa fa-edit'])}}</td>
+                                                @endforeach
 
-                                            @foreach($calificaciones as $calificacion)
-                                            <td>{{link_to_route('calificacion.edit', $title = '', $parameter = $calificacion->id, $attributes = ['class' => 'btn btn-simple btn-warning btn-icon edit far fa-edit'])}}</td>
+
+                                            </tr>
                                             @endforeach
-
-
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                          </tbody>
+                                        </table>
+                                        </div>
+                                </section>
                             </div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Static Table End -->
-</div>
-
+        </section>
 
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
@@ -109,8 +159,8 @@
                         <div class="form-group form-md-line-input">
                             <input class="form-control" placeholder="Calificación" type="number" name="calificacion" step="0.01" value="" required>
                         </div>
-                        <input type="hidden" name="FK_Logro" id="idLogro">
-                        <input type="hidden" name="FK_Estudiante" id="idEstudiante">
+                        <input type="hidden" name="FK_Logro" id="FK_Logro">
+                        <input type="hidden" name="FK_Estudiante" id="FK_Estudiante">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Registrar Calificacion</button>
@@ -124,20 +174,23 @@
     </div>
 </div>
 
-
-
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(e) {
-        $('#modalCreate').on('show.bs.modal', function(e) {
-            var logro_id = $(e.relatedTarget).data('logro-id');
-            $(e.currentTarget).find('input[name="FK_Logro"]').val(logro_id);
-            var docente = document.getElementById('idLogro').innerHTML = logro_id;
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
 
-            var estudiante = $(e.relatedTarget).data('estudiante-id');
-            $(e.currentTarget).find('input[name="FK_Estudiante"]').val(estudiante);
-            var student = document.getElementById('idEstudiante').innerHTML = estudiante;
-        });
+<script type="text/javascript">
+
+    $(document).on("click", ".open-homeEvents", function () {
+        var logro_id = $(this).data('logro-id');
+        $('#FK_Logro').val( logro_id );
+
+        var estudiante = $(this).data('estudiante-id');
+        $('#FK_Estudiante').val( estudiante );
     });
 </script>
 @endsection
+
