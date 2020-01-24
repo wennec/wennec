@@ -1,70 +1,110 @@
 @extends('layouts.dash')
 
 @section('content')
-<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
 <section>
             <div class="rad-body-wrapper rad-nav-min">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2"></div>
+                         <!--header img name school-->
+                         <table style="width: 100%;">
+                            <tr>
+                                <td style="width:50%; text-align: right; padding-right: 2rem;"><img
+                                        src="{{ asset('new-assets/img/escudoColegio.png') }}" alt="image colegio" style="width: 40px;">
+                                </td>
+                                <td style="width:50%;vertical-align:middle;">
+                                    <h1>Nombre Colegio</h1>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="col-md-1"></div>
                         <div class="col-md-8">
                             <div class="row spacenameSchool">
-                                <!--header img name school-->
-                                <table class="headerName">
-                                    <tr>
-                                        <td style="text-align: right; padding-right: 2rem;"><img
-                                                src="new-assets/img/escudoColegio.png" alt="image colegio" style="width: 40px;">
-                                        </td>
-                                        <td>
-                                            <h1>Nombre Colegio</h1>
-                                        </td>
-                                    </tr>
-                                </table>
-
+                               
                                 <section id="agenda">
-                                <header class="text-uppercase" id="headerText">
-                                        <img src="new-assets/img/icon/OBSERVADOR TITULO.png" height="30" alt="">
+                                    <header class="text-uppercase" id="headerText">
+                                        <img src="{{ asset('new-assets/img/icon/OBSERVADOR TITULO.png') }}"" height="30" alt="">
                                         <span> Observador</span>
                                     </header>
 
-                                    <br>
 
+                                    <aside class="formatCard">
+                                        <div class="row" id="headertablaAgenda">
+                                            <div class="col-md-9 col-xs-9">
+                                                <form name="FilterForm" id="FilterForm" action="" method="">
+                                                    <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
+                                                </form>
+                                            </div>
+                                        </div>
 
-
-                                     <table id="myTable" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <th class="text-center">Materia</th>
-                                            <th class="text-center">Observacion</th>
-                                            <th class="text-center">Periodo</th>
-                                        </thead>
-
-                                        <tbody>
+                                        <table id="tablaAgenda">
+                                            <thead>
+                                                <th></th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
                                             @foreach($observaciones_estudiante as $observacion_estudiante)
-                                            <tr  class="text-center">
-                                                <td>{{$observacion_estudiante->nombre_materia}}</td>
-                                                <td>{{$observacion_estudiante->descripcion}}</td>
-                                                <td>{{$observacion_estudiante->periodo}}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                                <tr class="styleFila">  
+                                                    <td style="width: 30%;" class="fechaAgenda">
+                                                        <span class="NumFecha">22</span>
+                                                        <span class="finFecha">Lun. <br>/07 </span>
+                                                    </td>
+
+                                                    <td style="width: 70%;position: relative;" >
+                                                        
+                                                        <aside style="width: 88%;">
+                                                            <h4>{{$observacion_estudiante->nombre_materia}}</h4>
+                                                            @if($observacion_estudiante->periodo == "Primero")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #5995F8;"></i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Segundo")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #91D39F;"></i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Tercero")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #F0C345;"></i> </i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Cuarto")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo  <i class="fa fa-star-o" style="color: #E0646E;"></i></h5>
+                                                            @endif
+                                                            <p>
+                                                                {{$observacion_estudiante->descripcion}}
+                                                            </p>
+                                                        </aside>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="border-bottom: .75px solid  #E2E2E2;">
+                                                        <p class="borderTable"></p>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+
+                                    </aside>
                                 </section>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <div class="row filterStar">
+                                <h3 class="text-center">Ayúda</h3>
+                                <br>
+
+                                <ul>
+                                    <li><i class="fa fa-star-o" style="color: #5995F8;"></i> Periodo 1</li>
+                                    <li><i class="fa fa-star-o" style="color: #91D39F;"></i> Periodo 2</li>
+                                    <li><i class="fa fa-star-o" style="color: #F0C345;"></i> Periodo 3</li>
+                                    <li><i class="fa fa-star-o" style="color: #E0646E;"></i> Periodo 4</li>
+                                </ul>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
-
-<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    } );
-</script>
 @endsection
 

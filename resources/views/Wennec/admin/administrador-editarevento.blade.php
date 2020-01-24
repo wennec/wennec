@@ -42,16 +42,11 @@
                                             </div>
                                         </div>
 
-                                        {!!Form::model($departamento, ['route' => ['agendaAcudiente.update',$departamento], 'method' => 'PUT','files' => true, 'enctype'=>'multipart/form-data'])!!}
+                                        {!!Form::model($departamento, ['route' => ['agendaA.update',$departamento], 'method' => 'PUT','files' => true, 'enctype'=>'multipart/form-data'])!!}
                                         <div class="row">
                                                     <div class="col-xs-6 col-sm-6 col-md-12">
                                                         <div class="form-group form-md-line-input">
-                                                            <label>Tipo de Agenda</label>
-                                                                <select class="form-control" name="FK_agendaId" id="" required="">
-                                                                    @foreach($agenda as $agen)
-                                                                        <option value="{{$agen->PK_id}}">{{$agen->tipo_agenda}}</option>
-                                                                    @endforeach
-                                                                </select>                
+                                                        {!!Form::text('titulo',null,['class'=>'form-control','placeholder'=>'Titulo','required'])!!}                
                                                         </div>
                                                     </div>
                                                 </div>

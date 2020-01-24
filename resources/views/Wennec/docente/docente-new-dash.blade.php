@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('eventoA.index') }}">
+                    <a href="{{ route('agendaA.index') }}">
                         <i class="item2"> <img src="new-assets/img/icon/iconMenu/icon21_agenda.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>

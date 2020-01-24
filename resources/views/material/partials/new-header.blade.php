@@ -67,12 +67,12 @@
                     </ul>
                     <ul class="pull-right links">
                         <li>
-                            <a class="rad-menu-item" href="#"><img src="{{ asset('new-assets/img/icon/top/loupe.png') }}" width="24" height="24"
+                            <a class="rad-menu-item" href="#"><img src="{{ asset('new-assets/img/icon/search.png') }}" width="24" height="24"
                                     alt=""></a>
                         </li>
 
-                        <li class="rad-dropdown"><a class="rad-menu-item" href="#"><i><img src="{{ asset('new-assets/img/icon/top/bell.png') }}"
-                                        width="24" height="24" alt=""><span class="rad-menu-badge"></span></i></a>
+                        <li class="rad-dropdown"><a class="rad-menu-item" href="#"><i><img src="{{ asset('new-assets/img/icon/bell.png') }}"
+                                        width="26" height="26" alt=""><span class="rad-menu-badge"></span></i></a>
                             <ul class="rad-dropmenu-item">
 
                                 <li class="rad-notification-item text-left">

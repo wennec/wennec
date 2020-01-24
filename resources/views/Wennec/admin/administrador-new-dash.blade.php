@@ -14,11 +14,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('eventoA.index') }}">
+                    <a href="{{ route('agendaA.index') }}">
                         <i class="item2"> <img src="new-assets/img/icon/iconMenu/icon21_agenda.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>
                         <span class="rad-sidebar-item">Agenda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('eventoA.index') }}" class="snooz">
+                        <i class="item3"> <img src="{{ asset('new-assets/img/icon/iconMenu/icon31_comunicados.png') }}" alt="">
+                            <span class="icon-bg rad-bg-warning"></span>
+                        </i>
+                        <span class="rad-sidebar-item">Comunicados</span>
                     </a>
                 </li>
                 <li>
@@ -54,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('prematricula.index') }}">
                         <i class="item14"> <img src="new-assets/img/icon/iconMenu/icon141_admisiones.png" alt="">
                             <span class="icon-bg rad-bg-success"></span>
                         </i>

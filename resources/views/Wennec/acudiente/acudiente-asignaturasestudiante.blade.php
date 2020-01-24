@@ -13,7 +13,7 @@
                                 <table class="headerName">
                                     <tr>
                                         <td style="text-align: right; padding-right: 2rem;"><img
-                                                src="new-assets/img/escudoColegio.png" alt="image colegio" style="width: 40px;">
+                                                src="{{ asset('new-assets/img/escudoColegio.png') }}" alt="image colegio" style="width: 40px;">
                                         </td>
                                         <td>
                                             <h1>Nombre Colegio</h1>
@@ -23,7 +23,7 @@
 
                                 <section id="agenda">
                                     <header class="text-uppercase" id="headerText">
-                                        <img src="new-assets/img/icon/CALIFICACIONES COLOR MENU PLEGABLE.png" height="30" alt="">
+                                        <img src="{{ asset('new-assets/img/icon/CALIFICACIONES COLOR MENU PLEGABLE.png') }}" height="30" alt="">
                                         <span> Calificaciones</span>
                                     </header>
 

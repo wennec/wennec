@@ -46,7 +46,7 @@
                                                 <td>{{$materia->name}}</td>
                                                 <td>{{$materia->nombre_materia}}</td>
                                                 <td>{{$materia->grupo}}</td>
-                                                <td>{{link_to_route('calificacionEstudiante.show', $title = '', $parameter = $materia->id_materia, $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fas fa-eye'])}}</td>
+                                                <td>{{link_to_route('calificacionEstudiante.show', $title = '', $parameter = $materia->id_materia, $attributes = ['class' => 'btn btn-simple btn-success btn-icon edit fa fa-eye'])}}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
