@@ -29,13 +29,6 @@
                         <span class="rad-sidebar-item">Comunicados</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="done">
-                        <i class="item4"> <img src="new-assets/img/icon/iconMenu/icon41_transporte.png" alt="">
-                            <span class="icon-bg rad-bg-danger"></span>
-                        </i>
-                        <span class="rad-sidebar-item">Transporte</span>
-                    </a>
                 </li>
                 <li>
                     <a href="{{ route('acudienteEstudianteCalificaciones.index') }}" class="">
