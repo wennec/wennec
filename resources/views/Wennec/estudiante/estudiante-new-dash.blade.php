@@ -103,7 +103,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="aulas.html">
+                    <a href="https://wennec.com/wennecaulas/">
                         <i class="item17"> <img src="{{ asset('new-assets/img/icon/iconMenu/icon171_aulasVirtuales.png') }}" alt="">
                             <span class="icon-bg rad-bg-warning"></span>
                         </i>

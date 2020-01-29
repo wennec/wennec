@@ -147,17 +147,18 @@
                         </a>
                     </div>
                     <div class="col-md-2 text-center">
-                        <a href="{{ route('fechaevaluaciondocenteA.index') }}"> 
-                        <img src="new-assets/img/icon/iconHome/iconWennnec_encuestas.png" alt="icon encuestas">
-                        <p class="rojo text-uppercase">Encuestas</p>
-                        </a>
-                    </div>
-                    <div class="col-md-2 text-center">
                         <a href="{{ route('eleccionEscolar.index') }}"> 
                         <img src="new-assets/img/icon/iconHome/iconWennnec_gobiernoEscolar.png" alt="icon Gobierno Escolars">
                         <p class="amarillo text-uppercase">Gobierno<br/>Escolar</p>
                         </a>
                     </div>
+                    <div class="col-md-2 text-center">
+                        <a href="{{ route('fechaevaluaciondocenteA.index') }}"> 
+                        <img src="new-assets/img/icon/iconHome/iconWennnec_encuestas.png" alt="icon encuestas">
+                        <p class="rojo text-uppercase">Encuestas</p>
+                        </a>
+                    </div>
+                    
                     <div class="col-md-2 text-center">
                     <a href="{{ route('noticiasA.index') }}"> 
                         <img src="new-assets/img/icon/iconHome/iconWennnec_Noticias.png" alt="icon Noticias">
@@ -166,16 +167,17 @@
                     </div>
                 </div>
                 <div class="row spacefour" style="margin-bottom: 5rem;">
-                <div class="col-md-2 text-center">
-                    <a href="{{ route('eventoA.index') }}"> 
-                        <img src="new-assets/img/icon/iconHome/iconWennnec_admin.png" alt="icon admisiones">
-                        <p class="verde text-uppercase">Admisiones<br/>y matriculas</p>
-                    </a>
-                    </div>
+                
                     <div class="col-md-2 text-center">
                     <a href="/horarios"> 
                         <img src="new-assets/img/icon/iconHome/iconWennnec_horarios.png" alt="icon Horarios">
                         <p class="azul text-uppercase">Horarios<br/>de clase</p>
+                    </a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                    <a href="{{ route('eventoA.index') }}"> 
+                        <img src="new-assets/img/icon/iconHome/iconWennnec_admin.png" alt="icon admisiones">
+                        <p class="verde text-uppercase">Admisiones<br/>y matriculas</p>
                     </a>
                     </div>
                 </div>
@@ -342,8 +344,10 @@
                         </a>
                     </div>
                     <div class="col-md-2 text-center">
-                        <img src="new-assets/img/icon/iconHome/iconWennnec_Asistencia.png" alt="icon Asistencia">
-                        <p class="verde text-uppercase">Asistencia</p>
+                    <a href="{{ route('pagosAcudiente.index') }}">
+                        <img src="new-assets/img/icon/iconHome/iconWennnec_pagos.png" alt="icon Noticias">
+                        <p class="rojo text-uppercase">Pagos<br/>Electrónicos</p>
+                        </a>
                     </div>
                 </div>
                 <div class="row spacefour">
@@ -364,11 +368,10 @@
                         <p class="azul text-uppercase">Horarios<br/>de clase</p>
                     </div>
                     <div class="col-md-2 text-center">
-                    <a href="{{ route('pagosAcudiente.index') }}">
-                        <img src="new-assets/img/icon/iconHome/iconWennnec_pagos.png" alt="icon Noticias">
-                        <p class="rojo text-uppercase">Pagos<br/>Electrónicos</p>
-                        </a>
+                        <img src="new-assets/img/icon/iconHome/iconWennnec_Asistencia.png" alt="icon Asistencia">
+                        <p class="verde text-uppercase">Asistencia</p>
                     </div>
+                    
                     <div class="col-md-2 col-md-offset-4 text-center">
                             <img src="new-assets/img/icon/iconHome/iconWennnec_AulaVirtal.png" alt="icon Carnetizacion">
                             <p class="amarillo text-uppercase">Aulas virtuales</p>

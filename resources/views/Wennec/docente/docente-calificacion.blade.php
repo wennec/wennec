@@ -174,8 +174,11 @@
     </div>
 </div>
 
-<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+<script>
 <script>
     $(document).ready( function () {
         $('#myTable').DataTable();
