@@ -63,8 +63,7 @@
                                                     </td>
 
                                                     <td style="width: 70%;position: relative;" >
-                                                        <a class="iconEditar" href="#modalEditarAgenda" data-toggle="modal"
-                                                        data-target="#modalEditarAgenda"><img src="new-assets/img/icon/editar.png"></a>
+                                                    <a class="iconEditar" href="eventoA/{{$evento->id}}/edit"><img src="new-assets/img/icon/editar.png"></a>
                                                         <aside style="width: 88%;">
                                                             <h4>Comunicado</h4>
                                                             <h5>{{ $evento->Evento }}</h5>

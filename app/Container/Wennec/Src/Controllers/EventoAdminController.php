@@ -36,6 +36,7 @@ class EventoAdminController extends Controller
 
         $eventos =
         DB::select(DB::raw("SELECT
+        tbl_eventosgenerales.id,
         tbl_eventosgenerales.titulo_evento as Evento,
         tbl_eventosgenerales.fecha as Fecha,
         tbl_eventos.tipo_evento as Descripcion,
@@ -115,7 +116,12 @@ class EventoAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cole = EventosGenerales::findOrFail($id);
+        $tipoEventos = Eventos::all();
+        return view('Wennec.admin.administrador-editarcomunicado', [
+            'departamento' => $cole,
+            'tipoEventos' => $tipoEventos
+        ]);
     }
 
     /**
@@ -127,7 +133,10 @@ class EventoAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cole = EventosGenerales::find($id);
+        $cole->fill($request->all());
+        $cole->save();
+        return redirect('/eventoA')->with('success','Comunicado Modificado Correctamente');
     }
 
     /**
