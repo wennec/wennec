@@ -1,35 +1,37 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: inherit; padding-left: 5rem;"><img
+                                                src="new-assets/img/EscudoColegios/GSN.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Horarios</h1>
-                            </div>
-                        </div>
+                                <section id="agenda">
+                                    <header class="text-uppercase" id="headerText">
+                                        <img src="new-assets/img/icon/HORARIOS DE CLASE TITULO.png" height="30" alt="">
+                                        <span> horarios</span>
+                                    </header>
 
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control dt-tb">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                    <br>
+
+
+
+                                        <table id="myTable" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
                                         <th class="text-center">Grupo</th>
@@ -49,15 +51,17 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                </section>
                             </div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        <!-- Static Table End -->
-</div>
+        </section>
+
+                                
+
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -140,6 +144,15 @@
     </div>
 </div>
 
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
 <script>
 $(document).ready(function (e) {
   $('#modalCreate').on('show.bs.modal', function(e) {
@@ -153,7 +166,7 @@ $(document).ready(function (e) {
 });
 </script>
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function(e) {
         $('#modalCreate').on('show.bs.modal', function(e) {

@@ -1,47 +1,78 @@
 @extends('layouts.dash')
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row calificacioneSection" style="margin-bottom:.25em;">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: inherit; padding-left: 5rem;"><img
+                                                src="new-assets/img/EscudoColegios/GSN.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- Static Table Start -->
-    <div class="calender-area mg-b-15-calendar">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="calender-inner">
-                        <div id='calendario'></div>
+                                <section id="comunicados">
+                                    <header class="text-uppercase mt-3" id="headerText" style="margin:2em auto .5em !important;">
+                                        <img src="new-assets/img/icon/ASISTENCIA TITULO.png" height="30" alt="">
+                                        <span> Asistencia</span>
+                                        <br>
+                                        
+                                    </header>
+                                    <div class="row mt-4" style="width: 100%;">
+                                        <section style="position: relative; width: 100%;">
+                                            <hr style="width: 100%;">
+                                        <h3 style="width: 100%; text-align: center;">Efrain Andres Vergara - 101</h3>
+                                        <hr style="width: 100%;">
+                                        </section>
+                                      <div class="col-md-5 col-xs-5" id="colCertifi" style=" margin:0 auto !important; padding:0px !important;">
+                                          <h3 style="padding:0em 2em;color: #808080;">Retardos</h3>
+                                          <table  id="task-list-tbl" class="table" style="width:80%;margin:0 auto !important; font-size: 0.95em;">
+                                            
+                                            <tbody>
+                                                @foreach($asistencia as $asistencias)
+                                                    @if($asistencias->tipo_control_asistencia == "Retardo")
+                                                    <tr>
+                                                        <td>{{ $asistencias->fecha }}</td>
+                                                    </tr>
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                      </div>
+                                      <div class="col-md-5 col-xs-5 ml-5" id="colCertifi" style="margin:0 auto !important;padding:0px !important;">
+                                        <h3 style="padding:0em 2em;color: #808080;">Fallas</h3>
+                                        <table  id="task-list-tbl" class="table" style="width:80%;margin:0 auto !important; font-size: 0.95em;">
+                                            
+                                            <tbody>
+                                                @foreach($asistencia as $asistencias)
+                                                    @if($asistencias->tipo_control_asistencia == "Falla")
+                                                    <tr>
+                                                        <td>{{ $asistencias->fecha }}</td>
+                                                    </tr>
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        <!-- Static Table End -->
-</div>
+        </section>
 
-<div id="fullCalModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                <h4 id="modalTitle" class="modal-title"></h4>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-<script>
+        <script>
     $(function() {
         var todayDate = moment().startOf('day');
         var YM = todayDate.format('YYYY-MM');
@@ -108,3 +139,5 @@
         });
     });
 </script>
+
+@endsection

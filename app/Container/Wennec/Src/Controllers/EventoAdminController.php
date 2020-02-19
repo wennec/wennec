@@ -18,7 +18,6 @@ class EventoAdminController extends Controller
     public function index()
     {
         $iduser = auth()->user()->PK_id ;
-
         $colegioUsers =
         DB::select(DB::raw("SELECT
         tbl_colegios.id as idColegio
@@ -32,8 +31,11 @@ class EventoAdminController extends Controller
              $id = $colegioUser->idColegio;
         }
 
+        $tipoEventos = Eventos::all();
+
         $eventos =
         DB::select(DB::raw("SELECT
+        tbl_eventosgenerales.                                 id,
         tbl_eventosgenerales.titulo_evento as Evento,
         tbl_eventosgenerales.fecha as Fecha,
         tbl_eventos.tipo_evento as Descripcion,
@@ -47,7 +49,10 @@ class EventoAdminController extends Controller
         WHERE tbl_colegios.id = $id
         "));
 
-        return view('Wennec.admin.administrador-eventos',compact('eventos'));
+
+
+
+        return view('Wennec.admin.administrador-eventos',compact('eventos', 'tipoEventos'));
     }
 
     /**
@@ -113,7 +118,12 @@ class EventoAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cole = EventosGenerales::findOrFail($id);
+        $tipoEventos = Eventos::all();
+        return view('Wennec.admin.administrador-editarcomunicado', [
+            'departamento' => $cole,
+            'tipoEventos' => $tipoEventos
+        ]);
     }
 
     /**
@@ -125,7 +135,10 @@ class EventoAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cole = EventosGenerales::find($id);
+        $cole->fill($request->all());
+        $cole->save();
+        return redirect('/eventoA')->with('success','Comunicado Modificado Correctamente');
     }
 
     /**

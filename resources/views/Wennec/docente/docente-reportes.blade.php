@@ -1,47 +1,67 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-  {{--Inicio Mensaje Confirmar--}}
-  @include('Wennec.alerts.success')
-  @include('Wennec.alerts.error')
-  @include('Wennec.alerts.errors')
-  {{--Fin Mensaje Confirmar--}}
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row calificacioneSection" style="margin-bottom:.25em;">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: inherit; padding-left: 5rem;"><img
+                                                src="new-assets/img/EscudoColegios/GSN.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
 
-  <!-- Static Table Start -->
-  <div class="data-table-area mg-b-15-datatable">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="sparkline13-list">
-            <div class="sparkline13-hd">
-              <div class="main-sparkline13-hd">
-                <h1>Reportes</h1>
-              </div>
-            </div>
-            <br>
-            <div class="single-product-text">
-              <img src="img/product/pro4.jpg" alt="">
-              @foreach($teachers_name as $teacher_name)
-              <h4><a class="cards-hd-dn">{{$teacher_name->name}}</a></h4>
-              @endforeach
-              <h5>Certificado Laboral</h5>
-              <div class="row">
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="cards-dtn">
-                    <button type="button" name="button" class="btn btn-primary"><a href="{{url('/reportescertificado')}}"
-                      style="color:white;" target="_blank">Generar PDF</a></button>
-
-                  </div>
+                                <section id="comunicados">
+                                    <header class="text-uppercase mt-3" id="headerText">
+                                        <img src="new-assets/img/icon/CERTIFICADOS TITULO.png" height="30" alt="">
+                                        <span> Certificados</span>
+                                        <br>
+                                        
+                                    </header>
+                                    <div class="row mt-4" style="width: 100%;">
+                                        @foreach($teachers_name as $teacher_name)
+                                          <h3>{{$teacher_name->name}} - Docente</h3>
+                                        @endforeach
+                                        <hr style="width: 100%;">
+                                      <div class="col-md-5 col-xs-6" id="colCertifi">
+                                        <form>
+                                            <div class="form-row">
+                                              <div class="col-md-11">
+                                                <label for=""><small>Tipo de Certificado</small> </label>
+                                                <input type="text" class="form-control" style="margin:0px !important;">
+                                                <label for=""><small>Comentarios</small></label>
+                                                <textarea name="" id="" class="form-control" cols="30" rows="4" style="margin:0px !important;"></textarea>
+                                              </div>
+                                            </div>
+                                            <div class="form-row text-left mt-3 mb-2">
+                                                <button class="btnAzul">Enviar solicitud</button>
+                                            </div>
+                                          </form>
+                                      </div>
+                                      <div class="col-md-5 col-xs-6 ml-5" >
+                                          <h3>Certificado_001 .PDF</h3>
+                                          <button class="btnAzul">
+                                            <a href="{{url('/reportescertificado')}}"  target="_blank" download="Reportecolegio">
+                                                Descargar Archivo
+                                                </a>
+                                          </button>
+                                      </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Static Table End -->
-</div>
+        </section>
 @endsection

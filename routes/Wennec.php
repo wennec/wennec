@@ -19,6 +19,7 @@ Route::resource('fechaevaluaciondocenteA', 'EvaluacionDocenteController');
 Route::resource('resultadoevaluaciondocenteA', 'EvaluacionDocenteRController');
 Route::resource('eventoEstudiante', 'EventoEstudianteController');
 Route::resource('agendaEstudiante', 'AgendaEstudianteController');
+Route::resource('agendaEstudianteCalendar', 'AgendaEstudianteCalendarController');
 Route::resource('agendaAcudiente', 'AgendaAcudienteController');
 Route::resource('adminStudent', 'AdminStudentController');
 Route::resource('adminDocente', 'AdminDocenteController');

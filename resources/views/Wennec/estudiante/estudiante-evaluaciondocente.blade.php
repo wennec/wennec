@@ -1,24 +1,76 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-  {{--Inicio Mensaje Confirmar--}}
-  @include('Wennec.alerts.success')
-  @include('Wennec.alerts.error')
-  @include('Wennec.alerts.errors')
-  {{--Fin Mensaje Confirmar--}}
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool" style="margin-bottom:.25em;">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: inherit; padding-left: 5rem;"><img
+                                                src="new-assets/img/EscudoColegios/GSN.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
 
-  <!-- Static Table Start -->
-  <div class="data-table-area mg-b-15-datatable">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="sparkline13-list">
-            <div class="sparkline13-hd">
-              <div class="main-sparkline13-hd">
-                <h1>Evaluacion Docente</h1>
-              </div>
+                                <section id="comunicados">
+                                    <header class="text-uppercase mt-3" id="headerText">
+                                        <img src="new-assets/img/icon/ENCUESTAS TITULO.png" height="30" alt="">
+                                        <span> Evaluación Docente</span>
+                                    </header>
+
+                                    <br><br>
+                                    {{--Inicio Mensaje Confirmar--}}
+                                    @include('Wennec.alerts.success')
+                                    @include('Wennec.alerts.error')
+                                    @include('Wennec.alerts.errors')
+                                    {{--Fin Mensaje Confirmar--}}
+                                </section>
+                            </div>
+                            <div class="row">
+                            @foreach($dates as $date)
+                            @if($date->fecha_inicio <= \Carbon\Carbon::now() && \Carbon\Carbon::now() <= $date->fecha_fin)
+                            @foreach($teachersTest as $teacherTest)
+                                <div class="col-xs-4 formTrans" style="padding: .5em 1.5em 1.5em;
+                                ">
+                                    <aside style="text-align: center;position:relative; margin-top:1em;">
+                                        <a href="#modalEditarEncuesta" style="position: absolute; right: 5px; top:2px;"><img src="{{ asset('img/icon/editGris.png') }}" alt=""></a>
+                                       <img src="new-assets/img/iconEncuestas.png" alt="" style="width: 100%;">
+                                    </aside>
+
+                                    <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0 0; border-bottom:.75px solid #E2E2E2;">
+                                        <h3 style="font-size:1.52em;margin-bottom: 0px !important; line-height: 1;">{{$teacherTest->name_teacher}}</h3>
+                                        <p>{{$teacherTest->nombre_materia}}</p>
+                                    </aside>
+                                    <aside style="width:100%; text-align: center; padding: 1em 0em 0em;">
+                                        <button class="open-homeEvents btnVotar mt-3 mb-2" id="mymodal" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">Votar</button>
+                                    </aside>
+
+                                </div>
+                            @endforeach
+                            @else
+                            <div class="alert alert-danger">
+                              <ul>
+                                Aun no esta habilitada la evaluacion docente...!!!
+                              </ul>
+                            </div>
+                            @endif
+                            @endforeach 
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
             </div>
+
+
             <!-- Modal -->
             <div class="modal fade" id="modalEvaluation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog modal-lg" role="document">
@@ -29,142 +81,70 @@
                   </div>
                   <div class="modal-body">
                     {!! Form::open(['route'=>'evaluacionDocenteE.store','method'=>'POST']) !!}
-                    <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group form-md-line-input">
-                          <label type="" name="name_teacher" id="name_teacher"></label>
-                          <br>
-                          <label type="" name="materia" id="materia"></label>
-                          <br>
-                          <input type="hidden" name="teacher_id" id="teacher_id">
-                          <input type="hidden" name="evaluado" value="1">
-                          <div class="hiddenradio">
-                            <label for="">Puntualidad</label>
-                            <label>
-                              <input type="radio" name="puntualidad" value="1" required >
-                              <img src="/Test_teachers/like.png">
-                            </label>
+                    <div class="row" style="width: 100%;">
+                      <div class="col-xs-4 formTrans" style="padding: .5em 1.5em 1.5em;
+                      ">
+                          <aside style="text-align: center;position:relative; margin-top:1em;">
+                              <a href="#modalEditarEncuesta" style="position: absolute; right: 5px; top:2px;"><img src="{{ 'asset(img/icon/editGris.png') }}" alt=""></a>
+                              <img src="new-assets/img/iconEncuestas.png" alt="" style="width: 100%;">
+                          </aside>
 
-                            <label>
-                              <input type="radio" name="puntualidad" value="0" required>
-                              <img src="/Test_teachers/dislike.png">
-                            </label>
-                          </div>
-                          <div class="hiddenradio">
-                            <label for="">Dinamismo</label>
-                            <label>
-                              <input type="radio" name="dinamismo" value="1" required>
-                              <img src="/Test_teachers/like.png">
-                            </label>
+                          <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0 0; border-bottom:.75px solid #E2E2E2;">
+                              <h3 style="font-size:1.52em;margin-bottom: 0px !important; line-height: 1;"><label type="" name="name_teacher" id="name_teacher"></label> </h3>
+                              <label type="" name="materia" id="materia"></label>
+                          </aside>
 
-                            <label>
-                              <input type="radio" name="dinamismo" value="0" required>
-                              <img src="/Test_teachers/dislike.png">
-                            </label>
-                          </div>
-                          <div class="hiddenradio">
-                            <label for="">Respeto</label>
-                            <label>
-                              <input type="radio" name="respeto" value="1" required>
-                              <img src="/Test_teachers/like.png">
-                            </label>
-
-                            <label>
-                              <input type="radio" name="respeto" value="0" required>
-                              <img src="/Test_teachers/dislike.png">
-                            </label>
-                          </div>
-                          <div class="hiddenradio">
-                            <label for="">Actitud</label>
-                            <label>
-                              <input type="radio" name="actitud" value="1" required>
-                              <img src="/Test_teachers/like.png">
-                            </label>
-
-                            <label>
-                              <input type="radio" name="actitud" value="0" required>
-                              <img src="/Test_teachers/dislike.png">
-                            </label>
-                          </div>
-
-                        </div>
                       </div>
-                    </div>
-                    {!! Form::submit('Enviar', ['class'=>'btn btn-large btn-primary']) !!}
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                      <input type="hidden" name="teacher_id" id="teacher_id" value=""/>
+                      <input type="hidden" name="evaluado" value="1">
+                      <div class="col-xs-4" style="padding: .5em 1.5em 1.5em;width:55%;">
+
+                          <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0; border-bottom:.75px solid #E2E2E2;">
+                              <h3 style="font-size:1.52em;padding:.5em 0 0; color:#808080; margin-bottom: 0px !important; line-height: 0;">Puntualidad</h3>
+                              <br>
+                              <label><input type="radio" name="puntualidad" value="1" required ><img src="new-assets/img/iconVotarArriba.png" alt="" width="40"></label>&nbsp; &nbsp; <label> <input type="radio" name="puntualidad" value="0" required>  <img src="new-assets/img/iconVotarAbajo.png" alt="" width="40"></label>
+                          </aside>
+                          <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0; border-bottom:.75px solid #E2E2E2;">
+                              <h3 style="font-size:1.52em;padding:.5em 0 0; color:#808080; margin-bottom: 0px !important; line-height: 0;">Dinamismo en clase                                        </h3>
+                              <br>
+                              <label><input type="radio" name="dinamismo" value="1" required ><img src="new-assets/img/iconVotarArriba.png" alt="" width="40"></label>&nbsp; &nbsp; <label> <input type="radio" name="dinamismo" value="0" required>  <img src="new-assets/img/iconVotarAbajo.png" alt="" width="40"></label>
+                          </aside>
+                          <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0; border-bottom:.75px solid #E2E2E2;">
+                              <h3 style="font-size:1.52em;padding:.5em 0 0; color:#808080; margin-bottom: 0px !important; line-height: 0;">Respeto</h3>
+                              <br>
+                              <label><input type="radio" name="respeto" value="1" required ><img src="new-assets/img/iconVotarArriba.png" alt="" width="40"></label>&nbsp; &nbsp; <label> <input type="radio" name="respeto" value="0" required>  <img src="new-assets/img/iconVotarAbajo.png" alt="" width="40"></label>
+                          </aside>
+                          <aside class="text-left" style="border-top:.75px solid #E2E2E2;padding:.5em 0; border-bottom:.75px solid #E2E2E2;">
+                              <h3 style="font-size:1.52em;padding:.5em 0 0; color:#808080; margin-bottom: 0px !important; line-height: 0;">Actitud</h3>
+                              <br>
+                              <label><input type="radio" name="actitud" value="1" required ><img src="new-assets/img/iconVotarArriba.png" alt="" width="40"></label>&nbsp; &nbsp; <label> <input type="radio" name="actitud" value="0" required>  <img src="new-assets/img/iconVotarAbajo.png" alt="" width="40"></label>
+                          </aside>
+
+                      </div>
+                      <button type="submit" class="btn btn-primary">Enviar</button>
                   </div>
                   {!! Form::close() !!}
                 </div>
               </div>
             </div>
 
-            @foreach($dates as $date)
-            @if($date->fecha_inicio <= \Carbon\Carbon::now() && \Carbon\Carbon::now() <= $date->fecha_fin)
-            <div class="sparkline13-graph">
-              <div class="datatable-dashv1-list custom-datatable-overright">
-                <div id="toolbar">
-                  <select class="form-control dt-tb">
-                    <option value="">Export Basic</option>
-                    <option value="all">Export All</option>
-                    <option value="selected">Export Selected</option>
-                  </select>
-                </div>
-                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                <thead>
-                  <th class="text-center">Grupo</th>
-                  <th class="text-center">Nombre</th>
-                  <th class="text-center">Materia</th>
-                  <th class="text-center">Evaluar</th>
-                </thead>
-                <tbody>
-                  @foreach($teachersTest as $teacherTest)
-                  <tr  class="text-center">
-                    <td>{{$teacherTest->grupo}}</td>
-                    <td>{{$teacherTest->name_teacher}}</td>
-                    <td>{{$teacherTest->nombre_materia}}</td>
-                    <td>
-                      <button type="button" id="mymodal" class="btn btn-warning" data-docente-id="{{$teacherTest->id_teacher}}" data-name-id="{{$teacherTest->name_teacher}}" data-materia-id="{{$teacherTest->nombre_materia}}" data-toggle="modal" data-target="#modalEvaluation">
-                        <i class="fas fa-check"></i>
-                      </button></td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            @else
-            <div class="alert alert-danger">
-              <ul>
-                Aun no esta habilitada la evaluacion docente...!!!
-              </ul>
-            </div>
-            @endif
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Static Table End -->
-</div>
+        </section>
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(document).ready(function (e) {
-  $('#modalEvaluation').on('show.bs.modal', function(e) {
-    var docente_id = $(e.relatedTarget).data('docente-id');
-    $(e.currentTarget).find('input[name="teacher_id"]').val(docente_id);
-    var docente = document.getElementById('teacher_id').innerHTML = docente_id;
 
-    var docente = $(e.relatedTarget).data('name-id');
-    $(e.currentTarget).find('label[name="name_teacher"]').val(docente);
-    var docente = document.getElementById('name_teacher').innerHTML= docente;
+$(document).on("click", ".open-homeEvents", function () {
+     var docenteId = $(this).data('docente-id');
+     $('#teacher_id').val( docenteId );
 
-    var materia = $(e.relatedTarget).data('materia-id');
-    $(e.currentTarget).find('label[name="materia"]').val(materia);
-    var materia = document.getElementById('materia').innerHTML= materia;
-  });
+     var nameId = $(this).data('name-id');
+     $('#name_teacher').html( nameId );
+
+     var materiaId = $(this).data('materia-id');
+     $('#materia').html( materiaId );
 });
 </script>
 @endsection

@@ -1,62 +1,172 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
 {{--Inicio Mensaje Confirmar--}}
 @include('Wennec.alerts.success')
 @include('Wennec.alerts.error')
 @include('Wennec.alerts.errors')
 {{--Fin Mensaje Confirmar--}}
-
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Noticias</h1>
-                            </div>
-                        </div>
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control dt-tb">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Titulo Comunicado</th>
-                                        <th class="text-center">Imagen</th>
-                                        <th class="text-center">Descripcion</th>
-                                        <th class="text-center">Fecha Inicio</th>
-                                        <th class="text-center">Fecha Final</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($notices as $notice)
-                                        <tr  class="text-center">
-                                            <td>{{$notice->tipoNoticia}}</td>
-                                            <td><img class="imgdatatable" src="Noticias/{{$notice->imagenNoticia}}" alt="" /></td>
-                                            <td>{{$notice->descripcion}}</td>
-                                            <td>{{$notice->fechaInicio}}</td>
-                                            <td>{{$notice->fechaFin}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                                <!--header img name school-->
+                                <table class="headerName">
+                                    <tr>
+                                        <td style="text-align: inherit; padding-left: 5rem;"><img
+                                                src="new-assets/img/EscudoColegios/GSN.png" alt="image colegio" style="width: 40px;">
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
                                 </table>
+
+                                <section id="comunicados">
+                                    <header class="text-uppercase mt-3" id="headerText">
+                                        <img src="new-assets/img/icon/NOTICIAS TITULO.png" height="30" alt="">
+                                        <span> NOTICIAS</span>
+                                    </header>
+
+                                    @php
+                                    $rol = auth()->user()->rol->nombre;
+                                    @endphp
+                                    <aside class="formatCard">
+                                        <div class="row" id="headertablaAgenda">
+                                            <div class="col-md-9 col-xs-9">
+                                                <form name="FilterForm" id="FilterForm" action="" method="">
+                                                    <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
+                                                </form>
+                                            </div>
+                                            @if($rol == "Administrador"  || $rol == "Docente")
+                                            <div class="col-md-3 col-xs-3 text-right">
+                                                <button type="button" class="btnAgregar" id="btnAgregar" data-toggle="modal"
+                                                    data-target="#modalCrearNoticias"><img src="new-assets/img/icon/agregar.png"
+                                                        alt="agregar dato en agenda"></button>
+                                            </div>
+                                            @endif
+                                        </div>
+
+                                        <table id="tablaAgenda">
+                                        @foreach($notices as $notice)
+                                            <tbody>
+                                                <tr class="styleFila"> 
+                                                    <td style="width: 15%;position: relative;" >
+                                                        <img class="mt-2" src="new-assets/img/icon/NOTICIAS TITULO.png" alt="" width="120">
+                                                    </td>
+                                                    
+                                                    <td style="width: 85%;position: relative;" >
+                                                        @if($rol == "Administrador" || $rol == "Docente")
+                                                        <a class="iconEditar" href="#modalEditarNoticia" data-toggle="modal"
+                                                        data-target="#modalEditarNoticia"><img src="new-assets/img/icon/editar.png"></a>
+                                                        @endif
+                                                        <aside style="width: 88%; border:0px; margin: .5em auto;text-align: center;">
+                                                            <h3 class="text-left">{{$notice->tipoNoticia}}</h3>
+                                                            <p class="text-left"> <small>
+                                                              
+                                                            {{$notice->descripcion}}
+
+                                                            </small>
+                                                            </p>
+                                                            <hr class="hrcomunicados">
+                                                            <button class="btnleer text-center mt-3 mb-2">Leer más</button>
+                                                        </aside>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="border-bottom: .75px solid  #E2E2E2;">
+                                                        <p class="borderTable"></p>
+                                                    </td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                            @endforeach
+                                        </table>
+
+
+                                    </aside>
+                                </section>
                             </div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Crear -->
+    <div class="modal fade" id="modalCrearNoticias" tabindex="9" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title text-uppercase" style="width: 100%;">Nueva Noticia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route'=>'noticiasA.store','method'=>'POST','files' => true, 'enctype'=>'multipart/form-data']) !!}
+                        <div class="form-row">
+                          <div class="col-md-8">
+                            <div class="form-group" style="width: 90%;">
+                                <input type="text" name="tipoNoticia" class="form-control" placeholder="Titulo*">
+                                <textarea name="descripcion" id=""  value="Texto*" class="form-control" cols="30" rows="6" placeholder="Descripcion*" style="margin:0px !important;"></textarea>
+
+                                {!!Form::date('fechaInicio',null,['class'=>'form-control','placeholder'=>'Fecha de inicio','required'])!!}
+                                {!!Form::date('fechaFin',null,['class'=>'form-control','placeholder'=>'Fecha fin','required'])!!}
+                            </div>
+                          </div>
+                          <div class="col-md-4 text-center" id="formImage">
+                            <img src="new-assets/img/EscudoColegios/GSN.png" alt="" width="170">
+                          </div>
+                        </div>
+                        <div class="form-row text-center">
+                            <button class="btnPublicar text-center mt-3 mb-2">publicar</button>
+                        </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-        <!-- Static Table End -->
+    
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarNoticia" tabindex="9" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h5 class="modal-title text-uppercase" style="width: 100%;">Editar Noticia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        {!! Form::open(['route'=>'noticiasA.store','method'=>'POST','files' => true, 'enctype'=>'multipart/form-data']) !!}
+                        <div class="form-row">
+                          <div class="col-md-8">
+                            <div class="form-group" style="width: 90%;">
+                                <input type="text" name="tipoNoticia" class="form-control" placeholder="Titulo*">
+                                <textarea name="descripcion" id=""  value="Texto*" class="form-control" cols="30" rows="6" placeholder="Descripcion*" style="margin:0px !important;"></textarea>
+
+                                {!!Form::date('fechaInicio',null,['class'=>'form-control','placeholder'=>'Fecha de inicio','required'])!!}
+                                {!!Form::date('fechaFin',null,['class'=>'form-control','placeholder'=>'Fecha fin','required'])!!}
+                            </div>
+                          </div>
+                          <div class="col-md-4 text-center" id="formImage">
+                            <img src="new-assets/img/EscudoColegios/GSN.png" alt="" width="170">
+                          </div>
+                        </div>
+                        <div class="form-row text-center">
+                            <button class="btnPublicar text-center mt-3 mb-2">publicar</button>
+                        </div>
+                    {!! Form::close() !!}
+        </div>
+    </div>
 </div>
+</div>
+    
 @endsection

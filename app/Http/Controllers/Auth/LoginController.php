@@ -41,7 +41,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $grupos = Grupos::all();
-        return view('auth.login', [
+        return view('auth.new-login', [
             'grupos' => $grupos,
           ]);
     }

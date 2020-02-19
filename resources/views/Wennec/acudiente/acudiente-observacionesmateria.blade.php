@@ -1,59 +1,110 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="col-md-12">
-{{--Inicio Mensaje Confirmar--}}
-@include('Wennec.alerts.success')
-@include('Wennec.alerts.error')
-@include('Wennec.alerts.errors')
-{{--Fin Mensaje Confirmar--}}
+<section>
+            <div class="rad-body-wrapper rad-nav-min">
+                <div class="container">
+                    <div class="row">
+                         <!--header img name school-->
+                         <table style="width: 100%;">
+                            <tr>
+                                <td style="width:50%; text-align: right; padding-right: 2rem;"><img
+                                        src="{{ asset('new-assets/img/EscudoColegios/GSN.png') }}" alt="image colegio" style="width: 40px;">
+                                </td>
+                                <td style="width:50%;vertical-align:middle;">
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <div class="row spacenameSchool">
+                               
+                                <section id="agenda">
+                                    <header class="text-uppercase" id="headerText">
+                                        <img src="{{ asset('new-assets/img/icon/OBSERVADOR TITULO.png') }}"" height="30" alt="">
+                                        <span> Observador</span>
+                                    </header>
 
-    <!-- Static Table Start -->
-    <div class="data-table-area mg-b-15-datatable">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sparkline13-list">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Observaciones</h1>
+
+                                    <aside class="formatCard">
+                                        <div class="row" id="headertablaAgenda">
+                                            <div class="col-md-9 col-xs-9">
+                                                <form name="FilterForm" id="FilterForm" action="" method="">
+                                                    <input type="text" id="buscarAgenda" onkeyup="myFunction()" placeholder="Buscar..." title="Buscar">
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <table id="tablaAgenda">
+                                            <thead>
+                                                <th></th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($observaciones_estudiante as $observacion_estudiante)
+                                                <tr class="styleFila">  
+                                                    <td style="width: 30%;" class="fechaAgenda">
+                                                        <span class="NumFecha">22</span>
+                                                        <span class="finFecha">Lun. <br>/07 </span>
+                                                    </td>
+
+                                                    <td style="width: 70%;position: relative;" >
+                                                        
+                                                        <aside style="width: 88%;">
+                                                            <h4>{{$observacion_estudiante->nombre_materia}}</h4>
+                                                            @if($observacion_estudiante->periodo == "Primero")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #5995F8;"></i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Segundo")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #91D39F;"></i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Tercero")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo <i class="fa fa-star-o" style="color: #F0C345;"></i> </i></h5>
+                                                            @endif
+
+                                                            @if($observacion_estudiante->periodo == "Cuarto")
+                                                            <h5>{{$observacion_estudiante->periodo}} Periodo  <i class="fa fa-star-o" style="color: #E0646E;"></i></h5>
+                                                            @endif
+                                                            <p>
+                                                                {{$observacion_estudiante->descripcion}}
+                                                            </p>
+                                                        </aside>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="border-bottom: .75px solid  #E2E2E2;">
+                                                        <p class="borderTable"></p>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+
+                                    </aside>
+                                </section>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="row filterStar">
+                                <h3 class="text-center">Ayúda</h3>
+                                <br>
 
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control dt-tb">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <th class="text-center">Materia</th>
-                                        <th class="text-center">Observacion</th>
-                                        <th class="text-center">Periodo</th>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($observaciones_estudiante as $observacion_estudiante)
-                                        <tr  class="text-center">
-                                            <td>{{$observacion_estudiante->nombre_materia}}</td>
-                                            <td>{{$observacion_estudiante->descripcion}}</td>
-                                            <td>{{$observacion_estudiante->periodo}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <ul>
+                                    <li><i class="fa fa-star-o" style="color: #5995F8;"></i> Periodo 1</li>
+                                    <li><i class="fa fa-star-o" style="color: #91D39F;"></i> Periodo 2</li>
+                                    <li><i class="fa fa-star-o" style="color: #F0C345;"></i> Periodo 3</li>
+                                    <li><i class="fa fa-star-o" style="color: #E0646E;"></i> Periodo 4</li>
+                                </ul>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        <!-- Static Table End -->
-</div>
+        </section>
 @endsection
+
